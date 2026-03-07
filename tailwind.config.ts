@@ -8,34 +8,80 @@ const config: Config = {
   ],
   theme: {
     extend: {
+
       colors: {
         brand: {
-          // Xanh lá chủ đạo với các sắc độ
           green: {
-            light: "#EBF9EF", // Dùng cho background nhỏ, thông báo thành công
-            DEFAULT: "#37C35F", // Màu gốc của bạn
-            dark: "#2DA650",    // Dùng cho Hover
+            light: "#EBF9EF",
+            DEFAULT: "#37C35F",
+            dark: "#2DA650",
           },
-          // Màu kem nền
+
+          deep: "#0F2916",
+
           cream: {
             DEFAULT: "#FBFBF2",
-            dark: "#F2F2E2",    // Dùng cho phân cách (Divider) hoặc section khác
+            dark: "#F2F2E2",
           },
-          // Màu bổ trợ (Accent) - Tông đất ấm áp
+
           accent: "#D4A373",
-          // Màu chữ và trung tính
+
           neutral: {
             heading: "#1A1C19",
             body: "#444941",
             muted: "#8C9288",
-          }
+          },
         },
-        // Màu trạng thái hệ thống
+
         status: {
           error: "#E53E3E",
           warning: "#F6AD55",
           info: "#4299E1",
-        }
+        },
+      },
+
+      boxShadow: {
+        "glow-red": "0 0 15px rgba(229, 62, 62, 0.5)",
+        glass: "0 4px 30px rgba(0,0,0,0.05)",
+
+        /* NEW */
+        glow: "0 0 20px rgba(55,195,95,0.45)",
+        navbar: "0 6px 30px rgba(0,0,0,0.08)",
+      },
+
+      animation: {
+        float: "float 3s ease-in-out infinite",
+        fade: "fadeIn 0.6s ease forwards",
+        slideDown: "slideDown 0.3s ease",
+      },
+
+      keyframes: {
+        float: {
+          "0%,100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-4px)" },
+        },
+
+        fadeIn: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(8px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+
+        slideDown: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(-10px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
       },
     },
   },

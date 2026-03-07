@@ -1,22 +1,182 @@
 [
   {
     "category": "ban_tong_hop",
-    "name": "Heroin (Bạch phiến)",
-    "shortDesc": "Được tổng hợp từ Morphine (chiết xuất từ thuốc phiện) kết hợp với các hóa chất khác.",
+    "name": "Heroin (Cái chết trắng)",
+    "imageUrl": "/images/flashcard/heroin-cai-chet-trang.jpg",
+    "shortDesc": "Chế xuất từ Morphine trong cây anh túc bằng hóa chất công nghiệp. Dạng bột mịn, khả năng gây nghiện tàn khốc.",
     "detailedContent": [
-      "Độc tính và khả năng gây nghiện cao gấp nhiều lần so với Morphine thông thường.",
-      "Làm tàn phá cơ thể nhanh chóng, hệ miễn dịch suy yếu dễ mắc HIV/AIDS do dùng chung kim tiêm.",
-      "Gây ra những cơn 'vã thuốc' đau đớn tận xương tủy, dùng quá liều dễ dẫn đến đột tử."
+      "Biến người dùng thành nô lệ của thuốc chỉ sau 1-2 lần thử.",
+      "Dùng đường tiêm chích chung kim tiêm là con đường lây nhiễm HIV/AIDS nhanh nhất.",
+      "Phá hủy nhân cách, sẵn sàng trộm cắp, giết người để có tiền mua thuốc.",
+      "Sốc quá liều (Overdose) gây sùi bọt mép, tím tái và tử vong sau vài phút."
     ]
   },
   {
     "category": "ban_tong_hop",
-    "name": "Cocain",
-    "shortDesc": "Chiết xuất từ lá cây Coca, sau đó qua quá trình tinh chế bằng các hóa chất công nghiệp.",
+    "name": "Cocaine (Bột trắng)",
+    "imageUrl": "/images/flashcard/cocaine-bot-trang.jpg",
+    "shortDesc": "Bột tinh thể màu trắng tinh chiết xuất từ lá Coca. Là loại ma túy của giới nhà giàu do giá thành rất cao.",
     "detailedContent": [
-      "Kích thích thần kinh cực mạnh, mang lại cảm giác hưng phấn mãnh liệt nhưng rất ngắn.",
-      "Gây co thắt mạch máu cục bộ, dễ dẫn đến nhồi máu cơ tim và tai biến mạch máu não.",
-      "Khi hết thuốc, người dùng rơi vào trạng thái hoang tưởng, trầm cảm nặng nề."
+      "Làm nhịp tim tăng vọt bất thường, cực kỳ dễ gây nhồi máu cơ tim ở tuổi thanh niên.",
+      "Người dùng thường hít trực tiếp qua mũi, lâu ngày làm hoại tử thủng vách ngăn mũi.",
+      "Gây ảo giác hoang tưởng, dễ nổi nóng và hành xử bạo lực.",
+      "Khi hết thuốc sẽ rơi vào trạng thái kiệt quệ thần kinh và trầm cảm nặng."
+    ]
+  },
+  {
+    "category": "ban_tong_hop",
+    "name": "Tem Giấy (LSD)",
+    "imageUrl": "/images/flashcard/tem-giay-lsd.jpg",
+    "shortDesc": "Bán tổng hợp từ nấm cựa gà (Ergot). Tẩm vào các miếng giấy nhỏ in hình ngộ nghĩnh, ngậm dưới lưỡi.",
+    "detailedContent": [
+      "Là chất kích thích ảo giác mạnh nhất thế giới, làm thay đổi hoàn toàn thực tại.",
+      "Gây ảo giác rùng rợn, hoang tưởng bị truy sát dẫn đến nhảy lầu tự tử.",
+      "Ảo giác kéo dài lên đến 12 giờ đồng hồ, bào mòn thể lực trí não.",
+      "Nguy cơ bị 'Flashback': nhiều năm sau khi bỏ thuốc, ảo giác vẫn đột ngột quay trở lại."
+    ]
+  },
+  {
+    "category": "ban_tong_hop",
+    "name": "Crack Cocaine (Cocain đá)",
+    "imageUrl": "/images/flashcard/crack-cocaine-cocain-da.jpg",
+    "shortDesc": "Cocaine được nấu lại với baking soda tạo thành các cục rắn, dùng để hút. Tác dụng cực nhanh và tàn phá mạnh.",
+    "detailedContent": [
+      "Khả năng gây nghiện mạnh hơn Cocaine bột gấp nhiều lần.",
+      "Hút vào phổi gây tổn thương phế nang, ho ra máu (Crack lung).",
+      "Gây hoang tưởng tột độ, cảm giác có hàng ngàn con bọ đang bò dưới da.",
+      "Người nghiện sẵn sàng làm mọi thứ tồi tệ nhất để có tiền hút tiếp."
+    ]
+  },
+  {
+    "category": "ban_tong_hop",
+    "name": "Krokodil (Desomorphine)",
+    "imageUrl": "/images/flashcard/krokodil-desomorphine.jpg",
+    "shortDesc": "Mệnh danh là 'Ma túy cá sấu ăn thịt người'. Được tự nấu từ thuốc đau đầu, xăng, phốt pho đỏ và dung môi công nghiệp.",
+    "detailedContent": [
+      "Tiêm vào ven làm mạch máu nổ tung, da dẻ chuyển sang màu xanh vảy như da cá sấu.",
+      "Hóa chất độc hại làm hoại tử thịt từ trong ra ngoài, lộ cả xương sống.",
+      "Tuổi thọ của người dùng Krokodil chỉ đếm bằng tháng, cơ thể mục nát khi vẫn còn sống.",
+      "Cơn nghiện khủng khiếp khiến họ tiếp tục chích thuốc vào vùng thịt đã thối rữa."
+    ]
+  },
+  {
+    "category": "ban_tong_hop",
+    "name": "Oxycodone (OxyContin)",
+    "imageUrl": "/images/flashcard/oxycodone-oxycontin.jpg",
+    "shortDesc": "Thuốc giảm đau kê đơn thuộc nhóm Opioid. Do bị lạm dụng sai mục đích, nó trở thành ma túy gây nghiện khét tiếng.",
+    "detailedContent": [
+      "Tác dụng và độ gây nghiện giống hệt Heroin.",
+      "Gây buồn ngủ, đờ đẫn, mất hoàn toàn khả năng nhận thức và học tập.",
+      "Hội chứng cai nghiện đau đớn đến mức người dùng phải tìm mua Heroin ngoài chợ đen để thay thế.",
+      "Sử dụng quá liều làm sụp đổ hệ hô hấp, dẫn đến cái chết êm ái nhưng không thể tỉnh dậy."
+    ]
+  },
+  {
+    "category": "ban_tong_hop",
+    "name": "Hydrocodone (Vicodin)",
+    "imageUrl": "/images/flashcard/hydrocodone-vicodin.jpg",
+    "shortDesc": "Một loại thuốc giảm đau gây nghiện khác, bán tổng hợp từ codeine. Bị giới trẻ lạm dụng vì dễ mua.",
+    "detailedContent": [
+      "Gây suy giảm trí nhớ trầm trọng, rối loạn cảm xúc.",
+      "Kết hợp chung với rượu bia sẽ tạo thành chất độc giết chết gan ngay lập tức.",
+      "Nhịp tim chậm, khó thở, chân tay lạnh ngắt.",
+      "Khiến người dùng từ một học sinh bình thường trở thành tội phạm trộm cắp để mua thuốc."
+    ]
+  },
+  {
+    "category": "ban_tong_hop",
+    "name": "Buprenorphine",
+    "imageUrl": "/images/flashcard/buprenorphine.jpg",
+    "shortDesc": "Được dùng trong y tế để cai nghiện Heroin, nhưng lại bị lén lút tuồn ra ngoài làm ma túy lạm dụng.",
+    "detailedContent": [
+      "Gây ảo giác mơ màng, cơ thể lờ đờ mất sức sống.",
+      "Tiêm chích sai cách có thể gây tắc nghẽn mạch máu, nhiễm trùng máu.",
+      "Dùng quá liều gây suy hô hấp tàn phế não bộ.",
+      "Tạo ra một vòng lặp nghiện ngập mới khó dứt bỏ."
+    ]
+  },
+  {
+    "category": "ban_tong_hop",
+    "name": "Hydromorphone",
+    "imageUrl": "/images/flashcard/hydromorphone.jpg",
+    "shortDesc": "Mạnh gấp 2-8 lần Morphine thông thường. Dạng viên nén hoặc ống tiêm bị tuồn ra chợ đen.",
+    "detailedContent": [
+      "Hệ thần kinh bị ức chế nặng nề, người lảo đảo như thây ma.",
+      "Rất dễ gây sốc thuốc do người dùng không kiểm soát được liều lượng.",
+      "Gây ngứa ngáy toàn thân, táo bón mãn tính và suy kiệt nội tạng.",
+      "Hủy hoại đường tiêu hóa và gan thận."
+    ]
+  },
+  {
+    "category": "ban_tong_hop",
+    "name": "Oxymorphone",
+    "imageUrl": "/images/flashcard/oxymorphone.jpg",
+    "shortDesc": "Chất bán tổng hợp tương tự, thường bị nghiền nát để hít nhằm lấy cảm giác 'phê' nhanh chóng.",
+    "detailedContent": [
+      "Hít vào mũi gây tổn thương niêm mạc, chảy máu cam mãn tính.",
+      "Làm ngưng trệ hoạt động của phổi, dẫn đến thiếu oxy não.",
+      "Gây hoang tưởng, lo âu và hoảng loạn tâm thần.",
+      "Nguy cơ lây nhiễm HIV cực cao nếu dùng chung dụng cụ hút/chích."
+    ]
+  },
+  {
+    "category": "ban_tong_hop",
+    "name": "Black Tar Heroin",
+    "imageUrl": "/images/flashcard/black-tar-heroin.jpg",
+    "shortDesc": "Biến thể của Heroin, có màu đen nhánh dính dớp như nhựa đường do chứa cực nhiều tạp chất độc hại.",
+    "detailedContent": [
+      "Cực kỳ bẩn, tiêm vào ven gây áp xe (tụ mủ khổng lồ) tại vết tiêm.",
+      "Gây bệnh uốn ván và hoại tử cơ thịt trầm trọng.",
+      "Phá hủy vĩnh viễn hệ thống tĩnh mạch, khiến tay chân sưng vù, đen thui.",
+      "Tỷ lệ tử vong do nhiễm trùng máu cao hơn rất nhiều so với Heroin bột."
+    ]
+  },
+  {
+    "category": "ban_tong_hop",
+    "name": "Ethylmorphine",
+    "imageUrl": "/images/flashcard/ethylmorphine.jpg",
+    "shortDesc": "Bán tổng hợp từ Morphine. Được pha chế trong các loại thuốc ho mạnh ở chợ đen.",
+    "detailedContent": [
+      "Gây ức chế trung khu hô hấp ở não, thở thoi thóp.",
+      "Gây ngộ độc thần kinh, lú lẫn, không nhận biết được người thân.",
+      "Tàn phá chức năng gan khi dùng với số lượng lớn.",
+      "Hội chứng vã thuốc gây đau buốt tận xương tủy."
+    ]
+  },
+  {
+    "category": "ban_tong_hop",
+    "name": "Benzylmorphine",
+    "imageUrl": "/images/flashcard/benzylmorphine.jpg",
+    "shortDesc": "Một chất tương tự Heroin nhưng ít phổ biến hơn, tuy nhiên độ độc hại và tính gây nghiện không hề kém cạnh.",
+    "detailedContent": [
+      "Gây ức chế nhận thức, biến người dùng thành những 'xác sống' vô hồn.",
+      "Hệ thống miễn dịch suy sụp, dễ mắc các bệnh truyền nhiễm.",
+      "Làm suy yếu cơ tim, dễ dẫn đến trụy tim.",
+      "Nghiện tâm lý nặng nề, đánh mất hoàn toàn tương lai và lý trí."
+    ]
+  },
+  {
+    "category": "ban_tong_hop",
+    "name": "Pholcodine",
+    "imageUrl": "/images/flashcard/pholcodine.jpg",
+    "shortDesc": "Dẫn xuất của Morphine. Tuy không tạo hưng phấn mạnh bằng Heroin nhưng vẫn gây nghiện và tàn phá cơ thể.",
+    "detailedContent": [
+      "Lạm dụng gây buồn ngủ triền miên, mất khả năng học tập.",
+      "Gây dị ứng sốc phản vệ ở một số người, dẫn đến tử vong đột ngột.",
+      "Ức chế hệ tiêu hóa, gây suy dinh dưỡng nghiêm trọng.",
+      "Rất khó cai nghiện thành công do hội chứng trầm cảm kéo dài."
+    ]
+  },
+  {
+    "category": "ban_tong_hop",
+    "name": "Nalbuphine",
+    "imageUrl": "/images/flashcard/nalbuphine.jpg",
+    "shortDesc": "Thuốc giảm đau gây nghiện bán tổng hợp, thường bị người nghiện dùng làm 'bến đỗ tạm thời' khi thiếu Heroin.",
+    "detailedContent": [
+      "Gây ảo giác, ác mộng và cảm giác bồn chồn lo âu không dứt.",
+      "Chích quá liều làm huyết áp tụt dốc không phanh, nhịp tim đứt quãng.",
+      "Gây hoại tử ven tiêm nếu vệ sinh kém.",
+      "Làm thui chột trí tuệ và hủy hoại hoài bão của tuổi trẻ."
     ]
   }
 ]

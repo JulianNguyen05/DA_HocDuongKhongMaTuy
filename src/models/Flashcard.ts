@@ -1,12 +1,12 @@
 export interface DrugDetail {
   name: string;
+  imageUrl?: string | null;
   shortDesc: string;
   details: string[];
 }
 
 export interface DrugCategory {
   title: string;
-  theme: "green" | "purple" | "orange"; // Gắn màu đặc trưng cho từng tab
   drugs: DrugDetail[];
 }
 

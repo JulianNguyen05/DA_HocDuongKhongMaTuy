@@ -2,31 +2,181 @@
   {
     "category": "tu_nhien",
     "name": "Nhựa Thuốc Phiện",
-    "shortDesc": "Được lấy trực tiếp từ nhựa của quả cây Anh túc (cây thẩu), là nguyên liệu sản xuất Heroin.",
+    "imageUrl": "/images/flashcard/nhua-thuoc-phien.jpg",
+    "shortDesc": "Được lấy trực tiếp từ nhựa của quả cây Anh túc (cây thẩu), là nguyên liệu chính để sản xuất Heroin.",
     "detailedContent": [
-      "Gây nghiện rất mạnh và làm suy giảm thể lực, trí lực nhanh chóng.",
-      "Làm suy nhược hệ hô hấp, dùng quá liều có thể gây tử vong do ngưng thở.",
-      "Người nghiện thường xuyên bị táo bón, mất ngủ, cơ thể suy kiệt, tiều tụy."
+      "Gây ức chế thần kinh trung ương, làm giảm đau và buồn ngủ mê mệt.",
+      "Sử dụng lâu dài gây suy nhược cơ thể, gầy gò, ốm yếu, da xám xịt.",
+      "Làm suy giảm trí nhớ, hoàn toàn mất khả năng tập trung học tập.",
+      "Hội chứng cai (vã thuốc) rất dữ dội: nôn mửa, đau nhức xương khớp như bị bẻ gãy."
     ]
   },
   {
     "category": "tu_nhien",
     "name": "Cần Sa (Bồ đà / Pin)",
-    "shortDesc": "Chế phẩm từ lá, hoa, hạt của cây cần sa, chứa hoạt chất THC gây ảo giác.",
+    "imageUrl": "/images/flashcard/can-sa-bo-da-pin.jpg",
+    "shortDesc": "Loại ma túy lấy từ lá và hoa cây Cần sa. Thường được cuốn thành điếu để hút, có mùi khét đặc trưng.",
     "detailedContent": [
-      "Gây ảo giác mạnh, làm thay đổi nhận thức về thời gian và không gian.",
-      "Sử dụng lâu dài làm giảm trí nhớ, giảm khả năng học tập và tập trung.",
-      "Nhịp tim đập nhanh, khô miệng, mắt đỏ và hoang tưởng (paranoia)."
+      "Gây ảo giác nhẹ, làm biến dạng nhận thức về thời gian và không gian.",
+      "Hút lâu dài làm não bộ teo nhỏ, giảm IQ, suy giảm trí nhớ ngắn hạn.",
+      "Tăng nguy cơ ung thư phổi cao gấp nhiều lần so với thuốc lá thông thường.",
+      "Gây hội chứng 'A motivational' (Triệt tiêu động lực): lười biếng, vô cảm với tương lai."
     ]
   },
   {
     "category": "tu_nhien",
     "name": "Lá Khát (Khat)",
-    "shortDesc": "Loại lá nhai có nguồn gốc từ châu Phi, chứa chất Cathinone kích thích thần kinh.",
+    "imageUrl": "/images/flashcard/la-khat-khat.jpg",
+    "shortDesc": "Loại lá cây chứa chất kích thích Cathinone giống Amphetamine, thường được nhai trực tiếp như nhai trầu.",
     "detailedContent": [
-      "Tạo cảm giác hưng phấn giả tạo, nói nhiều, sau đó là trạng thái trầm cảm, kiệt sức.",
-      "Gây mất ngủ kinh niên, chán ăn, dẫn đến suy dinh dưỡng nặng.",
-      "Làm hỏng men răng, viêm loét niêm mạc miệng và rối loạn tiêu hóa."
+      "Gây kích động, hưng phấn ảo, mất ngủ kéo dài nhiều ngày liền.",
+      "Sử dụng lâu ngày dẫn đến trầm cảm, ảo giác và hoang tưởng bị hại.",
+      "Làm hỏng toàn bộ men răng, gây ung thư vòm họng và các bệnh về nướu.",
+      "Làm tăng huyết áp, nhịp tim, nguy cơ nhồi máu cơ tim ở tuổi vị thành niên."
+    ]
+  },
+  {
+    "category": "tu_nhien",
+    "name": "Nấm Thức Thần",
+    "imageUrl": "/images/flashcard/nam-thuc-than.jpg",
+    "shortDesc": "Chứa chất Psilocybin gây ảo giác mạnh. Có hình dáng giống các loại nấm tự nhiên thông thường.",
+    "detailedContent": [
+      "Làm sai lệch hoàn toàn nhận thức về thị giác và thính giác (nhìn thấy âm thanh, nghe thấy màu sắc).",
+      "Dễ rơi vào trạng thái 'Bad trip' (Trải nghiệm kinh hoàng) gây hoảng loạn tột độ.",
+      "Nguy cơ ăn nhầm các loại nấm độc khác dẫn đến tử vong nhanh chóng.",
+      "Có thể kích hoạt các căn bệnh tâm thần tiềm ẩn như Tâm thần phân liệt."
+    ]
+  },
+  {
+    "category": "tu_nhien",
+    "name": "Lá Coca",
+    "imageUrl": "/images/flashcard/la-coca.jpg",
+    "shortDesc": "Lá của cây Coca mọc ở Nam Mỹ, là nguyên liệu tự nhiên để chiết xuất ra ma túy Cocaine.",
+    "detailedContent": [
+      "Chứa alkaloid gây kích thích thần kinh, làm tăng nhịp tim và huyết áp.",
+      "Gây tê cục bộ ở miệng và cổ họng khi nhai.",
+      "Tạo cảm giác hưng phấn giả tạo, sau đó là trạng thái mệt mỏi rã rời.",
+      "Sử dụng thường xuyên dẫn đến nghiện tâm lý và suy nhược cơ thể."
+    ]
+  },
+  {
+    "category": "tu_nhien",
+    "name": "Cà Độc Dược (Datura)",
+    "imageUrl": "/images/flashcard/ca-doc-duoc-datura.jpg",
+    "shortDesc": "Loài cây dại chứa độc tố Tropane, thường bị lạm dụng để lấy ảo giác nhưng cực kỳ nguy hiểm.",
+    "detailedContent": [
+      "Ảo giác sinh ra từ Cà độc dược vô cùng chân thực và đáng sợ.",
+      "Người dùng mất hoàn toàn khả năng phân biệt giữa ảo giác và thực tại.",
+      "Gây khô miệng nghiêm trọng, mờ mắt, tim đập nhanh và bí tiểu.",
+      "Nguy cơ tử vong rất cao do sốc độc tố chỉ với một liều lượng nhỏ."
+    ]
+  },
+  {
+    "category": "tu_nhien",
+    "name": "Cây Xô Thơm (Salvia)",
+    "imageUrl": "/images/flashcard/cay-xo-thom-salvia.jpg",
+    "shortDesc": "Loài thảo mộc chứa Salvinorin A, tạo ra ảo giác cực mạnh trong thời gian ngắn khi hút hoặc nhai.",
+    "detailedContent": [
+      "Gây mất kiểm soát cơ thể hoàn toàn (ngã quỵ, co giật nhẹ).",
+      "Tạo cảm giác cơ thể bị biến dạng hoặc hòa lẫn vào đồ vật xung quanh.",
+      "Trải nghiệm thường rất đáng sợ, gây hoảng loạn và la hét.",
+      "Dễ gây tai nạn chấn thương do không nhận thức được môi trường xung quanh."
+    ]
+  },
+  {
+    "category": "tu_nhien",
+    "name": "Kratom",
+    "imageUrl": "/images/flashcard/kratom.jpg",
+    "shortDesc": "Lá của một loại cây nhiệt đới, có tác dụng như chất kích thích ở liều thấp và an thần ở liều cao.",
+    "detailedContent": [
+      "Gây nghiện và có hội chứng cai giống hệt các loại ma túy nhóm Opioid (Heroin).",
+      "Làm tổn thương gan trầm trọng nếu sử dụng lâu dài.",
+      "Gây buồn nôn, ngứa ngáy, đổ mồ hôi và táo bón mãn tính.",
+      "Khi dùng chung với các chất khác có thể gây ức chế hô hấp dẫn đến tử vong."
+    ]
+  },
+  {
+    "category": "tu_nhien",
+    "name": "Xương Rồng Peyote",
+    "imageUrl": "/images/flashcard/xuong-rong-peyote.jpg",
+    "shortDesc": "Loại xương rồng nhỏ chứa Mescaline, chất gây ảo giác mạnh tương tự LSD hay Nấm thức thần.",
+    "detailedContent": [
+      "Tạo ra ảo giác thị giác sặc sỡ và biến đổi nhận thức về không gian.",
+      "Gây buồn nôn và nôn mửa dữ dội trong giai đoạn đầu sử dụng.",
+      "Làm tăng huyết áp, tăng nhịp tim và giãn đồng tử.",
+      "Có thể kích hoạt các cơn rối loạn lo âu và trầm cảm kéo dài."
+    ]
+  },
+  {
+    "category": "tu_nhien",
+    "name": "Ayahuasca",
+    "imageUrl": "/images/flashcard/ayahuasca.jpg",
+    "shortDesc": "Một loại nước sắc từ các loại dây leo ở Nam Mỹ, chứa chất DMT gây ảo giác cực mạnh.",
+    "detailedContent": [
+      "Đưa người dùng vào trạng thái hoang tưởng, mất ý thức về bản ngã.",
+      "Gây nôn mửa và tiêu chảy nghiêm trọng (được gọi là quá trình 'thanh tẩy').",
+      "Tăng huyết áp đột ngột, nguy hiểm cho người có bệnh tim mạch.",
+      "Dễ dẫn đến hội chứng Serotonin gây co giật và tử vong nếu dùng chung thuốc tây."
+    ]
+  },
+  {
+    "category": "tu_nhien",
+    "name": "Hạt Bìm Bìm Biếc",
+    "imageUrl": "/images/flashcard/hat-bim-bim-biec.jpg",
+    "shortDesc": "Hạt của hoa bìm bìm chứa LSA (họ hàng gần của LSD), thường bị nhai nát để tìm cảm giác ảo giác.",
+    "detailedContent": [
+      "Gây buồn nôn, co thắt dạ dày dữ dội do các độc tố tự nhiên trong hạt.",
+      "Tạo ảo giác thị giác và thính giác, nhưng đi kèm sự nhầm lẫn tâm thần.",
+      "Làm co mạch máu, gây tê cứng tay chân.",
+      "Phụ nữ có thai sử dụng sẽ gây co thắt tử cung, dẫn đến sẩy thai."
+    ]
+  },
+  {
+    "category": "tu_nhien",
+    "name": "Cây Ma Hoàng (Ephedra)",
+    "imageUrl": "/images/flashcard/cay-ma-hoang-ephedra.jpg",
+    "shortDesc": "Loài cây chứa Ephedrine, một chất kích thích thần kinh mạnh thường bị lạm dụng để giảm cân hoặc thức khuya.",
+    "detailedContent": [
+      "Gây áp lực cực lớn lên tim mạch, dễ dẫn đến nhồi máu cơ tim đột quỵ.",
+      "Kích thích thần kinh gây bồn chồn, run rẩy, mất ngủ mãn tính.",
+      "Sử dụng lâu dài gây rối loạn tâm thần và hoang tưởng.",
+      "Là nguyên liệu tiền chất để tội phạm lén lút điều chế Ma túy đá (Meth)."
+    ]
+  },
+  {
+    "category": "tu_nhien",
+    "name": "Quả Anh Túc (Poppy Pods)",
+    "imageUrl": "/images/flashcard/qua-anh-tuc-poppy-pods.jpg",
+    "shortDesc": "Quả của cây thuốc phiện phơi khô, thường bị đun thành trà để uống nhằm lấy tác dụng giảm đau, gây ảo giác.",
+    "detailedContent": [
+      "Chứa Morphine và Codeine tự nhiên, dễ gây nghiện không kém heroin.",
+      "Liều lượng độc tố trong mỗi quả không đều, rất dễ bị sốc quá liều.",
+      "Uống nhiều gây ức chế hệ hô hấp, ngủ lịm và ngừng thở.",
+      "Gây táo bón nặng, chán ăn và suy kiệt sức khỏe nhanh chóng."
+    ]
+  },
+  {
+    "category": "tu_nhien",
+    "name": "Nấm Ruồi (Amanita Muscaria)",
+    "imageUrl": "/images/flashcard/nam-ruoi-amanita-muscaria.jpg",
+    "shortDesc": "Loài nấm màu đỏ đốm trắng nổi tiếng, chứa chất độc thần kinh Muscimol gây ảo giác và hôn mê.",
+    "detailedContent": [
+      "Gây mất điều hòa vận động, đi đứng lảo đảo như người say rượu.",
+      "Trạng thái tâm lý thay đổi thất thường từ hưng phấn sang ngủ lịm.",
+      "Độc tố ảnh hưởng mạnh đến dạ dày, ruột, gây co thắt và nôn mửa.",
+      "Liều cao có thể gây co giật, tổn thương não và tử vong."
+    ]
+  },
+  {
+    "category": "tu_nhien",
+    "name": "Hạt Nhục Đậu Khấu",
+    "imageUrl": "/images/flashcard/hat-nhuc-dau-khau.jpg",
+    "shortDesc": "Vốn là gia vị nấu ăn, nhưng khi bị lạm dụng ăn với số lượng lớn sẽ sinh ra độc tố gây ảo giác Myristicin.",
+    "detailedContent": [
+      "Gây ra cơn hoang tưởng kéo dài đến 2 ngày, cực kỳ mệt mỏi và kiệt sức.",
+      "Nhịp tim đập loạn xạ, đánh trống ngực, miệng khô khốc.",
+      "Làm gan bị nhiễm độc nặng nề do phải phân giải Myristicin.",
+      "Gây đau đầu dữ dội, chóng mặt và mất khả năng ghi nhớ tạm thời."
     ]
   }
 ]

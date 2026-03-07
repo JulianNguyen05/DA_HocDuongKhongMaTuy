@@ -2,15 +2,14 @@ import prisma from "@/lib/prisma";
 import { DrugCategories, DrugDetail } from "@/models/Flashcard";
 
 export const getFlashcardDataFromDB = async (): Promise<DrugCategories> => {
-  // Prisma tự động hiểu allCards là mảng các Flashcard, không cần ép kiểu!
   const allCards = await prisma.flashcard.findMany();
 
   const filterByCategory = (catCode: string): DrugDetail[] => {
     return allCards
-      // Định nghĩa trực tiếp kiểu ẩn danh cho card ở đây để TypeScript hết phàn nàn
-      .filter((card: { category: string; name: string; shortDesc: string; detailedContent: string[] }) => card.category === catCode)
+      .filter(card => card.category === catCode)
       .map(card => ({
         name: card.name,
+        imageUrl: card.imageUrl,
         shortDesc: card.shortDesc,
         details: card.detailedContent
       }));
@@ -18,18 +17,15 @@ export const getFlashcardDataFromDB = async (): Promise<DrugCategories> => {
 
   return {
     tu_nhien: {
-      title: "🌿 Ma túy tự nhiên",
-      theme: "green",
+      title: "Ma túy tự nhiên",
       drugs: filterByCategory("tu_nhien")
     },
     tong_hop: {
-      title: "🧪 Ma túy tổng hợp",
-      theme: "purple",
+      title: "Ma túy tổng hợp",
       drugs: filterByCategory("tong_hop")
     },
     ban_tong_hop: {
-      title: "💊 Bán tổng hợp",
-      theme: "orange",
+      title: "Bán tổng hợp",
       drugs: filterByCategory("ban_tong_hop")
     }
   };

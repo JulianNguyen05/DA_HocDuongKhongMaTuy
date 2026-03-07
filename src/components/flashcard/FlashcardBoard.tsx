@@ -9,24 +9,20 @@ export default function FlashcardBoard({ initialData }: { initialData: DrugCateg
   const [activeTab, setActiveTab] = useState<CategoryKey>("tu_nhien");
 
   return (
-    <>
-      {/* TABS MENU */}
-      <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-16 max-w-4xl mx-auto px-4">
+    <div className="w-full pt-8 pb-24">
+      {/* TABS MENU - Phong cách tối giản (Minimalist Tabs) */}
+      <div className="flex flex-wrap justify-center items-center gap-2 mb-16 max-w-3xl mx-auto px-4">
         {(Object.keys(initialData) as CategoryKey[]).map((key) => {
           const isActive = activeTab === key;
-          const theme = initialData[key].theme;
           
-          // Đổi màu Tab dựa theo theme đang chọn
-          const activeBg = theme === "green" ? "bg-brand-green" : theme === "purple" ? "bg-brand-purple" : "bg-brand-orange";
-
           return (
             <button
               key={key}
               onClick={() => setActiveTab(key)}
-              className={`relative w-full md:w-auto px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 ${
+              className={`relative px-6 py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-300 ${
                 isActive
-                  ? `${activeBg} text-white shadow-lg scale-105 -translate-y-1`
-                  : `bg-white text-gray-400 hover:bg-gray-50 border-2 border-transparent`
+                  ? "bg-gray-900 text-white shadow-md scale-105"
+                  : "bg-transparent text-gray-500 hover:text-gray-900 hover:bg-gray-100"
               }`}
             >
               {initialData[key].title}
@@ -35,18 +31,18 @@ export default function FlashcardBoard({ initialData }: { initialData: DrugCateg
         })}
       </div>
 
-      {/* HIỂN THỊ THẺ */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto px-4">
+      {/* HIỂN THỊ THẺ MA TÚY */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
         {initialData[activeTab].drugs.map((drug, index) => (
           <FlashcardItem 
             key={index}
             name={drug.name}
+            imageUrl={drug.imageUrl} // Lấy ảnh từ DB truyền vào
             shortDesc={drug.shortDesc}
             details={drug.details}
-            theme={initialData[activeTab].theme}
           />
         ))}
       </div>
-    </>
+    </div>
   );
 }

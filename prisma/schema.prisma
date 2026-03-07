@@ -14,6 +14,7 @@ model Flashcard {
   id              Int      @id @default(autoincrement())
   category        String   // Phân loại: tu_nhien, tong_hop, ban_tong_hop
   name            String   // Tên ma túy
+  imageUrl        String?  // Đường dẫn ảnh minh họa (Thêm mới)
   shortDesc       String   // Mô tả ngắn ở mặt sau
   detailedContent String[] // Danh sách cảnh báo
   createdAt       DateTime @default(now())

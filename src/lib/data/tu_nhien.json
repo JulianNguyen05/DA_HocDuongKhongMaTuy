@@ -1,0 +1,32 @@
+[
+  {
+    "category": "tu_nhien",
+    "name": "Nhựa Thuốc Phiện",
+    "shortDesc": "Được lấy trực tiếp từ nhựa của quả cây Anh túc (cây thẩu), là nguyên liệu sản xuất Heroin.",
+    "detailedContent": [
+      "Gây nghiện rất mạnh và làm suy giảm thể lực, trí lực nhanh chóng.",
+      "Làm suy nhược hệ hô hấp, dùng quá liều có thể gây tử vong do ngưng thở.",
+      "Người nghiện thường xuyên bị táo bón, mất ngủ, cơ thể suy kiệt, tiều tụy."
+    ]
+  },
+  {
+    "category": "tu_nhien",
+    "name": "Cần Sa (Bồ đà / Pin)",
+    "shortDesc": "Chế phẩm từ lá, hoa, hạt của cây cần sa, chứa hoạt chất THC gây ảo giác.",
+    "detailedContent": [
+      "Gây ảo giác mạnh, làm thay đổi nhận thức về thời gian và không gian.",
+      "Sử dụng lâu dài làm giảm trí nhớ, giảm khả năng học tập và tập trung.",
+      "Nhịp tim đập nhanh, khô miệng, mắt đỏ và hoang tưởng (paranoia)."
+    ]
+  },
+  {
+    "category": "tu_nhien",
+    "name": "Lá Khát (Khat)",
+    "shortDesc": "Loại lá nhai có nguồn gốc từ châu Phi, chứa chất Cathinone kích thích thần kinh.",
+    "detailedContent": [
+      "Tạo cảm giác hưng phấn giả tạo, nói nhiều, sau đó là trạng thái trầm cảm, kiệt sức.",
+      "Gây mất ngủ kinh niên, chán ăn, dẫn đến suy dinh dưỡng nặng.",
+      "Làm hỏng men răng, viêm loét niêm mạc miệng và rối loạn tiêu hóa."
+    ]
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "category": "tong_hop",
+    "name": "Ma túy Đá (Meth)",
+    "shortDesc": "Dạng tinh thể trong suốt như phèn chua, kích thích thần kinh trung ương cực mạnh.",
+    "detailedContent": [
+      "Gây ra hội chứng 'ngáo đá' (ảo giác, hoang tưởng bị hại).",
+      "Người dùng có xu hướng bạo lực, mất kiểm soát, dễ tấn công người khác hoặc tự sát.",
+      "Phá hủy não bộ không thể phục hồi, gây mục răng và lão hóa cơ thể trầm trọng."
+    ]
+  },
+  {
+    "category": "tong_hop",
+    "name": "Thuốc Lắc (MDMA)",
+    "shortDesc": "Dạng viên nén với nhiều màu sắc và hình thù, thường được dùng trong các vũ trường, quán bar.",
+    "detailedContent": [
+      "Kích thích hệ thần kinh trung ương, tạo ảo giác và hưng phấn theo điệu nhạc.",
+      "Làm nhịp tim tăng đột biến, nhiệt độ cơ thể tăng cao, vã mồ hôi và mất nước.",
+      "Dễ dẫn đến đột quỵ, suy gan, suy thận cấp và tử vong ngay sau khi sử dụng."
+    ]
+  },
+  {
+    "category": "tong_hop",
+    "name": "Ketamine (Ke / Khay)",
+    "shortDesc": "Bản chất là thuốc gây mê trong y học thú y bị lạm dụng, thường ở dạng bột trắng để hít.",
+    "detailedContent": [
+      "Gây ảo giác phân liệt, người dùng có cảm giác linh hồn tách rời khỏi thể xác.",
+      "Làm suy giảm trí nhớ nghiêm trọng, mất cảm giác đau.",
+      "Gây tổn thương bàng quang, đi tiểu ra máu, nam giới có nguy cơ vô sinh."
+    ]
+  },
+  {
+    "category": "tong_hop",
+    "name": "Ma túy 'Núp bóng'",
+    "shortDesc": "Các chất ma túy mới pha trộn vào 'nước vui', kẹo mút, bánh lười, thuốc lá điện tử.",
+    "detailedContent": [
+      "Thiết kế bao bì bắt mắt, ngụy trang thành đồ ăn vặt để đánh lừa học sinh, sinh viên.",
+      "Chứa nhiều chất ma túy trộn lẫn, không rõ thành phần nên rất dễ gây sốc phản vệ.",
+      "Gây ảo giác, kích động tức thời, làm suy giảm chức năng não bộ của thanh thiếu niên."
+    ]
+  }
+]

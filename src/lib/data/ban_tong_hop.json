@@ -1,0 +1,22 @@
+[
+  {
+    "category": "ban_tong_hop",
+    "name": "Heroin (Bạch phiến)",
+    "shortDesc": "Được tổng hợp từ Morphine (chiết xuất từ thuốc phiện) kết hợp với các hóa chất khác.",
+    "detailedContent": [
+      "Độc tính và khả năng gây nghiện cao gấp nhiều lần so với Morphine thông thường.",
+      "Làm tàn phá cơ thể nhanh chóng, hệ miễn dịch suy yếu dễ mắc HIV/AIDS do dùng chung kim tiêm.",
+      "Gây ra những cơn 'vã thuốc' đau đớn tận xương tủy, dùng quá liều dễ dẫn đến đột tử."
+    ]
+  },
+  {
+    "category": "ban_tong_hop",
+    "name": "Cocain",
+    "shortDesc": "Chiết xuất từ lá cây Coca, sau đó qua quá trình tinh chế bằng các hóa chất công nghiệp.",
+    "detailedContent": [
+      "Kích thích thần kinh cực mạnh, mang lại cảm giác hưng phấn mãnh liệt nhưng rất ngắn.",
+      "Gây co thắt mạch máu cục bộ, dễ dẫn đến nhồi máu cơ tim và tai biến mạch máu não.",
+      "Khi hết thuốc, người dùng rơi vào trạng thái hoang tưởng, trầm cảm nặng nề."
+    ]
+  }
+]

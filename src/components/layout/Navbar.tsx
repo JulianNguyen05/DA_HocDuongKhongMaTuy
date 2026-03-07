@@ -25,33 +25,41 @@ export default function Navbar() {
   }, [])
 
   return (
-    // Đẩy Navbar xuống một chút (top-4 đến top-6) để có không gian thở so với mép trên màn hình
     <div className={`fixed inset-x-0 z-[100] flex justify-center px-4 transition-all duration-700 ${scrolled ? "top-4" : "top-6 md:top-8"}`}>
       <nav
         className={`
-          relative flex items-center justify-between
+          relative flex items-center
           transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
           ${scrolled 
-            // Trạng thái cuộn: Trở thành viên thuốc Dynamic Island căn giữa
-            ? "w-full max-w-4xl px-4 py-2.5 rounded-full bg-white/90 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/50 backdrop-blur-xl" 
-            // Trạng thái đứng yên: Giới hạn max-w-6xl để Logo và Menu không bị xa cách quá, nền trong suốt
-            : "w-full max-w-6xl px-2 py-2 bg-transparent"}
+            // Khi cuộn: Navbar co lại vừa khít (w-fit), căn giữa, tạo thành viên thuốc hoàn hảo
+            ? "w-fit px-2 py-2 rounded-full bg-white/90 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/50 backdrop-blur-xl justify-center" 
+            // Khi đứng yên: Trải dài ra 2 bên (justify-between)
+            : "w-full max-w-6xl px-2 py-2 bg-transparent justify-between"}
         `}
       >
-        {/* LOGO */}
-        <Link href="/" className={`relative z-10 flex items-center gap-2 group transition-all ${scrolled ? "ml-2" : "ml-4"}`}>
-          <span className="text-xl md:text-2xl font-extrabold tracking-tight bg-gradient-to-r from-green-900 to-green-700 bg-clip-text text-transparent drop-shadow-sm">
-            Học đường sạch
-          </span>
-        </Link>
+        {/* LOGO - Hiệu ứng trượt và mờ dần khi cuộn */}
+        <AnimatePresence>
+          {!scrolled && (
+            <motion.div
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: "auto" }}
+              exit={{ opacity: 0, width: 0 }}
+              className="overflow-hidden whitespace-nowrap"
+            >
+              <Link href="/" className="relative z-10 flex items-center gap-2 group ml-4 mr-4">
+                <span className="text-2xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-green-900 to-green-700 bg-clip-text text-transparent drop-shadow-sm">
+                  Học đường không ma túy
+                </span>
+              </Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* DESKTOP MENU */}
         <div className={`
           hidden md:flex items-center gap-1 rounded-full transition-all duration-500
           ${scrolled 
-            // Khi đã cuộn (bọc trong viên thuốc lớn), menu không cần viền nữa
-            ? "p-0" 
-            // Khi chưa cuộn, bọc menu trong một lớp kính mờ (Glassmorphism) tuyệt đẹp
+            ? "p-0.5" // Viền mỏng lại khi ở trong "viên thuốc"
             : "bg-white/40 backdrop-blur-md border border-white/60 shadow-sm p-1.5"
           }
         `}>
@@ -78,12 +86,12 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* MOBILE MENU BUTTON */}
+        {/* MOBILE MENU BUTTON (Chỉ hiện trên điện thoại) */}
         <button
           onClick={() => setOpen(!open)}
           aria-label="Toggle Menu"
           title="Mở menu"
-          className={`md:hidden p-2 rounded-full transition relative z-20 ${scrolled ? "bg-gray-100/50 text-gray-800" : "bg-white/50 backdrop-blur-md border border-white/50 text-gray-800"}`}
+          className={`md:hidden p-2 rounded-full transition relative z-20 ${scrolled ? "bg-gray-100/50 text-gray-800 mx-2" : "bg-white/50 backdrop-blur-md border border-white/50 text-gray-800"}`}
         >
           <div className="w-6 h-5 flex flex-col justify-between items-end">
             <span className={`h-0.5 bg-current rounded-full transform transition-all duration-300 ${open ? "w-6 rotate-45 translate-y-2.5" : "w-6"}`} />

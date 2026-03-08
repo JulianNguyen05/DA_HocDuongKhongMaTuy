@@ -19,3 +19,13 @@ model Flashcard {
   detailedContent String[] // Danh sách cảnh báo
   createdAt       DateTime @default(now())
 }
+
+model LawNode {
+  id        String   @id @default(cuid())
+  article   String   // Ví dụ: Điều 251
+  name      String   // Tên tội danh
+  x         String   // Tọa độ X trên cây
+  y         String   // Tọa độ Y trên cây
+  details   Json     // Lưu mảng các khung hình phạt (JSON)
+  createdAt DateTime @default(now())
+}

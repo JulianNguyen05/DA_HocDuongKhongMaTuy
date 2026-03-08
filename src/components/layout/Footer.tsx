@@ -1,6 +1,16 @@
+"use client";
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  // Kiểm tra nếu đang ở trang /tree thì không render Footer (ẩn đi)
+  if (pathname === '/tree' || pathname === '/flashcard') {
+    return null;
+  }
+
   return (
     // Bỏ hẳn bo góc (rounded) để tràn viền 100% và lấp đầy 2 bên
     // Xóa -mt-2 để tránh đè lên nội dung

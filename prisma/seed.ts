@@ -1,13 +1,13 @@
 import { PrismaClient } from '@prisma/client';
+import fs from 'fs';
+import path from 'path';
 
-// Import trực tiếp 3 file JSON chứa dữ liệu
 import tuNhienData from '../src/lib/data/tu_nhien.json';
 import tongHopData from '../src/lib/data/tong_hop.json';
 import banTongHopData from '../src/lib/data/ban_tong_hop.json';
 
 const prisma = new PrismaClient();
 
-// ĐỊNH NGHĨA RÕ RÀNG KIỂU DỮ LIỆU ĐỂ ÉP TYPESCRIPT PHẢI HIỂU
 interface FlashcardSeed {
   category: string;
   name: string;
@@ -17,32 +17,54 @@ interface FlashcardSeed {
 }
 
 async function main() {
-  console.log('Bắt đầu nạp dữ liệu Flashcard...');
+  console.log('Bắt đầu nạp dữ liệu...');
 
-  // Xóa dữ liệu cũ để tránh bị trùng lặp khi chạy lại lệnh
   await prisma.flashcard.deleteMany();
 
-  // Ép kiểu (as FlashcardSeed[]) cho tất cả các file JSON
   const allData: FlashcardSeed[] = [
-    ...(tuNhienData as FlashcardSeed[]), 
-    ...(tongHopData as FlashcardSeed[]), 
+    ...(tuNhienData as FlashcardSeed[]),
+    ...(tongHopData as FlashcardSeed[]),
     ...(banTongHopData as FlashcardSeed[])
   ];
 
-  // Duyệt qua từng thẻ và lưu vào Database
   for (const card of allData) {
     await prisma.flashcard.create({
       data: {
         category: card.category,
         name: card.name,
-        imageUrl: card.imageUrl, // Hết báo lỗi đỏ ở đây nhé!
+        imageUrl: card.imageUrl,
         shortDesc: card.shortDesc,
         detailedContent: card.detailedContent,
       },
     });
   }
+  
+  console.log(`Đã nạp ${allData.length} thẻ Flashcard.`);
 
-  console.log(`Nạp thành công ${allData.length} thẻ Flashcard vào Database!`);
+  const lawsPath = path.join(__dirname, '../src/lib/data/laws.json');
+  
+  if (fs.existsSync(lawsPath)) {
+    const lawsData = JSON.parse(fs.readFileSync(lawsPath, 'utf-8'));
+
+    // Bỏ qua lỗi TypeScript tạm thời cho lawNode
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    await prisma.lawNode.deleteMany({});
+
+    for (const law of lawsData) {
+      // Bỏ qua lỗi TypeScript tạm thời cho lawNode
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      await prisma.lawNode.create({
+        data: {
+          article: law.article,
+          name: law.name,
+          x: law.x,
+          y: law.y,
+          details: law.details,
+        },
+      });
+    }
+    console.log(`Đã nạp ${lawsData.length} nhánh Cây Pháp Luật.`);
+  }
 }
 
 main()
@@ -50,7 +72,7 @@ main()
     await prisma.$disconnect();
   })
   .catch(async (e) => {
-    console.error('Lỗi khi nạp dữ liệu:', e);
+    console.error(e);
     await prisma.$disconnect();
     process.exit(1);
   });

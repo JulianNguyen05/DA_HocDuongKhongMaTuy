@@ -1,6 +1,7 @@
 import { fetchFlashcards } from "@/controllers/flashcardController";
 import FlashcardBoard from "@/components/flashcard/FlashcardBoard";
 
+export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Từ Điển Nhận Diện",
   description: "Trang bị khiên chắn kiến thức bảo vệ bản thân.",

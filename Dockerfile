@@ -7,7 +7,7 @@ RUN apt-get update -y && apt-get install -y openssl
 
 COPY package.json package-lock.json ./
 COPY prisma ./prisma/
-RUN npm ci
+RUN npm install
 
 # Stage 2: Build mã nguồn
 FROM node:20-bookworm-slim AS builder

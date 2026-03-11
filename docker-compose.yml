@@ -3,11 +3,16 @@ services:
     build: .
     ports:
       - "3000:3000"
+    
+    # THÊM DÒNG NÀY: Ép container luôn chạy dev server thay vì production server
+    command: npm run dev
+    
     environment:
       # Bật chế độ Development cho Next.js
       - NODE_ENV=development
       # Ép hệ thống liên tục quét sự thay đổi file (Rất quan trọng nếu bạn dùng Windows/Docker Desktop)
       - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true # Thêm biến này để Next.js bắt sự kiện đổi file nhạy hơn trên Windows
       # Fix lỗi permission EACCES trong Docker cho npm
       - npm_config_cache=/tmp
       # Giữ nguyên link DB của bạn
@@ -25,7 +30,7 @@ services:
     image: postgres:15
     restart: always
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: secretpassword

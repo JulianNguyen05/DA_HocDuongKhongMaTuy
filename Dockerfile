@@ -2,7 +2,7 @@
 FROM node:20-bookworm-slim AS deps
 WORKDIR /app
 
-# Thay vì apk add của Alpine, ta dùng apt-get của Debian để cài openssl (cần cho Prisma)
+# Dùng apt-get của Debian để cài openssl (cần cho Prisma)
 RUN apt-get update -y && apt-get install -y openssl
 
 COPY package.json package-lock.json ./
@@ -30,18 +30,16 @@ ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN apt-get update -y && apt-get install -y openssl
-RUN npm install -g prisma@6 tsx typescript
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# COPY LẠI ĐẦY ĐỦ NODE_MODULES VÀ .NEXT ĐỂ CHẠY
+# COPY LẠI ĐẦY ĐỦ THƯ MỤC CẦN THIẾT
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
-
 COPY --from=builder --chown=nextjs:nodejs /app/src ./src
 
 USER nextjs
@@ -49,5 +47,5 @@ USER nextjs
 EXPOSE 3000
 ENV PORT 3000
 
-# SỬ DỤNG 'npm run start'
-CMD ["sh", "-c", "until prisma db push --skip-generate --accept-data-loss; do echo 'Đang chờ Database khởi động...'; sleep 3; done && (tsx prisma/seed.ts || echo 'Seed hoàn tất') && npm run start"]
+# DÙNG npx ĐỂ ĐẢM BẢO QUYỀN TRUY CẬP ĐÚNG, ÉP TẠO BẢNG VÀ NẠP DATA
+CMD ["sh", "-c", "until npx prisma db push --accept-data-loss; do echo 'Đang chờ Database khởi động...'; sleep 3; done && npx tsx prisma/seed.ts && npm run start"]

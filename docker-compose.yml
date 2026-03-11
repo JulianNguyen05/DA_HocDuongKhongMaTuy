@@ -16,8 +16,6 @@ services:
       # Bỏ qua node_modules và .next để không bị xung đột môi trường giữa Windows và Linux
       - /app/node_modules
       - /app/.next
-    # Ghi đè lệnh chạy mặc định thành lệnh DEV
-    command: npm run dev
     depends_on:
       - db
 

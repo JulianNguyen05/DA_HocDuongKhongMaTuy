@@ -4,8 +4,20 @@ services:
     ports:
       - "3000:3000"
     environment:
+      # Bật chế độ Development cho Next.js
+      - NODE_ENV=development
+      # Ép hệ thống liên tục quét sự thay đổi file (Rất quan trọng nếu bạn dùng Windows/Docker Desktop)
+      - WATCHPACK_POLLING=true
       # Giữ nguyên link DB của bạn
       - DATABASE_URL=postgresql://admin:secretpassword@db:5432/khongmatuy_db
+    volumes:
+      # Ánh xạ toàn bộ thư mục hiện tại vào /app trong container
+      - .:/app
+      # Bỏ qua node_modules và .next để không bị xung đột môi trường giữa Windows và Linux
+      - /app/node_modules
+      - /app/.next
+    # Ghi đè lệnh chạy mặc định thành lệnh DEV
+    command: npm run dev
     depends_on:
       - db
 

@@ -42,6 +42,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 COPY --from=builder --chown=nextjs:nodejs /app/src ./src
 
+ENV npm_config_cache=/tmp
+
 USER nextjs
 
 EXPOSE 3000

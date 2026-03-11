@@ -8,6 +8,8 @@ services:
       - NODE_ENV=development
       # Ép hệ thống liên tục quét sự thay đổi file (Rất quan trọng nếu bạn dùng Windows/Docker Desktop)
       - WATCHPACK_POLLING=true
+      # Fix lỗi permission EACCES trong Docker cho npm
+      - npm_config_cache=/tmp
       # Giữ nguyên link DB của bạn
       - DATABASE_URL=postgresql://admin:secretpassword@db:5432/khongmatuy_db
     volumes:

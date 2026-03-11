@@ -1,182 +1,129 @@
 [
   {
+    "indexCode": "3.1",
     "category": "tong_hop",
-    "name": "Ma Túy Đá (Meth)",
-    "imageUrl": "/images/flashcard/ma-tuy-da-meth.jpg",
-    "shortDesc": "Hóa chất tổng hợp dạng tinh thể trong suốt giống phèn chua. Là chất kích thích phá hủy não bộ tàn khốc nhất.",
-    "detailedContent": [
-      "Đốt cháy nơ-ron thần kinh vĩnh viễn, không thể phục hồi.",
-      "Gây chứng hoang tưởng (nghĩ có người truy sát) dẫn đến chém giết vô cớ.",
-      "Ảo thị và ảo thanh (nghe tiếng nói trong đầu, thấy dòi bọ bò dưới da).",
-      "Cơ thể suy kiệt thần tốc, lở loét da, rụng toàn bộ răng chỉ sau 1-2 năm."
+    "name": "Ma túy đá (Methamphetamine)",
+    "scientificName": "Methamphetamine (Meth), Amphetamine (Amph) [cite: 130]",
+    "otherNames": "Hàng đá, chấm đá [cite: 131]",
+    "shortDesc": "Ma túy tổng hợp tồn tại dạng tinh thể kết tinh, gây ảo giác và rối loạn thần kinh nghiêm trọng[cite: 130, 134].",
+    "imageUrl": "",
+    "concept": "Ma túy đá là một loại ma túy tổng hợp có chứa Methamphetamine, Amphetamine[cite: 130]. Đây là loại ma túy mới tồn tại dưới dạng thức tinh thể[cite: 134].",
+    "origin": "",
+    "distribution": "",
+    "identification": [
+      "Hình dạng bên ngoài trông giống đá – là tinh thể kết tinh thành những mảnh vụn li ti, gần giống hạt mì chính hoặc hạt muối và óng ánh giống đá[cite: 132].",
+      "Còn bán bất hợp pháp trên thị trường dưới các dạng cục, bột, viên nén (như viên nhộng, viên nén) có kích thước, màu sắc, ký hiệu khác nhau[cite: 133, 137]."
+    ],
+    "harmfulEffects": [
+      "Gây thiếu ngủ, chán ăn, đánh trống ngực, chóng mặt[cite: 136].",
+      "Gây các dấu hiệu cường giao cảm như: tăng huyết áp, tăng thân nhiệt[cite: 136].",
+      "Làm rối loạn tâm thần, rối loạn nội tiết, rối loạn tâm sinh lý và nhiều chức năng khác của cơ thể[cite: 136]."
     ]
   },
   {
+    "indexCode": "3.2",
     "category": "tong_hop",
-    "name": "Thuốc Lắc (MDMA / Ecstasy)",
-    "imageUrl": "/images/flashcard/thuoc-lac-mdma-ecstasy.jpg",
-    "shortDesc": "Dạng viên nén với đủ màu sắc và logo bắt mắt. Thường bị lạm dụng trong các quán bar, vũ trường để 'bay lắc'.",
-    "detailedContent": [
-      "Ép tim hoạt động quá tải, có thể gây trụy tim mạch và đột tử ngay lập tức.",
-      "Gây tăng thân nhiệt lên mức nướng chín nội tạng (hơn 40 độ C).",
-      "Vắt kiệt Serotonin trong não, dẫn đến trầm cảm nặng và xu hướng tự sát sau khi hết thuốc.",
-      "Làm tổn thương gan và thận cấp tính."
+    "name": "Thuốc lắc (Ecstasy)",
+    "scientificName": "MDMA [cite: 139]",
+    "otherNames": "Hồng phiến, viên nữ hoàng, ngọc điên, Adam, Eva, mọi da đỏ, mè đen, tên lửa, thiên thần [cite: 141]",
+    "shortDesc": "Ma túy tổng hợp kích thích thần kinh, gây ảo giác và kích động mạnh, thường dùng dạng viên nén[cite: 139, 144].",
+    "imageUrl": "",
+    "concept": "Thuốc lắc (còn được gọi là Ecstasy hay tên khoa học viết tắt là MDMA) là một loại ma túy tổng hợp thuộc nhóm kích thích thần kinh độc hại[cite: 139, 142].",
+    "origin": "",
+    "distribution": "",
+    "identification": [
+      "Thuốc được sản xuất dưới dạng viên nén, viên nang, bột trắng hay màu[cite: 140].",
+      "Có rất nhiều loại, giá tiền tương ứng với nồng độ, liều lượng Ecstasy có trong viên thuốc lắc[cite: 141]."
+    ],
+    "harmfulEffects": [
+      "Xuất hiện khoái cảm thân thiện, huyết áp, thân nhiệt và mạch tăng nhanh, vã mồ hôi, run, giãn đồng tử, đỏ mặt[cite: 143].",
+      "Gây ảo giác về thính giác, thị giác, làm biến dạng nhận thức; người dùng bị kích động, hoang tưởng, muốn nhảy múa điên cuồng, sinh hoạt đảo lộn[cite: 143, 144].",
+      "Sử dụng lâu dẫn đến điếc, giảm trí nhớ, mất ngủ, tâm thần[cite: 145].",
+      "Tăng nguy cơ quan hệ tình dục tập thể, gia tăng lây nhiễm HIV[cite: 145]."
     ]
   },
   {
+    "indexCode": "3.3",
     "category": "tong_hop",
-    "name": "Ketamine (Ke)",
-    "imageUrl": "/images/flashcard/ketamine-ke.jpg",
-    "shortDesc": "Vốn là thuốc gây mê thú y, bị lạm dụng làm ma túy dạng bột trắng hít qua mũi.",
-    "detailedContent": [
-      "Gây ảo giác phân ly: cảm giác linh hồn lìa khỏi thể xác, rơi vào hố đen (K-Hole).",
-      "Phá hủy hoàn toàn bàng quang: đi tiểu ra máu, teo bàng quang phải mang túi nước tiểu suốt đời.",
-      "Xóa sạch trí nhớ ngắn hạn, không nhớ mình là ai, đang ở đâu.",
-      "Quá liều gây ức chế hô hấp, ngừng thở và tử vong."
+    "name": "Hồng phiến (Amphetamine)",
+    "scientificName": "Amphetamine [cite: 146]",
+    "otherNames": "",
+    "shortDesc": "Chất ma túy kích thích hệ thần kinh trung ương, tăng cảm giác hưng phấn nhưng gây suy nhược, hoang tưởng nếu dùng lâu dài[cite: 147, 164].",
+    "imageUrl": "",
+    "concept": "Hồng phiến là một dạng chất ma túy có tác dụng gây kích thích thần kinh, tăng cường sức chịu đựng, tăng cảm giác hưng phấn[cite: 147].",
+    "origin": "",
+    "distribution": "",
+    "identification": [
+      "Các dạng bao gồm: Hồng phiến ngựa hồng, hồng phiến xanh, hồng phiến tổng hợp, kẹo hồng phiến, ma túy đá hồng phiến[cite: 150, 151, 152, 153, 154, 155]."
+    ],
+    "harmfulEffects": [
+      "Kích thích hệ thần kinh trung ương, làm nhịp thở không đều, nhịp tim/huyết áp/thân nhiệt tăng nhanh, khô miệng, đồng tử giãn, tiêu chảy[cite: 157, 158].",
+      "Liều cao gây mất ngủ, nói nhiều, hung dữ, mất khả năng suy xét, phán đoán[cite: 162].",
+      "Dùng thời gian dài gây hoảng loạn, tâm thần bất định, hoang tưởng[cite: 164].",
+      "Ngừng dùng sẽ xuất hiện triệu chứng cai: trầm cảm, mệt mỏi, u uất, mê sảng[cite: 165].",
+      "Quá liều có thể dẫn tới co giật, hôn mê, vỡ mạch máu, trụy tim, sốt cao và tử vong[cite: 166]."
     ]
   },
   {
+    "indexCode": "3.4",
     "category": "tong_hop",
-    "name": "Cỏ Mỹ (Spice / K2)",
-    "imageUrl": "/images/flashcard/co-my-spice-k2.jpg",
-    "shortDesc": "Sợi thực vật khô được tẩm hóa chất độc hại mô phỏng cần sa, nhưng độc hơn cần sa tự nhiên hàng trăm lần.",
-    "detailedContent": [
-      "Hóa chất liên tục thay đổi để lách luật, người dùng hoàn toàn không biết mình đang hút chất độc gì.",
-      "Gây co giật, sùi bọt mép và đột quỵ ngay từ lần hút đầu tiên.",
-      "Gây ảo giác hoang tưởng, kích động bạo lực tự làm hại bản thân hoặc người khác.",
-      "Phá hủy chức năng thận cấp tính."
+    "name": "Ketamine",
+    "scientificName": "",
+    "otherNames": "",
+    "shortDesc": "Vốn là thuốc gây mê trong y tế nhưng bị lạm dụng làm ma túy vì tính chất an thần và tạo ảo giác mạnh[cite: 168, 169].",
+    "imageUrl": "",
+    "concept": "Ketamine là nhóm thuốc loại III được dùng như thuốc gây mê trong cơ sở y tế. Tuy vậy nó vẫn là ma túy tổng hợp vì tạo ảo giác[cite: 168, 169].",
+    "origin": "",
+    "distribution": "",
+    "identification": [
+      "Ketamine có dạng bột trắng[cite: 170]."
+    ],
+    "harmfulEffects": [
+      "Dẫn đến suy thận nghiêm trọng[cite: 172].",
+      "Ảnh hưởng tới hệ tim mạch, hệ hô hấp và hệ thần kinh[cite: 173].",
+      "Làm tăng huyết áp, mạch đập nhanh, suy hô hấp, ngừng thở, co thắt thanh quản[cite: 174]."
     ]
   },
   {
+    "indexCode": "3.5",
     "category": "tong_hop",
-    "name": "Muối Tắm (Flakka)",
-    "imageUrl": "/images/flashcard/muoi-tam-flakka.jpg",
-    "shortDesc": "Ma túy dạng tinh thể màu trắng hoặc hồng, được mệnh danh là 'ma túy zombie' vì khiến người dùng mất nhân tính.",
-    "detailedContent": [
-      "Gây trạng thái kích động mê sảng: người dùng cởi bỏ quần áo, gầm gừ và cắn xé như thây ma.",
-      "Sức mạnh cơ bắp tăng ảo do hoảng loạn, nhưng sau đó đứt gãy cơ, suy thận cấp.",
-      "Tim đập nhanh đến mức có thể vỡ tim.",
-      "Ảo giác hoang tưởng cực độ, thường lao ra đường hoặc nhảy từ trên cao xuống."
+    "name": "Cần sa tổng hợp (Cỏ Mỹ)",
+    "scientificName": "",
+    "otherNames": "Cỏ Mỹ [cite: 176]",
+    "shortDesc": "Hỗn hợp thực vật tẩm hóa chất độc hại gây ảo giác cực mạnh và tăng khả năng ung thư[cite: 177].",
+    "imageUrl": "",
+    "concept": "Một số loại ma túy tổng hợp được pha trộn trong thực vật gọi là 'cỏ Mỹ'. Là dạng hỗn hợp thực vật tẩm các chất hóa học JWH-018, XLR-11 (tương tự THC)[cite: 176, 177].",
+    "origin": "",
+    "distribution": "",
+    "identification": [
+      "Có sợi vụn, có mùi hơi khét, dạng nhựa cháy hoặc có thể tồn tại dưới dạng lỏng[cite: 178]."
+    ],
+    "harmfulEffects": [
+      "Gây cảm giác thư giãn giả tạo, làm thay đổi nhận thức và hành vi[cite: 182, 184].",
+      "Xuất hiện triệu chứng loạn thần, suy nghĩ tách rời thực tế, lơ mơ, sợ hãi thái quá[cite: 185, 186].",
+      "Gây hoang tưởng, mất lòng tin cực đoan, xuất hiện hành vi bạo lực và ảo giác mạnh[cite: 187, 188, 189].",
+      "Làm tim đập nhanh, nôn nhiều, đau tim, động kinh, bệnh tâm thần, thậm chí tử vong đột ngột[cite: 191, 192, 193, 194, 195]."
     ]
   },
   {
+    "indexCode": "3.6",
     "category": "tong_hop",
-    "name": "Nước Biển (GHB)",
-    "imageUrl": "/images/flashcard/nuoc-bien-ghb.jpg",
-    "shortDesc": "Chất lỏng không màu, không mùi, vị hơi mặn. Thường bị tội phạm lén bỏ vào đồ uống để giở trò đồi bại.",
-    "detailedContent": [
-      "Làm nạn nhân mất ý thức, tê liệt cơ thể không thể chống cự.",
-      "Xóa sạch trí nhớ, nạn nhân tỉnh dậy không nhớ bất kỳ điều gì đã xảy ra.",
-      "Chỉ cần quá liều một lượng rất nhỏ (vài giọt) là gây hôn mê sâu và ngừng thở.",
-      "Khi pha chung với rượu bia, độc tính tăng lên gấp bội, nguy cơ tử vong 90%."
-    ]
-  },
-  {
-    "category": "tong_hop",
-    "name": "Bụi Thiên Thần (PCP)",
-    "imageUrl": "/images/flashcard/bui-thien-than-pcp.jpg",
-    "shortDesc": "Dạng bột hoặc chất lỏng màu vàng nhạt. Gây đứt gãy liên kết thần kinh, tạo cảm giác vô cảm với đau đớn.",
-    "detailedContent": [
-      "Người dùng tự rạch tay, bẻ gãy xương mình mà vẫn cười vì hệ thần kinh cảm giác đã bị ngắt.",
-      "Gây hành vi bạo lực tàn bạo, mất kiểm soát hành vi trầm trọng.",
-      "Phá hủy khả năng nói chuyện và suy nghĩ logic kéo dài nhiều tháng sau khi dùng.",
-      "Ảo giác đáng sợ và cảm giác cô lập khỏi hiện thực."
-    ]
-  },
-  {
-    "category": "tong_hop",
-    "name": "Hồng Phiến (Amphetamine)",
-    "imageUrl": "/images/flashcard/hong-phien-amphetamine.jpg",
-    "shortDesc": "Viên nén màu hồng hoặc đỏ có chữ WY, là tiền thân của ma túy đá. Thường có mùi vani đặc trưng.",
-    "detailedContent": [
-      "Kích thích hệ thần kinh trung ương, gây hưng phấn và thức trắng đêm liên tục.",
-      "Làm suy kiệt thể chất, sụt cân nghiêm trọng.",
-      "Gây rối loạn nhịp tim, nhồi máu cơ tim ở người trẻ tuổi.",
-      "Phá hủy nhân cách, khiến người dùng trở nên cáu gắt, hung hãn."
-    ]
-  },
-  {
-    "category": "tong_hop",
-    "name": "Fentanyl",
-    "imageUrl": "/images/flashcard/fentanyl.jpg",
-    "shortDesc": "Là chất giảm đau tổng hợp mạnh gấp 50 lần Heroin. Hiện là kẻ giết người số 1 trong giới ma túy.",
-    "detailedContent": [
-      "Chỉ một lượng nhỏ bằng 2 hạt muối đã đủ gây tử vong ngay lập tức.",
-      "Thường bị bọn tội phạm trộn lẫn vào các loại ma túy khác để tăng độ phê, khiến người dùng chết oan.",
-      "Gây suy hô hấp thần tốc: nạn nhân tím tái và ngừng thở trong vài phút.",
-      "Khả năng gây nghiện cực kỳ khủng khiếp, khó cai nghiện hơn bất kỳ chất nào khác."
-    ]
-  },
-  {
-    "category": "tong_hop",
-    "name": "Thuốc Ngủ Rohypnol",
-    "imageUrl": "/images/flashcard/thuoc-ngu-rohypnol.jpg",
-    "shortDesc": "Thuốc an thần cực mạnh, thường được gọi là 'thuốc chăn dắt' hoặc 'thuốc cưỡng hiếp'.",
-    "detailedContent": [
-      "Hòa tan nhanh vào nước, không màu, không mùi.",
-      "Làm nạn nhân mất khả năng kháng cự, buồn ngủ rũ rượi và mất trí nhớ tạm thời.",
-      "Lạm dụng gây nghiện, rối loạn lo âu và run rẩy tay chân.",
-      "Dùng quá liều gây suy hô hấp và hôn mê vĩnh viễn."
-    ]
-  },
-  {
-    "category": "tong_hop",
-    "name": "2C-B",
-    "imageUrl": "/images/flashcard/2c-b.jpg",
-    "shortDesc": "Ma túy tổng hợp lai giữa thuốc lắc (kích thích) và LSD (ảo giác), dạng bột hoặc viên nang.",
-    "detailedContent": [
-      "Gây ảo giác thị giác mạnh mẽ: đồ vật xung quanh méo mó, lượn sóng.",
-      "Tăng thân nhiệt, đổ mồ hôi hột và co thắt cơ bắp.",
-      "Dễ gây ra cơn hoảng loạn (panic attack) và sợ hãi tột độ.",
-      "Tổn thương não bộ nếu sử dụng liên tục."
-    ]
-  },
-  {
-    "category": "tong_hop",
-    "name": "Mephedrone (Meow Meow)",
-    "imageUrl": "/images/flashcard/mephedrone-meow-meow.jpg",
-    "shortDesc": "Hóa chất kích thích dạng bột trắng, bốc mùi hôi như nước tiểu mèo. Rất rẻ và độc hại.",
-    "detailedContent": [
-      "Kích thích tim đập nhanh bất thường, gây tức ngực và đột quỵ.",
-      "Người dùng bị nghiện cắn răng, nghiến răng đến chảy máu.",
-      "Máu lưu thông kém khiến tay chân lạnh toát, thâm tím.",
-      "Gây mất ngủ mãn tính và ảo giác sợ hãi."
-    ]
-  },
-  {
-    "category": "tong_hop",
-    "name": "Popper (Amyl Nitrite)",
-    "imageUrl": "/images/flashcard/popper-amyl-nitrite.jpg",
-    "shortDesc": "Chất lỏng bay hơi ngửi trực tiếp qua mũi. Làm giãn mạch máu siêu tốc, tạo cảm giác choáng váng.",
-    "detailedContent": [
-      "Gây tụt huyết áp đột ngột, dễ dẫn đến ngất xỉu và chấn thương sọ não do té ngã.",
-      "Làm giảm lượng oxy lên não, gây tổn thương tế bào não vĩnh viễn.",
-      "Phá hủy điểm vàng ở mắt, có thể gây mù lòa nếu lạm dụng.",
-      "Nguy cơ đột tử cao nếu dùng chung với các loại thuốc cường dương."
-    ]
-  },
-  {
-    "category": "tong_hop",
-    "name": "Dextromethorphan (DXM liều cao)",
-    "imageUrl": "/images/flashcard/dextromethorphan-dxm-lieu-cao.jpg",
-    "shortDesc": "Vốn là thuốc ho si-rô, nhưng bị giới trẻ lạm dụng uống cả chai để tìm cảm giác ảo giác phân ly.",
-    "detailedContent": [
-      "Uống liều cao gây ảo giác, mất cảm giác với cơ thể, lơ lửng như bóng bay.",
-      "Phá hủy gan và thận do cơ thể phải lọc một lượng lớn hóa chất.",
-      "Gây tổn thương não, suy giảm khả năng nhận thức và học tập.",
-      "Dễ dẫn đến hôn mê và suy hô hấp do ngộ độc thuốc."
-    ]
-  },
-  {
-    "category": "tong_hop",
-    "name": "N-Bomb (25I-NBOMe)",
-    "imageUrl": "/images/flashcard/n-bomb-25i-nbome.jpg",
-    "shortDesc": "Ma túy tổng hợp tẩm vào tem giấy để giả mạo LSD, nhưng độc tính cao hơn rất nhiều.",
-    "detailedContent": [
-      "Chỉ một chấm nhỏ cũng đủ làm nhịp tim đập loạn xạ và vỡ mạch máu não.",
-      "Ảo giác kinh hoàng, thường đi kèm các cơn co giật động kinh.",
-      "Gây suy thận cấp tính, máu không đông.",
-      "Đã có hàng ngàn ca tử vong trên thế giới do thanh thiếu niên ngậm nhầm N-Bomb thay vì LSD."
+    "name": "Ma túy LSD (Bùa lưỡi)",
+    "scientificName": "Lysergic acid diethylamide [cite: 197]",
+    "otherNames": "Bùa lưỡi, tem thư, kẹo dán [cite: 201]",
+    "shortDesc": "Ma túy thức thần gây ảo giác cực mạnh, thường được tẩm trên các miếng giấy nhỏ gọi là tem thư hay bùa lưỡi[cite: 197, 201].",
+    "imageUrl": "",
+    "concept": "LSD là hoạt chất trong nhóm thuốc thức thần, gây ảo giác cực mạnh, thường được tẩm trên các loại tem[cite: 197].",
+    "origin": "",
+    "distribution": "",
+    "identification": [
+      "Tồn tại dưới dạng bột không màu được tẩm vào miếng giấy nhỏ 1.5x1.5cm có in hình nhân vật hoạt hình màu sắc vui mắt[cite: 198, 199].",
+      "Các tem này có khả năng tan trong nước và chất cồn[cite: 200]."
+    ],
+    "harmfulEffects": [
+      "Tác dụng trực tiếp thông qua vị giác (lưỡi). Sau khi ngậm khoảng 5 phút sẽ bị ảo giác[cite: 202, 203].",
+      "Tác dụng lên não gây ảo giác cực mạnh trong thời gian tan hết khoảng 3 giờ[cite: 204].",
+      "Người sử dụng có nguy cơ tử vong vì sốc[cite: 205]."
     ]
   }
 ]

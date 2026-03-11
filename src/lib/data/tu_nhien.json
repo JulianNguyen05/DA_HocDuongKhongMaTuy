@@ -1,182 +1,113 @@
 [
   {
+    "indexCode": "1.1.1",
     "category": "tu_nhien",
-    "name": "Nhựa Thuốc Phiện",
-    "imageUrl": "/images/flashcard/nhua-thuoc-phien.jpg",
-    "shortDesc": "Được lấy trực tiếp từ nhựa của quả cây Anh túc (cây thẩu), là nguyên liệu chính để sản xuất Heroin.",
-    "detailedContent": [
-      "Gây ức chế thần kinh trung ương, làm giảm đau và buồn ngủ mê mệt.",
-      "Sử dụng lâu dài gây suy nhược cơ thể, gầy gò, ốm yếu, da xám xịt.",
-      "Làm suy giảm trí nhớ, hoàn toàn mất khả năng tập trung học tập.",
-      "Hội chứng cai (vã thuốc) rất dữ dội: nôn mửa, đau nhức xương khớp như bị bẻ gãy."
+    "name": "Cây thuốc phiện",
+    "scientificName": "Papaver somniferum L., họ thuốc phiện Papaveraceae",
+    "otherNames": "Cây Anh túc, A phiến, Ả phù dung, Anh tử túc",
+    "shortDesc": "Loài thực vật có chứa chất ma túy được du nhập vào Việt Nam từ rất sớm, dùng để lấy nhựa sản xuất thuốc phiện.",
+    "imageUrl": "",
+    "concept": "",
+    "origin": "Cây thuốc phiện là cây có chứa chất ma túy được du nhập vào Việt Nam đầu tiên (khoảng năm 1600)[cite: 16]. Trên thế giới, cây thuốc phiện xuất hiện vào khoảng năm 300 trước Công nguyên ở vùng Địa Trung Hải, sau này mới trồng ở Afganistan, Pakistan, Thổ Nhĩ Kỳ, Iran, Trung Quốc, Việt Nam… [cite: 17]",
+    "distribution": "Ở Việt Nam, cây thuốc phiện được trồng chủ yếu ở các tỉnh biên giới phía Bắc như: Lai Châu, Điện Biên, Sơn La, Lào Cai, Lạng Sơn, Hà Giang (cũ), Cao Bằng và một số vùng núi cao của tỉnh Thanh Hóa, Nghệ An[cite: 18]. Tuy nhiên, hiện nay đã xuất hiện nhiều vụ trồng cây thuốc phiện ở các tỉnh đồng bằng, thậm chí tại các thành phố, thị xã[cite: 19].",
+    "identification": [
+      "Cây thuốc phiện có chiều cao khoảng 0,7 - 1,5 mét[cite: 10].",
+      "Lá mọc cách, lớn, xẻ hình lông chim, không có cuốn ôm lấy thân cây, các lá phía ngọn màu lục biếc, ôm thân[cite: 11].",
+      "Hoa to, mọc đơn, có hai lá đài màu lục dễ rụng; bốn cánh hoa mỏng màu trắng, hồng hoặc tím; nhiều nhị xếp thành vòng; bầu một ô, nhiều noãn[cite: 12, 13].",
+      "Quả hình cầu hoặc hình trụ, quả chưa chín có màu xanh, khi chín có màu vàng xám, có nhựa chứa nhiều loại ancaloit (morphine, codein, papaverin, thebain)[cite: 14]."
+    ],
+    "harmfulEffects": []
+  },
+  {
+    "indexCode": "1.1.2",
+    "category": "tu_nhien",
+    "name": "Thuốc phiện",
+    "scientificName": "",
+    "otherNames": "",
+    "shortDesc": "Chất ma túy tự nhiên được lấy từ nhựa quả cây thuốc phiện, thành phần chính là Morphine gây nghiện rất mạnh.",
+    "imageUrl": "",
+    "concept": "Thuốc phiện là chất ma túy trong nhóm ma túy tự nhiên, được lấy từ nhựa của quả, thân cây, lá, hoa cây thuốc phiện (chủ yếu được lấy từ quả)[cite: 21]. Trong nhựa thuốc phiện có nhiều thành phần, nhưng thành phần chính là thành phần gây ức chế thần kinh, giảm đau và gây nghiện đó là Morphine[cite: 27].",
+    "origin": "Morphine được điều chế thành công lần đầu tiên vào năm 1803[cite: 28].",
+    "distribution": "",
+    "identification": [
+      "Thuốc phiện sống: Là nhựa thuốc phiện mới thu hoạch lấy từ quả xanh và thân cây thuốc phiện, phơi khô, đóng gói. Nó có mùi đặc trưng hơi hăng hắc, màu nâu, dẻo hoặc nhão[cite: 23, 24].",
+      "Thuốc phiện chín: Được bào chế từ thuốc phiện sống. Thuốc phiện chín có màu nâu đen, rắn chắc hơn thuốc phiện sống[cite: 25, 26]."
+    ],
+    "harmfulEffects": [
+      "Lúc đầu hút vào thấy có sự khoái lạc, tạo cảm giác hưng phấn, làm giảm đau nhức, mệt mỏi[cite: 29].",
+      "Nhưng càng hút thì càng ngày càng phải tăng liều mới đạt được cảm giác như lần trước. Dần dần người hút bị suy sụp, mất hết nghị lực, ý chí và cảm giác không còn[cite: 30, 31].",
+      "Xuất hiện các biến chứng như: viêm dạ dày, viêm ruột mãn tính, táo bón dai dẵng, phát ban ngoài da, tiểu tiện ra abumin, viêm phổi, mạch đập chậm và không đều[cite: 32].",
+      "Nguy hiểm hơn là khi không có thuốc, người sử dụng phải nạo sái thuốc phiện trong ống thuốc ra để hút (sái thuốc phiện độc hơn vì nó còn khoảng 80 – 90% chất morphine)[cite: 33]."
     ]
   },
   {
+    "indexCode": "1.2",
     "category": "tu_nhien",
-    "name": "Cần Sa (Bồ đà / Pin)",
-    "imageUrl": "/images/flashcard/can-sa-bo-da-pin.jpg",
-    "shortDesc": "Loại ma túy lấy từ lá và hoa cây Cần sa. Thường được cuốn thành điếu để hút, có mùi khét đặc trưng.",
-    "detailedContent": [
-      "Gây ảo giác nhẹ, làm biến dạng nhận thức về thời gian và không gian.",
-      "Hút lâu dài làm não bộ teo nhỏ, giảm IQ, suy giảm trí nhớ ngắn hạn.",
-      "Tăng nguy cơ ung thư phổi cao gấp nhiều lần so với thuốc lá thông thường.",
-      "Gây hội chứng 'A motivational' (Triệt tiêu động lực): lười biếng, vô cảm với tương lai."
+    "name": "Cần sa",
+    "scientificName": "Cannabis – Sativa L.",
+    "otherNames": "“Cỏ”, bồ đà, tài mà…",
+    "shortDesc": "Loại ma túy chế từ hoa và lá khô của cây cần sa, chứa chất độc THC gây ảo giác và rối loạn tâm sinh lý.",
+    "imageUrl": "",
+    "concept": "Ma túy Cần sa là loại ma túy được chế từ hoa và lá khô của cây cần sa[cite: 37]. Cây cần sa có chất Tetrahydro cannabinol là chất ma túy rất độc và gây nghiện[cite: 36]. Hoạt chất trong cần sa là Delta-9-tetrahydrocannabinol (viết tắt là THC)[cite: 38].",
+    "origin": "",
+    "distribution": "",
+    "identification": [
+      "Toàn bộ các bộ phận của cây đều phủ một lớp lông mịn. Thân cây thẳng đứng, cao 1- 2 mét, phân cành[cite: 40, 41].",
+      "Lá phía dưới chia thùy đến tận cuống, mép có răng cưa. Lá phía trên đơn hay chia 3 thùy[cite: 43, 44].",
+      "Cần sa nhìn giống như lá chè khô và có thể còn hạt hoặc còn các cành nhỏ. Có thể màu xám, xanh lá cây hoặc màu nâu[cite: 48, 49].",
+      "Cần sa thảo mộc: Bao gồm lá, quả và hoa thu hoạch phơi khô, ép thành bánh hoặc bó lại[cite: 51, 52].",
+      "Nhựa cần sa: Chiết xuất từ lá, rễ, thân, vỏ, hoa, quả phơi khô, màu đen sẫm, độc tính gấp 8 – 10 lần cần sa thảo mộc[cite: 53, 54].",
+      "Tinh dầu cần sa: Có màu hơi tối và mùi hắc, độc tính gấp 3 – 4 lần so với nhựa cần sa[cite: 56]."
+    ],
+    "harmfulEffects": [
+      "Gây ra hàng loạt các thay đổi về tâm lý và cư xử, thường tạo ra những khoái cảm, hưng phấn, nói nhiều[cite: 58].",
+      "Các cơ quan cảm giác bị kích thích mạnh dẫn đến ảo giác, trí nhớ lẫn lộn, tư tưởng bất an, cảm xúc bất thường, đôi khi rất hung dữ[cite: 59].",
+      "Người sử dụng thường tách ra khỏi hoạt động xã hội, không quan tâm tới bất kỳ một công việc gì, không có mục đích rõ ràng[cite: 60].",
+      "Gây rối loạn thần kinh tiền đình làm mất thăng bằng, chóng mặt, rối loạn tình dục, giảm khả năng sinh sản, làm trụy thai, chết thai[cite: 61].",
+      "Hư hại tế bào thần kinh gây rối loạn chức năng kéo dài và rối loạn nhiễm sắc thể. Có thể gây bất tỉnh, tử vong[cite: 62, 63]."
     ]
   },
   {
+    "indexCode": "1.3",
     "category": "tu_nhien",
-    "name": "Lá Khát (Khat)",
-    "imageUrl": "/images/flashcard/la-khat-khat.jpg",
-    "shortDesc": "Loại lá cây chứa chất kích thích Cathinone giống Amphetamine, thường được nhai trực tiếp như nhai trầu.",
-    "detailedContent": [
-      "Gây kích động, hưng phấn ảo, mất ngủ kéo dài nhiều ngày liền.",
-      "Sử dụng lâu ngày dẫn đến trầm cảm, ảo giác và hoang tưởng bị hại.",
-      "Làm hỏng toàn bộ men răng, gây ung thư vòm họng và các bệnh về nướu.",
-      "Làm tăng huyết áp, nhịp tim, nguy cơ nhồi máu cơ tim ở tuổi vị thành niên."
+    "name": "Cây coca",
+    "scientificName": "",
+    "otherNames": "",
+    "shortDesc": "Cây có nguồn gốc từ Nam Mỹ, từ lá của nó sản xuất ra cocaine - chất kích thích mạnh và gây nghiện.",
+    "imageUrl": "",
+    "concept": "Từ loại cây này, người ta sản xuất các chất có chứa cocaine, một chất kích thích mạnh và gây nghiện[cite: 70].",
+    "origin": "Cây coca có nguồn gốc từ Nam Mỹ và hiện nay nguồn cung cấp chính vẫn từ khu vực này[cite: 65].",
+    "distribution": "Được trồng ở một số vùng Bắc Australia và Philippines[cite: 66]. Tuy nhiên, Peru, Bolivia, Colombia, Brazil và Ecuador là những quốc gia có sản lượng coca cao nhất[cite: 67].",
+    "identification": [
+      "Mặc dù khác nhau về kích thước và hình dạng, lá coca có đặc điểm nổi bật nhất là mặt trên hơi đậm hơn mặt dưới, có hai gân nhỏ chạy song song với gân chính[cite: 68].",
+      "Lá coca thường chứa khoảng 1% cocaine. Ở Nam Mỹ, lá coca thường được tán thành bột hoặc dùng ở dạng gói chè chứa khoảng 5mg cocaine[cite: 69]."
+    ],
+    "harmfulEffects": [
+      "Việc thu hoạch lá coca và sử dụng nó để sản xuất cocaine là hoạt động bất hợp pháp và bị cấm ở hầu hết các quốc gia trên thế giới[cite: 71]."
     ]
   },
   {
+    "indexCode": "1.4",
     "category": "tu_nhien",
-    "name": "Nấm Thức Thần",
-    "imageUrl": "/images/flashcard/nam-thuc-than.jpg",
-    "shortDesc": "Chứa chất Psilocybin gây ảo giác mạnh. Có hình dáng giống các loại nấm tự nhiên thông thường.",
-    "detailedContent": [
-      "Làm sai lệch hoàn toàn nhận thức về thị giác và thính giác (nhìn thấy âm thanh, nghe thấy màu sắc).",
-      "Dễ rơi vào trạng thái 'Bad trip' (Trải nghiệm kinh hoàng) gây hoảng loạn tột độ.",
-      "Nguy cơ ăn nhầm các loại nấm độc khác dẫn đến tử vong nhanh chóng.",
-      "Có thể kích hoạt các căn bệnh tâm thần tiềm ẩn như Tâm thần phân liệt."
-    ]
-  },
-  {
-    "category": "tu_nhien",
-    "name": "Lá Coca",
-    "imageUrl": "/images/flashcard/la-coca.jpg",
-    "shortDesc": "Lá của cây Coca mọc ở Nam Mỹ, là nguyên liệu tự nhiên để chiết xuất ra ma túy Cocaine.",
-    "detailedContent": [
-      "Chứa alkaloid gây kích thích thần kinh, làm tăng nhịp tim và huyết áp.",
-      "Gây tê cục bộ ở miệng và cổ họng khi nhai.",
-      "Tạo cảm giác hưng phấn giả tạo, sau đó là trạng thái mệt mỏi rã rời.",
-      "Sử dụng thường xuyên dẫn đến nghiện tâm lý và suy nhược cơ thể."
-    ]
-  },
-  {
-    "category": "tu_nhien",
-    "name": "Cà Độc Dược (Datura)",
-    "imageUrl": "/images/flashcard/ca-doc-duoc-datura.jpg",
-    "shortDesc": "Loài cây dại chứa độc tố Tropane, thường bị lạm dụng để lấy ảo giác nhưng cực kỳ nguy hiểm.",
-    "detailedContent": [
-      "Ảo giác sinh ra từ Cà độc dược vô cùng chân thực và đáng sợ.",
-      "Người dùng mất hoàn toàn khả năng phân biệt giữa ảo giác và thực tại.",
-      "Gây khô miệng nghiêm trọng, mờ mắt, tim đập nhanh và bí tiểu.",
-      "Nguy cơ tử vong rất cao do sốc độc tố chỉ với một liều lượng nhỏ."
-    ]
-  },
-  {
-    "category": "tu_nhien",
-    "name": "Cây Xô Thơm (Salvia)",
-    "imageUrl": "/images/flashcard/cay-xo-thom-salvia.jpg",
-    "shortDesc": "Loài thảo mộc chứa Salvinorin A, tạo ra ảo giác cực mạnh trong thời gian ngắn khi hút hoặc nhai.",
-    "detailedContent": [
-      "Gây mất kiểm soát cơ thể hoàn toàn (ngã quỵ, co giật nhẹ).",
-      "Tạo cảm giác cơ thể bị biến dạng hoặc hòa lẫn vào đồ vật xung quanh.",
-      "Trải nghiệm thường rất đáng sợ, gây hoảng loạn và la hét.",
-      "Dễ gây tai nạn chấn thương do không nhận thức được môi trường xung quanh."
-    ]
-  },
-  {
-    "category": "tu_nhien",
-    "name": "Kratom",
-    "imageUrl": "/images/flashcard/kratom.jpg",
-    "shortDesc": "Lá của một loại cây nhiệt đới, có tác dụng như chất kích thích ở liều thấp và an thần ở liều cao.",
-    "detailedContent": [
-      "Gây nghiện và có hội chứng cai giống hệt các loại ma túy nhóm Opioid (Heroin).",
-      "Làm tổn thương gan trầm trọng nếu sử dụng lâu dài.",
-      "Gây buồn nôn, ngứa ngáy, đổ mồ hôi và táo bón mãn tính.",
-      "Khi dùng chung với các chất khác có thể gây ức chế hô hấp dẫn đến tử vong."
-    ]
-  },
-  {
-    "category": "tu_nhien",
-    "name": "Xương Rồng Peyote",
-    "imageUrl": "/images/flashcard/xuong-rong-peyote.jpg",
-    "shortDesc": "Loại xương rồng nhỏ chứa Mescaline, chất gây ảo giác mạnh tương tự LSD hay Nấm thức thần.",
-    "detailedContent": [
-      "Tạo ra ảo giác thị giác sặc sỡ và biến đổi nhận thức về không gian.",
-      "Gây buồn nôn và nôn mửa dữ dội trong giai đoạn đầu sử dụng.",
-      "Làm tăng huyết áp, tăng nhịp tim và giãn đồng tử.",
-      "Có thể kích hoạt các cơn rối loạn lo âu và trầm cảm kéo dài."
-    ]
-  },
-  {
-    "category": "tu_nhien",
-    "name": "Ayahuasca",
-    "imageUrl": "/images/flashcard/ayahuasca.jpg",
-    "shortDesc": "Một loại nước sắc từ các loại dây leo ở Nam Mỹ, chứa chất DMT gây ảo giác cực mạnh.",
-    "detailedContent": [
-      "Đưa người dùng vào trạng thái hoang tưởng, mất ý thức về bản ngã.",
-      "Gây nôn mửa và tiêu chảy nghiêm trọng (được gọi là quá trình 'thanh tẩy').",
-      "Tăng huyết áp đột ngột, nguy hiểm cho người có bệnh tim mạch.",
-      "Dễ dẫn đến hội chứng Serotonin gây co giật và tử vong nếu dùng chung thuốc tây."
-    ]
-  },
-  {
-    "category": "tu_nhien",
-    "name": "Hạt Bìm Bìm Biếc",
-    "imageUrl": "/images/flashcard/hat-bim-bim-biec.jpg",
-    "shortDesc": "Hạt của hoa bìm bìm chứa LSA (họ hàng gần của LSD), thường bị nhai nát để tìm cảm giác ảo giác.",
-    "detailedContent": [
-      "Gây buồn nôn, co thắt dạ dày dữ dội do các độc tố tự nhiên trong hạt.",
-      "Tạo ảo giác thị giác và thính giác, nhưng đi kèm sự nhầm lẫn tâm thần.",
-      "Làm co mạch máu, gây tê cứng tay chân.",
-      "Phụ nữ có thai sử dụng sẽ gây co thắt tử cung, dẫn đến sẩy thai."
-    ]
-  },
-  {
-    "category": "tu_nhien",
-    "name": "Cây Ma Hoàng (Ephedra)",
-    "imageUrl": "/images/flashcard/cay-ma-hoang-ephedra.jpg",
-    "shortDesc": "Loài cây chứa Ephedrine, một chất kích thích thần kinh mạnh thường bị lạm dụng để giảm cân hoặc thức khuya.",
-    "detailedContent": [
-      "Gây áp lực cực lớn lên tim mạch, dễ dẫn đến nhồi máu cơ tim đột quỵ.",
-      "Kích thích thần kinh gây bồn chồn, run rẩy, mất ngủ mãn tính.",
-      "Sử dụng lâu dài gây rối loạn tâm thần và hoang tưởng.",
-      "Là nguyên liệu tiền chất để tội phạm lén lút điều chế Ma túy đá (Meth)."
-    ]
-  },
-  {
-    "category": "tu_nhien",
-    "name": "Quả Anh Túc (Poppy Pods)",
-    "imageUrl": "/images/flashcard/qua-anh-tuc-poppy-pods.jpg",
-    "shortDesc": "Quả của cây thuốc phiện phơi khô, thường bị đun thành trà để uống nhằm lấy tác dụng giảm đau, gây ảo giác.",
-    "detailedContent": [
-      "Chứa Morphine và Codeine tự nhiên, dễ gây nghiện không kém heroin.",
-      "Liều lượng độc tố trong mỗi quả không đều, rất dễ bị sốc quá liều.",
-      "Uống nhiều gây ức chế hệ hô hấp, ngủ lịm và ngừng thở.",
-      "Gây táo bón nặng, chán ăn và suy kiệt sức khỏe nhanh chóng."
-    ]
-  },
-  {
-    "category": "tu_nhien",
-    "name": "Nấm Ruồi (Amanita Muscaria)",
-    "imageUrl": "/images/flashcard/nam-ruoi-amanita-muscaria.jpg",
-    "shortDesc": "Loài nấm màu đỏ đốm trắng nổi tiếng, chứa chất độc thần kinh Muscimol gây ảo giác và hôn mê.",
-    "detailedContent": [
-      "Gây mất điều hòa vận động, đi đứng lảo đảo như người say rượu.",
-      "Trạng thái tâm lý thay đổi thất thường từ hưng phấn sang ngủ lịm.",
-      "Độc tố ảnh hưởng mạnh đến dạ dày, ruột, gây co thắt và nôn mửa.",
-      "Liều cao có thể gây co giật, tổn thương não và tử vong."
-    ]
-  },
-  {
-    "category": "tu_nhien",
-    "name": "Hạt Nhục Đậu Khấu",
-    "imageUrl": "/images/flashcard/hat-nhuc-dau-khau.jpg",
-    "shortDesc": "Vốn là gia vị nấu ăn, nhưng khi bị lạm dụng ăn với số lượng lớn sẽ sinh ra độc tố gây ảo giác Myristicin.",
-    "detailedContent": [
-      "Gây ra cơn hoang tưởng kéo dài đến 2 ngày, cực kỳ mệt mỏi và kiệt sức.",
-      "Nhịp tim đập loạn xạ, đánh trống ngực, miệng khô khốc.",
-      "Làm gan bị nhiễm độc nặng nề do phải phân giải Myristicin.",
-      "Gây đau đầu dữ dội, chóng mặt và mất khả năng ghi nhớ tạm thời."
+    "name": "Lá Khat",
+    "scientificName": "Catha Edulis",
+    "otherNames": "Thiên đường (theo tiếng Ả Rập)",
+    "shortDesc": "Loại cây bụi giống cây trà chứa chất ma túy mạnh, có thể tổng hợp thành Flakka (Muối tắm) cực kỳ nguy hiểm.",
+    "imageUrl": "",
+    "concept": "Cây Khat (Catha Edulis) được trồng phổ biến ở Cộng hòa Yemen và hầu hết các quốc gia Đông Phi[cite: 73].",
+    "origin": "Được sử dụng ở Thái Lan, tuy nhiên, bị cấm sử dụng ở hầu hết quốc gia châu Á còn lại như Malaysia, Trung Quốc, Philippines, Indonesia[cite: 90]. Mỹ và châu Âu liệt lá Khat vào danh mục ma túy nguy hiểm, cấm sử dụng[cite: 89].",
+    "distribution": "Cộng hòa Yemen và hầu hết các quốc gia Đông Phi[cite: 73].",
+    "identification": [
+      "Khat là một loại cây bụi nhỏ, giống cây trà, lá có mùi thơm, vị hơi ngọt[cite: 75].",
+      "Cây phát triển tốt ngay cả trong môi trường khô hạn, thu hoạch suốt cả năm[cite: 76]."
+    ],
+    "harmfulEffects": [
+      "Hoạt chất làm tăng huyết áp, tăng nhịp tim, gây mất ngủ, chán ăn, táo bón, đau nửa đầu và suy giảm khả năng tình dục ở nam giới[cite: 79].",
+      "Ảnh hưởng đến hệ thống thần kinh trung ương, gây rối loạn tâm thần tương tự như amphetamine[cite: 80].",
+      "Biến chứng loạn nhịp tim, tăng thân nhiệt, xuất huyết não có thể làm nạn nhân tử vong[cite: 81].",
+      "Từ cathinone có trong lá Khat, có thể tổng hợp ra nhiều loại ma túy khác như “Flakka” – “Muối tắm” có độ độc hại cao gấp 500 lần so với cocaine[cite: 82, 85].",
+      "Flakka khiến người dùng bay bổng, ảo giác, hung hăng nhưng cũng khiến lên cơn co giật, thân nhiệt cao (>40oC), tim đập nhanh, hoang tưởng và tử vong[cite: 84].",
+      "Flakka gây tiêu cơ vân và xương nhanh chóng, dẫn đến tắc nghẽn các ống thận gây tổn thương thận cấp[cite: 86]."
     ]
   }
 ]

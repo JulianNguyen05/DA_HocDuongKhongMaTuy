@@ -11,13 +11,29 @@ datasource db {
 }
 
 model Flashcard {
-  id              Int      @id @default(autoincrement())
-  category        String   // Phân loại: tu_nhien, tong_hop, ban_tong_hop
-  name            String   // Tên ma túy
-  imageUrl        String?  // Đường dẫn ảnh minh họa (Thêm mới)
-  shortDesc       String   // Mô tả ngắn ở mặt sau
-  detailedContent String[] // Danh sách cảnh báo
-  createdAt       DateTime @default(now())
+  id               Int      @id @default(autoincrement())
+  
+  // --- THÔNG TIN ĐỊNH DANH ---
+  indexCode        String?  // Mã mục lục theo tài liệu (VD: "1.1.1")
+  category         String   // Phân loại (VD: "tu_nhien", "tong_hop")
+  name             String   // Tên chính (VD: "Cây thuốc phiện")
+  scientificName   String?  // Tên khoa học (VD: "Papaver somniferum L.")
+  otherNames       String?  // Tên khác / Tiếng lóng (VD: "Cây Anh túc, A phiến...")
+  
+  // --- THÔNG TIN HIỂN THỊ CƠ BẢN ---
+  imageUrl         String?  // URL ảnh minh họa
+  shortDesc        String?  // Mô tả ngắn gọn cho mặt trước/sau của thẻ
+  
+  // --- THÔNG TIN CHI TIẾT (Bóc tách từ file Word) ---
+  concept          String?  // Khái niệm chung (nếu có)
+  origin           String?  // Nguồn gốc, lịch sử xuất hiện
+  distribution     String?  // Nơi gieo trồng, vùng phân bố (để tách biệt với lịch sử)
+  identification   String[] // Cách nhận biết (Lưu mảng String để dễ map ra thẻ <ul> <li>)
+  harmfulEffects   String[] // Tác hại (Lưu mảng String)
+  
+  // --- METADATA ---
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
 
 model LawNode {

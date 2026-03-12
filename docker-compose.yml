@@ -1,30 +1,29 @@
 services:
   web:
-    build: .
+    build: 
+      context: .
+      target: deps # TUYỆT CHIÊU: Chỉ lấy stage đầu tiên của Dockerfile để có sẵn OpenSSL, không build toàn bộ app
     ports:
       - "3000:3000"
     
-    # THÊM DÒNG NÀY: Ép container luôn chạy dev server thay vì production server
-    command: npm run dev
-    
     environment:
-      # Bật chế độ Development cho Next.js
       - NODE_ENV=development
-      # Ép hệ thống liên tục quét sự thay đổi file (Rất quan trọng nếu bạn dùng Windows/Docker Desktop)
       - WATCHPACK_POLLING=true
-      - CHOKIDAR_USEPOLLING=true # Thêm biến này để Next.js bắt sự kiện đổi file nhạy hơn trên Windows
-      # Fix lỗi permission EACCES trong Docker cho npm
-      - npm_config_cache=/tmp
-      # Giữ nguyên link DB của bạn
+      - CHOKIDAR_USEPOLLING=true
       - DATABASE_URL=postgresql://admin:secretpassword@db:5432/khongmatuy_db
+    
     volumes:
-      # Ánh xạ toàn bộ thư mục hiện tại vào /app trong container
       - .:/app
-      # Bỏ qua node_modules và .next để không bị xung đột môi trường giữa Windows và Linux
-      - /app/node_modules
-      - /app/.next
+      # Đặt tên cho volume để Docker quản lý cache tốt hơn, tránh lỗi mất thư viện
+      - node_modules_vol:/app/node_modules
+      - next_vol:/app/.next
+    
+    # ĐÂY LÀ CHÌA KHÓA: Chuỗi lệnh tự động hóa hoàn toàn khi boot
+    command: npm run docker:dev
+             
     depends_on:
-      - db
+      db:
+        condition: service_started
 
   db:
     image: postgres:15
@@ -40,3 +39,5 @@ services:
 
 volumes:
   postgres_data:
+  node_modules_vol: # Thêm dòng này
+  next_vol:         # Thêm dòng này

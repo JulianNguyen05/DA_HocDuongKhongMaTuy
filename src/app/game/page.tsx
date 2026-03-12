@@ -1,93 +1,37 @@
 "use client";
 
-import { useState, useEffect } from "react";
-
-// --- Types ---
-type QuestionType = "IMAGE" | "TEXT" | "SITUATION" | "DETECTIVE";
-
-interface Question {
-  id: number;
-  type: QuestionType;
-  content: string;
-  options: string[];
-  correctIdx: number;
-  image?: string;
-  hints?: string[]; // Dành cho câu hỏi phá án
-}
-
-// --- Mock Data (Bạn có thể fetch từ Prisma sau) ---
-const STAGE_QUESTIONS: Question[] = [
-  {
-    id: 1,
-    type: "IMAGE",
-    content: "Bạn thấy một vật phẩm hình viên kẹo màu sắc sặc sỡ này trên bàn. Bạn sẽ làm gì?",
-    options: ["Thử một chút xem sao", "Bỏ đi và báo người lớn"],
-    correctIdx: 1,
-    image: "/images/drug-candy.jpg"
-  },
-  {
-    id: 2,
-    type: "DETECTIVE",
-    content: "Vụ án: Có một gói bột lạ trong ngăn kéo của A. Hãy xem gợi ý để kết luận.",
-    hints: ["Gói bột không có nhãn mác", "A dạo này rất hay cáu gắt", "A thường xuyên thức đêm khuya"],
-    options: ["Bột mì nấu ăn", "Chất cấm gây nghiện", "Phấn rôm"],
-    correctIdx: 1
-  }
-];
+// Import cái Hook Controller ta vừa tạo ở trên
+import { useGameController } from "./gameController"; // Sửa lại đường dẫn nếu cần
 
 export default function GamePage() {
-  // --- Game State ---
-  const [stage, setStage] = useState(1);
-  const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
-  const [hearts, setHearts] = useState(5);
-  const [isDistorted, setIsDistorted] = useState(false); // Hiệu ứng phê thuốc
-  const [showHintIdx, setShowHintIdx] = useState<number[]>([]);
-  const [gameState, setGameState] = useState<"PLAYING" | "WON" | "LOST">("PLAYING");
-
-  const currentQuestion = STAGE_QUESTIONS[currentQuestionIdx];
-
-  // --- Handlers ---
-  const handleAnswer = (index: number) => {
-    if (index === currentQuestion.correctIdx) {
-      // TRẢ LỜI ĐÚNG
-      if (currentQuestionIdx + 1 < STAGE_QUESTIONS.length) {
-        setCurrentQuestionIdx(prev => prev + 1);
-        setShowHintIdx([]); // Reset gợi ý cho câu sau
-      } else {
-        setGameState("WON"); // Hoàn thành chặng
-      }
-    } else {
-      // TRẢ LỜI SAI
-      setHearts(prev => prev - 1);
-      
-      // Nếu là câu hỏi nhận biết ma túy mà chọn "Thử"
-      if (currentQuestion.type === "IMAGE" || currentQuestion.type === "TEXT") {
-        triggerDistortion();
-      }
-
-      if (hearts - 1 <= 0) {
-        setGameState("LOST");
-      }
-    }
-  };
-
-  const triggerDistortion = () => {
-    setIsDistorted(true);
-    setTimeout(() => setIsDistorted(false), 3000); // Hết nhiễu sau 3 giây
-  };
+  // Gọi controller để lấy ra các thông tin cần thiết
+  const {
+    currentStage,
+    currentQuestion,
+    currentQuestionIdx,
+    totalQuestionsInStage,
+    hearts,
+    isDistorted,
+    showHintIdx,
+    gameState,
+    handleAnswer,
+    revealHint,
+    resetGame,
+  } = useGameController();
 
   // --- Render Logic ---
-  if (gameState === "WON") return <VideoEndScreen type="SUCCESS" />;
-  if (gameState === "LOST") return <VideoEndScreen type="FAIL" />;
+  if (gameState === "WON") return <VideoEndScreen type="SUCCESS" onReset={resetGame} />;
+  if (gameState === "LOST") return <VideoEndScreen type="FAIL" onReset={resetGame} />;
+  if (!currentStage || !currentQuestion) return <div>Đang tải dữ liệu...</div>;
 
   return (
-    <div className={`min-h-screen pt-24 p-8 transition-all duration-500 ${isDistorted ? "distort-effect" : "bg-slate-50"}`}>
+    <div className={`min-h-screen pt-10 pb-20 p-8 transition-all duration-500 ${isDistorted ? "distort-effect" : "bg-slate-50"}`}>
       
       {/* HUD: Thông tin người chơi */}
-      <div className="max-w-4xl mx-auto flex justify-between items-center mb-8 bg-white p-4 rounded-xl shadow-sm border-2 border-emerald-100">
+      <div className="max-w-4xl mx-auto flex justify-between items-center mb-6 bg-white p-4 rounded-xl shadow-sm border-2 border-emerald-100">
         <div>
-          <span className="text-xl font-bold text-emerald-700">CHẶNG {stage}</span>
-          <p className="text-sm text-slate-500">Câu hỏi: {currentQuestionIdx + 1}/5</p>
+          <span className="text-xl font-bold text-emerald-700">{currentStage.stage.toUpperCase()}</span>
+          <p className="text-sm text-slate-500">Câu hỏi: {currentQuestionIdx + 1} / {totalQuestionsInStage}</p>
         </div>
         <div className="flex gap-2">
           {[...Array(5)].map((_, i) => (
@@ -96,22 +40,27 @@ export default function GamePage() {
         </div>
       </div>
 
+      {/* BẢN ĐỒ GAME */}
+      <div className="max-w-4xl mx-auto mb-8 rounded-2xl overflow-hidden shadow-lg border-4 border-slate-300">
+        <img src="/images/game/game-map.jpg" alt="Game Map" className="w-full h-auto object-cover max-h-64" />
+      </div>
+
       {/* Giao diện câu hỏi */}
-      <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border-4 border-white">
+      <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border-4 border-white relative z-10">
         {currentQuestion.image && (
-          <img src={currentQuestion.image} alt="Drug" className="w-full h-48 object-cover" />
+          <img src={currentQuestion.image} alt="Question" className="w-full h-48 object-cover" />
         )}
         
         <div className="p-8">
-          <h2 className="text-2xl font-bold mb-6 text-slate-800">{currentQuestion.content}</h2>
+          <h2 className="text-2xl font-bold mb-6 text-slate-800">{currentQuestion.question}</h2>
 
-          {/* Phần gợi ý cho câu hỏi phá án */}
-          {currentQuestion.type === "DETECTIVE" && (
+          {/* Nút Gợi ý */}
+          {currentQuestion.hints && (
             <div className="flex gap-2 mb-6">
-              {currentQuestion.hints?.map((_, i) => (
+              {currentQuestion.hints.map((_, i) => (
                 <button 
                   key={i}
-                  onClick={() => setShowHintIdx(prev => [...prev, i])}
+                  onClick={() => revealHint(i)}
                   className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm hover:bg-amber-200"
                 >
                   🔍 Gợi ý {i + 1}
@@ -120,58 +69,59 @@ export default function GamePage() {
             </div>
           )}
           
-          {/* Nội dung gợi ý đang xem */}
+          {/* Nội dung gợi ý */}
           <div className="mb-6 space-y-2">
-            {showHintIdx.map(idx => (
+            {showHintIdx.map((idx) => (
               <p key={idx} className="text-sm italic text-slate-600 bg-slate-100 p-2 rounded">
                 - {currentQuestion.hints?.[idx]}
               </p>
             ))}
           </div>
 
-          {/* Danh sách đáp án */}
+          {/* Các nút đáp án */}
           <div className="grid grid-cols-1 gap-4">
-            {currentQuestion.options.map((opt, i) => (
+            {Object.entries(currentQuestion.options).map(([key, value]) => (
               <button
-                key={i}
-                onClick={() => handleAnswer(i)}
-                className="w-full p-4 text-left border-2 border-slate-200 rounded-xl hover:border-emerald-500 hover:bg-emerald-50 transition-colors font-medium text-slate-700"
+                key={key}
+                onClick={() => handleAnswer(key)}
+                className="w-full p-4 text-left border-2 border-slate-200 rounded-xl hover:border-emerald-500 hover:bg-emerald-50 transition-colors flex items-center gap-3"
               >
-                {opt}
+                <span className="font-bold text-emerald-600 bg-emerald-100 px-3 py-1 rounded-lg">{key}</span>
+                <span className="font-medium text-slate-700">{value}</span>
               </button>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Pixel Art Character Placeholder */}
+      {/* Pixel Art Character */}
       <div className="fixed bottom-10 left-10 w-24 h-24 bg-blue-400 rounded-lg flex items-center justify-center text-white border-4 border-blue-600">
         [Player]
       </div>
 
       <style jsx>{`
         .distort-effect {
-          filter: hue-rotate(180deg) contrast(150%) blur(1px);
+          filter: hue-rotate(90deg) contrast(150%) blur(2px);
           animation: shake 0.2s infinite;
         }
         @keyframes shake {
-          0% { transform: translate(2px, 2px); }
-          50% { transform: translate(-2px, -2px); }
-          100% { transform: translate(2px, 2px); }
+          0% { transform: translate(3px, 3px); }
+          50% { transform: translate(-3px, -3px); }
+          100% { transform: translate(3px, 3px); }
         }
       `}</style>
     </div>
   );
 }
 
-function VideoEndScreen({ type }: { type: "SUCCESS" | "FAIL" }) {
+// Component Màn hình kết thúc
+function VideoEndScreen({ type, onReset }: { type: "SUCCESS" | "FAIL", onReset: () => void }) {
   return (
-    <div className="fixed inset-0 z-50 bg-black flex flex-center flex-col items-center justify-center p-4">
-      <h1 className="text-4xl font-bold text-white mb-8 text-center">
-        {type === "SUCCESS" ? "CHÚC MỪNG BẠN ĐÃ CHIẾN THẮNG!" : "BẠN ĐÃ THẤT BẠI..."}
+    <div className="fixed inset-0 z-50 bg-black flex flex-col items-center justify-center p-4">
+      <h1 className={`text-4xl font-bold mb-8 text-center ${type === "SUCCESS" ? "text-emerald-400" : "text-red-500"}`}>
+        {type === "SUCCESS" ? "CHÚC MỪNG BẠN ĐÃ VƯỢT QUA CÁM DỖ!" : "BẠN ĐÃ BỊ CÁM DỖ..."}
       </h1>
-      <div className="aspect-video w-full max-w-4xl bg-slate-800 rounded-lg overflow-hidden border-2 border-white shadow-2xl">
-         {/* Thay src bằng link video AI của bạn */}
+      <div className="aspect-video w-full max-w-4xl bg-slate-800 rounded-lg overflow-hidden border-2 border-slate-600 shadow-2xl">
          <video 
             src={type === "SUCCESS" ? "/videos/happy-life.mp4" : "/videos/dark-life.mp4"} 
             autoPlay 
@@ -180,8 +130,8 @@ function VideoEndScreen({ type }: { type: "SUCCESS" | "FAIL" }) {
           />
       </div>
       <button 
-        onClick={() => window.location.reload()}
-        className="mt-8 bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-emerald-400"
+        onClick={onReset}
+        className="mt-8 bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-slate-200"
       >
         CHƠI LẠI
       </button>

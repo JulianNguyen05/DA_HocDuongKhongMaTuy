@@ -1,275 +1,300 @@
 [
   {
-    "stage": "Chặng 1: Câu hỏi dễ [cite: 1]",
+    "stage": "Chặng 1: Câu hỏi dễ",
     "questions": [
       {
         "id": 1,
-        "question": "Ma túy là gì? [cite: 2]",
+        "question": "Ma túy là gì?",
+        "correctOption": "A",
         "options": {
-          "A": "Chất gây nghiện ảnh hưởng đến hệ thần kinh [cite: 2]",
-          "B": "Thực phẩm [cite: 2]",
-          "C": "Nước giải khát [cite: 2]",
-          "D": "Thuốc bổ [cite: 3]"
+          "A": "Chất gây nghiện ảnh hưởng đến hệ thần kinh",
+          "B": "Thực phẩm",
+          "C": "Nước giải khát",
+          "D": "Thuốc bổ"
         }
       },
       {
         "id": 2,
-        "question": "Sử dụng ma túy có thể gây ra điều gì? [cite: 4]",
+        "question": "Sử dụng ma túy có thể gây ra điều gì?",
+        "correctOption": "A",
         "options": {
-          "A": "Nghiện [cite: 4]",
-          "B": "Tăng sức khỏe [cite: 4]",
-          "C": "Tăng trí nhớ [cite: 4]",
-          "D": "Không ảnh hưởng [cite: 5]"
+          "A": "Nghiện",
+          "B": "Tăng sức khỏe",
+          "C": "Tăng trí nhớ",
+          "D": "Không ảnh hưởng"
         }
       },
       {
         "id": 3,
-        "question": "Ma túy ảnh hưởng nhiều nhất đến bộ phận nào? [cite: 6]",
+        "question": "Ma túy ảnh hưởng nhiều nhất đến bộ phận nào?",
+        "correctOption": "A",
         "options": {
-          "A": "Hệ thần kinh [cite: 6]",
-          "B": "Da [cite: 6]",
-          "C": "Tóc [cite: 6]",
-          "D": "Móng [cite: 6]"
+          "A": "Hệ thần kinh",
+          "B": "Da",
+          "C": "Tóc",
+          "D": "Móng"
         }
       },
       {
         "id": 4,
-        "question": "Khẩu hiệu phổ biến trong phòng chống ma túy là gì? [cite: 7]",
+        "question": "Khẩu hiệu phổ biến trong phòng chống ma túy là gì?",
+        "correctOption": "A",
         "options": {
-          "A": "Nói không với ma túy [cite: 7]",
-          "B": "Thử cho biết [cite: 7]",
-          "C": "Không quan tâm [cite: 8]",
-          "D": "Làm theo bạn [cite: 8]"
+          "A": "Nói không với ma túy",
+          "B": "Thử cho biết",
+          "C": "Không quan tâm",
+          "D": "Làm theo bạn"
         }
       },
       {
         "id": 5,
-        "question": "Ma túy có thể gây hại cho ai? [cite: 9]",
+        "question": "Ma túy có thể gây hại cho ai?",
+        "correctOption": "A",
         "options": {
-          "A": "Mọi người [cite: 9]",
-          "B": "Chỉ người lớn [cite: 9]",
-          "C": "Chỉ người già [cite: 9]",
-          "D": "Chỉ học sinh [cite: 9]"
+          "A": "Mọi người",
+          "B": "Chỉ người lớn",
+          "C": "Chỉ người già",
+          "D": "Chỉ học sinh"
         }
       }
     ]
   },
   {
-    "stage": "Chặng 2: Nhận biết ma túy [cite: 10]",
+    "stage": "Chặng 2: Nhận biết ma túy",
     "questions": [
       {
         "id": 6,
-        "question": "Loại ma túy nào thường có dạng tinh thể giống đá? [cite: 11]",
+        "question": "Loại ma túy nào thường có dạng tinh thể giống đá?",
+        "correctOption": "A",
         "options": {
-          "A": "Ma túy đá [cite: 11]",
-          "B": "Cần sa [cite: 11]",
-          "C": "Thuốc lá [cite: 11]",
-          "D": "Cà phê [cite: 12]"
+          "A": "Ma túy đá",
+          "B": "Cần sa",
+          "C": "Thuốc lá",
+          "D": "Cà phê"
         }
       },
       {
         "id": 7,
-        "question": "Cần sa thường có dạng gì? [cite: 13]",
+        "question": "Cần sa thường có dạng gì?",
+        "correctOption": "A",
         "options": {
-          "A": "Lá khô [cite: 13]",
-          "B": "Viên nén [cite: 13]",
-          "C": "Nước [cite: 13]",
-          "D": "Tinh thể [cite: 13]"
+          "A": "Lá khô",
+          "B": "Viên nén",
+          "C": "Nước",
+          "D": "Tinh thể"
         }
       },
       {
         "id": 8,
-        "question": "Thuốc lắc thường có dạng nào? [cite: 14]",
+        "question": "Thuốc lắc thường có dạng nào?",
+        "correctOption": "A",
         "options": {
-          "A": "Viên nén [cite: 14]",
-          "B": "Lá [cite: 14]",
-          "C": "Bột [cite: 14]",
-          "D": "Nước [cite: 14]"
+          "A": "Viên nén",
+          "B": "Lá",
+          "C": "Bột",
+          "D": "Nước"
         }
       },
       {
         "id": 9,
-        "question": "Heroin thường có dạng gì? [cite: 15]",
+        "question": "Heroin thường có dạng gì?",
+        "correctOption": "A",
         "options": {
-          "A": "Bột trắng [cite: 15]",
-          "B": "Lá khô [cite: 15]",
-          "C": "Nước [cite: 15]",
-          "D": "Hạt [cite: 15]"
+          "A": "Bột trắng",
+          "B": "Lá khô",
+          "C": "Nước",
+          "D": "Hạt"
         }
       },
       {
         "id": 10,
-        "question": "Ma túy tổng hợp thường xuất hiện dưới dạng nào? [cite: 16]",
+        "question": "Ma túy tổng hợp thường xuất hiện dưới dạng nào?",
+        "correctOption": "A",
         "options": {
-          "A": "Viên nén hoặc tinh thể [cite: 16]",
-          "B": "Chỉ dạng nước [cite: 16]",
-          "C": "Chỉ dạng lá [cite: 17]",
-          "D": "Chỉ dạng khí [cite: 17]"
+          "A": "Viên nén hoặc tinh thể",
+          "B": "Chỉ dạng nước",
+          "C": "Chỉ dạng lá",
+          "D": "Chỉ dạng khí"
         }
       }
     ]
   },
   {
-    "stage": "Chặng 3: Dấu hiệu nhận biết [cite: 18]",
+    "stage": "Chặng 3: Dấu hiệu nhận biết",
     "questions": [
       {
         "id": 11,
-        "question": "Dấu hiệu nào có thể nghi ngờ người sử dụng ma túy? [cite: 19]",
+        "question": "Dấu hiệu nào có thể nghi ngờ người sử dụng ma túy?",
+        "correctOption": "A",
         "options": {
-          "A": "Mắt đỏ, hành vi lạ [cite: 19]",
-          "B": "Học tập tốt [cite: 20]",
-          "C": "Ăn uống đều [cite: 20]",
-          "D": "Ngủ đúng giờ [cite: 20]"
+          "A": "Mắt đỏ, hành vi lạ",
+          "B": "Học tập tốt",
+          "C": "Ăn uống đều",
+          "D": "Ngủ đúng giờ"
         }
       },
       {
         "id": 12,
-        "question": "Người nghiện ma túy thường có biểu hiện nào? [cite: 21]",
+        "question": "Người nghiện ma túy thường có biểu hiện nào?",
+        "correctOption": "A",
         "options": {
-          "A": "Sút cân nhanh [cite: 21]",
-          "B": "Tăng cân nhanh [cite: 21]",
-          "C": "Cao hơn [cite: 21]",
-          "D": "Khỏe hơn [cite: 21]"
+          "A": "Sút cân nhanh",
+          "B": "Tăng cân nhanh",
+          "C": "Cao hơn",
+          "D": "Khỏe hơn"
         }
       },
       {
         "id": 13,
-        "question": "Người dùng ma túy thường có tâm trạng thế nào? [cite: 22]",
+        "question": "Người dùng ma túy thường có tâm trạng thế nào?",
+        "correctOption": "A",
         "options": {
-          "A": "Thay đổi thất thường [cite: 22]",
-          "B": "Luôn ổn định [cite: 22]",
-          "C": "Luôn vui vẻ [cite: 23]",
-          "D": "Không thay đổi [cite: 23]"
+          "A": "Thay đổi thất thường",
+          "B": "Luôn ổn định",
+          "C": "Luôn vui vẻ",
+          "D": "Không thay đổi"
         }
       },
       {
         "id": 14,
-        "question": "Thức khuya nhiều và cáu gắt bất thường có thể là dấu hiệu của? [cite: 24]",
+        "question": "Thức khuya nhiều và cáu gắt bất thường có thể là dấu hiệu của?",
+        "correctOption": "A",
         "options": {
-          "A": "Sử dụng ma túy [cite: 24]",
-          "B": "Học bài [cite: 25]",
-          "C": "Chơi thể thao [cite: 25]",
-          "D": "Làm việc [cite: 25]"
+          "A": "Sử dụng ma túy",
+          "B": "Học bài",
+          "C": "Chơi thể thao",
+          "D": "Làm việc"
         }
       },
       {
         "id": 15,
-        "question": "Người nghiện ma túy thường gặp vấn đề gì về sức khỏe? [cite: 26]",
+        "question": "Người nghiện ma túy thường gặp vấn đề gì về sức khỏe?",
+        "correctOption": "A",
         "options": {
-          "A": "Suy giảm sức khỏe [cite: 26]",
-          "B": "Tăng sức khỏe [cite: 26]",
-          "C": "Không thay đổi [cite: 27]",
-          "D": "Tăng trí nhớ [cite: 27]"
+          "A": "Suy giảm sức khỏe",
+          "B": "Tăng sức khỏe",
+          "C": "Không thay đổi",
+          "D": "Tăng trí nhớ"
         }
       }
     ]
   },
   {
-    "stage": "Chặng 4: Hậu quả [cite: 28]",
+    "stage": "Chặng 4: Hậu quả",
     "questions": [
       {
         "id": 16,
-        "question": "Ma túy có thể gây tổn thương cơ quan nào? [cite: 29]",
+        "question": "Ma túy có thể gây tổn thương cơ quan nào?",
+        "correctOption": "D",
         "options": {
-          "A": "Não [cite: 29]",
-          "B": "Gan [cite: 29]",
-          "C": "Tim [cite: 29]",
-          "D": "Tất cả các đáp án trên [cite: 29]"
+          "A": "Não",
+          "B": "Gan",
+          "C": "Tim",
+          "D": "Tất cả các đáp án trên"
         }
       },
       {
         "id": 17,
-        "question": "Sử dụng ma túy lâu dài có thể dẫn đến? [cite: 30]",
+        "question": "Sử dụng ma túy lâu dài có thể dẫn đến?",
+        "correctOption": "A",
         "options": {
-          "A": "Tử vong [cite: 30]",
-          "B": "Tăng tuổi thọ [cite: 30]",
-          "C": "Khỏe hơn [cite: 30]",
-          "D": "Không ảnh hưởng [cite: 31]"
+          "A": "Tử vong",
+          "B": "Tăng tuổi thọ",
+          "C": "Khỏe hơn",
+          "D": "Không ảnh hưởng"
         }
       },
       {
         "id": 18,
-        "question": "Ma túy có thể gây ảnh hưởng đến gia đình như thế nào? [cite: 32]",
+        "question": "Ma túy có thể gây ảnh hưởng đến gia đình như thế nào?",
+        "correctOption": "A",
         "options": {
-          "A": "Mâu thuẫn và tan vỡ [cite: 32]",
-          "B": "Hạnh phúc hơn [cite: 33]",
-          "C": "Giàu hơn [cite: 33]",
-          "D": "Không ảnh hưởng [cite: 33]"
+          "A": "Mâu thuẫn và tan vỡ",
+          "B": "Hạnh phúc hơn",
+          "C": "Giàu hơn",
+          "D": "Không ảnh hưởng"
         }
       },
       {
         "id": 19,
-        "question": "Ma túy có thể dẫn đến điều gì trong xã hội? [cite: 34]",
+        "question": "Ma túy có thể dẫn đến điều gì trong xã hội?",
+        "correctOption": "A",
         "options": {
-          "A": "Gia tăng tội phạm [cite: 34]",
-          "B": "Phát triển kinh tế [cite: 34]",
-          "C": "Tăng dân số [cite: 35]",
-          "D": "Không ảnh hưởng [cite: 35]"
+          "A": "Gia tăng tội phạm",
+          "B": "Phát triển kinh tế",
+          "C": "Tăng dân số",
+          "D": "Không ảnh hưởng"
         }
       },
       {
         "id": 20,
-        "question": "Ma túy ảnh hưởng đến học tập như thế nào? [cite: 36]",
+        "question": "Ma túy ảnh hưởng đến học tập như thế nào?",
+        "correctOption": "A",
         "options": {
-          "A": "Giảm khả năng học tập [cite: 36]",
-          "B": "Học tốt hơn [cite: 36]",
-          "C": "Không ảnh hưởng [cite: 37]",
-          "D": "Tăng trí nhớ [cite: 37]"
+          "A": "Giảm khả năng học tập",
+          "B": "Học tốt hơn",
+          "C": "Không ảnh hưởng",
+          "D": "Tăng trí nhớ"
         }
       }
     ]
   },
   {
-    "stage": "Chặng 5: Xử lý tình huống [cite: 38]",
+    "stage": "Chặng 5: Xử lý tình huống",
     "questions": [
       {
         "id": 21,
-        "question": "Nếu bạn bè rủ sử dụng ma túy, bạn nên làm gì? [cite: 39]",
+        "question": "Nếu bạn bè rủ sử dụng ma túy, bạn nên làm gì?",
+        "correctOption": "A",
         "options": {
-          "A": "Từ chối [cite: 39]",
-          "B": "Thử một lần [cite: 39]",
-          "C": "Đồng ý [cite: 39]",
-          "D": "Rủ thêm người [cite: 40]"
+          "A": "Từ chối",
+          "B": "Thử một lần",
+          "C": "Đồng ý",
+          "D": "Rủ thêm người"
         }
       },
       {
         "id": 22,
-        "question": "Khi phát hiện người buôn bán ma túy, bạn nên? [cite: 41]",
+        "question": "Khi phát hiện người buôn bán ma túy, bạn nên?",
+        "correctOption": "A",
         "options": {
-          "A": "Báo cơ quan chức năng [cite: 41]",
-          "B": "Làm ngơ [cite: 41]",
-          "C": "Mua thử [cite: 41]",
-          "D": "Che giấu [cite: 42]"
+          "A": "Báo cơ quan chức năng",
+          "B": "Làm ngơ",
+          "C": "Mua thử",
+          "D": "Che giấu"
         }
       },
       {
         "id": 23,
-        "question": "Khi tham gia tiệc, để tránh ma túy cần? [cite: 43]",
+        "question": "Khi tham gia tiệc, để tránh ma túy cần?",
+        "correctOption": "A",
         "options": {
-          "A": "Không uống đồ lạ [cite: 43]",
-          "B": "Uống mọi thứ [cite: 43]",
-          "C": "Thử cho biết [cite: 43]",
-          "D": "Không quan tâm [cite: 44]"
+          "A": "Không uống đồ lạ",
+          "B": "Uống mọi thứ",
+          "C": "Thử cho biết",
+          "D": "Không quan tâm"
         }
       },
       {
         "id": 24,
-        "question": "Nếu phát hiện người thân nghiện ma túy, nên? [cite: 45]",
+        "question": "Nếu phát hiện người thân nghiện ma túy, nên?",
+        "correctOption": "A",
         "options": {
-          "A": "Khuyên đi cai nghiện [cite: 45]",
-          "B": "Bỏ mặc [cite: 45]",
-          "C": "Che giấu [cite: 45]",
-          "D": "Cho tiền [cite: 45]"
+          "A": "Khuyên đi cai nghiện",
+          "B": "Bỏ mặc",
+          "C": "Che giấu",
+          "D": "Cho tiền"
         }
       },
       {
         "id": 25,
-        "question": "Thông điệp quan trọng nhất về ma túy là gì? [cite: 46]",
+        "question": "Thông điệp quan trọng nhất về ma túy là gì?",
+        "correctOption": "A",
         "options": {
-          "A": "Tránh xa ma túy để bảo vệ bản thân [cite: 46]",
-          "B": "Thử một lần [cite: 47]",
-          "C": "Không quan tâm [cite: 47]",
-          "D": "Làm theo bạn [cite: 47]"
+          "A": "Tránh xa ma túy để bảo vệ bản thân",
+          "B": "Thử một lần",
+          "C": "Không quan tâm",
+          "D": "Làm theo bạn"
         }
       }
     ]

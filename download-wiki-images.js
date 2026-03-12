@@ -1,53 +1,49 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
-
 const fs = require("fs");
 const path = require("path");
 
 const DATA_DIR = path.join(__dirname, "src", "lib", "data");
 const IMG_DIR = path.join(__dirname, "public", "images", "flashcard");
 
+// Map các tên tiếng Việt sang từ khóa tiếng Anh chuẩn trên Wikipedia
 const drugMap = {
+  // Nhóm tự nhiên
+  "Cây thuốc phiện": "Papaver somniferum",
+  "Thuốc phiện": "Opium",
+  "Cần sa": "Cannabis",
+  "Cây coca": "Erythroxylum coca",
+  "Lá Khat": "Khat",
   "Nhựa Thuốc Phiện": "Opium",
   "Cần Sa (Bồ đà / Pin)": "Cannabis",
-  "Lá Khát (Khat)": "Khat",
-  "Nấm Thức Thần": "Psilocybin mushroom",
-  "Lá Coca": "Coca leaf",
-  "Cà Độc Dược (Datura)": "Datura",
-  "Cây Xô Thơm (Salvia)": "Salvia divinorum",
-  "Xương Rồng Peyote": "Peyote",
-  "Hạt Bìm Bìm Biếc": "Morning glory seeds",
-  "Cây Ma Hoàng (Ephedra)": "Ephedra",
-  "Quả Anh Túc (Poppy Pods)": "Opium poppy",
-  "Nấm Ruồi (Amanita Muscaria)": "Amanita muscaria",
-  "Hạt Nhục Đậu Khấu": "Nutmeg",
-
+  
+  // Nhóm tổng hợp
+  "Ma túy đá (Methamphetamine)": "Methamphetamine",
   "Ma Túy Đá (Meth)": "Methamphetamine",
+  "Thuốc lắc (Ecstasy)": "MDMA",
   "Thuốc Lắc (MDMA / Ecstasy)": "MDMA",
+  "Hồng phiến (Amphetamine)": "Amphetamine",
+  "Ketamine": "Ketamine",
   "Ketamine (Ke)": "Ketamine",
+  "Cần sa tổng hợp (Cỏ Mỹ)": "Synthetic cannabinoids",
   "Cỏ Mỹ (Spice / K2)": "Synthetic cannabinoids",
-  "Muối Tắm (Flakka)": "Alpha-PVP",
-  "Nước Biển (GHB)": "Gamma-Hydroxybutyrate",
-  "Bụi Thiên Thần (PCP)": "Phencyclidine",
-  "Hồng Phiến (Amphetamine)": "Amphetamine",
-  "Thuốc Ngủ Rohypnol": "Flunitrazepam",
-  "Mephedrone (Meow Meow)": "Mephedrone",
-  "Popper (Amyl Nitrite)": "Amyl nitrite",
-  "Dextromethorphan (DXM liều cao)": "Dextromethorphan",
-  "N-Bomb (25I-NBOMe)": "25I-NBOMe",
-
-  "Heroin (Cái chết trắng)": "Heroin",
-  "Cocaine (Bột trắng)": "Cocaine",
+  "Ma túy LSD (Bùa lưỡi)": "Lysergic acid diethylamide",
   "Tem Giấy (LSD)": "Lysergic acid diethylamide",
-  "Crack Cocaine (Cocain đá)": "Crack cocaine",
-  "Krokodil (Desomorphine)": "Desomorphine",
-  "Oxycodone (OxyContin)": "Oxycodone",
-  "Hydrocodone (Vicodin)": "Hydrocodone"
+  "Bùa lưỡi": "Lysergic acid diethylamide",
+
+  // Nhóm bán tổng hợp
+  "Cocaine": "Cocaine",
+  "Cocaine (Bột trắng)": "Cocaine",
+  "Heroin": "Heroin",
+  "Heroine": "Heroin",
+  "Heroin (Cái chết trắng)": "Heroin",
+  "Crack Cocaine (Cocain đá)": "Crack cocaine"
 };
 
 if (!fs.existsSync(IMG_DIR)) {
   fs.mkdirSync(IMG_DIR, { recursive: true });
 }
 
+// Hàm tạo tên file: "Ma túy đá" -> "ma-tuy-da.jpg"
 function createFilename(name) {
   let str = name.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   str = str.replace(/đ/g, "d").replace(/Đ/g, "D");
@@ -60,27 +56,17 @@ function delay(ms) {
 }
 
 async function getWikipediaImage(drugName) {
+  if (!drugName) return null;
   try {
-    const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
-      drugName
-    )}`;
-
-    const res = await fetch(url);
+    // Sử dụng endpoint summary của Wikipedia tiếng Anh (kho ảnh tốt nhất)
+    const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(drugName)}`;
+    const res = await fetch(url, { headers: { "User-Agent": "DrugEduProject/1.0" } });
 
     if (!res.ok) return null;
-
     const data = await res.json();
 
-    if (data.thumbnail) {
-      return data.thumbnail.source;
-    }
-
-    if (data.originalimage) {
-      return data.originalimage.source;
-    }
-
-    return null;
-  } catch {
+    return data.thumbnail?.source || data.originalimage?.source || null;
+  } catch (error) {
     return null;
   }
 }
@@ -98,17 +84,11 @@ async function downloadImage(url, filename) {
       headers: { "User-Agent": "Mozilla/5.0" },
     });
 
-    if (!response.ok) {
-      console.log(`✗ Lỗi HTTP ${response.status}`);
-      return false;
-    }
+    if (!response.ok) return false;
 
     const buffer = Buffer.from(await response.arrayBuffer());
-
     fs.writeFileSync(filepath, buffer);
-
     console.log(`📥 Đã tải: ${filename}`);
-
     return true;
   } catch (error) {
     console.log(`✗ Lỗi tải ${filename}`);
@@ -118,49 +98,61 @@ async function downloadImage(url, filename) {
 
 async function processFile(file) {
   const filePath = path.join(DATA_DIR, file);
+  if (!fs.existsSync(filePath)) {
+    console.log(`File không tồn tại: ${file}`);
+    return;
+  }
 
-  if (!fs.existsSync(filePath)) return;
-
-  const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
-
+  let data = JSON.parse(fs.readFileSync(filePath, "utf8"));
   console.log(`\n📂 Đang xử lý: ${file}`);
 
-  for (const item of data) {
+  for (let item of data) {
+    // Ưu tiên tìm kiếm theo: Scientific Name -> Tên map tiếng Anh -> Tên gốc
+    const searchTerms = [
+      item.scientificName?.split('[')[0]?.trim(), // Xóa bỏ [cite] nếu có
+      drugMap[item.name],
+      item.name
+    ].filter(Boolean);
+
+    let imageUrl = null;
+    let foundTerm = "";
+
+    for (const term of searchTerms) {
+      imageUrl = await getWikipediaImage(term);
+      if (imageUrl) {
+        foundTerm = term;
+        break;
+      }
+    }
+
     const filename = createFilename(item.name);
 
-const searchName = drugMap[item.name] || item.name;
-const imageUrl = await getWikipediaImage(searchName);
-
     if (!imageUrl) {
-      console.log(`⚠ Không tìm thấy ảnh: ${item.name}`);
+      console.log(`⚠ Không tìm thấy ảnh cho: ${item.name}`);
       continue;
     }
 
     const success = await downloadImage(imageUrl, filename);
-
     if (success) {
       item.imageUrl = `/images/flashcard/${filename}`;
     }
 
-    await delay(2500);
+    // Delay để không bị Wikipedia block IP
+    await delay(1000); 
   }
 
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-
   console.log(`✔ Đã cập nhật JSON: ${file}`);
 }
 
 async function main() {
-  console.log("🚀 BẮT ĐẦU TẢI ẢNH WIKIPEDIA");
-
+  console.log("🚀 BẮT ĐẦU TẢI ẢNH WIKIPEDIA (PHIÊN BẢN FIX)");
   const files = ["tu_nhien.json", "tong_hop.json", "ban_tong_hop.json"];
 
   for (const file of files) {
     await processFile(file);
   }
-
   console.log("\n🎉 HOÀN THÀNH TẢI ẢNH");
 }
 
 main();
-

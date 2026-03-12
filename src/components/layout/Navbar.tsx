@@ -19,20 +19,23 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Xử lý sự kiện cuộn trang để ẩn/hiện Navbar
+// Xử lý sự kiện cuộn trang để ẩn/hiện Navbar
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Nếu cuộn xuống và đã cuộn qua khoảng 50px thì ẩn Navbar
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setIsVisible(false);
-        setOpen(false); // Tự động đóng menu mobile nếu đang mở để tránh lỗi giao diện
-      } else {
-        // Nếu cuộn ngược lên thì hiện lại Navbar
+      // 1. Nếu đang ở sát đỉnh (ví dụ < 10px), luôn hiện Navbar
+      if (currentScrollY <= 10) {
         setIsVisible(true);
+      } 
+      // 2. Nếu cuộn xuống, ẩn Navbar
+      else if (currentScrollY > lastScrollY) {
+        setIsVisible(false);
+        setOpen(false);
       }
-
+      // 3. Nếu cuộn lên NHƯNG chưa tới đỉnh, vẫn giữ ẩn 
+      // (Bỏ logic hiện Navbar khi cuộn lên ở giữa trang)
+      
       setLastScrollY(currentScrollY);
     };
 

@@ -1,8 +1,14 @@
 export interface DrugDetail {
   name: string;
   imageUrl?: string | null;
-  shortDesc: string;
-  details: string[];
+  shortDesc?: string | null;
+  scientificName?: string | null;
+  otherNames?: string | null;
+  concept?: string | null;
+  origin?: string | null;
+  distribution?: string | null;
+  identification: string[];
+  harmfulEffects: string[];
 }
 
 export interface DrugCategory {

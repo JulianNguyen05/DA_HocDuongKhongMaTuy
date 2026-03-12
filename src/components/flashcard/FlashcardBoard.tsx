@@ -10,7 +10,7 @@ export default function FlashcardBoard({ initialData }: { initialData: DrugCateg
 
   return (
     <div className="w-full pt-8 pb-24">
-      {/* TABS MENU - Phong cách tối giản (Minimalist Tabs) */}
+      {/* TABS MENU */}
       <div className="flex flex-wrap justify-center items-center gap-2 mb-16 max-w-3xl mx-auto px-4">
         {(Object.keys(initialData) as CategoryKey[]).map((key) => {
           const isActive = activeTab === key;
@@ -37,9 +37,15 @@ export default function FlashcardBoard({ initialData }: { initialData: DrugCateg
           <FlashcardItem 
             key={index}
             name={drug.name}
-            imageUrl={drug.imageUrl} // Lấy ảnh từ DB truyền vào
+            imageUrl={drug.imageUrl}
             shortDesc={drug.shortDesc}
-            details={drug.details}
+            scientificName={drug.scientificName}
+            otherNames={drug.otherNames}
+            concept={drug.concept}
+            origin={drug.origin}
+            distribution={drug.distribution}
+            identification={drug.identification || []}
+            harmfulEffects={drug.harmfulEffects || []}
           />
         ))}
       </div>

@@ -11,7 +11,14 @@ export const getFlashcardDataFromDB = async (): Promise<DrugCategories> => {
         name: card.name,
         imageUrl: card.imageUrl,
         shortDesc: card.shortDesc,
-        details: card.detailedContent
+        // Map thêm các trường mới
+        scientificName: card.scientificName,
+        otherNames: card.otherNames,
+        concept: card.concept,
+        origin: card.origin,
+        distribution: card.distribution,
+        identification: card.identification,
+        harmfulEffects: card.harmfulEffects
       }));
   };
 

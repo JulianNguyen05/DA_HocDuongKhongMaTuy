@@ -1,0 +1,302 @@
+[
+  {
+    "stage": "Chặng 1: Câu hỏi dễ",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Ma túy là gì?",
+        "correctOption": "A",
+        "options": {
+          "A": "Chất gây nghiện ảnh hưởng đến hệ thần kinh",
+          "B": "Thực phẩm",
+          "C": "Nước giải khát",
+          "D": "Thuốc bổ"
+        }
+      },
+      {
+        "id": 2,
+        "question": "Sử dụng ma túy có thể gây ra điều gì?",
+        "correctOption": "A",
+        "options": {
+          "A": "Nghiện",
+          "B": "Tăng sức khỏe",
+          "C": "Tăng trí nhớ",
+          "D": "Không ảnh hưởng"
+        }
+      },
+      {
+        "id": 3,
+        "question": "Ma túy ảnh hưởng nhiều nhất đến bộ phận nào?",
+        "correctOption": "A",
+        "options": {
+          "A": "Hệ thần kinh",
+          "B": "Da",
+          "C": "Tóc",
+          "D": "Móng"
+        }
+      },
+      {
+        "id": 4,
+        "question": "Khẩu hiệu phổ biến trong phòng chống ma túy là gì?",
+        "correctOption": "A",
+        "options": {
+          "A": "Nói không với ma túy",
+          "B": "Thử cho biết",
+          "C": "Không quan tâm",
+          "D": "Làm theo bạn"
+        }
+      },
+      {
+        "id": 5,
+        "question": "Ma túy có thể gây hại cho ai?",
+        "correctOption": "A",
+        "options": {
+          "A": "Mọi người",
+          "B": "Chỉ người lớn",
+          "C": "Chỉ người già",
+          "D": "Chỉ học sinh"
+        }
+      }
+    ]
+  },
+  {
+    "stage": "Chặng 2: Nhận biết ma túy",
+    "questions": [
+      {
+        "id": 6,
+        "question": "Loại ma túy nào thường có dạng tinh thể giống đá?",
+        "correctOption": "A",
+        "options": {
+          "A": "Ma túy đá",
+          "B": "Cần sa",
+          "C": "Thuốc lá",
+          "D": "Cà phê"
+        }
+      },
+      {
+        "id": 7,
+        "question": "Cần sa thường có dạng gì?",
+        "correctOption": "A",
+        "options": {
+          "A": "Lá khô",
+          "B": "Viên nén",
+          "C": "Nước",
+          "D": "Tinh thể"
+        }
+      },
+      {
+        "id": 8,
+        "question": "Thuốc lắc thường có dạng nào?",
+        "correctOption": "A",
+        "options": {
+          "A": "Viên nén",
+          "B": "Lá",
+          "C": "Bột",
+          "D": "Nước"
+        }
+      },
+      {
+        "id": 9,
+        "question": "Heroin thường có dạng gì?",
+        "correctOption": "A",
+        "options": {
+          "A": "Bột trắng",
+          "B": "Lá khô",
+          "C": "Nước",
+          "D": "Hạt"
+        }
+      },
+      {
+        "id": 10,
+        "question": "Ma túy tổng hợp thường xuất hiện dưới dạng nào?",
+        "correctOption": "A",
+        "options": {
+          "A": "Viên nén hoặc tinh thể",
+          "B": "Chỉ dạng nước",
+          "C": "Chỉ dạng lá",
+          "D": "Chỉ dạng khí"
+        }
+      }
+    ]
+  },
+  {
+    "stage": "Chặng 3: Dấu hiệu nhận biết",
+    "questions": [
+      {
+        "id": 11,
+        "question": "Dấu hiệu nào có thể nghi ngờ người sử dụng ma túy?",
+        "correctOption": "A",
+        "options": {
+          "A": "Mắt đỏ, hành vi lạ",
+          "B": "Học tập tốt",
+          "C": "Ăn uống đều",
+          "D": "Ngủ đúng giờ"
+        }
+      },
+      {
+        "id": 12,
+        "question": "Người nghiện ma túy thường có biểu hiện nào?",
+        "correctOption": "A",
+        "options": {
+          "A": "Sút cân nhanh",
+          "B": "Tăng cân nhanh",
+          "C": "Cao hơn",
+          "D": "Khỏe hơn"
+        }
+      },
+      {
+        "id": 13,
+        "question": "Người dùng ma túy thường có tâm trạng thế nào?",
+        "correctOption": "A",
+        "options": {
+          "A": "Thay đổi thất thường",
+          "B": "Luôn ổn định",
+          "C": "Luôn vui vẻ",
+          "D": "Không thay đổi"
+        }
+      },
+      {
+        "id": 14,
+        "question": "Thức khuya nhiều và cáu gắt bất thường có thể là dấu hiệu của?",
+        "correctOption": "A",
+        "options": {
+          "A": "Sử dụng ma túy",
+          "B": "Học bài",
+          "C": "Chơi thể thao",
+          "D": "Làm việc"
+        }
+      },
+      {
+        "id": 15,
+        "question": "Người nghiện ma túy thường gặp vấn đề gì về sức khỏe?",
+        "correctOption": "A",
+        "options": {
+          "A": "Suy giảm sức khỏe",
+          "B": "Tăng sức khỏe",
+          "C": "Không thay đổi",
+          "D": "Tăng trí nhớ"
+        }
+      }
+    ]
+  },
+  {
+    "stage": "Chặng 4: Hậu quả",
+    "questions": [
+      {
+        "id": 16,
+        "question": "Ma túy có thể gây tổn thương cơ quan nào?",
+        "correctOption": "D",
+        "options": {
+          "A": "Não",
+          "B": "Gan",
+          "C": "Tim",
+          "D": "Tất cả các đáp án trên"
+        }
+      },
+      {
+        "id": 17,
+        "question": "Sử dụng ma túy lâu dài có thể dẫn đến?",
+        "correctOption": "A",
+        "options": {
+          "A": "Tử vong",
+          "B": "Tăng tuổi thọ",
+          "C": "Khỏe hơn",
+          "D": "Không ảnh hưởng"
+        }
+      },
+      {
+        "id": 18,
+        "question": "Ma túy có thể gây ảnh hưởng đến gia đình như thế nào?",
+        "correctOption": "A",
+        "options": {
+          "A": "Mâu thuẫn và tan vỡ",
+          "B": "Hạnh phúc hơn",
+          "C": "Giàu hơn",
+          "D": "Không ảnh hưởng"
+        }
+      },
+      {
+        "id": 19,
+        "question": "Ma túy có thể dẫn đến điều gì trong xã hội?",
+        "correctOption": "A",
+        "options": {
+          "A": "Gia tăng tội phạm",
+          "B": "Phát triển kinh tế",
+          "C": "Tăng dân số",
+          "D": "Không ảnh hưởng"
+        }
+      },
+      {
+        "id": 20,
+        "question": "Ma túy ảnh hưởng đến học tập như thế nào?",
+        "correctOption": "A",
+        "options": {
+          "A": "Giảm khả năng học tập",
+          "B": "Học tốt hơn",
+          "C": "Không ảnh hưởng",
+          "D": "Tăng trí nhớ"
+        }
+      }
+    ]
+  },
+  {
+    "stage": "Chặng 5: Xử lý tình huống",
+    "questions": [
+      {
+        "id": 21,
+        "question": "Nếu bạn bè rủ sử dụng ma túy, bạn nên làm gì?",
+        "correctOption": "A",
+        "options": {
+          "A": "Từ chối",
+          "B": "Thử một lần",
+          "C": "Đồng ý",
+          "D": "Rủ thêm người"
+        }
+      },
+      {
+        "id": 22,
+        "question": "Khi phát hiện người buôn bán ma túy, bạn nên?",
+        "correctOption": "A",
+        "options": {
+          "A": "Báo cơ quan chức năng",
+          "B": "Làm ngơ",
+          "C": "Mua thử",
+          "D": "Che giấu"
+        }
+      },
+      {
+        "id": 23,
+        "question": "Khi tham gia tiệc, để tránh ma túy cần?",
+        "correctOption": "A",
+        "options": {
+          "A": "Không uống đồ lạ",
+          "B": "Uống mọi thứ",
+          "C": "Thử cho biết",
+          "D": "Không quan tâm"
+        }
+      },
+      {
+        "id": 24,
+        "question": "Nếu phát hiện người thân nghiện ma túy, nên?",
+        "correctOption": "A",
+        "options": {
+          "A": "Khuyên đi cai nghiện",
+          "B": "Bỏ mặc",
+          "C": "Che giấu",
+          "D": "Cho tiền"
+        }
+      },
+      {
+        "id": 25,
+        "question": "Thông điệp quan trọng nhất về ma túy là gì?",
+        "correctOption": "A",
+        "options": {
+          "A": "Tránh xa ma túy để bảo vệ bản thân",
+          "B": "Thử một lần",
+          "C": "Không quan tâm",
+          "D": "Làm theo bạn"
+        }
+      }
+    ]
+  }
+]

@@ -14,11 +14,13 @@ export default function TreeDetailModal({ selectedLaw, onClose }: Props) {
       animate={{ opacity: 1, x: 0, scale: 1 }}
       exit={{ opacity: 0, x: 50, scale: 0.95 }}
       transition={{ duration: 0.4 }}
-      // ✅ 1. Trả lại absolute, top-0, right-0, h-full để Modal luôn nổi bên phải và Cây đứng im
-      className="absolute top-0 right-0 w-full md:w-[100%] lg:w-[70%] xl:w-[75%] h-full flex flex-col justify-start p-4 sm:p-6 md:pr-12 md:pl-2 z-50 pointer-events-none"
+      // ✅ 1. Bỏ `md:w-[100%]` đi vì `w-full` ở đầu đã bao hàm rồi. 
+      // Giữ nguyên h-full và các padding để tạo khung an toàn.
+      className="absolute top-0 right-0 w-full lg:w-[70%] xl:w-[75%] h-full flex flex-col justify-start p-4 sm:p-6 md:pr-12 md:pl-2 z-50 pointer-events-none"
     >
-      {/* ✅ 2. Trả lại max-h-[75vh] và overflow-y-auto để chỉ cuộn nội dung, đồng thời ẩn thanh cuộn đi cho đẹp */}
-      <div className="bg-white p-3 md:p-8 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.15)] border-2 border-emerald-100 max-h-[65vh] overflow-y-auto relative pointer-events-auto w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+      {/* ✅ 2. THAY ĐỔI QUAN TRỌNG NHẤT: Đổi max-h-[65vh] thành max-h-full */}
+      {/* Nó sẽ tự động tính toán: Chiều cao màn hình - Padding của thẻ cha = Chiều cao tối đa của Modal */}
+      <div className="bg-white p-3 md:p-8 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.15)] border-2 border-emerald-100 max-h-full overflow-y-auto relative pointer-events-auto w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         
         {/* NÚT ĐÓNG */}
         <button

@@ -13,7 +13,7 @@ interface LawTreeProps {
   initialData: LawNodeData[];
 }
 
-// Kích thước gốc chuẩn của cái cây để làm mốc tính toán
+// Kích thước gốc chuẩn của cái cây
 const BASE_WIDTH = 1920;
 const BASE_HEIGHT = 1080;
 
@@ -32,13 +32,17 @@ export default function LawTree({ initialData }: LawTreeProps) {
   const ANGLE_STEP = 360 / TOTAL_LEAVES;
   const RADIUS = 300;
 
-  // Lắng nghe kích thước màn hình để tính toán tỷ lệ scale
+  // ✅ 1. SỬA LẠI TỶ LỆ SCALE ĐỂ BAO TRỌN MÀN HÌNH BẤT KỲ
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-      // Chỉ lấy tỷ lệ theo chiều ngang để ảnh tràn đủ 100% bề rộng màn hình
+      const mobileCheck = window.innerWidth < 768;
+      setIsMobile(mobileCheck);
+
       const scaleX = window.innerWidth / BASE_WIDTH;
-      setDynamicScale(scaleX);
+      const scaleY = window.innerHeight / BASE_HEIGHT;
+
+      // Dùng Math.min để đảm bảo cái cây luôn nằm gọn trong màn hình mà không bị cắt xén
+      setDynamicScale(Math.min(scaleX, scaleY));
     };
 
     handleResize();
@@ -59,17 +63,20 @@ export default function LawTree({ initialData }: LawTreeProps) {
     }
     setActiveId(id);
 
-    const targetAngle = -(index * ANGLE_STEP);
-    let currentMod = treeRotation % 360;
-    if (currentMod < 0) currentMod += 360;
-    let targetMod = targetAngle % 360;
-    if (targetMod < 0) targetMod += 360;
+    // Không tính toán góc xoay nếu ở mobile
+    if (!isMobile) {
+      const targetAngle = -(index * ANGLE_STEP);
+      let currentMod = treeRotation % 360;
+      if (currentMod < 0) currentMod += 360;
+      let targetMod = targetAngle % 360;
+      if (targetMod < 0) targetMod += 360;
 
-    let diff = targetMod - currentMod;
-    if (diff > 180) diff -= 360;
-    if (diff < -180) diff += 360;
+      let diff = targetMod - currentMod;
+      if (diff > 180) diff -= 360;
+      if (diff < -180) diff += 360;
 
-    setTreeRotation(treeRotation + diff);
+      setTreeRotation(treeRotation + diff);
+    }
   };
 
   const springTransition = {
@@ -80,6 +87,7 @@ export default function LawTree({ initialData }: LawTreeProps) {
   };
 
   const snapToNearest = () => {
+    if (isMobile) return; // Tắt snap khi cuộn ở mobile
     setTreeRotation((currentRotation) => {
       let index = Math.round(-currentRotation / ANGLE_STEP) % TOTAL_LEAVES;
       if (index < 0) index += TOTAL_LEAVES;
@@ -99,6 +107,9 @@ export default function LawTree({ initialData }: LawTreeProps) {
     });
   };
 
+  // ✅ Biến kiểm tra xem có đang bật chế độ vòng xoay không
+  const showWheel = activeId !== null && !isMobile;
+
   return (
     <div
       className={`relative w-full flex flex-col items-center font-sans bg-[#D1FAA0] transition-all duration-500 ${
@@ -107,24 +118,24 @@ export default function LawTree({ initialData }: LawTreeProps) {
     >
       <TreeParticles />
 
-      {/* KHUNG GIỮ CHỖ: Đảm bảo layout không bị đè lên header và có thanh cuộn dọc */}
+      {/* KHUNG GIỮ CHỖ CẬP NHẬT THEO SCALE */}
       <div
         className="relative mt-2 transition-all duration-500 ease-in-out"
         style={{
           width: BASE_WIDTH * dynamicScale,
-          height: activeId ? "70vh" : BASE_HEIGHT * dynamicScale,
+          height: showWheel ? "70vh" : BASE_HEIGHT * dynamicScale,
         }}
       ></div>
 
-      {/* MASTER WRAPPER */}
+      {/* ✅ 2. CẬP NHẬT LẠI TRỤC CĂN GIỮA ĐỂ CÂY LUÔN CHÍNH GIỮA MÀN HÌNH */}
       <motion.div
         ref={treeRef}
-        className="absolute top-0 left-0 origin-top-left pointer-events-none"
-        style={{ width: BASE_WIDTH, height: BASE_HEIGHT }}
+        className="absolute top-0 left-1/2 origin-top pointer-events-none"
+        style={{ width: BASE_WIDTH, height: BASE_HEIGHT, x: "-50%" }}
         animate={{ scale: dynamicScale }}
         transition={{ type: "tween", duration: 0.1 }}
       >
-        {/* BACKGROUND LÁ VÀ THÂN CÂY */}
+        {/* BACKGROUND */}
         <motion.div
           className="absolute inset-0 z-0 pointer-events-none"
           animate={{ opacity: activeId ? 0 : 1, scale: activeId ? 0.9 : 1 }}
@@ -133,46 +144,34 @@ export default function LawTree({ initialData }: LawTreeProps) {
           <TreeBackground />
         </motion.div>
 
-        {/* LỚP PHỦ TỐI KHI CLICK
-            <AnimatePresence>
-              {activeId && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  // SỬA CHUẨN Ở ĐÂY: w-[4000px] và h-[4000px]
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#D1FAE0]/80 z-20 cursor-pointer pointer-events-auto"
-                  onClick={() => setActiveId(null)}
-                />
-              )}
-            </AnimatePresence> */}
-
-        {/* TRỤC QUAY CỦA CÁC QUẢ */}
+{/* TRỤC QUAY CỦA CÁC QUẢ */}
         <motion.div
-          // 1. Xóa "top-[45%]" ra khỏi className
-          className="absolute z-30 pointer-events-auto"
-          style={{ width: RADIUS * 2, height: RADIUS * 2, y: "-50%" }}
+          className={`absolute z-30 ${isMobile ? "pointer-events-none" : "pointer-events-auto"}`}
+          // Giữ nguyên trục tọa độ gốc nhưng bỏ kích thước cố định để không cản trở thao tác trên mobile
+          style={isMobile ? { y: "-50%" } : { width: RADIUS * 2, height: RADIUS * 2, y: "-50%" }}
           onWheel={(e) => {
-            if (!activeId) return;
+            if (!activeId || isMobile) return; // Tắt lăn chuột xoay trên mobile
             setTreeRotation((prev) => prev + e.deltaY * 0.15);
             if (wheelTimeout.current) clearTimeout(wheelTimeout.current);
             wheelTimeout.current = setTimeout(() => snapToNearest(), 150);
           }}
           animate={{
-            left: activeId ? (isMobile ? "50%" : "3%") : "50%",
-            // 2. Thêm điều kiện top vào animate.
-            // Khi có activeId, top sẽ rút lên 30% (bạn có thể thay đổi số này).
-            // Khi không có activeId (ở trên cây), top trả về 45% như cũ để khớp với ảnh nền.
-            top: activeId ? "30%" : "45%",
+            left: activeId ? "2%" : "50%",
+            // Chỉ kéo lên trên nếu có activeId VÀ không phải mobile
+            top: showWheel ? "30%" : "45%",
             x: "-50%",
-            rotate: activeId ? treeRotation : 0,
+            // Ngắt hoàn toàn hiệu ứng xoay trục nếu là điện thoại
+            rotate: (!isMobile && showWheel) ? treeRotation : 0,
           }}
           transition={springTransition}
         >
-          <motion.div
-            animate={{ opacity: activeId ? 1 : 0 }}
-            className="absolute inset-0 rounded-full border border-emerald-500/30 border-dashed"
-          />
+          {/* Vòng đứt nét - Ẩn hoàn toàn trên mobile */}
+          {!isMobile && (
+            <motion.div
+              animate={{ opacity: showWheel ? 1 : 0 }}
+              className="absolute inset-0 rounded-full border border-emerald-500/30 border-dashed pointer-events-none"
+            />
+          )}
 
           {initialData.map((law, index) => {
             const isActive = activeId === law.id;
@@ -189,26 +188,23 @@ export default function LawTree({ initialData }: LawTreeProps) {
                     TOTAL_LEAVES - Math.abs(index - activeIndex),
                   )
                 : 0;
-            const leafScale =
-              activeId !== null
-                ? dist === 0
-                  ? 1.4
-                  : dist === 1
-                    ? 1.0
-                    : dist === 2
-                      ? 0.85
-                      : 0.7
-                : 1;
-            const leafOpacity =
-              activeId !== null
-                ? dist === 0
-                  ? 1
-                  : dist === 1
-                    ? 0.8
-                    : dist === 2
-                      ? 0.5
-                      : 0.2
-                : 1;
+
+            // ✅ 3. ĐIỀU CHỈNH SCALE & OPACITY RIÊNG CHO MOBILE VÀ PC
+            let leafScaleValue = 1;
+            let leafOpacityValue = 1;
+
+            if (showWheel && !isMobile) {
+              // Chế độ xoay tròn (Chỉ dùng cho PC)
+              leafScaleValue =
+                dist === 0 ? 1.4 : dist === 1 ? 1.0 : dist === 2 ? 0.85 : 0.7;
+              leafOpacityValue =
+                dist === 0 ? 1 : dist === 1 ? 0.8 : dist === 2 ? 0.5 : 0.2;
+            } else if (activeId !== null && isMobile) {
+              // Chế độ mobile khi có quả được chọn (Phóng to quả chọn, ẩn mờ quả khác)
+              leafScaleValue = isActive ? 1.3 : 0.8;
+              leafOpacityValue = isActive ? 1 : 0; // Ẩn hẳn các quả khác cho gọn
+            }
+
             const zIndexLv =
               activeId !== null
                 ? isActive
@@ -221,20 +217,23 @@ export default function LawTree({ initialData }: LawTreeProps) {
             return (
               <motion.div
                 key={law.id}
+                // Thêm pointer-events-auto ở đây để các quả vẫn click được trên mobile dù trục bị tắt
                 className="absolute top-1/2 left-1/2 pointer-events-auto flex items-center justify-center"
                 onMouseEnter={() => setHoveredId(law.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 style={{ zIndex: zIndexLv }}
                 animate={{
-                  x: activeId ? arcX : coord.x,
-                  y: activeId ? arcY : coord.y,
-                  rotate: activeId ? -treeRotation : 0,
-                  scale: leafScale,
-                  opacity: activeId === null ? 1 : leafOpacity,
+                  // Chỉ đưa vào tọa độ arc tròn nếu là showWheel VÀ không phải mobile
+                  x: (showWheel && !isMobile) ? arcX : coord.x,
+                  y: (showWheel && !isMobile) ? arcY : coord.y,
+                  // Đổi xoay bù chiều để chữ luôn đứng thẳng (Tắt trên mobile)
+                  rotate: (showWheel && !isMobile) ? -treeRotation : 0,
+                  scale: leafScaleValue,
+                  opacity: leafOpacityValue,
                 }}
                 transition={springTransition}
               >
-                {/* NÚT QUẢ */}
+                {/* NÚT QUẢ CỦA BẠN (GIỮ NGUYÊN BÊN TRONG) */}
                 <motion.button
                   onClick={() => handleLeafClick(law.id, index)}
                   whileHover={{ scale: isActive ? 1 : 1.15 }}

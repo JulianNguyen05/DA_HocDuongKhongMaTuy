@@ -100,15 +100,19 @@ export default function LawTree({ initialData }: LawTreeProps) {
   };
 
   return (
-    <div className="relative w-full min-h-screen flex flex-col items-center font-sans bg-[#D1FAE0] overflow-x-hidden">
+    <div
+      className={`relative w-full flex flex-col items-center font-sans bg-[#D1FAE0] overflow-x-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ${
+        activeId ? "" : "min-h-screen"
+      }`}
+    >
       <TreeParticles />
 
       {/* KHUNG GIỮ CHỖ: Đảm bảo layout không bị đè lên header và có thanh cuộn dọc */}
       <div
-        className="relative mt-2" // Tùy chỉnh margin-top nếu muốn khoảng cách với Header to/nhỏ hơn
+        className="relative mt-2"
         style={{
           width: BASE_WIDTH * dynamicScale,
-          height: BASE_HEIGHT * dynamicScale,
+          height: activeId ? "60vh" : BASE_HEIGHT * dynamicScale,
         }}
       >
         {/* MASTER WRAPPER */}
@@ -128,22 +132,24 @@ export default function LawTree({ initialData }: LawTreeProps) {
             <TreeBackground />
           </motion.div>
 
-          {/* LỚP PHỦ TỐI KHI CLICK */}
+          {/* LỚP PHỦ TỐI KHI CLICK
           <AnimatePresence>
             {activeId && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="absolute inset-0 w-full h-full bg-[#D1FAE0]/80 z-20 cursor-pointer pointer-events-auto"
+                // SỬA CHUẨN Ở ĐÂY: w-[4000px] và h-[4000px]
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#D1FAE0]/80 z-20 cursor-pointer pointer-events-auto"
                 onClick={() => setActiveId(null)}
               />
             )}
-          </AnimatePresence>
+          </AnimatePresence> */}
 
           {/* TRỤC QUAY CỦA CÁC QUẢ */}
           <motion.div
-            className="absolute top-[45%] z-30 pointer-events-auto"
+            // 1. Xóa "top-[45%]" ra khỏi className
+            className="absolute z-30 pointer-events-auto"
             style={{ width: RADIUS * 2, height: RADIUS * 2, y: "-50%" }}
             onWheel={(e) => {
               if (!activeId) return;
@@ -153,6 +159,10 @@ export default function LawTree({ initialData }: LawTreeProps) {
             }}
             animate={{
               left: activeId ? (isMobile ? "50%" : "3%") : "50%",
+              // 2. Thêm điều kiện top vào animate.
+              // Khi có activeId, top sẽ rút lên 30% (bạn có thể thay đổi số này).
+              // Khi không có activeId (ở trên cây), top trả về 45% như cũ để khớp với ảnh nền.
+              top: activeId ? "30%" : "45%",
               x: "-50%",
               rotate: activeId ? treeRotation : 0,
             }}

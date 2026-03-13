@@ -12,8 +12,9 @@ export default async function TreePage() {
   const lawsData = await getTreeLaws();
 
   return (
-    // ✅ Đã sửa: Thay h-screen thành min-h-screen và XÓA overflow-hidden
-    <div className="min-h-screen flex flex-col bg-[#D1FAE0] pt-32"> 
+    // ✅ Đã sửa: Giữ nguyên min-h-screen để Footer luôn nằm dưới đáy màn hình
+    // ✅ THÊM MỚI: Đưa bộ class ẩn thanh cuộn lên thẳng Component bọc ngoài cùng này
+    <div className="min-h-screen flex flex-col bg-[#D1FAE0] pt-32 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"> 
       
       {/* Header thu gọn lại một chút để nhường chỗ cho đồ họa */}
       <div className="text-center shrink-0 relative z-10 px-4 mb-2 md:mb-6">
@@ -26,6 +27,7 @@ export default async function TreePage() {
       </div>
 
       {/* Container của Cây */}
+      {/* ✅ Giữ nguyên flex-1 để nó tự động chiếm phần không gian còn lại */}
       <div className="flex-1 relative w-full">
         <LawTree initialData={lawsData} />
       </div>

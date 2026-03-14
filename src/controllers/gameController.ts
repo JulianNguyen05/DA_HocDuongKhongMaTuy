@@ -1,5 +1,5 @@
 import { useState } from "react";
-import gameData from "@/lib/data/questions.json"; // Đường dẫn tới file JSON của bạn
+import gameData from "@/lib/data/question.json"; // Đường dẫn tới file JSON của bạn
 
 // --- Export Types để dùng lại được ở các file khác ---
 export interface Question {

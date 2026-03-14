@@ -1,7 +1,7 @@
 "use client";
 
 // Import cái Hook Controller ta vừa tạo ở trên
-import { useGameController } from "./gameController"; // Sửa lại đường dẫn nếu cần
+import { useGameController } from "../../controllers/gameController";
 
 export default function GamePage() {
   // Gọi controller để lấy ra các thông tin cần thiết

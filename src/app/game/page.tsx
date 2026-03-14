@@ -1,140 +1,153 @@
 "use client";
 
-// Import cái Hook Controller ta vừa tạo ở trên
+import { useState, useEffect } from "react";
 import { useGameController } from "../../controllers/gameController";
 
+// --- DANH SÁCH TỌA ĐỘ CÁC CHẶNG ---
+// Bạn có thể tự chỉnh lại số % này cho khớp mắt nhất với ảnh của bạn nhé
+const MAP_COORDINATES = [
+  { top: "68%", left: "20%" }, // Vị trí 0: BẮT ĐẦU (Start)
+  { top: "52%", left: "24%" }, // Vị trí 1: Chặng 1
+  { top: "25%", left: "24%" }, // Vị trí 2: Chặng 2
+  { top: "40%", left: "38%" }, // Vị trí 3: Làng Tình Huống
+  { top: "25%", left: "45%" }, // Vị trí 4: Chặng 3
+  { top: "40%", left: "60%" }, // Vị trí 5: Thành Phố Phá Án
+  { top: "25%", left: "75%" }, // Vị trí 6: Chặng 5
+  { top: "50%", left: "80%" }, // Vị trí 7: Rương Cuối
+];
+
 export default function GamePage() {
-  // Gọi controller để lấy ra các thông tin cần thiết
-  const {
-    currentStage,
-    currentQuestion,
-    currentQuestionIdx,
-    totalQuestionsInStage,
-    hearts,
-    isDistorted,
-    showHintIdx,
-    gameState,
-    handleAnswer,
-    revealHint,
-    resetGame,
-  } = useGameController();
+  const game = useGameController();
 
-  // --- Render Logic ---
-  if (gameState === "WON") return <VideoEndScreen type="SUCCESS" onReset={resetGame} />;
-  if (gameState === "LOST") return <VideoEndScreen type="FAIL" onReset={resetGame} />;
-  if (!currentStage || !currentQuestion) return <div>Đang tải dữ liệu...</div>;
+  // State lưu vị trí hiện tại của nhân vật (Khởi đầu ở vị trí 0)
+  const [characterPos, setCharacterPos] = useState(MAP_COORDINATES[0]);
+  const [showQuestionModal, setShowQuestionModal] = useState(false);
+  
+  // State để bật/tắt hoạt ảnh nhảy tưng tưng
+  const [isMoving, setIsMoving] = useState(false);
 
-  return (
-    <div className={`min-h-screen pt-10 pb-20 p-8 transition-all duration-500 ${isDistorted ? "distort-effect" : "bg-slate-50"}`}>
+  // --- EFFECT: TỰ ĐỘNG LẮNG NGHE KHI QUA CHẶNG MỚI ---
+  useEffect(() => {
+    // 1. Ẩn bảng câu hỏi và bật chế độ "Đang di chuyển" (nhảy)
+    setShowQuestionModal(false);
+    setIsMoving(true);
+
+    // 2. Lấy tọa độ mục tiêu (Chặng hiện tại + 1, vì index 0 là Bắt Đầu)
+    const targetCoord = MAP_COORDINATES[game.currentStageIdx + 1] || MAP_COORDINATES[0];
+
+    // Đợi 0.5s rồi cho nhân vật trượt đi
+    const moveTimer = setTimeout(() => {
+      setCharacterPos(targetCoord);
+    }, 500);
+
+    // 3. Đợi nhân vật trượt xong (2.5 giây) -> Tắt nhảy đứng im thở, hiện bảng câu hỏi
+    const showModalTimer = setTimeout(() => {
+      setIsMoving(false);
       
-      {/* HUD: Thông tin người chơi */}
-      <div className="max-w-4xl mx-auto flex justify-between items-center mb-6 bg-white p-4 rounded-xl shadow-sm border-2 border-emerald-100">
-        <div>
-          <span className="text-xl font-bold text-emerald-700">{currentStage.stage.toUpperCase()}</span>
-          <p className="text-sm text-slate-500">Câu hỏi: {currentQuestionIdx + 1} / {totalQuestionsInStage}</p>
-        </div>
-        <div className="flex gap-2">
-          {[...Array(5)].map((_, i) => (
-            <span key={i} className={`text-2xl ${i < hearts ? "grayscale-0" : "grayscale opacity-30"}`}>❤️</span>
-          ))}
-        </div>
-      </div>
+      // Nếu chưa thắng hay thua thì mới hiện câu hỏi
+      if (game.gameState === "PLAYING") {
+        setShowQuestionModal(true);
+      }
+    }, 2500);
 
-      {/* BẢN ĐỒ GAME */}
-      <div className="max-w-4xl mx-auto mb-8 rounded-2xl overflow-hidden shadow-lg border-4 border-slate-300">
-        <img src="/images/game/game-map.jpg" alt="Game Map" className="w-full h-auto object-cover max-h-64" />
-      </div>
+    return () => {
+      clearTimeout(moveTimer);
+      clearTimeout(showModalTimer);
+    };
+  }, [game.currentStageIdx, game.gameState]); // Chạy lại mỗi khi chặng thay đổi
 
-      {/* Giao diện câu hỏi */}
-      <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border-4 border-white relative z-10">
-        {currentQuestion.image && (
-          <img src={currentQuestion.image} alt="Question" className="w-full h-48 object-cover" />
-        )}
-        
-        <div className="p-8">
-          <h2 className="text-2xl font-bold mb-6 text-slate-800">{currentQuestion.question}</h2>
-
-          {/* Nút Gợi ý */}
-          {currentQuestion.hints && (
-            <div className="flex gap-2 mb-6">
-              {currentQuestion.hints.map((_, i) => (
-                <button 
-                  key={i}
-                  onClick={() => revealHint(i)}
-                  className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm hover:bg-amber-200"
-                >
-                  🔍 Gợi ý {i + 1}
-                </button>
-              ))}
-            </div>
-          )}
-          
-          {/* Nội dung gợi ý */}
-          <div className="mb-6 space-y-2">
-            {showHintIdx.map((idx) => (
-              <p key={idx} className="text-sm italic text-slate-600 bg-slate-100 p-2 rounded">
-                - {currentQuestion.hints?.[idx]}
-              </p>
-            ))}
-          </div>
-
-          {/* Các nút đáp án */}
-          <div className="grid grid-cols-1 gap-4">
-            {Object.entries(currentQuestion.options).map(([key, value]) => (
-              <button
-                key={key}
-                onClick={() => handleAnswer(key)}
-                className="w-full p-4 text-left border-2 border-slate-200 rounded-xl hover:border-emerald-500 hover:bg-emerald-50 transition-colors flex items-center gap-3"
-              >
-                <span className="font-bold text-emerald-600 bg-emerald-100 px-3 py-1 rounded-lg">{key}</span>
-                <span className="font-medium text-slate-700">{value}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Pixel Art Character */}
-      <div className="fixed bottom-10 left-10 w-24 h-24 bg-blue-400 rounded-lg flex items-center justify-center text-white border-4 border-blue-600">
-        [Player]
-      </div>
-
-      <style jsx>{`
-        .distort-effect {
-          filter: hue-rotate(90deg) contrast(150%) blur(2px);
-          animation: shake 0.2s infinite;
-        }
-        @keyframes shake {
-          0% { transform: translate(3px, 3px); }
-          50% { transform: translate(-3px, -3px); }
-          100% { transform: translate(3px, 3px); }
-        }
-      `}</style>
-    </div>
-  );
-}
-
-// Component Màn hình kết thúc
-function VideoEndScreen({ type, onReset }: { type: "SUCCESS" | "FAIL", onReset: () => void }) {
   return (
-    <div className="fixed inset-0 z-50 bg-black flex flex-col items-center justify-center p-4">
-      <h1 className={`text-4xl font-bold mb-8 text-center ${type === "SUCCESS" ? "text-emerald-400" : "text-red-500"}`}>
-        {type === "SUCCESS" ? "CHÚC MỪNG BẠN ĐÃ VƯỢT QUA CÁM DỖ!" : "BẠN ĐÃ BỊ CÁM DỖ..."}
-      </h1>
-      <div className="aspect-video w-full max-w-4xl bg-slate-800 rounded-lg overflow-hidden border-2 border-slate-600 shadow-2xl">
-         <video 
-            src={type === "SUCCESS" ? "/videos/happy-life.mp4" : "/videos/dark-life.mp4"} 
-            autoPlay 
-            controls 
-            className="w-full h-full object-contain"
-          />
+    <div className="min-h-screen bg-sky-100 flex items-center justify-center p-4">
+      
+      {/* KHUNG CHỨA BẢN ĐỒ */}
+      <div className="relative w-full max-w-5xl aspect-video min-h-[400px] bg-blue-50 border-8 border-gray-700 rounded-xl overflow-hidden shadow-2xl">
+        
+        {/* ẢNH BẢN ĐỒ */}
+        <img 
+          src="/images/game/game-map.jpg" 
+          alt="Bản đồ game" 
+          className="w-full h-full object-cover block"
+        />
+
+        {/* NHÂN VẬT 5 HEARTS */}
+        <div
+          className="absolute z-10 transition-all ease-in-out"
+          style={{ 
+            top: characterPos.top, 
+            left: characterPos.left,
+            transitionDuration: "2000ms", // Trượt đi trong 2 giây
+            transform: "translate(-50%, -50%)" 
+          }}
+        >
+          {/* HOẠT ẢNH: Đang đi thì nhảy (bounce), đứng xem câu hỏi thì nhịp thở nhẹ (pulse) */}
+          <div className={isMoving ? "animate-bounce" : "animate-pulse"}>
+            <img 
+              src="/images/game/5hearts.png" 
+              alt="Nhân vật" 
+              // SIZE TO HƠN: Mình đã tăng lên w-20/28 (Gấp rưỡi bản cũ)
+              className="w-20 h-20 md:w-28 md:h-28 drop-shadow-2xl"
+            />
+          </div>
+        </div>
+
+        {/* BẢNG CÂU HỎI */}
+        {showQuestionModal && game.currentQuestion && (
+          <div className="absolute inset-0 z-20 bg-black/60 flex flex-col items-center justify-center p-4 animate-fade-in">
+            <div className="bg-white p-6 md:p-8 rounded-2xl shadow-2xl max-w-lg w-full text-center">
+              
+              {/* Tiêu đề chặng & Số mạng */}
+              <div className="flex justify-between items-center mb-6 border-b pb-3">
+                <span className="text-xl font-bold text-blue-800">
+                  {game.currentStage?.stage || "Chặng Bí Ẩn"}
+                  <span className="text-sm font-normal text-gray-500 block">
+                    Câu hỏi {game.currentQuestionIdx + 1} / {game.totalQuestionsInStage}
+                  </span>
+                </span>
+                <span className="text-xl font-bold text-red-500 bg-red-100 px-3 py-1 rounded-full">
+                  ❤️ x {game.hearts}
+                </span>
+              </div>
+
+              {/* Nội dung câu hỏi */}
+              <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-8">
+                {game.currentQuestion.question}
+              </h2>
+
+              {/* Các đáp án */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {Object.entries(game.currentQuestion.options).map(([key, value]) => (
+                  <button
+                    key={key}
+                    onClick={() => game.handleAnswer(key)}
+                    className="p-4 bg-gray-50 hover:bg-green-500 hover:text-white text-gray-800 font-semibold rounded-xl transition-all border-2 border-gray-200 hover:border-green-600 shadow-sm"
+                  >
+                    <span className="font-bold mr-2">{key}.</span> {value}
+                  </button>
+                ))}
+              </div>
+
+            </div>
+          </div>
+        )}
+
+        {/* MÀN HÌNH GAME OVER / CHIẾN THẮNG */}
+        {game.gameState === "LOST" && (
+          <div className="absolute inset-0 z-30 bg-red-900/90 flex flex-col items-center justify-center p-4 text-white">
+            <h1 className="text-5xl font-bold mb-4">GAME OVER</h1>
+            <p className="text-xl mb-8">Bạn đã hết mạng rồi!</p>
+            <button onClick={game.resetGame} className="px-6 py-3 bg-white text-red-900 font-bold rounded-xl hover:bg-gray-200">Chơi lại từ đầu</button>
+          </div>
+        )}
+
+        {game.gameState === "WON" && (
+          <div className="absolute inset-0 z-30 bg-green-900/90 flex flex-col items-center justify-center p-4 text-white">
+            <h1 className="text-5xl font-bold mb-4">🎉 CHIẾN THẮNG 🎉</h1>
+            <p className="text-xl mb-8">Chúc mừng bạn đã hoàn thành hành trình!</p>
+            <button onClick={game.resetGame} className="px-6 py-3 bg-white text-green-900 font-bold rounded-xl hover:bg-gray-200">Chơi lại</button>
+          </div>
+        )}
+
       </div>
-      <button 
-        onClick={onReset}
-        className="mt-8 bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-slate-200"
-      >
-        CHƠI LẠI
-      </button>
     </div>
   );
 }

@@ -2,7 +2,7 @@ services:
   web:
     build: 
       context: .
-      target: deps # TUYỆT CHIÊU: Chỉ lấy stage đầu tiên của Dockerfile để có sẵn OpenSSL, không build toàn bộ app
+      target: deps # Chỉ lấy stage cài thư viện, source code sẽ được map từ máy thật vào
     ports:
       - "3000:3000"
     
@@ -14,16 +14,15 @@ services:
     
     volumes:
       - .:/app
-      # Đặt tên cho volume để Docker quản lý cache tốt hơn, tránh lỗi mất thư viện
       - node_modules_vol:/app/node_modules
       - next_vol:/app/.next
     
-    # ĐÂY LÀ CHÌA KHÓA: Chuỗi lệnh tự động hóa hoàn toàn khi boot
-    command: npm run docker:dev
+    # ĐÂY LÀ CHÌA KHÓA: Generate client -> Đẩy schema lên DB (tạo bảng) -> Chạy Dev
+    command: sh -c "npx prisma generate && npx prisma db push && npm run dev"
              
     depends_on:
       db:
-        condition: service_started
+        condition: service_healthy # Bắt buộc đợi DB "khỏe mạnh" thì web mới chạy
 
   db:
     image: postgres:15
@@ -36,8 +35,14 @@ services:
       POSTGRES_DB: khongmatuy_db
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    # Kiểm tra xem Postgres đã thực sự sẵn sàng nhận kết nối chưa
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d khongmatuy_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_data:
-  node_modules_vol: # Thêm dòng này
-  next_vol:         # Thêm dòng này
+  node_modules_vol:
+  next_vol:

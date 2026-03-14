@@ -1,4 +1,4 @@
-# Stage 1: Cài đặt dependencies và thư viện lõi
+# Stage 1: Cài đặt dependencies và thư viện lõi (Dùng chung cho cả Dev và Builder)
 FROM node:20-bookworm-slim AS deps
 WORKDIR /app
 RUN apt-get update -y && apt-get install -y openssl
@@ -6,7 +6,7 @@ COPY package.json package-lock.json ./
 COPY prisma ./prisma/
 RUN npm install
 
-# Stage 2: Build mã nguồn
+# Stage 2: Build mã nguồn (Dành cho Production)
 FROM node:20-bookworm-slim AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
@@ -19,7 +19,7 @@ RUN npx prisma generate
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
-# Stage 3: Runner (Môi trường chạy thực tế - Gọn nhẹ, bảo mật)
+# Stage 3: Runner (Môi trường chạy thực tế trên server - Gọn nhẹ, bảo mật)
 FROM node:20-bookworm-slim AS runner
 WORKDIR /app
 
@@ -34,6 +34,7 @@ RUN addgroup --system --gid 1001 nodejs && \
 
 # Copy các file tĩnh và file đã build
 COPY --from=builder /app/public ./public
+# Lưu ý: Cần thêm output: 'standalone' vào file next.config.ts
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 

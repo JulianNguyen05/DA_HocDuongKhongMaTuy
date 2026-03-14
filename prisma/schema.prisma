@@ -36,12 +36,47 @@ model Flashcard {
   updatedAt        DateTime @updatedAt
 }
 
-model LawNode {
-  id        String   @id @default(cuid())
-  article   String   // Ví dụ: Điều 251
-  name      String   // Tên tội danh
-  x         String   // Tọa độ X trên cây
-  y         String   // Tọa độ Y trên cây
-  details   Json     // Lưu mảng các khung hình phạt (JSON)
-  createdAt DateTime @default(now())
+// 1. Cấp độ cao nhất: ĐIỀU LUẬT (Ví dụ: Điều 247)
+model LawArticle {
+  id          String       @id @default(cuid())
+  articleNum  String       // Số điều (VD: "247")
+  name        String       // Tên tội danh (VD: "Tội trồng cây thuốc phiện...")
+  
+  // Tọa độ phục vụ cho UI vẽ Node/Mindmap
+  x           Float        
+  y           Float        
+  
+  // Quan hệ 1-n: 1 Điều có nhiều Khoản
+  clauses     LawClause[]  
+  
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+// 2. Cấp độ 2: KHOẢN (Các khung hình phạt - VD: Khoản 1, 2, 3...)
+model LawClause {
+  id               String       @id @default(cuid())
+  articleId        String
+  article          LawArticle   @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  
+  clauseNum        Int          // Số khoản (VD: 1, 2, 3, 4)
+  penaltySummary   String       // Tóm tắt hình phạt (VD: "phạt tù từ 06 tháng đến 03 năm")
+  isAdditional     Boolean      @default(false) // Đánh dấu nếu là hình phạt bổ sung (VD: "Người phạm tội còn có thể bị phạt tiền...")
+  
+  // Quan hệ 1-n: 1 Khoản có nhiều Điểm (tình tiết)
+  points           LawPoint[]   
+  
+  createdAt        DateTime     @default(now())
+}
+
+// 3. Cấp độ 3: ĐIỂM (Các tình tiết định khung - VD: Điểm a, b, c...)
+model LawPoint {
+  id          String       @id @default(cuid())
+  clauseId    String
+  clause      LawClause    @relation(fields: [clauseId], references: [id], onDelete: Cascade)
+  
+  pointLetter String?      // Ký hiệu điểm (VD: "a", "b", "c"). Có thể null nếu Khoản đó không chia Điểm
+  content     String       // Nội dung tình tiết (VD: "Có tổ chức", "Tái phạm nguy hiểm")
+  
+  createdAt   DateTime     @default(now())
 }

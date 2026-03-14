@@ -8,6 +8,7 @@ import banTongHopData from "../src/lib/data/ban_tong_hop.json";
 
 const prisma = new PrismaClient();
 
+// 1. GIAO DIỆN CHO FLASHCARD
 interface FlashcardSeed {
   indexCode?: string;      
   category: string;
@@ -23,23 +24,40 @@ interface FlashcardSeed {
   harmfulEffects: string[];
 }
 
-// Khai báo interface đàng hoàng cho LawNode để chiều lòng ESLint
-interface LawNodeSeed {
-  article: string;
+// 2. GIAO DIỆN MỚI CHO CÂY PHÁP LUẬT (Chuẩn hóa 3 cấp)
+interface LawPointSeed {
+  pointLetter: string | null;
+  content: string;
+}
+
+interface LawClauseSeed {
+  clauseNum: number;
+  penaltySummary: string;
+  isAdditional: boolean;
+  points: LawPointSeed[];
+}
+
+interface LawArticleSeed {
+  articleNum: string;
   name: string;
   x: number;
   y: number;
-  details: string;
+  clauses: LawClauseSeed[];
 }
 
 async function main() {
   console.log("Bắt đầu nạp dữ liệu...");
 
-  // Xóa sạch dữ liệu cũ của cả 2 bảng để nạp lại từ đầu
+  // Xóa sạch dữ liệu cũ. Lưu ý thứ tự xóa: Bảng con xóa trước, bảng cha xóa sau
+  // Hoặc nếu đã cài onDelete: Cascade trong schema, chỉ cần xóa bảng cha là đủ
   await prisma.flashcard.deleteMany();
-  await prisma.lawNode.deleteMany();
+  await prisma.lawPoint.deleteMany();
+  await prisma.lawClause.deleteMany();
+  await prisma.lawArticle.deleteMany();
 
-  // 1. NẠP DỮ LIỆU FLASHCARD
+  // ==========================================
+  // 1. NẠP DỮ LIỆU FLASHCARD (Giữ nguyên)
+  // ==========================================
   const allData: FlashcardSeed[] = [
     ...(tuNhienData as FlashcardSeed[]),
     ...(tongHopData as FlashcardSeed[]),
@@ -55,11 +73,8 @@ async function main() {
         scientificName: card.scientificName || null,
         otherNames: card.otherNames || null, 
         imageUrl: card.imageUrl || null,
-        
-        // Dùng chuỗi rỗng "" thay cho null để fix lỗi TS(2322) nếu schema bắt buộc String
         shortDesc: card.shortDesc || "",
         concept: card.concept || "", 
-        
         origin: card.origin || null,
         distribution: card.distribution || null,
         identification: card.identification || [], 
@@ -69,32 +84,46 @@ async function main() {
   }
   console.log(`Đã nạp ${allData.length} thẻ Flashcard.`);
 
-  // 2. NẠP DỮ LIỆU CÂY PHÁP LUẬT
+  // ==========================================
+  // 2. NẠP DỮ LIỆU CÂY PHÁP LUẬT (Schema mới)
+  // ==========================================
   const lawsPath = path.join(__dirname, "../src/lib/data/laws.json");
 
   if (fs.existsSync(lawsPath)) {
-    // Ép kiểu sang interface vừa tạo thay vì dùng any[]
-    const lawsData: LawNodeSeed[] = JSON.parse(fs.readFileSync(lawsPath, "utf-8"));
+    const lawsData: LawArticleSeed[] = JSON.parse(fs.readFileSync(lawsPath, "utf-8"));
 
     for (const law of lawsData) {
-      await prisma.lawNode.create({
+      // Sử dụng Prisma Nested Writes để tạo Điều -> Khoản -> Điểm cùng lúc
+      await prisma.lawArticle.create({
         data: {
-          article: law.article,
+          articleNum: law.articleNum,
           name: law.name,
-          // ÉP KIỂU SANG STRING Ở ĐÂY ĐỂ FIX LỖI TS(2322)
-          x: String(law.x), 
-          y: String(law.y),
-          details: law.details,
+          x: law.x,        // Đã đổi sang Float trong Schema nên không cần ép String()
+          y: law.y,
+          clauses: {
+            create: law.clauses.map((clause) => ({
+              clauseNum: clause.clauseNum,
+              penaltySummary: clause.penaltySummary,
+              isAdditional: clause.isAdditional,
+              points: {
+                create: clause.points.map((point) => ({
+                  pointLetter: point.pointLetter,
+                  content: point.content,
+                })),
+              },
+            })),
+          },
         },
       });
     }
-    console.log(`Đã nạp ${lawsData.length} nhánh Cây Pháp Luật.`);
+    console.log(`Đã nạp ${lawsData.length} Điều luật (kèm các Khoản và Điểm tương ứng).`);
   }
 }
 
 main()
   .then(async () => {
     await prisma.$disconnect();
+    console.log("Hoàn tất Seed!");
   })
   .catch(async (e) => {
     console.error("Lỗi trong quá trình Seed:", e);

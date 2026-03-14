@@ -1,221 +1,804 @@
 [
   {
-    "article": "Điều 5 LPCM",
-    "name": "Các hành vi bị nghiêm cấm (Luật PCMT 2021)",
-    "x": "0%",
-    "y": "0%",
-    "details": [
+    "articleNum": "247",
+    "name": "Tội trồng cây thuốc phiện, cây côca, cây cần sa hoặc các loại cây khác có chứa chất ma túy",
+    "x": 0,
+    "y": 0,
+    "clauses": [
       {
-        "title": "Nghiêm cấm tuyệt đối",
-        "content": "1. Trồng cây có chứa chất ma túy.\n2. Sản xuất, tàng trữ, vận chuyển, bảo quản, mua bán, phân phối, giám định, xử lý, trao đổi, xuất khẩu, nhập khẩu, quá cảnh, nghiên cứu trái phép chất ma túy.\n3. Giao nhận, quản lý, kiểm soát, lưu giữ, cấp phát, bảo quản chất ma túy trái quy định.\n4. Sử dụng, tổ chức sử dụng trái phép chất ma túy; xúi giục, cưỡng bức, lôi kéo, chứa chấp, hỗ trợ việc sử dụng trái phép chất ma túy."
+        "clauseNum": 1,
+        "penaltySummary": "Người nào trồng cây thuốc phiện, cây côca, cây cần sa hoặc các loại cây khác có chứa chất ma túy do Chính phủ quy định thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 06 tháng đến 03 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Đã được giáo dục 02 lần và đã được tạo điều kiện ổn định cuộc sống;" },
+          { "pointLetter": "b", "content": "Đã bị xử phạt vi phạm hành chính về hành vi này hoặc đã bị kết án về tội này, chưa được xóa án tích mà còn vi phạm;" },
+          { "pointLetter": "c", "content": "Với số lượng từ 500 cây đến dưới 3.000 cây." }
+        ]
+      },
+      {
+        "clauseNum": 2,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 03 năm đến 07 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Có tổ chức;" },
+          { "pointLetter": "b", "content": "Với số lượng 3.000 cây trở lên;" },
+          { "pointLetter": "c", "content": "Tái phạm nguy hiểm." }
+        ]
+      },
+      {
+        "clauseNum": 3,
+        "penaltySummary": "Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 50.000.000 đồng.",
+        "isAdditional": true,
+        "points": []
+      },
+      {
+        "clauseNum": 4,
+        "penaltySummary": "Người nào phạm tội thuộc khoản 1 Điều này, nhưng đã tự nguyện phá bỏ, giao nộp cho cơ quan chức năng có thẩm quyền trước khi thu hoạch, thì có thể được miễn trách nhiệm hình sự.",
+        "isAdditional": false,
+        "points": []
       }
     ]
   },
   {
-    "article": "Điều 248",
+    "articleNum": "248",
     "name": "Tội sản xuất trái phép chất ma túy",
-    "x": "0%",
-    "y": "0%",
-    "details": [
+    "x": 0,
+    "y": 0,
+    "clauses": [
       {
-        "title": "Khung 1 (02 - 07 năm)",
-        "content": "Phạt tù từ 02 năm đến 07 năm đối với người có hành vi sản xuất trái phép chất ma túy."
+        "clauseNum": 1,
+        "penaltySummary": "Người nào sản xuất trái phép chất ma túy dưới bất kỳ hình thức nào, thì bị phạt tù từ 03 năm đến 07 năm.",
+        "isAdditional": false,
+        "points": []
       },
       {
-        "title": "Khung cao nhất (20 năm, Chung thân, Tử hình)",
-        "content": "Áp dụng khi sản xuất khối lượng lớn (Ví dụ: Heroine, Cocaine từ 100g trở lên), có tổ chức hoặc tái phạm cực kỳ nguy hiểm."
+        "clauseNum": 2,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 07 năm đến 15 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Có tổ chức;" },
+          { "pointLetter": "b", "content": "Phạm tội 02 lần trở lên;" },
+          { "pointLetter": "c", "content": "Lợi dụng chức vụ, quyền hạn;" },
+          { "pointLetter": "d", "content": "Lợi dụng danh nghĩa cơ quan, tổ chức;" },
+          { "pointLetter": "đ", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 500 gam đến dưới 01 kilôgam;" },
+          { "pointLetter": "e", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 05 gam đến dưới 30 gam;" },
+          { "pointLetter": "g", "content": "Các chất ma túy khác ở thể rắn có khối lượng từ 20 gam đến dưới 100 gam;" },
+          { "pointLetter": "h", "content": "Các chất ma túy khác ở thể lỏng có thể tích từ 100 mililít đến dưới 200 mililít;" },
+          { "pointLetter": "i", "content": "Tái phạm nguy hiểm;" },
+          { "pointLetter": "k", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm đ đến điểm h khoản này." }
+        ]
+      },
+      {
+        "clauseNum": 3,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 15 năm đến 20 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Có tính chất chuyên nghiệp;" },
+          { "pointLetter": "b", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 kilôgam đến dưới 05 kilôgam;" },
+          { "pointLetter": "c", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 30 gam đến dưới 100 gam;" },
+          { "pointLetter": "d", "content": "Các chất ma túy khác ở thể rắn có khối lượng từ 100 gam đến dưới 300 gam;" },
+          { "pointLetter": "đ", "content": "Các chất ma túy khác ở thể lỏng có thể tích từ 200 mililít đến dưới 750 mililít;" },
+          { "pointLetter": "e", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm b đến điểm đ khoản này." }
+        ]
+      },
+      {
+        "clauseNum": 4,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù 20 năm hoặc tù chung thân:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 05 kilôgam đến dưới 30 kilôgam;" },
+          { "pointLetter": "b", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 100 gam đến dưới 03 kilôgam;" },
+          { "pointLetter": "c", "content": "Các chất ma túy khác ở thể rắn có khối lượng từ 300 gam đến dưới 09 kilôgam;" },
+          { "pointLetter": "d", "content": "Các chất ma túy khác ở thể lỏng có thể tích từ 750 mililít đến dưới 22 lít;" },
+          { "pointLetter": "đ", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm d khoản này." }
+        ]
+      },
+      {
+        "clauseNum": 5,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù chung thân hoặc tử hình:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng 30 kilôgam trở lên;" },
+          { "pointLetter": "b", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng 03 kilôgam trở lên;" },
+          { "pointLetter": "c", "content": "Các chất ma túy khác ở thể rắn có khối lượng 09 kilôgam trở lên;" },
+          { "pointLetter": "d", "content": "Các chất ma túy khác ở thể lỏng có thể tích 22 lít trở lên;" },
+          { "pointLetter": "đ", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm d khoản này." }
+        ]
+      },
+      {
+        "clauseNum": 6,
+        "penaltySummary": "Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 500.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản.",
+        "isAdditional": true,
+        "points": []
       }
     ]
   },
   {
-    "article": "Điều 249",
+    "articleNum": "249",
     "name": "Tội tàng trữ trái phép chất ma túy",
-    "x": "0%",
-    "y": "0%",
-    "details": [
+    "x": 0,
+    "y": 0,
+    "clauses": [
       {
-        "title": "Khung 1 (01 - 05 năm)",
-        "content": "Phạt tù từ 01 năm đến 05 năm nếu tàng trữ Heroine, Cocaine từ 0,1g đến dưới 05g; lá, rễ, thân cây cần sa từ 01kg đến dưới 10kg..."
+        "clauseNum": 1,
+        "penaltySummary": "Người nào tàng trữ trái phép chất ma túy mà không nhằm mục đích mua bán, vận chuyển, sản xuất trái phép chất ma túy thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 03 năm đến 05 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Đã bị xử phạt vi phạm hành chính về hành vi quy định tại Điều này hoặc đã bị kết án về tội này hoặc một trong các tội quy định tại các điều 248, 250, 251, 252 và 256a của Bộ luật này, chưa được xóa án tích mà còn vi phạm;" },
+          { "pointLetter": "b", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 gam đến dưới 500 gam;" },
+          { "pointLetter": "c", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 0,1 gam đến dưới 05 gam;" },
+          { "pointLetter": "d", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 01 kilôgam đến dưới 10 kilôgam;" },
+          { "pointLetter": "đ", "content": "Quả thuốc phiện khô có khối lượng từ 05 kilôgam đến dưới 50 kilôgam;" },
+          { "pointLetter": "e", "content": "Quả thuốc phiện tươi có khối lượng từ 01 kilôgam đến dưới 10 kilôgam;" },
+          { "pointLetter": "g", "content": "Các chất ma túy khác ở thể rắn có khối lượng từ 01 gam đến dưới 20 gam;" },
+          { "pointLetter": "h", "content": "Các chất ma túy khác ở thể lỏng có thể tích từ 10 mililít đến dưới 100 mililít;" },
+          { "pointLetter": "i", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm b đến điểm h khoản này." }
+        ]
       },
       {
-        "title": "Khung cao nhất (15 - 20 năm hoặc Chung thân)",
-        "content": "Tàng trữ khối lượng đặc biệt lớn (Heroine từ 100g trở lên). Dù không bán, chỉ giấu trong người cũng chịu án chung thân."
+        "clauseNum": 2,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 05 năm đến 10 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Có tổ chức;" },
+          { "pointLetter": "b", "content": "Phạm tội 02 lần trở lên;" },
+          { "pointLetter": "c", "content": "Lợi dụng chức vụ, quyền hạn;" },
+          { "pointLetter": "d", "content": "Lợi dụng danh nghĩa cơ quan, tổ chức;" },
+          { "pointLetter": "đ", "content": "Sử dụng người dưới 16 tuổi vào việc phạm tội;" },
+          { "pointLetter": "e", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 500 gam đến dưới 01 kilôgam;" },
+          { "pointLetter": "g", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 05 gam đến dưới 30 gam;" },
+          { "pointLetter": "h", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 10 kilôgam đến dưới 25 kilôgam;" },
+          { "pointLetter": "i", "content": "Quả thuốc phiện khô có khối lượng từ 50 kilôgam đến dưới 200 kilôgam;" },
+          { "pointLetter": "k", "content": "Quả thuốc phiện tươi có khối lượng từ 10 kilôgam đến dưới 50 kilôgam;" },
+          { "pointLetter": "l", "content": "Các chất ma túy khác ở thể rắn có khối lượng từ 20 gam đến dưới 100 gam;" },
+          { "pointLetter": "m", "content": "Các chất ma túy khác ở thể lỏng có thể tích từ 100 mililít đến dưới 250 mililít;" },
+          { "pointLetter": "n", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm e đến điểm m khoản này;" },
+          { "pointLetter": "o", "content": "Tái phạm nguy hiểm." }
+        ]
+      },
+      {
+        "clauseNum": 3,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 10 năm đến 15 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 kilôgam đến dưới 05 kilôgam;" },
+          { "pointLetter": "b", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 30 gam đến dưới 100 gam;" },
+          { "pointLetter": "c", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 25 kilôgam đến dưới 75 kilôgam;" },
+          { "pointLetter": "d", "content": "Quả thuốc phiện khô có khối lượng từ 200 kilôgam đến dưới 600 kilôgam;" },
+          { "pointLetter": "đ", "content": "Quả thuốc phiện tươi có khối lượng từ 50 kilôgam đến dưới 150 kilôgam;" },
+          { "pointLetter": "e", "content": "Các chất ma túy khác ở thể rắn có khối lượng từ 100 gam đến dưới 300 gam;" },
+          { "pointLetter": "g", "content": "Các chất ma túy khác ở thể lỏng có thể tích từ 250 mililít đến dưới 750 mililít;" },
+          { "pointLetter": "h", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này." }
+        ]
+      },
+      {
+        "clauseNum": 4,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 15 năm đến 20 năm hoặc tù chung thân:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng 05 kilôgam trở lên;" },
+          { "pointLetter": "b", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng 100 gam trở lên;" },
+          { "pointLetter": "c", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng 75 kilôgam trở lên;" },
+          { "pointLetter": "d", "content": "Quả thuốc phiện khô có khối lượng 600 kilôgam trở lên;" },
+          { "pointLetter": "đ", "content": "Quả thuốc phiện tươi có khối lượng 150 kilôgam trở lên;" },
+          { "pointLetter": "e", "content": "Các chất ma túy khác ở thể rắn có khối lượng 300 gam trở lên;" },
+          { "pointLetter": "g", "content": "Các chất ma túy khác ở thể lỏng có thể tích 750 mililít trở lên;" },
+          { "pointLetter": "h", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này." }
+        ]
+      },
+      {
+        "clauseNum": 5,
+        "penaltySummary": "Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 500.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản.",
+        "isAdditional": true,
+        "points": []
       }
     ]
   },
   {
-    "article": "Điều 250",
+    "articleNum": "250",
     "name": "Tội vận chuyển trái phép chất ma túy",
-    "x": "0%",
-    "y": "0%",
-    "details": [
+    "x": 0,
+    "y": 0,
+    "clauses": [
       {
-        "title": "Khung 1 (02 - 07 năm)",
-        "content": "Vận chuyển ma túy từ nơi này đến nơi khác không nhằm mục đích mua bán (xách hộ, giao hàng thuê...)."
+        "clauseNum": 1,
+        "penaltySummary": "Người nào vận chuyển trái phép chất ma túy mà không nhằm mục đích sản xuất, mua bán, tàng trữ trái phép chất ma túy thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 03 năm đến 07 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Đã bị xử phạt vi phạm hành chính về hành vi quy định tại Điều này hoặc đã bị kết án về tội này hoặc một trong các tội quy định tại các điều 248, 249, 251, 252 và 256a của Bộ luật này, chưa được xóa án tích mà còn vi phạm;" },
+          { "pointLetter": "b", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 gam đến dưới 500 gam;" },
+          { "pointLetter": "c", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 0,1 gam đến dưới 05 gam;" },
+          { "pointLetter": "d", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 01 kilôgam đến dưới 10 kilôgam;" },
+          { "pointLetter": "đ", "content": "Quả thuốc phiện khô có khối lượng từ 05 kilôgam đến dưới 50 kilôgam;" },
+          { "pointLetter": "e", "content": "Quả thuốc phiện tươi có khối lượng từ 01 kilôgam đến dưới 10 kilôgam;" },
+          { "pointLetter": "g", "content": "Các chất ma túy khác ở thể rắn có khối lượng từ 01 gam đến dưới 20 gam;" },
+          { "pointLetter": "h", "content": "Các chất ma túy khác ở thể lỏng có thể tích từ 10 mililít đến dưới 100 mililít;" },
+          { "pointLetter": "i", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm b đến điểm h khoản này." }
+        ]
       },
       {
-        "title": "Khung cao nhất (20 năm, Chung thân, Tử hình)",
-        "content": "Vận chuyển khối lượng lớn. Rất nhiều trường hợp bị lừa xách hộ hành lý ở sân bay đã phải chịu án tử hình."
+        "clauseNum": 2,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 07 năm đến 15 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Có tổ chức;" },
+          { "pointLetter": "b", "content": "Phạm tội 02 lần trở lên;" },
+          { "pointLetter": "c", "content": "Lợi dụng chức vụ, quyền hạn;" },
+          { "pointLetter": "d", "content": "Lợi dụng danh nghĩa cơ quan, tổ chức;" },
+          { "pointLetter": "đ", "content": "Sử dụng người dưới 16 tuổi vào việc phạm tội;" },
+          { "pointLetter": "e", "content": "Qua biên giới;" },
+          { "pointLetter": "g", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 500 gam đến dưới 01 kilôgam;" },
+          { "pointLetter": "h", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 05 gam đến dưới 30 gam;" },
+          { "pointLetter": "i", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 10 kilôgam đến dưới 25 kilôgam;" },
+          { "pointLetter": "k", "content": "Quả thuốc phiện khô có khối lượng từ 50 kilôgam đến dưới 200 kilôgam;" },
+          { "pointLetter": "l", "content": "Quả thuốc phiện tươi có khối lượng từ 10 kilôgam đến dưới 50 kilôgam;" },
+          { "pointLetter": "m", "content": "Các chất ma túy khác ở thể rắn có khối lượng từ 20 gam đến dưới 100 gam;" },
+          { "pointLetter": "n", "content": "Các chất ma túy khác ở thể lỏng có thể tích từ 100 mililít đến dưới 250 mililít;" },
+          { "pointLetter": "o", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm g đến điểm n khoản này;" },
+          { "pointLetter": "p", "content": "Tái phạm nguy hiểm." }
+        ]
+      },
+      {
+        "clauseNum": 3,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 15 năm đến 20 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 kilôgam đến dưới 05 kilôgam;" },
+          { "pointLetter": "b", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 30 gam đến dưới 100 gam;" },
+          { "pointLetter": "c", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 25 kilôgam đến dưới 75 kilôgam;" },
+          { "pointLetter": "d", "content": "Quả thuốc phiện khô có khối lượng từ 200 kilôgam đến dưới 600 kilôgam;" },
+          { "pointLetter": "đ", "content": "Quả thuốc phiện tươi có khối lượng từ 50 kilôgam đến dưới 150 kilôgam;" },
+          { "pointLetter": "e", "content": "Các chất ma túy khác ở thể rắn có khối lượng từ 100 gam đến dưới 300 gam;" },
+          { "pointLetter": "g", "content": "Các chất ma túy khác ở thể lỏng có thể tích từ 250 mililít đến dưới 750 mililít;" },
+          { "pointLetter": "h", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này." }
+        ]
+      },
+      {
+        "clauseNum": 4,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù 20 năm hoặc tù chung thân:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng 05 kilôgam trở lên;" },
+          { "pointLetter": "b", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng 100 gam trở lên;" },
+          { "pointLetter": "c", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng 75 kilôgam trở lên;" },
+          { "pointLetter": "d", "content": "Quả thuốc phiện khô có khối lượng 600 kilôgam trở lên;" },
+          { "pointLetter": "đ", "content": "Quả thuốc phiện tươi có khối lượng 150 kilôgam trở lên;" },
+          { "pointLetter": "e", "content": "Các chất ma túy khác ở thể rắn có khối lượng 300 gam trở lên;" },
+          { "pointLetter": "g", "content": "Các chất ma túy khác ở thể lỏng có thể tích 750 mililít trở lên;" },
+          { "pointLetter": "h", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này." }
+        ]
+      },
+      {
+        "clauseNum": 5,
+        "penaltySummary": "Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 500.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản.",
+        "isAdditional": true,
+        "points": []
       }
     ]
   },
   {
-    "article": "Điều 251",
+    "articleNum": "251",
     "name": "Tội mua bán trái phép chất ma túy",
-    "x": "0%",
-    "y": "0%",
-    "details": [
+    "x": 0,
+    "y": 0,
+    "clauses": [
       {
-        "title": "Khung 1 (02 - 07 năm)",
-        "content": "Phạt tù từ 02 năm đến 07 năm đối với người có hành vi mua bán trái phép chất ma túy."
+        "clauseNum": 1,
+        "penaltySummary": "Người nào mua bán trái phép chất ma túy, thì bị phạt tù từ 03 năm đến 07 năm.",
+        "isAdditional": false,
+        "points": []
       },
       {
-        "title": "Khung 2 (07 - 15 năm)",
-        "content": "Phạm tội thuộc một trong các trường hợp: Có tổ chức; Phạm tội 02 lần trở lên; Bán cho người dưới 16 tuổi; Qua biên giới; Heroine từ 05g - 30g..."
+        "clauseNum": 2,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 07 năm đến 15 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Có tổ chức;" },
+          { "pointLetter": "b", "content": "Phạm tội 02 lần trở lên;" },
+          { "pointLetter": "c", "content": "Đối với 02 người trở lên;" },
+          { "pointLetter": "d", "content": "Lợi dụng chức vụ, quyền hạn;" },
+          { "pointLetter": "đ", "content": "Lợi dụng danh nghĩa cơ quan, tổ chức;" },
+          { "pointLetter": "e", "content": "Sử dụng người dưới 16 tuổi vào việc phạm tội hoặc bán ma túy cho người dưới 16 tuổi;" },
+          { "pointLetter": "g", "content": "Qua biên giới;" },
+          { "pointLetter": "h", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 500 gam đến dưới 01 kilôgam;" },
+          { "pointLetter": "i", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 05 gam đến dưới 30 gam;" },
+          { "pointLetter": "k", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 10 kilôgam đến dưới 25 kilôgam;" },
+          { "pointLetter": "l", "content": "Quả thuốc phiện khô có khối lượng từ 50 kilôgam đến dưới 200 kilôgam;" },
+          { "pointLetter": "m", "content": "Quả thuốc phiện tươi có khối lượng từ 10 kilôgam đến dưới 50 kilôgam;" },
+          { "pointLetter": "n", "content": "Các chất ma túy khác ở thể rắn có khối lượng từ 20 gam đến dưới 100 gam;" },
+          { "pointLetter": "o", "content": "Các chất ma túy khác ở thể lỏng có thể tích từ 100 mililít đến dưới 250 mililít;" },
+          { "pointLetter": "p", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm h đến điểm o khoản này;" },
+          { "pointLetter": "q", "content": "Tái phạm nguy hiểm." }
+        ]
       },
       {
-        "title": "Khung 3 (15 - 20 năm)",
-        "content": "Phạm tội thuộc trường hợp khối lượng lớn: Heroine, Cocaine từ 30g - 100g; Nhựa thuốc phiện từ 1kg - 5kg..."
+        "clauseNum": 3,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 15 năm đến 20 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 kilôgam đến dưới 05 kilôgam;" },
+          { "pointLetter": "b", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 30 gam đến dưới 100 gam;" },
+          { "pointLetter": "c", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 25 kilôgam đến dưới 75 kilôgam;" },
+          { "pointLetter": "d", "content": "Quả thuốc phiện khô có khối lượng từ 200 kilôgam đến dưới 600 kilôgam;" },
+          { "pointLetter": "đ", "content": "Quả thuốc phiện tươi có khối lượng từ 50 kilôgam đến dưới 150 kilôgam;" },
+          { "pointLetter": "e", "content": "Các chất ma túy khác ở thể rắn có khối lượng từ 100 gam đến dưới 300 gam;" },
+          { "pointLetter": "g", "content": "Các chất ma túy khác ở thể lỏng có thể tích từ 250 mililít đến dưới 750 mililít;" },
+          { "pointLetter": "h", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này." }
+        ]
       },
       {
-        "title": "Khung 4 (20 năm, Chung thân, Tử hình)",
-        "content": "Phạm tội khối lượng đặc biệt lớn: Heroine, Cocaine từ 100g trở lên; Nhựa thuốc phiện 5kg trở lên..."
+        "clauseNum": 4,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù 20 năm hoặc tù chung thân:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 05 kilôgam đến dưới 30 kilôgam;" },
+          { "pointLetter": "b", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 100 gam đến dưới 03 kilôgam;" },
+          { "pointLetter": "c", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 75 kilôgam đến dưới 150 kilôgam;" },
+          { "pointLetter": "d", "content": "Quả thuốc phiện khô có khối lượng từ 600 kilôgam đến dưới 1.200 kilôgam;" },
+          { "pointLetter": "đ", "content": "Quả thuốc phiện tươi có khối lượng từ 150 kilôgam đến dưới 300 kilôgam;" },
+          { "pointLetter": "e", "content": "Các chất ma túy khác ở thể rắn có khối lượng từ 300 gam đến dưới 09 kilôgam;" },
+          { "pointLetter": "g", "content": "Các chất ma túy khác ở thể lỏng có thể tích từ 750 mililít đến dưới 22 lít;" },
+          { "pointLetter": "h", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này." }
+        ]
+      },
+      {
+        "clauseNum": 5,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù chung thân hoặc tử hình:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng 30 kilôgam trở lên;" },
+          { "pointLetter": "b", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng 03 kilôgam trở lên;" },
+          { "pointLetter": "c", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng 150 kilôgam trở lên;" },
+          { "pointLetter": "d", "content": "Quả thuốc phiện khô có khối lượng 1.200 kilôgam trở lên;" },
+          { "pointLetter": "đ", "content": "Quả thuốc phiện tươi có khối lượng 300 kilôgam trở lên;" },
+          { "pointLetter": "e", "content": "Các chất ma túy khác ở thể rắn có khối lượng 09 kilôgam trở lên;" },
+          { "pointLetter": "g", "content": "Các chất ma túy khác ở thể lỏng có thể tích 22 lít trở lên;" },
+          { "pointLetter": "h", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này." }
+        ]
+      },
+      {
+        "clauseNum": 6,
+        "penaltySummary": "Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 500.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản.",
+        "isAdditional": true,
+        "points": []
       }
     ]
   },
   {
-    "article": "Điều 252",
+    "articleNum": "252",
     "name": "Tội chiếm đoạt chất ma túy",
-    "x": "0%",
-    "y": "0%",
-    "details": [
+    "x": 0,
+    "y": 0,
+    "clauses": [
       {
-        "title": "Khung 1 (01 - 05 năm)",
-        "content": "Hành vi trộm cắp, lừa đảo, cướp giật ma túy của người khác để sử dụng hoặc bán lại."
+        "clauseNum": 1,
+        "penaltySummary": "Người nào chiếm đoạt chất ma túy dưới bất kỳ hình thức nào thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 01 năm đến 05 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Đã bị xử phạt vi phạm hành chính về hành vi quy định tại Điều này hoặc đã bị kết án về tội này hoặc một trong các tội quy định tại các điều 248, 249, 250, 251 và 256a của Bộ luật này, chưa được xóa án tích mà còn vi phạm;" },
+          { "pointLetter": "b", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 gam đến dưới 500 gam;" },
+          { "pointLetter": "c", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 0,1 gam đến dưới 05 gam;" },
+          { "pointLetter": "d", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 01 kilôgam đến dưới 10 kilôgam;" },
+          { "pointLetter": "đ", "content": "Quả thuốc phiện khô có khối lượng từ 05 kilôgam đến dưới 50 kilôgam;" },
+          { "pointLetter": "e", "content": "Quả thuốc phiện tươi có khối lượng từ 01 kilôgam đến dưới 10 kilôgam;" },
+          { "pointLetter": "g", "content": "Các chất ma túy khác ở thể rắn có khối lượng từ 01 gam đến dưới 20 gam;" },
+          { "pointLetter": "h", "content": "Các chất ma túy khác ở thể lỏng có thể tích từ 10 mililít đến dưới 100 mililít;" },
+          { "pointLetter": "i", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm b đến điểm h khoản này." }
+        ]
       },
       {
-        "title": "Khung cao nhất (20 năm, Chung thân)",
-        "content": "Chiếm đoạt khối lượng lớn ma túy hoặc gây thương tích nghiêm trọng trong lúc chiếm đoạt."
+        "clauseNum": 2,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 05 năm đến 10 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Có tổ chức;" },
+          { "pointLetter": "b", "content": "Phạm tội 02 lần trở lên;" },
+          { "pointLetter": "c", "content": "Lợi dụng chức vụ, quyền hạn;" },
+          { "pointLetter": "d", "content": "Lợi dụng danh nghĩa cơ quan, tổ chức;" },
+          { "pointLetter": "đ", "content": "Sử dụng người dưới 16 tuổi vào việc phạm tội;" },
+          { "pointLetter": "e", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 500 gam đến dưới 01 kilôgam;" },
+          { "pointLetter": "g", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 05 gam đến dưới 30 gam;" },
+          { "pointLetter": "h", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 10 kilôgam đến dưới 25 kilôgam;" },
+          { "pointLetter": "i", "content": "Quả thuốc phiện khô có khối lượng từ 50 kilôgam đến dưới 200 kilôgam;" },
+          { "pointLetter": "k", "content": "Quả thuốc phiện tươi có khối lượng từ 10 kilôgam đến dưới 50 kilôgam;" },
+          { "pointLetter": "l", "content": "Các chất ma túy khác ở thể rắn có khối lượng từ 20 gam đến dưới 100 gam;" },
+          { "pointLetter": "m", "content": "Các chất ma túy khác ở thể lỏng có thể tích từ 100 mililít đến dưới 250 mililít;" },
+          { "pointLetter": "n", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm e đến điểm m khoản này;" },
+          { "pointLetter": "o", "content": "Tái phạm nguy hiểm." }
+        ]
+      },
+      {
+        "clauseNum": 3,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 10 năm đến 15 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 kilôgam đến dưới 05 kilôgam;" },
+          { "pointLetter": "b", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 30 gam đến dưới 100 gam;" },
+          { "pointLetter": "c", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 25 kilôgam đến dưới 75 kilôgam;" },
+          { "pointLetter": "d", "content": "Quả thuốc phiện khô có khối lượng từ 200 kilôgam đến dưới 600 kilôgam;" },
+          { "pointLetter": "đ", "content": "Quả thuốc phiện tươi có khối lượng từ 50 kilôgam đến dưới 150 kilôgam;" },
+          { "pointLetter": "e", "content": "Các chất ma túy khác ở thể rắn có khối lượng từ 100 gam đến dưới 300 gam;" },
+          { "pointLetter": "g", "content": "Các chất ma túy khác ở thể lỏng có thể tích từ 250 mililít đến dưới 750 mililít;" },
+          { "pointLetter": "h", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này." }
+        ]
+      },
+      {
+        "clauseNum": 4,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 15 năm đến 20 năm hoặc tù chung thân:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng 05 kilôgam trở lên;" },
+          { "pointLetter": "b", "content": "Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng 100 gam trở lên;" },
+          { "pointLetter": "c", "content": "Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng 75 kilôgam trở lên;" },
+          { "pointLetter": "d", "content": "Quả thuốc phiện khô có khối lượng 600 kilôgam trở lên;" },
+          { "pointLetter": "đ", "content": "Quả thuốc phiện tươi có khối lượng 150 kilôgam trở lên;" },
+          { "pointLetter": "e", "content": "Các chất ma túy khác ở thể rắn có khối lượng 300 gam trở lên;" },
+          { "pointLetter": "g", "content": "Các chất ma túy khác ở thể lỏng có thể tích 750 mililít trở lên;" },
+          { "pointLetter": "h", "content": "Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này." }
+        ]
+      },
+      {
+        "clauseNum": 5,
+        "penaltySummary": "Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 500.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản.",
+        "isAdditional": true,
+        "points": []
       }
     ]
   },
   {
-    "article": "Điều 253",
-    "name": "Tội mua bán, tàng trữ tiền chất ma túy",
-    "x": "0%",
-    "y": "0%",
-    "details": [
+    "articleNum": "253",
+    "name": "Tội tàng trữ, vận chuyển, mua bán hoặc chiếm đoạt tiền chất dùng vào việc sản xuất trái phép chất ma túy",
+    "x": 0,
+    "y": 0,
+    "clauses": [
       {
-        "title": "Khung 1 (01 - 06 năm)",
-        "content": "Tàng trữ, vận chuyển, mua bán tiền chất (các hóa chất để điều chế ma túy) nhằm sản xuất ma túy."
+        "clauseNum": 1,
+        "penaltySummary": "Người nào tàng trữ, vận chuyển, mua bán hoặc chiếm đoạt tiền chất dùng vào việc sản xuất trái phép chất ma túy thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 01 năm đến 06 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Đã bị xử phạt vi phạm hành chính về một trong các hành vi quy định tại Điều này hoặc đã bị kết án về tội này, chưa được xóa án tích mà còn vi phạm;" },
+          { "pointLetter": "b", "content": "Tiền chất ở thể rắn có khối lượng từ 50 gam đến dưới 200 gam;" },
+          { "pointLetter": "c", "content": "Tiền chất ở thể lỏng có thể tích từ 75 mililít đến dưới 300 mililít." }
+        ]
       },
       {
-        "title": "Khung cao nhất (15 - 20 năm hoặc Chung thân)",
-        "content": "Mua bán, tàng trữ tiền chất với khối lượng rất lớn."
+        "clauseNum": 2,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 06 năm đến 13 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Có tổ chức;" },
+          { "pointLetter": "b", "content": "Phạm tội 02 lần trở lên;" },
+          { "pointLetter": "c", "content": "Lợi dụng chức vụ, quyền hạn;" },
+          { "pointLetter": "d", "content": "Lợi dụng danh nghĩa cơ quan, tổ chức;" },
+          { "pointLetter": "đ", "content": "Tiền chất ở thể rắn có khối lượng từ 200 gam đến dưới 500 gam;" },
+          { "pointLetter": "e", "content": "Tiền chất ở thể lỏng có thể tích từ 300 mililít đến dưới 750 mililít;" },
+          { "pointLetter": "g", "content": "Sử dụng người dưới 16 tuổi vào việc phạm tội;" },
+          { "pointLetter": "h", "content": "Vận chuyển, mua bán qua biên giới;" },
+          { "pointLetter": "i", "content": "Tái phạm nguy hiểm." }
+        ]
+      },
+      {
+        "clauseNum": 3,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 13 năm đến 20 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Tiền chất ở thể rắn có khối lượng từ 500 gam đến dưới 1.200 gam;" },
+          { "pointLetter": "b", "content": "Tiền chất ở thể lỏng có thể tích từ 750 mililít đến dưới 1.800 mililít." }
+        ]
+      },
+      {
+        "clauseNum": 4,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù 20 năm hoặc tù chung thân:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Tiền chất ở thể rắn có khối lượng 1.200 gam trở lên;" },
+          { "pointLetter": "b", "content": "Tiền chất ở thể lỏng có thể tích 1.800 mililít trở lên." }
+        ]
+      },
+      {
+        "clauseNum": 5,
+        "penaltySummary": "Trường hợp phạm tội có cả tiền chất ở thể rắn và tiền chất ở thể lỏng thì được quy đổi để làm căn cứ truy cứu trách nhiệm hình sự, với tỷ lệ 01 gam tiền chất ở thể rắn tương đương với 1,5 mililít tiền chất ở thể lỏng. Sau khi quy đổi, số lượng tiền chất thuộc khoản nào, thì người thực hiện hành vi phạm tội bị truy cứu trách nhiệm hình sự theo khoản đó.",
+        "isAdditional": false,
+        "points": []
+      },
+      {
+        "clauseNum": 6,
+        "penaltySummary": "Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 50.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản.",
+        "isAdditional": true,
+        "points": []
       }
     ]
   },
   {
-    "article": "Điều 254",
-    "name": "Tội mua bán dụng cụ sử dụng ma túy",
-    "x": "0%",
-    "y": "0%",
-    "details": [
+    "articleNum": "254",
+    "name": "Tội sản xuất, tàng trữ, vận chuyển hoặc mua bán phương tiện, dụng cụ dùng vào việc sản xuất hoặc sử dụng trái phép chất ma túy",
+    "x": 0,
+    "y": 0,
+    "clauses": [
       {
-        "title": "Khung 1 (01 - 05 năm)",
-        "content": "Sản xuất, tàng trữ, vận chuyển hoặc mua bán các công cụ, phương tiện (như bình hút nỏ, kim tiêm, tẩu hút) dùng vào việc sản xuất hoặc sử dụng ma túy."
+        "clauseNum": 1,
+        "penaltySummary": "Người nào sản xuất, tàng trữ, vận chuyển hoặc mua bán phương tiện, dụng cụ dùng vào việc sản xuất hoặc sử dụng trái phép chất ma túy thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 01 năm đến 05 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Đã bị xử phạt vi phạm hành chính về một trong các hành vi này hoặc đã bị kết án về tội này, chưa được xóa án tích mà còn vi phạm;" },
+          { "pointLetter": "b", "content": "Có số lượng từ 06 đơn vị đến 19 đơn vị dụng cụ, phương tiện cùng loại hoặc khác loại." }
+        ]
       },
       {
-        "title": "Khung 2 (05 - 10 năm)",
-        "content": "Phạm tội có tổ chức, phạm tội nhiều lần hoặc buôn bán số lượng lớn dụng cụ."
+        "clauseNum": 2,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 05 năm đến 10 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Có tổ chức;" },
+          { "pointLetter": "b", "content": "Phạm tội 02 lần trở lên;" },
+          { "pointLetter": "c", "content": "Lợi dụng chức vụ, quyền hạn;" },
+          { "pointLetter": "d", "content": "Lợi dụng danh nghĩa cơ quan, tổ chức;" },
+          { "pointLetter": "đ", "content": "Có số lượng 20 đơn vị dụng cụ, phương tiện cùng loại hoặc khác loại trở lên;" },
+          { "pointLetter": "e", "content": "Vận chuyển, mua bán qua biên giới;" },
+          { "pointLetter": "g", "content": "Sử dụng người dưới 16 tuổi vào việc phạm tội;" },
+          { "pointLetter": "h", "content": "Tái phạm nguy hiểm." }
+        ]
+      },
+      {
+        "clauseNum": 3,
+        "penaltySummary": "Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 500.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản.",
+        "isAdditional": true,
+        "points": []
       }
     ]
   },
   {
-    "article": "Điều 255",
-    "name": "Tội tổ chức sử dụng trái phép ma túy",
-    "x": "0%",
-    "y": "0%",
-    "details": [
+    "articleNum": "255",
+    "name": "Tội tổ chức sử dụng trái phép chất ma túy",
+    "x": 0,
+    "y": 0,
+    "clauses": [
       {
-        "title": "Khung 1 (02 - 07 năm)",
-        "content": "Cung cấp ma túy, địa điểm, phương tiện, dụng cụ cho người khác sử dụng ma túy (Ví dụ: thuê phòng karaoke, mua ma túy rủ bạn bè cùng 'bay lắc')."
+        "clauseNum": 1,
+        "penaltySummary": "Người nào tổ chức sử dụng trái phép chất ma túy dưới bất kỳ hình thức nào, thì bị phạt tù từ 03 năm đến 07 năm.",
+        "isAdditional": false,
+        "points": []
       },
       {
-        "title": "Khung 2 (07 - 15 năm)",
-        "content": "Tổ chức sử dụng cho người từ đủ 13 tuổi đến dưới 18 tuổi, hoặc đối với 02 người trở lên."
+        "clauseNum": 2,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 07 năm đến 15 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Phạm tội 02 lần trở lên;" },
+          { "pointLetter": "b", "content": "Đối với 02 người trở lên;" },
+          { "pointLetter": "c", "content": "Đối với người từ đủ 13 tuổi đến dưới 18 tuổi;" },
+          { "pointLetter": "d", "content": "Đối với phụ nữ mà biết là có thai;" },
+          { "pointLetter": "đ", "content": "Đối với người đang cai nghiện;" },
+          { "pointLetter": "e", "content": "Gây tổn hại cho sức khỏe của người khác mà tỷ lệ tổn thương cơ thể từ 31% đến 60%;" },
+          { "pointLetter": "g", "content": "Gây bệnh nguy hiểm cho người khác;" },
+          { "pointLetter": "h", "content": "Tái phạm nguy hiểm." }
+        ]
       },
       {
-        "title": "Khung cao nhất (20 năm hoặc Chung thân)",
-        "content": "Gây tổn hại sức khỏe nặng hoặc làm chết người do tổ chức sử dụng ma túy."
+        "clauseNum": 3,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 15 năm đến 20 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Gây tổn hại cho sức khỏe của người khác mà tỷ lệ tổn thương cơ thể từ 61% trở lên hoặc gây chết người;" },
+          { "pointLetter": "b", "content": "Gây tổn hại cho sức khỏe của 02 người trở lên mà tỷ lệ tổn thương cơ thể của mỗi người từ 31% đến 60%;" },
+          { "pointLetter": "c", "content": "Gây bệnh nguy hiểm cho 02 người trở lên;" },
+          { "pointLetter": "d", "content": "Đối với người dưới 13 tuổi." }
+        ]
+      },
+      {
+        "clauseNum": 4,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù 20 năm hoặc tù chung thân:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Gây tổn hại cho sức khỏe của 02 người trở lên mà tỷ lệ tổn thương cơ thể của mỗi người 61% trở lên;" },
+          { "pointLetter": "b", "content": "Làm chết 02 người trở lên." }
+        ]
+      },
+      {
+        "clauseNum": 5,
+        "penaltySummary": "Người phạm tội còn có thể bị phạt tiền từ 50.000.000 đồng đến 500.000.000 đồng, phạt quản chế, cấm cư trú từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản.",
+        "isAdditional": true,
+        "points": []
       }
     ]
   },
   {
-    "article": "Điều 256",
-    "name": "Tội chứa chấp sử dụng trái phép ma túy",
-    "x": "0%",
-    "y": "0%",
-    "details": [
+    "articleNum": "256",
+    "name": "Tội chứa chấp việc sử dụng trái phép chất ma túy",
+    "x": 0,
+    "y": 0,
+    "clauses": [
       {
-        "title": "Khung 1 (02 - 07 năm)",
-        "content": "Người nào cho thuê, cho mượn địa điểm hoặc có quyền quản lý địa điểm (nhà ở, quán bar, karaoke) mà để cho người khác sử dụng trái phép ma túy."
+        "clauseNum": 1,
+        "penaltySummary": "Người nào cho thuê, cho mượn địa điểm hoặc có bất kỳ hành vi nào khác chứa chấp việc sử dụng trái phép chất ma túy, nếu không thuộc trường hợp quy định tại Điều 255 của Bộ luật này, thì bị phạt tù từ 02 năm đến 07 năm.",
+        "isAdditional": false,
+        "points": []
       },
       {
-        "title": "Khung 2 (07 - 15 năm)",
-        "content": "Phạm tội 02 lần trở lên, hoặc chứa chấp trẻ em dưới 16 tuổi sử dụng ma túy."
+        "clauseNum": 2,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 07 năm đến 15 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Lợi dụng chức vụ, quyền hạn;" },
+          { "pointLetter": "b", "content": "Phạm tội 02 lần trở lên;" },
+          { "pointLetter": "c", "content": "Đối với người dưới 16 tuổi;" },
+          { "pointLetter": "d", "content": "Đối với 02 người trở lên;" },
+          { "pointLetter": "đ", "content": "Tái phạm nguy hiểm." }
+        ]
+      },
+      {
+        "clauseNum": 3,
+        "penaltySummary": "Người phạm tội còn có thể bị phạt tiền từ 50.000.000 đồng đến 200.000.000 đồng hoặc tịch thu một phần hoặc toàn bộ tài sản.",
+        "isAdditional": true,
+        "points": []
       }
     ]
   },
   {
-    "article": "Điều 257",
-    "name": "Tội cưỡng bức người khác sử dụng ma túy",
-    "x": "0%",
-    "y": "0%",
-    "details": [
+    "articleNum": "256a",
+    "name": "Tội sử dụng trái phép chất ma túy",
+    "x": 0,
+    "y": 0,
+    "clauses": [
       {
-        "title": "Khung 1 (02 - 07 năm)",
-        "content": "Dùng vũ lực, đe dọa hoặc các thủ đoạn khác uy hiếp tinh thần ép buộc người khác phải sử dụng chất ma túy."
+        "clauseNum": 1,
+        "penaltySummary": "Người nào sử dụng trái phép chất ma túy thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 02 năm đến 03 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Đang trong thời hạn cai nghiện ma túy hoặc điều trị nghiện các chất ma túy bằng thuốc thay thế theo quy định của Luật Phòng, chống ma túy;" },
+          { "pointLetter": "b", "content": "Đang trong thời hạn quản lý sau cai nghiện ma túy theo quy định của Luật Phòng, chống ma túy;" },
+          { "pointLetter": "c", "content": "Đang trong thời hạn 02 năm kể từ ngày hết thời hạn quản lý sau cai nghiện ma túy và trong thời hạn quản lý người sử dụng trái phép chất ma túy theo quy định của Luật Phòng, chống ma túy;" },
+          { "pointLetter": "d", "content": "Đang trong thời hạn 02 năm kể từ khi tự ý chấm dứt cai nghiện ma túy tự nguyện hoặc điều trị nghiện các chất ma túy bằng thuốc thay thế theo quy định của Luật Phòng, chống ma túy." }
+        ]
       },
       {
-        "title": "Khung cao nhất (20 năm hoặc Chung thân)",
-        "content": "Cưỡng bức phụ nữ có thai, người dưới 13 tuổi, hoặc gây hậu quả làm nạn nhân chết."
+        "clauseNum": 2,
+        "penaltySummary": "Tái phạm về tội này thì bị phạt tù từ 03 năm đến 05 năm.",
+        "isAdditional": false,
+        "points": []
       }
     ]
   },
   {
-    "article": "Điều 258",
-    "name": "Tội lôi kéo người khác sử dụng ma túy",
-    "x": "0%",
-    "y": "0%",
-    "details": [
+    "articleNum": "257",
+    "name": "Tội cưỡng bức người khác sử dụng trái phép chất ma túy",
+    "x": 0,
+    "y": 0,
+    "clauses": [
       {
-        "title": "Khung 1 (01 - 05 năm)",
-        "content": "Rủ rê, dụ dỗ, xúi giục người khác (đặc biệt là bạn bè trong trường học) sử dụng trái phép chất ma túy."
+        "clauseNum": 1,
+        "penaltySummary": "Người nào dùng vũ lực, đe dọa dùng vũ lực hoặc dùng thủ đoạn khác uy hiếp tinh thần của người khác để buộc họ phải sử dụng trái phép chất ma túy trái với ý muốn của họ, thì bị phạt tù từ 02 năm đến 07 năm.",
+        "isAdditional": false,
+        "points": []
       },
       {
-        "title": "Khung 2 (05 - 10 năm)",
-        "content": "Lôi kéo người dưới 18 tuổi, hoặc lôi kéo nhiều người cùng lúc."
+        "clauseNum": 2,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 07 năm đến 15 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Có tổ chức;" },
+          { "pointLetter": "b", "content": "Phạm tội 02 lần trở lên;" },
+          { "pointLetter": "c", "content": "Vì động cơ đê hèn hoặc vì tư lợi;" },
+          { "pointLetter": "d", "content": "Đối với người từ đủ 13 tuổi đến dưới 18 tuổi;" },
+          { "pointLetter": "đ", "content": "Đối với phụ nữ mà biết là có thai;" },
+          { "pointLetter": "e", "content": "Đối với 02 người trở lên;" },
+          { "pointLetter": "g", "content": "Đối với người đang cai nghiện;" },
+          { "pointLetter": "h", "content": "Gây tổn hại cho sức khỏe của người khác mà tỷ lệ tổn thương cơ thể từ 31% đến 60%;" },
+          { "pointLetter": "i", "content": "Gây bệnh nguy hiểm cho người khác;" },
+          { "pointLetter": "k", "content": "Tái phạm nguy hiểm." }
+        ]
       },
       {
-        "title": "Khung 3 (10 - 15 năm)",
-        "content": "Lôi kéo người dưới 13 tuổi, hoặc gây tổn hại sức khỏe nghiêm trọng cho nạn nhân."
+        "clauseNum": 3,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 15 năm đến 20 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Gây tổn hại cho sức khỏe của người khác mà tỷ lệ tổn thương cơ thể từ 61% trở lên hoặc gây chết người;" },
+          { "pointLetter": "b", "content": "Gây bệnh nguy hiểm cho 02 người trở lên;" },
+          { "pointLetter": "c", "content": "Đối với người dưới 13 tuổi." }
+        ]
+      },
+      {
+        "clauseNum": 4,
+        "penaltySummary": "Phạm tội trong trường hợp làm chết 02 người trở lên, thì bị phạt tù 20 năm hoặc tù chung thân.",
+        "isAdditional": false,
+        "points": []
+      },
+      {
+        "clauseNum": 5,
+        "penaltySummary": "Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 100.000.000 đồng.",
+        "isAdditional": true,
+        "points": []
       }
     ]
   },
   {
-    "article": "Điều 259",
-    "name": "Vi phạm quy định quản lý thuốc gây nghiện",
-    "x": "0%",
-    "y": "0%",
-    "details": [
+    "articleNum": "258",
+    "name": "Tội lôi kéo người khác sử dụng trái phép chất ma túy",
+    "x": 0,
+    "y": 0,
+    "clauses": [
       {
-        "title": "Khung 1 (01 - 05 năm)",
-        "content": "Người có trách nhiệm trong ngành y tế, dược phẩm vi phạm quy định về xuất nhập khẩu, phân phối, cấp phát thuốc gây nghiện."
+        "clauseNum": 1,
+        "penaltySummary": "Người nào rủ rê, dụ dỗ, xúi giục hoặc bằng các thủ đoạn khác nhằm lôi kéo người khác sử dụng trái phép chất ma túy, thì bị phạt tù từ 01 năm đến 05 năm.",
+        "isAdditional": false,
+        "points": []
       },
       {
-        "title": "Hình phạt bổ sung",
-        "content": "Người phạm tội còn có thể bị cấm hành nghề y, dược, phạt tiền hoặc tịch thu tài sản."
+        "clauseNum": 2,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 05 năm đến 10 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Có tổ chức;" },
+          { "pointLetter": "b", "content": "Phạm tội 02 lần trở lên;" },
+          { "pointLetter": "c", "content": "Vì động cơ đê hèn hoặc vì tư lợi;" },
+          { "pointLetter": "d", "content": "Đối với người từ đủ 13 tuổi đến dưới 18 tuổi;" },
+          { "pointLetter": "đ", "content": "Đối với phụ nữ mà biết là có thai;" },
+          { "pointLetter": "e", "content": "Đối với 02 người trở lên;" },
+          { "pointLetter": "g", "content": "Đối với người đang cai nghiện;" },
+          { "pointLetter": "h", "content": "Gây tổn hại cho sức khỏe của người khác mà tỷ lệ tổn thương cơ thể từ 31% đến 60%;" },
+          { "pointLetter": "i", "content": "Gây bệnh nguy hiểm cho người khác;" },
+          { "pointLetter": "k", "content": "Tái phạm nguy hiểm." }
+        ]
+      },
+      {
+        "clauseNum": 3,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 10 năm đến 15 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Gây tổn hại cho sức khỏe của người khác mà tỷ lệ tổn thương cơ thể 61% trở lên hoặc gây chết người;" },
+          { "pointLetter": "b", "content": "Gây bệnh nguy hiểm cho 02 người trở lên;" },
+          { "pointLetter": "c", "content": "Đối với người dưới 13 tuổi." }
+        ]
+      },
+      {
+        "clauseNum": 4,
+        "penaltySummary": "Phạm tội trong trường hợp gây chết 02 người trở lên, thì bị phạt tù từ 15 năm đến 20 năm hoặc tù chung thân.",
+        "isAdditional": false,
+        "points": []
+      },
+      {
+        "clauseNum": 5,
+        "penaltySummary": "Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 100.000.000 đồng.",
+        "isAdditional": true,
+        "points": []
+      }
+    ]
+  },
+  {
+    "articleNum": "259",
+    "name": "Tội vi phạm quy định về quản lý chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần",
+    "x": 0,
+    "y": 0,
+    "clauses": [
+      {
+        "clauseNum": 1,
+        "penaltySummary": "Người nào có trách nhiệm trong quản lý chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần mà thực hiện một trong các hành vi sau đây, đã bị xử lý kỷ luật hoặc xử phạt vi phạm hành chính về một trong các hành vi quy định tại Điều này hoặc đã bị kết án về một trong các tội quy định tại Chương XX của Bộ luật này, chưa được xóa án tích mà còn vi phạm, thì bị phạt tiền từ 10.000.000 đồng đến 100.000.000 đồng hoặc phạt tù từ 01 năm đến 05 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Vi phạm quy định về xuất khẩu, nhập khẩu, tạm nhập, tái xuất, quá cảnh chất ma túy, tiền chất, thuốc gây nghiện hoặc thuốc hướng thần;" },
+          { "pointLetter": "b", "content": "Vi phạm quy định về nghiên cứu, giám định, sản xuất, bảo quản chất ma túy, tiền chất, thuốc gây nghiện hoặc thuốc hướng thần;" },
+          { "pointLetter": "c", "content": "Vi phạm quy định về giao nhận, vận chuyển chất ma túy, tiền chất, thuốc gây nghiện hoặc thuốc hướng thần;" },
+          { "pointLetter": "d", "content": "Vi phạm quy định về phân phối, mua bán, trao đổi chất ma túy, tiền chất, thuốc gây nghiện hoặc thuốc hướng thần;" },
+          { "pointLetter": "đ", "content": "Vi phạm quy định về quản lý, kiểm soát, lưu giữ chất ma túy, tiền chất, thuốc gây nghiện hoặc thuốc hướng thần tại khu vực cửa khẩu, khu vực biên giới, trên biển;" },
+          { "pointLetter": "e", "content": "Vi phạm quy định về cấp phát, cho phép sử dụng chất ma túy, thuốc gây nghiện hoặc thuốc hướng thần." }
+        ]
+      },
+      {
+        "clauseNum": 2,
+        "penaltySummary": "Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 05 năm đến 10 năm:",
+        "isAdditional": false,
+        "points": [
+          { "pointLetter": "a", "content": "Có tổ chức;" },
+          { "pointLetter": "b", "content": "Phạm tội 02 lần trở lên;" },
+          { "pointLetter": "c", "content": "Tái phạm nguy hiểm." }
+        ]
+      },
+      {
+        "clauseNum": 3,
+        "penaltySummary": "Người phạm tội còn có thể bị phạt tiền từ 10.000.000 đồng đến 50.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm",
+        "isAdditional": true,
+        "points": []
       }
     ]
   }

@@ -1,30 +1,43 @@
 import prisma from '@/lib/prisma';
-import { LawNodeData } from '@/models/Tree';
+import { LawArticleData } from '@/models/Tree'; // Import interface mới mà chúng ta vừa tạo
 
-// 1. Khai báo kiểu dữ liệu rõ ràng thay vì dùng 'any' để chiều lòng ESLint
-interface PrismaLawNode {
-  id: string;
-  article: string;
-  name: string;
-  x: string;
-  y: string;
-  details: unknown; // Dùng 'unknown' là cách an toàn nhất trong TypeScript
-  createdAt: Date;
-}
-
-export const fetchTreeData = async (): Promise<LawNodeData[]> => {
+export const fetchTreeData = async (): Promise<LawArticleData[]> => {
   try {
-    // 2. Tạm thời tắt cảnh báo TypeScript ở dòng này cho đến khi VS Code tự cập nhật xong type
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const laws = await prisma.lawNode.findMany({
-      orderBy: { createdAt: 'asc' }
+    // 1. Prisma sẽ tự động hiểu kiểu trả về, không cần ép kiểu hay ts-ignore nữa
+    const laws = await prisma.lawArticle.findMany({
+      include: {
+        // Lấy danh sách các Khoản thuộc Điều này
+        clauses: {
+          include: {
+            // Lấy danh sách các Điểm thuộc Khoản này
+            points: true,
+          },
+          // Sắp xếp các Khoản theo thứ tự tăng dần (1, 2, 3...)
+          orderBy: { clauseNum: 'asc' },
+        },
+      },
+      // Sắp xếp các Điều theo thứ tự tạo (hoặc bạn có thể đổi thành articleNum: 'asc')
+      orderBy: { createdAt: 'asc' },
     });
-    
-    // 3. Ép kiểu (law: PrismaLawNode) để dập tắt triệt để lỗi 7006
-    return laws.map((law: PrismaLawNode) => ({
-      ...law,
-      details: law.details as LawNodeData['details']
+
+    // 2. Map dữ liệu từ DB sang Interface của Frontend một cách sạch sẽ
+    return laws.map((law) => ({
+      id: law.id,
+      articleNum: law.articleNum,
+      name: law.name,
+      x: law.x, // x, y giờ đã là number ở cả DB và Interface
+      y: law.y,
+      clauses: law.clauses.map((clause) => ({
+        id: clause.id,
+        clauseNum: clause.clauseNum,
+        penaltySummary: clause.penaltySummary,
+        isAdditional: clause.isAdditional,
+        points: clause.points.map((point) => ({
+          id: point.id,
+          pointLetter: point.pointLetter,
+          content: point.content,
+        })),
+      })),
     }));
   } catch (error) {
     console.error("Lỗi khi lấy dữ liệu Cây Pháp Luật:", error);

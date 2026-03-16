@@ -150,6 +150,7 @@ export default function LawTree({ initialData }: LawTreeProps) {
           style={isMobile ? { y: "-50%" } : { width: RADIUS * 2, height: RADIUS * 2, y: "-50%" }}
           onWheel={(e) => {
             if (!activeId || isMobile) return; 
+            if (e.deltaY > 0) return;
             setTreeRotation((prev) => prev + e.deltaY * 0.15);
             if (wheelTimeout.current) clearTimeout(wheelTimeout.current);
             wheelTimeout.current = setTimeout(() => snapToNearest(), 150);
@@ -239,14 +240,14 @@ export default function LawTree({ initialData }: LawTreeProps) {
                     className={`relative z-10 w-full h-full rounded-full flex flex-col items-center justify-center shadow-[inset_-5px_-5px_15px_rgba(0,0,0,0.6),3px_5px_10px_rgba(0,0,0,0.4)] transition-all duration-300 ${isActive ? "bg-[radial-gradient(circle_at_35%_30%,#fdba74,#ea580c,#7c2d12)] border border-orange-400" : "bg-[radial-gradient(circle_at_35%_30%,#6ee7b7,#059669,#064e3b)] border border-emerald-400"}`}
                   >
                     <span
-                      className={`font-black text-center leading-tight drop-shadow-md text-white ${isActive ? "text-[12px] md:text-[16px]" : "text-[10px] md:text-sm"}`}
+                      className={`font-black text-center leading-tight drop-shadow-md text-white ${isActive ? "text-[16px] md:text-[16px]" : "text-[10px] md:text-sm"}`}
                     >
                       Điều {law.articleNum}
                     </span>
                   </div>
 
                   {!activeId && (
-                    <div className="absolute top-full mt-4 w-48 bg-emerald-900/90 text-white text-[11px] font-medium p-2.5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-2xl text-center backdrop-blur-sm z-50">
+                    <div className="absolute top-full mt-4 w-48 bg-emerald-900/90 text-white text-[19px] font-medium p-2.5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-2xl text-center backdrop-blur-sm z-50">
                       {law.name}
                     </div>
                   )}

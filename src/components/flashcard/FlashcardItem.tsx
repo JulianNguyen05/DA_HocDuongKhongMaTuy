@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react"; // ✅ Đã thêm useEffect
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -32,6 +32,20 @@ export default function FlashcardItem({
   const [showDetail, setShowDetail] = useState(false);
 
   const imageSrc = imageUrl || "/no-image.jpg";
+
+  // ✅ THÊM PHẦN NÀY: Khóa cuộn trang (body scroll lock) khi mở Modal
+  useEffect(() => {
+    if (showDetail) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    // Cleanup function để đảm bảo reset lại khi component unmount
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showDetail]);
 
   return (
     <>

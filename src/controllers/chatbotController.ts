@@ -8,99 +8,126 @@ if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export async function getChatbotResponse(query: string) {
   let answer = "";
-  // Câu thông báo bắt buộc ở cuối
   const defaultFooter =
     "\n\n---\n*Nếu bạn muốn biết thêm chi tiết về câu hỏi vui lòng liên hệ qua số điện thoại 058. 528181 của Phòng Cảnh sát điều tra tội phạm về ma túy (PC17).*";
 
   try {
-    // 1. XỬ LÝ CÁC NÚT BẤM CÓ SẴN
+    // ==========================================
+    // 1. XỬ LÝ NÚT BẤM (CÂU HỎI CỐ ĐỊNH)
+    // ==========================================
     if (query === "q_tac_hai") {
       const cards = await prisma.flashcard.findMany({ take: 3 });
       if (cards.length > 0) {
-        answer = "Dưới đây là một số loại ma túy phổ biến:\n\n";
+        answer = "Dưới đây là thông tin của một số loại ma túy phổ biến:\n\n";
         cards.forEach((card) => {
-          // SỬA LỖI Ở ĐÂY: Thay detailedContent bằng harmfulEffects
-          const warning =
-            card.harmfulEffects && card.harmfulEffects.length > 0
-              ? card.harmfulEffects[0]
-              : "Chưa có thông tin cảnh báo cụ thể";
-
-          answer += `**${card.name}**\n- ${card.shortDesc}\n- Cảnh báo: ${warning}...\n\n`;
+          const sign = card.identification?.length ? card.identification[0] : "Chưa có thông tin nhận biết";
+          const warning = card.harmfulEffects?.length ? card.harmfulEffects[0] : "Chưa có thông tin cảnh báo";
+          answer += `**${card.name}**\n- 🔍 **Dấu hiệu:** ${sign}\n- ⚠️ **Tác hại:** ${warning}\n\n`;
         });
       } else {
-        answer = "Hiện tại hệ thống đang cập nhật dữ liệu.";
+        answer = "Hiện tại hệ thống đang cập nhật dữ liệu về các loại ma túy.";
       }
-    } else if (query === "q_phap_luat") {
-      const laws = await prisma.lawNode.findMany({ take: 3 });
+      return answer + defaultFooter;
+    } 
+    
+    if (query === "q_phap_luat") {
+      const laws = await prisma.lawArticle.findMany({ take: 3 });
       if (laws.length > 0) {
-        answer = "Một số quy định pháp luật cơ bản:\n\n";
+        answer = "Một số quy định pháp luật cơ bản về phòng chống ma túy:\n\n";
         laws.forEach((law) => {
-          answer += `**${law.article} - ${law.name}**\nChi tiết hình phạt vui lòng xem tại Cây Pháp Luật.\n\n`;
+          answer += `**Điều ${law.articleNum} - ${law.name}**\n`;
         });
       } else {
-        answer = "Hiện tại hệ thống đang cập nhật dữ liệu.";
+        answer = "Hiện tại hệ thống đang cập nhật dữ liệu pháp luật.";
       }
-    } else if (query === "q_ky_nang") {
-      answer =
-        "Kịch bản thoát hiểm khi bị lôi kéo:\n\n1. **Giữ bình tĩnh và từ chối dứt khoát**: Nói 'Không' một cách thẳng thắn.\n2. **Rời khỏi hiện trường**: Tìm cớ hợp lý để đi ngay khỏi nơi đó.\n3. **Tìm kiếm sự trợ giúp**: Di chuyển đến nơi đông người.\n4. **Báo cáo sự việc**: Cung cấp thông tin cho gia đình, nhà trường.";
+      return answer + defaultFooter;
+    } 
+    
+    if (query === "q_ky_nang") {
+      answer = "**Kịch bản phản ứng nhanh và kỹ năng thoát hiểm khi bị lôi kéo:**\n\n1. **Giữ bình tĩnh và từ chối dứt khoát**: Nhìn thẳng vào mắt họ và nói 'Không' một cách thẳng thắn.\n2. **Đánh lạc hướng/Viện cớ**: Tìm một lý do hợp lý để rời đi ngay lập tức.\n3. **Rời khỏi hiện trường**: Di chuyển ngay đến khu vực an toàn, đông người.\n4. **Tìm kiếm sự trợ giúp**: Gọi điện cho người thân hoặc cảnh sát.\n5. **Tuyệt đối không thử dù chỉ 1 lần**: Tránh xa đồ uống lạ tại các buổi tiệc.";
+      return answer + defaultFooter;
     }
 
-    // 2. XỬ LÝ NGƯỜI DÙNG TỰ GÕ CÂU HỎI (TÌM KIẾM TRONG DATABASE)
-    else {
-      // Làm sạch từ khóa (bỏ các từ thừa như "là gì", "tác hại của" để tìm chuẩn hơn)
-      const keyword = query
-        .toLowerCase()
-        .replace(/là gì|thế nào|tác hại của|cho tôi biết/g, "")
-        .trim();
+    // ==========================================
+    // 2. XỬ LÝ CHAT THÔNG MINH (TÌM KIẾM TỰ DO)
+    // ==========================================
+    
+    const lowerQuery = query.toLowerCase();
 
-      // Tìm trong bảng Flashcard (Tên ma túy hoặc mô tả)
-      const flashcards = await prisma.flashcard.findMany({
-        where: {
-          OR: [
-            { name: { contains: keyword, mode: "insensitive" } },
-            { shortDesc: { contains: keyword, mode: "insensitive" } },
-          ],
-        },
-        take: 3,
-      });
+    // A. NHẬN DIỆN Ý ĐỊNH (INTENT)
+    const isAskingSign = /dấu hiệu|nhận biết|biểu hiện|cách phát hiện|làm sao biết|nhìn như thế nào/i.test(lowerQuery);
+    const isAskingHarm = /tác hại|nguy hiểm|hậu quả|bị gì|chết|ảnh hưởng/i.test(lowerQuery);
+    const isAskingLaw = /pháp luật|phạt|tù|điều|khoản|tội|bắt/i.test(lowerQuery);
 
-      if (flashcards.length > 0) {
-        answer = `Tôi tìm thấy thông tin liên quan đến từ khóa **"${keyword}"**:\n\n`;
-        flashcards.forEach((card) => {
-          const warning =
-            card.harmfulEffects && card.harmfulEffects.length > 0
-              ? card.harmfulEffects[0]
-              : "Chưa có thông tin cảnh báo cụ thể";
+    // B. LỌC TỪ KHÓA (Bóc tách tên ma túy hoặc luật ra khỏi câu hỏi dài)
+    // Thêm rất nhiều từ thừa tiếng Việt vào đây để bot tự động loại bỏ
+    const stopWords = /là gì|thế nào|cho tôi biết|của|và|các|những|có|khi|làm sao|để|về|cách|dấu hiệu|nhận biết|biểu hiện|tác hại|nguy hiểm|hậu quả|pháp luật|hình phạt|điều|khoản|tội|mức phạt|bao nhiêu năm/g;
+    
+    const keyword = lowerQuery
+      .replace(stopWords, "")
+      .trim()
+      .replace(/\s+/g, " "); // Gom nhiều khoảng trắng thành 1 khoảng trắng
 
-          answer += `**${card.name}**\n- ${card.shortDesc}\n- Cảnh báo: ${warning}...\n\n`;
-        });
-      } else {
-        // Nếu không có trong Flashcard, thử tìm trong Cây Pháp Luật
-        const laws = await prisma.lawNode.findMany({
-          where: {
-            OR: [
-              { article: { contains: keyword, mode: "insensitive" } },
-              { name: { contains: keyword, mode: "insensitive" } },
-            ],
-          },
-          take: 2,
-        });
+    // Nếu người dùng chỉ gõ linh tinh mà lọc xong không còn từ khóa nào
+    if (!keyword) {
+      return "Xin lỗi, tôi chưa hiểu rõ câu hỏi của bạn. Bạn có thể nói rõ hơn về tên loại ma túy hoặc Điều luật bạn muốn tìm không?" + defaultFooter;
+    }
 
-        if (laws.length > 0) {
-          answer = `Tôi tìm thấy thông tin pháp luật liên quan đến **"${keyword}"**:\n\n`;
-          laws.forEach((law) => {
-            answer += `**${law.article} - ${law.name}**\n*(Bạn có thể xem chi tiết các khung hình phạt tại bản đồ Cây Pháp Luật)*\n\n`;
-          });
+    // C. TRUY VẤN DATABASE & TRẢ LỜI THEO Ý ĐỊNH
+    const flashcards = await prisma.flashcard.findMany({
+      where: {
+        OR: [
+          { name: { contains: keyword, mode: "insensitive" } },
+          { otherNames: { contains: keyword, mode: "insensitive" } } // Thêm tìm kiếm theo tiếng lóng (nếu có)
+        ],
+      },
+      take: 3,
+    });
+
+    if (flashcards.length > 0) {
+      flashcards.forEach((card) => {
+        answer += `Về **${card.name}**:\n`;
+
+        const sign = card.identification?.length ? card.identification.join("; ") : "Chưa cập nhật";
+        const harm = card.harmfulEffects?.length ? card.harmfulEffects.join("; ") : "Chưa cập nhật";
+
+        // Trả lời linh hoạt theo ý định người dùng
+        if (isAskingSign && !isAskingHarm) {
+          answer += `- 🔍 **Dấu hiệu nhận biết:** ${sign}\n\n`;
+        } else if (isAskingHarm && !isAskingSign) {
+          answer += `- ⚠️ **Tác hại:** ${harm}\n\n`;
         } else {
-          // Nếu tìm không thấy cả 2 bảng
-          answer = `Xin lỗi, tôi không tìm thấy thông tin chi tiết về **"${query}"** trong cơ sở dữ liệu hiện tại. Bạn hãy thử dùng từ khóa ngắn gọn hơn (ví dụ: "Heroin", "Lá khát", "Điều 251").`;
+          // Nếu hỏi chung chung thì trả lời cả hai
+          answer += `- 🔍 **Nhận biết:** ${sign}\n- ⚠️ **Tác hại:** ${harm}\n\n`;
         }
-      }
+      });
+      return answer + defaultFooter;
     }
 
-    return answer + defaultFooter;
+    // Nếu không thấy ma túy, tìm thử trong luật
+    const laws = await prisma.lawArticle.findMany({
+      where: {
+        OR: [
+          { articleNum: { contains: keyword, mode: "insensitive" } },
+          { name: { contains: keyword, mode: "insensitive" } },
+        ],
+      },
+      take: 2,
+    });
+
+    if (laws.length > 0) {
+      answer = `Tôi tìm thấy thông tin pháp luật liên quan đến **"${keyword}"**:\n\n`;
+      laws.forEach((law) => {
+        answer += `**Điều ${law.articleNum} - ${law.name}**\n\n`;
+      });
+      return answer + defaultFooter;
+    }
+
+    // D. KHÔNG TÌM THẤY GÌ CẢ
+    return `Xin lỗi, tôi không tìm thấy thông tin chi tiết về **"${query}"** trong cơ sở dữ liệu hiện tại. Bạn hãy thử dùng từ khóa chính xác hơn (ví dụ: "Heroin", "Cần sa", "Điều 251").` + defaultFooter;
+
   } catch (error) {
     console.error("Chatbot Error:", error);
-    return "Xin lỗi, hệ thống đang bận. Vui lòng thử lại sau.";
+    return "Xin lỗi, hệ thống đang bận hoặc quá tải. Vui lòng thử lại sau.";
   }
 }

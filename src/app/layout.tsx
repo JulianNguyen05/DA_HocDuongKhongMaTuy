@@ -28,7 +28,7 @@ export default function RootLayout({
         className={`${inter.className} bg-brand-cream text-gray-900 min-h-screen flex flex-col`}
       >
         {/* COMPONENT YÊU CẦU XOAY MÀN HÌNH SẼ NẰM Ở ĐÂY */}
-        <RotatePrompt />
+        {/* <RotatePrompt /> */}
 
         <Navbar />
 

@@ -31,15 +31,7 @@ export async function getChatbotResponse(query: string) {
     } 
     
     if (query === "q_phap_luat") {
-      const laws = await prisma.lawArticle.findMany({ take: 3 });
-      if (laws.length > 0) {
-        answer = "Một số quy định pháp luật cơ bản về phòng chống ma túy:\n\n";
-        laws.forEach((law) => {
-          answer += `**Điều ${law.articleNum} - ${law.name}**\n`;
-        });
-      } else {
-        answer = "Hiện tại hệ thống đang cập nhật dữ liệu pháp luật.";
-      }
+      answer = "Để xem chi tiết quy định pháp luật, bạn có thể **gõ trực tiếp số Điều** vào khung chat (Ví dụ: *'Chi tiết Điều 247'* hoặc *'Điều 251'*). Hệ thống sẽ hiển thị đầy đủ các Khoản, Điểm và mức phạt tương ứng.";
       return answer + defaultFooter;
     } 
     
@@ -51,80 +43,103 @@ export async function getChatbotResponse(query: string) {
     // ==========================================
     // 2. XỬ LÝ CHAT THÔNG MINH (TÌM KIẾM TỰ DO)
     // ==========================================
-    
     const lowerQuery = query.toLowerCase();
 
     // A. NHẬN DIỆN Ý ĐỊNH (INTENT)
     const isAskingSign = /dấu hiệu|nhận biết|biểu hiện|cách phát hiện|làm sao biết|nhìn như thế nào/i.test(lowerQuery);
     const isAskingHarm = /tác hại|nguy hiểm|hậu quả|bị gì|chết|ảnh hưởng/i.test(lowerQuery);
-    const isAskingLaw = /pháp luật|phạt|tù|điều|khoản|tội|bắt/i.test(lowerQuery);
 
-    // B. LỌC TỪ KHÓA (Bóc tách tên ma túy hoặc luật ra khỏi câu hỏi dài)
-    // Thêm rất nhiều từ thừa tiếng Việt vào đây để bot tự động loại bỏ
-    const stopWords = /là gì|thế nào|cho tôi biết|của|và|các|những|có|khi|làm sao|để|về|cách|dấu hiệu|nhận biết|biểu hiện|tác hại|nguy hiểm|hậu quả|pháp luật|hình phạt|điều|khoản|tội|mức phạt|bao nhiêu năm/g;
+    // B. LỌC TỪ KHÓA
+    const stopWords = /là gì|thế nào|cho tôi biết|chi tiết|của|và|các|những|có|khi|làm sao|để|về|cách|dấu hiệu|nhận biết|biểu hiện|tác hại|nguy hiểm|hậu quả|pháp luật|hình phạt|điều|khoản|tội|mức phạt|bao nhiêu năm/g;
     
-    const keyword = lowerQuery
-      .replace(stopWords, "")
-      .trim()
-      .replace(/\s+/g, " "); // Gom nhiều khoảng trắng thành 1 khoảng trắng
+    let keyword = lowerQuery.replace(stopWords, "").trim().replace(/\s+/g, " ");
+    if (!keyword) keyword = lowerQuery.trim(); // Khôi phục nếu xoá nhầm hết từ khóa chính
 
-    // Nếu người dùng chỉ gõ linh tinh mà lọc xong không còn từ khóa nào
-    if (!keyword) {
-      return "Xin lỗi, tôi chưa hiểu rõ câu hỏi của bạn. Bạn có thể nói rõ hơn về tên loại ma túy hoặc Điều luật bạn muốn tìm không?" + defaultFooter;
+    // C. TRUY VẤN DATABASE & TRẢ LỜI
+    
+    // ƯU TIÊN 1: TÌM TRONG PHÁP LUẬT NẾU CÂU HỎI CÓ CHỨA SỐ HOẶC TỪ KHÓA LUẬT
+    const matchNumber = query.match(/\d+/);
+    if (matchNumber || /pháp luật|tù|phạt|điều|khoản|tội/i.test(lowerQuery)) {
+      const lawKeyword = matchNumber ? matchNumber[0] : keyword;
+
+      const laws = await prisma.lawArticle.findMany({
+        where: {
+          OR: [
+            { articleNum: { contains: lawKeyword, mode: "insensitive" } },
+            { name: { contains: keyword, mode: "insensitive" } },
+          ],
+        },
+        include: {
+          clauses: {
+            orderBy: { clauseNum: 'asc' }, // Sắp xếp Khoản 1, 2, 3...
+            include: {
+              points: {
+                orderBy: { pointLetter: 'asc' } // Sắp xếp Điểm a, b, c...
+              }
+            }
+          }
+        },
+        take: 1, // Lấy 1 Điều chính xác nhất
+      });
+
+      if (laws.length > 0) {
+        const law = laws[0];
+        answer = `Dưới đây là chi tiết quy định về **Điều ${law.articleNum} - ${law.name}**:\n\n`;
+
+        if (law.clauses && law.clauses.length > 0) {
+          law.clauses.forEach((clause) => {
+            if (clause.isAdditional) {
+               answer += `**Hình phạt bổ sung:** ${clause.penaltySummary}\n`;
+            } else {
+               answer += `**Khoản ${clause.clauseNum}:** ${clause.penaltySummary}\n`;
+            }
+
+            if (clause.points && clause.points.length > 0) {
+              clause.points.forEach((point) => {
+                const prefix = point.pointLetter ? `Điểm ${point.pointLetter})` : "-";
+                answer += `  ${prefix} ${point.content}\n`;
+              });
+            }
+            answer += `\n`;
+          });
+        } else {
+          answer += `*(Nội dung chi tiết đang được cập nhật vào cơ sở dữ liệu)*\n`;
+        }
+        return answer.trimEnd() + defaultFooter;
+      }
     }
 
-    // C. TRUY VẤN DATABASE & TRẢ LỜI THEO Ý ĐỊNH
+    // ƯU TIÊN 2: TÌM TRONG BẢNG MA TÚY (FLASHCARD)
     const flashcards = await prisma.flashcard.findMany({
       where: {
         OR: [
           { name: { contains: keyword, mode: "insensitive" } },
-          { otherNames: { contains: keyword, mode: "insensitive" } } // Thêm tìm kiếm theo tiếng lóng (nếu có)
+          { otherNames: { contains: keyword, mode: "insensitive" } }
         ],
       },
-      take: 3,
+      take: 2,
     });
 
     if (flashcards.length > 0) {
       flashcards.forEach((card) => {
         answer += `Về **${card.name}**:\n`;
 
-        const sign = card.identification?.length ? card.identification.join("; ") : "Chưa cập nhật";
-        const harm = card.harmfulEffects?.length ? card.harmfulEffects.join("; ") : "Chưa cập nhật";
+        const sign = card.identification?.length ? card.identification.join(";\n- ") : "Chưa cập nhật";
+        const harm = card.harmfulEffects?.length ? card.harmfulEffects.join(";\n- ") : "Chưa cập nhật";
 
-        // Trả lời linh hoạt theo ý định người dùng
         if (isAskingSign && !isAskingHarm) {
-          answer += `- 🔍 **Dấu hiệu nhận biết:** ${sign}\n\n`;
+          answer += `- 🔍 **Dấu hiệu nhận biết:**\n- ${sign}\n\n`;
         } else if (isAskingHarm && !isAskingSign) {
-          answer += `- ⚠️ **Tác hại:** ${harm}\n\n`;
+          answer += `- ⚠️ **Tác hại:**\n- ${harm}\n\n`;
         } else {
-          // Nếu hỏi chung chung thì trả lời cả hai
-          answer += `- 🔍 **Nhận biết:** ${sign}\n- ⚠️ **Tác hại:** ${harm}\n\n`;
+          answer += `- 🔍 **Nhận biết:**\n- ${sign}\n\n- ⚠️ **Tác hại:**\n- ${harm}\n\n`;
         }
       });
-      return answer + defaultFooter;
-    }
-
-    // Nếu không thấy ma túy, tìm thử trong luật
-    const laws = await prisma.lawArticle.findMany({
-      where: {
-        OR: [
-          { articleNum: { contains: keyword, mode: "insensitive" } },
-          { name: { contains: keyword, mode: "insensitive" } },
-        ],
-      },
-      take: 2,
-    });
-
-    if (laws.length > 0) {
-      answer = `Tôi tìm thấy thông tin pháp luật liên quan đến **"${keyword}"**:\n\n`;
-      laws.forEach((law) => {
-        answer += `**Điều ${law.articleNum} - ${law.name}**\n\n`;
-      });
-      return answer + defaultFooter;
+      return answer.trimEnd() + defaultFooter;
     }
 
     // D. KHÔNG TÌM THẤY GÌ CẢ
-    return `Xin lỗi, tôi không tìm thấy thông tin chi tiết về **"${query}"** trong cơ sở dữ liệu hiện tại. Bạn hãy thử dùng từ khóa chính xác hơn (ví dụ: "Heroin", "Cần sa", "Điều 251").` + defaultFooter;
+    return `Xin lỗi, tôi không tìm thấy thông tin chi tiết về **"${query}"** trong cơ sở dữ liệu hiện tại. Bạn hãy thử dùng từ khóa chính xác hơn (ví dụ: "Heroin", "Cần sa", "Điều 247").` + defaultFooter;
 
   } catch (error) {
     console.error("Chatbot Error:", error);

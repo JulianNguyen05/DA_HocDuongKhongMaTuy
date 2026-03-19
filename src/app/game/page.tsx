@@ -27,9 +27,15 @@ export default function GamePage() {
 
   // State của Mini-game
   const [miniCharX, setMiniCharX] = useState(10); // Tọa độ X của nhân vật (10% -> 90%)
-  
-  // Dùng để theo dõi số tim, nếu giảm tim (trả lời sai) thì bắt chơi lại mini-game
+  const [facingRight, setFacingRight] = useState(true); // Trạng thái lật mặt nhân vật (Right: true, Left: false)
+  const [walkStep, setWalkStep] = useState(false); // Dùng để đổi frame đi bộ: false = đứng, true = bước đi
+
   const prevHearts = useRef(game.hearts);
+  const miniCharXRef = useRef(miniCharX);
+
+  useEffect(() => {
+    miniCharXRef.current = miniCharX;
+  }, [miniCharX]);
 
   // --- 1. EFFECT: KHI QUA CHẶNG TRÊN MAP LỚN ---
   useEffect(() => {
@@ -70,28 +76,43 @@ export default function GamePage() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "a" || e.key === "A") {
         setMiniCharX((prev) => Math.max(5, prev - 3));
+        setFacingRight(false);
+        setWalkStep((prev) => !prev);
       } 
       else if (e.key === "d" || e.key === "D") {
         setMiniCharX((prev) => Math.min(85, prev + 3));
+        setFacingRight(true);
+        setWalkStep((prev) => !prev);
       } 
-      else if ((e.key === "e" || e.key === "E") && miniCharX >= 75) {
+      else if ((e.key === "e" || e.key === "E") && miniCharXRef.current >= 75) {
         setViewMode("QUESTION");
+        setWalkStep(false);
+      }
+    };
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() === "a" || e.key.toLowerCase() === "d") {
+        setWalkStep(false);
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [viewMode, miniCharX]);
+    window.addEventListener("keyup", handleKeyUp);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, [viewMode]);
 
   const startMiniGame = () => {
     setMiniCharX(10);
+    setFacingRight(true);
+    setWalkStep(false);
     setViewMode("MINI_GAME");
   };
 
   return (
     <div className="min-h-screen bg-sky-100 flex items-center justify-center p-4">
-      
-      {/* SỬA LỖI LAYOUT: Thay vì dùng aspect-video dễ bị sập, ta dùng h-[70vh] kết hợp min-h để giữ cứng khung */}
       <div className="relative w-full max-w-5xl h-[70vh] min-h-[500px] bg-blue-50 border-8 border-gray-700 rounded-xl overflow-hidden shadow-2xl">
         
         {/* ======================================================== */}
@@ -115,8 +136,9 @@ export default function GamePage() {
               <div className={isMovingOnMainMap ? "animate-bounce" : "animate-pulse"}>
                 <img 
                   src="/images/game/5hearts.png" 
-                  alt="Nhân vật" 
-                  className="w-20 h-20 md:w-24 md:h-24 drop-shadow-2xl"
+                  alt="Nhân vật Map Lớn" 
+                  className="drop-shadow-2xl"
+                  style={{ height: "90px", width: "auto" }} // Cố định 1 chiều cao ở map lớn
                 />
               </div>
             </div>
@@ -144,7 +166,7 @@ export default function GamePage() {
         )}
 
         {/* ======================================================== */}
-        {/* VIEW 3: MINI GAME (Màn hình In-game 2D di chuyển A D E)  */}
+        {/* VIEW 3: MINI GAME (Màn hình In-game 2D)                    */}
         {/* ======================================================== */}
         {viewMode === "MINI_GAME" && (
           <div className="absolute inset-0 z-20 bg-gray-900">
@@ -158,20 +180,34 @@ export default function GamePage() {
               ⌨️ Dùng [A] và [D] để di chuyển
             </div>
 
-            {/* NHÂN VẬT ĐỨNG TRÊN CỎ: Căn chuẩn bottom 36% */}
+            {/* NHÂN VẬT ĐỨNG TRÊN CỎ (ĐÃ FIX KÍCH THƯỚC CHUẨN) */}
             <div
               className="absolute transition-all duration-100 ease-linear"
-              style={{ bottom: "36%", left: `${miniCharX}%`, transform: "translateX(-50%)" }}
+              style={{ 
+                bottom: "36%", 
+                left: `${miniCharX}%`, 
+                // Cố định KHUNG VÔ HÌNH dựa theo số đo của walking (449x556)
+                width: "120px", 
+                height: "148px", // Chiều cao cố định này sẽ quyết định độ to của nhân vật
+              }}
             >
               <img 
-                src="/images/game/5hearts.png" 
-                alt="Nhân vật" 
-                className="w-24 h-24 md:w-36 md:h-36 drop-shadow-xl"
+                src={walkStep ? "/images/game/walking.png" : "/images/game/5hearts.png"}
+                alt="Nhân vật Mini game" 
+                // max-w-none để ảnh 5hearts (ngang 677) tự do tràn ra 2 bên mà không bị méo
+                className="absolute bottom-0 left-1/2 drop-shadow-xl max-w-none"
+                style={{ 
+                  height: "100%", // Luôn ép chiều cao bức ảnh bằng 100% của cái khung (148px)
+                  width: "auto",  // Chiều ngang tự động giãn theo đúng tỷ lệ gốc của file
+                  // Căn giữa hình ảnh và lật mặt nhân vật
+                  transform: facingRight ? "translateX(-50%) scaleX(1)" : "translateX(-50%) scaleX(-1)", 
+                  transformOrigin: "bottom center", // Neo chặt cái chân xuống đất
+                }}
               />
             </div>
 
-            {/* VẬT PHẨM: Căn chuẩn bottom 36% để ngang hàng với nhân vật */}
-            <div className="absolute transform -translate-x-1/2" style={{ bottom: "36%", left: "85%" }}>
+            {/* VẬT PHẨM */}
+            <div className="absolute transform -translate-x-1/2 flex justify-center items-end" style={{ bottom: "36%", left: "85%" }}>
               <div className="animate-bounce">
                 <span className="text-6xl drop-shadow-xl">🎁</span> 
               </div>

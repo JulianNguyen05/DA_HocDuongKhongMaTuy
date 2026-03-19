@@ -18,31 +18,36 @@ const MAP_COORDINATES = [
 export default function GamePage() {
   const game = useGameController();
 
-  // --- CÁC TRẠNG THÁI CỦA VIEW (MÀN HÌNH) ---
+  // --- CÁC TRẠNG THÁI CỦA VIEW ---
   const [viewMode, setViewMode] = useState<"MAIN_MAP" | "READY" | "MINI_GAME" | "QUESTION">("MAIN_MAP");
 
-  // State của Map lớn
+  // State Map lớn
   const [characterPos, setCharacterPos] = useState(MAP_COORDINATES[0]);
   const [isMovingOnMainMap, setIsMovingOnMainMap] = useState(false);
 
-  // State của Mini-game
-  const [miniCharX, setMiniCharX] = useState(10); // Tọa độ X của nhân vật (10% -> 90%)
-  const [facingRight, setFacingRight] = useState(true); // Trạng thái lật mặt nhân vật (Right: true, Left: false)
-  const [walkStep, setWalkStep] = useState(false); // Dùng để đổi frame đi bộ: false = đứng, true = bước đi
+  // State Mini-game
+  const [miniCharX, setMiniCharX] = useState(10);
+  const [facingRight, setFacingRight] = useState(true);
+  const [walkStep, setWalkStep] = useState(false);
 
+  // Refs để theo dõi sự thay đổi (Qua câu hay Qua chặng)
   const prevHearts = useRef(game.hearts);
+  const prevQuestion = useRef(game.currentQuestionIdx);
+  const prevStage = useRef(game.currentStageIdx);
   const miniCharXRef = useRef(miniCharX);
 
   useEffect(() => {
     miniCharXRef.current = miniCharX;
   }, [miniCharX]);
 
-  // --- 1. EFFECT: KHI QUA CHẶNG TRÊN MAP LỚN ---
+  // =========================================================================
+  // EFFECT 1: KHI QUA CHẶNG MỚI (CHẠY TRÊN MAP LỚN) HOẶC MỚI VÀO GAME
+  // =========================================================================
   useEffect(() => {
     setViewMode("MAIN_MAP");
     setIsMovingOnMainMap(true);
 
-    const targetCoord = MAP_COORDINATES[game.currentStageIdx + 1] || MAP_COORDINATES[0];
+    const targetCoord = MAP_COORDINATES[game.currentStageIdx + 1] || MAP_COORDINATES[MAP_COORDINATES.length - 1];
 
     const moveTimer = setTimeout(() => {
       setCharacterPos(targetCoord);
@@ -59,17 +64,42 @@ export default function GamePage() {
       clearTimeout(moveTimer);
       clearTimeout(showReadyTimer);
     };
-  }, [game.currentStageIdx, game.gameState]);
+  }, [game.currentStageIdx]); // <- Chỉ chạy khi số Chặng (Stage) thay đổi
 
-  // --- 2. EFFECT: BỊ TRỪ TIM (TRẢ LỜI SAI) -> CHƠI LẠI MAP ---
+  // =========================================================================
+  // EFFECT 2: KHI TRẢ LỜI ĐÚNG -> QUA CÂU TIẾP THEO NHƯNG VẪN Ở CHẶNG CŨ
+  // =========================================================================
+  useEffect(() => {
+    if (game.currentQuestionIdx !== prevQuestion.current) {
+      // Chỉ kích hoạt khi tăng câu hỏi (chưa bị reset về 0 do qua chặng mới)
+      if (game.currentQuestionIdx > prevQuestion.current && game.currentStageIdx === prevStage.current && game.gameState === "PLAYING") {
+        // Reset Mini game để người chơi đi nhặt quà cho câu hỏi mới
+        setMiniCharX(10);
+        setFacingRight(true);
+        setWalkStep(false);
+        setViewMode("MINI_GAME"); 
+      }
+      prevQuestion.current = game.currentQuestionIdx;
+    }
+    prevStage.current = game.currentStageIdx;
+  }, [game.currentQuestionIdx, game.currentStageIdx, game.gameState]);
+
+  // =========================================================================
+  // EFFECT 3: KHI TRẢ LỜI SAI (MẤT TIM)
+  // =========================================================================
   useEffect(() => {
     if (game.hearts < prevHearts.current && game.gameState === "PLAYING") {
-      setViewMode("READY");
+      // Mất tim -> Reset mini game bắt đi nhặt lại
+      setMiniCharX(10);
+      setFacingRight(true);
+      setWalkStep(false);
+      setViewMode("MINI_GAME");
     }
     prevHearts.current = game.hearts;
   }, [game.hearts, game.gameState]);
 
-  // --- 3. EFFECT: ĐIỀU KHIỂN MINI-GAME BẰNG BÀN PHÍM (A, D, E) ---
+
+  // --- ĐIỀU KHIỂN BÀN PHÍM ---
   useEffect(() => {
     if (viewMode !== "MINI_GAME") return;
 
@@ -138,7 +168,7 @@ export default function GamePage() {
                   src="/images/game/5hearts.png" 
                   alt="Nhân vật Map Lớn" 
                   className="drop-shadow-2xl"
-                  style={{ height: "90px", width: "auto" }} // Cố định 1 chiều cao ở map lớn
+                  style={{ height: "90px", width: "auto" }} 
                 />
               </div>
             </div>
@@ -179,34 +209,34 @@ export default function GamePage() {
             <div className="absolute top-4 left-4 bg-black/60 text-white px-4 py-2 rounded-lg font-bold">
               ⌨️ Dùng [A] và [D] để di chuyển
             </div>
+            
+            {/* Hiển thị số lượng câu hỏi trong Map nhỏ */}
+            <div className="absolute top-4 right-4 bg-blue-600/90 text-white px-4 py-2 rounded-lg font-bold shadow-lg">
+              Câu hỏi hiện tại: {game.currentQuestionIdx + 1} / {game.totalQuestionsInStage}
+            </div>
 
-            {/* NHÂN VẬT ĐỨNG TRÊN CỎ (ĐÃ FIX KÍCH THƯỚC CHUẨN) */}
             <div
               className="absolute transition-all duration-100 ease-linear"
               style={{ 
                 bottom: "36%", 
                 left: `${miniCharX}%`, 
-                // Cố định KHUNG VÔ HÌNH dựa theo số đo của walking (449x556)
                 width: "120px", 
-                height: "148px", // Chiều cao cố định này sẽ quyết định độ to của nhân vật
+                height: "148px",
               }}
             >
               <img 
                 src={walkStep ? "/images/game/walking.png" : "/images/game/5hearts.png"}
                 alt="Nhân vật Mini game" 
-                // max-w-none để ảnh 5hearts (ngang 677) tự do tràn ra 2 bên mà không bị méo
                 className="absolute bottom-0 left-1/2 drop-shadow-xl max-w-none"
                 style={{ 
-                  height: "100%", // Luôn ép chiều cao bức ảnh bằng 100% của cái khung (148px)
-                  width: "auto",  // Chiều ngang tự động giãn theo đúng tỷ lệ gốc của file
-                  // Căn giữa hình ảnh và lật mặt nhân vật
+                  height: "100%", 
+                  width: "auto",  
                   transform: facingRight ? "translateX(-50%) scaleX(1)" : "translateX(-50%) scaleX(-1)", 
-                  transformOrigin: "bottom center", // Neo chặt cái chân xuống đất
+                  transformOrigin: "bottom center",
                 }}
               />
             </div>
 
-            {/* VẬT PHẨM */}
             <div className="absolute transform -translate-x-1/2 flex justify-center items-end" style={{ bottom: "36%", left: "85%" }}>
               <div className="animate-bounce">
                 <span className="text-6xl drop-shadow-xl">🎁</span> 
@@ -235,6 +265,11 @@ export default function GamePage() {
                 <span className="text-xl font-bold text-red-500 bg-red-100 px-3 py-1 rounded-full">
                   ❤️ x {game.hearts}
                 </span>
+              </div>
+              
+              {/* CẬP NHẬT: Hiển thị thanh tiến trình 1/5 */}
+              <div className="mb-6 text-sm font-semibold text-gray-500 bg-gray-100 rounded-full py-2">
+                 Tiến độ chặng này: Câu {game.currentQuestionIdx + 1} / {game.totalQuestionsInStage}
               </div>
 
               <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-8">
@@ -269,7 +304,7 @@ export default function GamePage() {
         {game.gameState === "WON" && (
           <div className="absolute inset-0 z-40 bg-green-900/90 flex flex-col items-center justify-center p-4 text-white">
             <h1 className="text-5xl font-bold mb-4">🎉 CHIẾN THẮNG 🎉</h1>
-            <p className="text-xl mb-8">Chúc mừng bạn đã hoàn thành hành trình!</p>
+            <p className="text-xl mb-8">Chúc mừng bạn đã hoàn thành hành trình 5 chặng!</p>
             <button onClick={game.resetGame} className="px-6 py-3 bg-white text-green-900 font-bold rounded-xl hover:bg-gray-200">Chơi lại</button>
           </div>
         )}

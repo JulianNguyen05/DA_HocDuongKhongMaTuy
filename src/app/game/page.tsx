@@ -15,94 +15,75 @@ const MAP_COORDINATES = [
   { top: "50%", left: "85%" }, // 7: KẾT THÚC 2 (Cổng đen - Thua)
 ];
 
+type ViewMode = "MAIN_MAP" | "STAGE_READY" | "MINI_GAME" | "QUESTION";
+
 export default function GamePage() {
   const game = useGameController();
 
-  // --- HỆ THỐNG LUỒNG MÀN HÌNH CHUẨN ---
-  // MAIN_MAP: Bản đồ lớn di chuyển
-  // STAGE_READY: Bảng thông báo "Sẵn sàng / Tiếp tục"
-  // MINI_GAME: Bản đồ nhỏ chạy ngang
-  // QUESTION: Bảng trả lời câu hỏi
-  const [viewMode, setViewMode] = useState<"MAIN_MAP" | "STAGE_READY" | "MINI_GAME" | "QUESTION">("MAIN_MAP");
-  
-  // Vị trí của nhân vật trên bản đồ lớn (độc lập với logic của controller để tạo hiệu ứng mượt)
+  const [viewMode, setViewMode] = useState<ViewMode>("MAIN_MAP");
   const [visualStageIdx, setVisualStageIdx] = useState(0); 
   const [hasStarted, setHasStarted] = useState(false);
 
-  // State Mini-game
+  // --- STATE MINI-GAME ---
   const [miniCharX, setMiniCharX] = useState(10);
   const [facingRight, setFacingRight] = useState(true);
   const [walkStep, setWalkStep] = useState(false);
 
-  // Ref theo dõi chặng để biết khi nào chuyển chặng
-  const prevStageRef = useRef(game.currentStageIdx);
   const miniCharXRef = useRef(miniCharX);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     miniCharXRef.current = miniCharX;
   }, [miniCharX]);
 
-  // =========================================================================
-  // 1. CHUYỂN CHẶNG TỰ ĐỘNG SAU KHI XONG 5 CÂU
-  // =========================================================================
   useEffect(() => {
-    // Nếu Controller báo đã sang chặng mới (Ví dụ xong 5 câu chặng 1 -> sang chặng 2)
-    if (hasStarted && game.currentStageIdx > prevStageRef.current && game.gameState === "PLAYING") {
-      
-      // Bước 1: Đóng bảng câu hỏi, hiển thị Bản đồ lớn
-      setViewMode("MAIN_MAP");
-      
-      // Bước 2: Di chuyển nhân vật tới chặng tiếp theo
-      setVisualStageIdx(game.currentStageIdx + 1);
-
-      // Bước 3: Chờ nhân vật chạy 2 giây, sau đó hiện bảng "Tiếp Tục"
-      const timer = setTimeout(() => {
-        setViewMode("STAGE_READY");
-      }, 2000);
-
-      prevStageRef.current = game.currentStageIdx;
-      return () => clearTimeout(timer);
-    }
-  }, [game.currentStageIdx, hasStarted, game.gameState]);
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   // =========================================================================
-  // 2. XỬ LÝ KHI THẮNG / THUA GAME
+  // XỬ LÝ KHI THẮNG / THUA
   // =========================================================================
   useEffect(() => {
     if (game.gameState === "WON") {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
       setViewMode("MAIN_MAP");
-      setVisualStageIdx(game.hearts >= 3 ? 6 : 7); // Bay về đích
+      setVisualStageIdx(game.hearts >= 3 ? 6 : 7);
     } else if (game.gameState === "LOST") {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
       setViewMode("MAIN_MAP");
     }
   }, [game.gameState, game.hearts]);
 
   // =========================================================================
-  // 3. ĐIỀU KHIỂN NHÂN VẬT INGAME
+  // ĐIỀU KHIỂN MINI GAME
   // =========================================================================
   useEffect(() => {
     if (viewMode !== "MINI_GAME") return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "a" || e.key === "A") {
+      const key = e.key.toLowerCase();
+      
+      if (key === "a" || key === "arrowleft") {
         setMiniCharX((prev) => Math.max(5, prev - 3));
         setFacingRight(false);
         setWalkStep((prev) => !prev);
       } 
-      else if (e.key === "d" || e.key === "D") {
+      else if (key === "d" || key === "arrowright") {
         setMiniCharX((prev) => Math.min(85, prev + 3));
         setFacingRight(true);
         setWalkStep((prev) => !prev);
       } 
-      // Nhấn E để mở rương -> Mở Bảng Câu Hỏi
-      else if ((e.key === "e" || e.key === "E") && miniCharXRef.current >= 75) {
+      else if (key === "e" && miniCharXRef.current >= 75) {
         setViewMode("QUESTION");
         setWalkStep(false);
       }
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
-      if (e.key.toLowerCase() === "a" || e.key.toLowerCase() === "d") {
+      const key = e.key.toLowerCase();
+      if (key === "a" || key === "d" || key === "arrowleft" || key === "arrowright") {
         setWalkStep(false);
       }
     };
@@ -115,17 +96,18 @@ export default function GamePage() {
     };
   }, [viewMode]);
 
-  // --- CÁC HÀM NÚT BẤM ---
   const handleStartGame = () => {
     setHasStarted(true);
-    setVisualStageIdx(1); // Chạy từ Bắt đầu sang Chặng 1
-    setTimeout(() => {
+    setVisualStageIdx(1); 
+    
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
       setViewMode("STAGE_READY");
     }, 2000);
   };
 
   const startMiniGame = () => {
-    setMiniCharX(10); // Reset nhân vật về mép trái
+    setMiniCharX(10);
     setFacingRight(true);
     setWalkStep(false);
     setViewMode("MINI_GAME");
@@ -135,147 +117,172 @@ export default function GamePage() {
     setHasStarted(false);
     setVisualStageIdx(0);
     setViewMode("MAIN_MAP");
-    prevStageRef.current = 0;
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     game.resetGame();
   };
 
-  // Tọa độ hiện tại để nhân vật lướt
+  // =========================================================================
+  // VŨ KHÍ 4.2: ĐỘC LẬP HÓA HOÀN TOÀN ĐỒ HỌA BƯỚC ĐI
+  // =========================================================================
+  const handleAnswerSubmit = (key: string) => {
+    const isLastQuestion = game.currentQuestionIdx === game.totalQuestionsInStage - 1;
+    
+    // BỎ QUA việc tính toán từ game.currentStageIdx
+    // Lấy thẳng "vị trí đồ họa hiện tại" làm mốc. Đang đứng ở đâu thì ghi nhận ở đó.
+    const currentMapIndex = visualStageIdx; 
+    const nextMapIndex = currentMapIndex + 1; // Auto tiến 1 bước
+    
+    game.handleAnswer(key);
+
+    if (isLastQuestion) {
+      // 1. Ép nhân vật đứng im ở vị trí HIỆN TẠI (trước khi kịp chuyển cảnh)
+      setViewMode("MAIN_MAP");
+      setVisualStageIdx(currentMapIndex); 
+      setMiniCharX(10); 
+      setFacingRight(true);
+      setWalkStep(false);
+
+      // 2. Chờ 1/10 giây để trình duyệt kịp Render, sau đó kích hoạt bước đi tới chặng tiếp theo
+      setTimeout(() => {
+        if (nextMapIndex <= 5) { // 5 là tọa độ chặng cuối cùng trước khi qua cổng
+          setVisualStageIdx(nextMapIndex); 
+        }
+      }, 100);
+
+      // 3. Đợi nhân vật đi tới nơi rồi mới mở bảng "Sẵn sàng"
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      
+      if (nextMapIndex <= 5) {
+        timeoutRef.current = setTimeout(() => {
+          setViewMode("STAGE_READY");
+        }, 2100); 
+      }
+    }
+  };
+
   const currentPos = MAP_COORDINATES[visualStageIdx] || MAP_COORDINATES[0];
 
   return (
     <div className="min-h-screen bg-sky-100 flex items-center justify-center p-4">
       <div className="relative w-full max-w-5xl h-[70vh] min-h-[500px] bg-blue-50 border-8 border-gray-700 rounded-xl overflow-hidden shadow-2xl">
         
-        {/* ===================================================================== */}
-        {/* KHÔNG GIAN 1: BẢN ĐỒ LỚN (Chỉ hiển thị khi ở map ngoài)               */}
-        {/* ===================================================================== */}
-        {(viewMode === "MAIN_MAP" || viewMode === "STAGE_READY") && (
-          <div className="absolute inset-0">
-            <img 
-              src="/images/game/game-map.jpg" 
-              alt="Bản đồ chính" 
-              className="w-full h-full object-cover block absolute inset-0 z-0"
-            />
-            
-            {/* Nhân vật di chuyển trên bản đồ lớn */}
-            <div
-              className="absolute z-10 transition-all ease-in-out"
-              style={{ 
-                top: currentPos.top, left: currentPos.left,
-                transitionDuration: "2000ms", transform: "translate(-50%, -50%)" 
-              }}
-            >
-              <div className={viewMode === "MAIN_MAP" && hasStarted ? "animate-bounce" : ""}>
-                <img 
-                  src="/images/game/walking.png" 
-                  alt="Nhân vật Map Lớn" 
-                  className="drop-shadow-2xl"
-                  style={{ height: "60px", width: "auto" }} 
-                />
-              </div>
+        {/* LỚP NỀN: BẢN ĐỒ LỚN */}
+        <div className="absolute inset-0 z-0 bg-blue-100">
+          <img 
+            src="/images/game/game-map.png" 
+            alt="Bản đồ chính" 
+            className="w-full h-full object-cover block absolute inset-0 z-0"
+          />
+          
+          <div
+            className="absolute z-10"
+            style={{ 
+              top: currentPos.top, 
+              left: currentPos.left,
+              transitionProperty: "top, left",
+              transitionDuration: "2000ms",
+              transitionTimingFunction: "ease-in-out", 
+              transform: "translate(-50%, -50%)" 
+            }}
+          >
+            <div className={viewMode === "MAIN_MAP" && hasStarted ? "animate-bounce" : ""}>
+              <img 
+                src="/images/game/walking.png" 
+                alt="Nhân vật Map Lớn" 
+                className="drop-shadow-2xl h-[60px] w-auto"
+              />
             </div>
-
-            {/* Nút KHỞI HÀNH khi mới vào */}
-            {!hasStarted && (
-              <div className="absolute inset-0 z-20 bg-black/40 flex items-center justify-center">
-                <button 
-                  onClick={handleStartGame}
-                  className="px-8 py-4 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-black text-2xl rounded-full shadow-xl transform hover:scale-110 transition-transform border-4 border-yellow-600 animate-pulse"
-                >
-                  🚀 KHỞI HÀNH
-                </button>
-              </div>
-            )}
-
-            {/* Bảng SẴN SÀNG / TIẾP TỤC */}
-            {viewMode === "STAGE_READY" && (
-              <div className="absolute inset-0 z-20 bg-black/50 flex flex-col items-center justify-center p-4 animate-fade-in">
-                 <div className="bg-white p-8 rounded-2xl shadow-2xl text-center transform hover:scale-105 transition-all">
-                    <h2 className="text-3xl font-bold text-blue-800 mb-2">
-                      {game.currentStage?.stage || "Chặng Bí Ẩn"}
-                    </h2>
-                    <p className="text-gray-600 mb-6">Sẵn sàng khám phá chưa?</p>
-                    <button 
-                      onClick={startMiniGame}
-                      className="px-8 py-3 bg-green-500 hover:bg-green-600 text-white font-bold text-xl rounded-full shadow-lg"
-                    >
-                      {game.currentStageIdx === 0 ? "▶ BẮT ĐẦU CHƠI" : "▶ TIẾP TỤC"}
-                    </button>
-                 </div>
-              </div>
-            )}
           </div>
-        )}
 
-        {/* ===================================================================== */}
-        {/* KHÔNG GIAN 2: BÊN TRONG CHẶNG (Ingame map + Bảng Câu Hỏi)             */}
-        {/* ===================================================================== */}
+          {!hasStarted && viewMode === "MAIN_MAP" && (
+            <div className="absolute inset-0 z-20 bg-black/40 flex items-center justify-center">
+              <button 
+                onClick={handleStartGame}
+                className="px-8 py-4 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-black text-2xl rounded-full shadow-xl transform hover:scale-110 transition-transform border-4 border-yellow-600 animate-pulse"
+              >
+                🚀 KHỞI HÀNH
+              </button>
+            </div>
+          )}
+
+          {viewMode === "STAGE_READY" && (
+            <div className="absolute inset-0 z-20 bg-black/50 flex flex-col items-center justify-center p-4 animate-fade-in">
+                <div className="bg-white p-8 rounded-2xl shadow-2xl text-center transform hover:scale-105 transition-all">
+                  <h2 className="text-3xl font-bold text-blue-800 mb-2">
+                    {game.currentStage?.stage || "Chặng Bí Ẩn"}
+                  </h2>
+                  <p className="text-gray-600 mb-6">Sẵn sàng khám phá chưa?</p>
+                  <button 
+                    onClick={startMiniGame}
+                    className="px-8 py-3 bg-green-500 hover:bg-green-600 text-white font-bold text-xl rounded-full shadow-lg transition-colors"
+                  >
+                    {game.currentStageIdx === 0 ? "▶ BẮT ĐẦU CHƠI" : "▶ TIẾP TỤC"}
+                  </button>
+                </div>
+            </div>
+          )}
+        </div>
+
+        {/* LỚP PHỦ: BÊN TRONG CHẶNG VÀ CÂU HỎI */}
         {(viewMode === "MINI_GAME" || viewMode === "QUESTION") && (
-          <div className="absolute inset-0 z-20 bg-gray-900">
-            {/* Background 2D luon luon hien thi khi o trong chang */}
+          <div className="absolute inset-0 z-20 bg-gray-900 animate-fade-in">
             <img 
               src="/images/game/ingame-map.jpg" 
               alt="Bản đồ Ingame" 
-              className={`w-full h-full object-cover ${viewMode === "QUESTION" ? "opacity-50 blur-sm" : ""}`}
+              className={`w-full h-full object-cover transition-all duration-300 ${viewMode === "QUESTION" ? "opacity-50 blur-sm" : ""}`}
             />
 
-            {/* UI hiển thị điều khiển */}
             {viewMode === "MINI_GAME" && (
               <div className="absolute top-4 left-4 bg-black/60 text-white px-4 py-2 rounded-lg font-bold">
-                ⌨️ Dùng [A] và [D] để di chuyển
+                ⌨️ Dùng [A/D] hoặc [←/→] để di chuyển
               </div>
             )}
             
             <div className="absolute top-4 right-4 bg-blue-600/90 text-white px-4 py-2 rounded-lg font-bold shadow-lg">
-              Câu hỏi hiện tại: {game.currentQuestionIdx + 1} / {game.totalQuestionsInStage}
+              Câu hỏi: {game.currentQuestionIdx + 1} / {game.totalQuestionsInStage}
             </div>
 
-            {/* Nhân vật di chuyển ngang */}
             <div
-              className="absolute transition-all duration-100 ease-linear"
-              style={{ bottom: "36%", left: `${miniCharX}%`, width: "80px", height: "100px" }}
+              className="absolute transition-all duration-100 ease-linear w-[80px] h-[100px]"
+              style={{ bottom: "36%", left: `${miniCharX}%` }}
             >
               <img 
-                src={walkStep ? "/images/game/walking.png" : "/images/game/walking.png"}
+                src={walkStep ? "/images/game/walking.png" : "/images/game/5hearts.png"}
                 alt="Nhân vật Mini game" 
-                className="absolute bottom-0 left-1/2 drop-shadow-xl max-w-none"
+                className="absolute bottom-0 left-1/2 drop-shadow-xl max-w-none h-full w-auto"
                 style={{ 
-                  height: "100%", width: "auto",  
                   transform: facingRight ? "translateX(-50%) scaleX(1)" : "translateX(-50%) scaleX(-1)", 
                   transformOrigin: "bottom center",
                 }}
               />
             </div>
 
-            {/* Rương kho báu */}
             <div className="absolute transform -translate-x-1/2 flex justify-center items-end" style={{ bottom: "36%", left: "85%" }}>
               <div className="animate-bounce">
                 <span className="text-6xl drop-shadow-xl">🎁</span> 
               </div>
             </div>
 
-            {/* Tooltip nhấn E */}
             {miniCharX >= 75 && viewMode === "MINI_GAME" && (
               <div className="absolute transform -translate-x-1/2 bg-yellow-400 text-yellow-900 px-4 py-2 rounded-xl font-bold animate-pulse shadow-lg whitespace-nowrap border-2 border-yellow-600" style={{ bottom: "60%", left: "85%" }}>
-                Nhấn [E] để nhặt!
+                Nhấn [E] để mở rương!
               </div>
             )}
 
-            {/* BẢNG CÂU HỎI (Nổi bật đè lên Mini Game) */}
             {viewMode === "QUESTION" && game.currentQuestion && (
-              <div className="absolute inset-0 z-30 bg-black/40 flex flex-col items-center justify-center p-4 animate-fade-in overflow-y-auto">
-                <div className="bg-white p-6 md:p-8 rounded-2xl shadow-2xl max-w-lg w-full text-center my-auto">
+              <div className="absolute inset-0 z-30 bg-black/40 flex flex-col items-center justify-center p-4 overflow-y-auto">
+                <div className="bg-white p-6 md:p-8 rounded-2xl shadow-2xl max-w-lg w-full text-center my-auto animate-fade-in">
                   <div className="flex justify-between items-center mb-6 border-b pb-3">
                     <span className="text-xl font-bold text-blue-800">
                       {game.currentStage?.stage || "Chặng Bí Ẩn"}
                     </span>
-                    <span className="text-xl font-bold text-red-500 bg-red-100 px-3 py-1 rounded-full">
+                    <span className="text-xl font-bold text-red-500 bg-red-100 px-3 py-1 rounded-full shadow-sm">
                       ❤️ x {game.hearts}
                     </span>
                   </div>
                   
                   <div className="mb-6 text-sm font-semibold text-gray-500 bg-gray-100 rounded-full py-2">
-                     Tiến độ chặng này: Câu {game.currentQuestionIdx + 1} / {game.totalQuestionsInStage}
+                     Tiến độ chặng: Câu {game.currentQuestionIdx + 1} / {game.totalQuestionsInStage}
                   </div>
 
                   <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-8">
@@ -286,7 +293,7 @@ export default function GamePage() {
                     {Object.entries(game.currentQuestion.options).map(([key, value]) => (
                       <button
                         key={key}
-                        onClick={() => game.handleAnswer(key)}
+                        onClick={() => handleAnswerSubmit(key)}
                         className="p-4 bg-gray-50 hover:bg-blue-600 hover:text-white text-gray-800 font-semibold rounded-xl transition-all border-2 border-gray-200 hover:border-blue-600 shadow-sm"
                       >
                         <span className="font-bold mr-2">{key}.</span> {value as React.ReactNode}
@@ -299,29 +306,26 @@ export default function GamePage() {
           </div>
         )}
 
-        {/* ===================================================================== */}
-        {/* MÀN HÌNH GAME OVER / CHIẾN THẮNG                                      */}
-        {/* ===================================================================== */}
-        
+        {/* LỚP PHỦ GAME OVER / CHIẾN THẮNG */}
         {game.gameState === "LOST" && viewMode === "MAIN_MAP" && (
           <div className="absolute inset-0 z-40 bg-gray-900/95 flex flex-col items-center justify-center p-4 text-white animate-fade-in">
-            <h1 className="text-5xl font-bold mb-4 text-red-500">KẾT THÚC</h1>
+            <h1 className="text-5xl font-bold mb-4 text-red-500 drop-shadow-lg">KẾT THÚC</h1>
             <p className="text-xl mb-2">Bạn đã bị bóng tối nuốt chửng vì hết tim!</p>
             <p className="text-gray-400 mb-8">Cổng Bóng Tối đã khép lại...</p>
-            <button onClick={handleRestartGame} className="px-6 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700">Chơi lại từ đầu</button>
+            <button onClick={handleRestartGame} className="px-6 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition-colors shadow-lg">Chơi lại từ đầu</button>
           </div>
         )}
 
         {game.gameState === "WON" && viewMode === "MAIN_MAP" && (
           <div className="absolute inset-0 z-40 bg-blue-900/95 flex flex-col items-center justify-center p-4 text-white animate-fade-in">
-            <h1 className="text-5xl font-bold mb-4 text-yellow-400">
-              {game.hearts >= 3 ? "🏆 ĐẠI CHIẾN THẮNG 🏆" : "🎉 HOÀN THÀNH 🎉"}
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-yellow-400 drop-shadow-lg text-center">
+               {game.hearts >= 3 ? "🏆 ĐẠI CHIẾN THẮNG 🏆" : "🎉 HOÀN THÀNH 🎉"}
             </h1>
             <p className="text-xl mb-2">Bạn đã về đích với {game.hearts} trái tim!</p>
-            <p className="text-lg mb-8 opacity-80">
+            <p className="text-lg mb-8 opacity-80 text-center max-w-md">
               {game.hearts >= 3 ? "Tuyệt vời! Bạn đã xứng đáng mở được Cổng Thiên Đường!" : "Bạn đã đi qua Cổng Bóng Tối. Lần sau hãy cố gắng giữ nhiều tim hơn nhé!"}
             </p>
-            <button onClick={handleRestartGame} className="px-6 py-3 bg-white text-blue-900 font-bold rounded-xl hover:bg-gray-200">Chơi lại</button>
+            <button onClick={handleRestartGame} className="px-6 py-3 bg-white text-blue-900 font-bold rounded-xl hover:bg-gray-200 transition-colors shadow-lg">Chơi lại</button>
           </div>
         )}
 

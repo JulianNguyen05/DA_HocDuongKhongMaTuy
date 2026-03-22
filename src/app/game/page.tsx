@@ -306,26 +306,61 @@ export default function GamePage() {
           </div>
         )}
 
-        {/* LỚP PHỦ GAME OVER / CHIẾN THẮNG */}
+        {/* LỚP PHỦ GAME OVER (THUA) */}
         {game.gameState === "LOST" && viewMode === "MAIN_MAP" && (
-          <div className="absolute inset-0 z-40 bg-gray-900/95 flex flex-col items-center justify-center p-4 text-white animate-fade-in">
-            <h1 className="text-5xl font-bold mb-4 text-red-500 drop-shadow-lg">KẾT THÚC</h1>
-            <p className="text-xl mb-2">Bạn đã bị bóng tối nuốt chửng vì hết tim!</p>
-            <p className="text-gray-400 mb-8">Cổng Bóng Tối đã khép lại...</p>
-            <button onClick={handleRestartGame} className="px-6 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition-colors shadow-lg">Chơi lại từ đầu</button>
+          <div className="absolute inset-0 z-50 bg-black flex flex-col items-center justify-end p-4 animate-fade-in overflow-hidden">
+            {/* Video Background */}
+            <video 
+              src="/video/bad-ending.mp4" 
+              autoPlay 
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-80 z-0"
+            />
+            
+            {/* Nội dung đè lên trên Video */}
+            <div className="relative z-10 flex flex-col items-center mb-12 text-center">
+              <h1 className="text-5xl font-bold mb-2 text-red-500 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
+                KẾT THÚC
+              </h1>
+              <p className="text-white text-xl mb-6 drop-shadow-md font-semibold">
+                Bạn đã bị bóng tối nuốt chửng...
+              </p>
+              <button 
+                onClick={handleRestartGame} 
+                className="px-8 py-3 bg-red-600 text-white font-bold text-lg rounded-full hover:bg-red-700 transition-all shadow-[0_0_20px_rgba(220,38,38,0.6)] hover:scale-105"
+              >
+                🔄 Chơi lại từ đầu
+              </button>
+            </div>
           </div>
         )}
 
+        {/* LỚP PHỦ CHIẾN THẮNG (THẮNG) */}
         {game.gameState === "WON" && viewMode === "MAIN_MAP" && (
-          <div className="absolute inset-0 z-40 bg-blue-900/95 flex flex-col items-center justify-center p-4 text-white animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-yellow-400 drop-shadow-lg text-center">
-               {game.hearts >= 3 ? "🏆 ĐẠI CHIẾN THẮNG 🏆" : "🎉 HOÀN THÀNH 🎉"}
-            </h1>
-            <p className="text-xl mb-2">Bạn đã về đích với {game.hearts} trái tim!</p>
-            <p className="text-lg mb-8 opacity-80 text-center max-w-md">
-              {game.hearts >= 3 ? "Tuyệt vời! Bạn đã xứng đáng mở được Cổng Thiên Đường!" : "Bạn đã đi qua Cổng Bóng Tối. Lần sau hãy cố gắng giữ nhiều tim hơn nhé!"}
-            </p>
-            <button onClick={handleRestartGame} className="px-6 py-3 bg-white text-blue-900 font-bold rounded-xl hover:bg-gray-200 transition-colors shadow-lg">Chơi lại</button>
+          <div className="absolute inset-0 z-50 bg-black flex flex-col items-center justify-end p-4 animate-fade-in overflow-hidden">
+            {/* Video Background */}
+            <video 
+              src="/video/good-ending.mp4" 
+              autoPlay 
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-90 z-0"
+            />
+
+            {/* Nội dung đè lên trên Video */}
+            <div className="relative z-10 flex flex-col items-center mb-12 text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-2 text-yellow-400 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
+                {game.hearts >= 3 ? "🏆 ĐẠI CHIẾN THẮNG 🏆" : "🎉 HOÀN THÀNH 🎉"}
+              </h1>
+              <p className="text-white text-xl mb-6 drop-shadow-md font-semibold">
+                Bạn đã về đích với {game.hearts} trái tim!
+              </p>
+              <button 
+                onClick={handleRestartGame} 
+                className="px-8 py-3 bg-white text-blue-900 font-bold text-lg rounded-full hover:bg-gray-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.6)] hover:scale-105"
+              >
+                🔄 Chơi lại
+              </button>
+            </div>
           </div>
         )}
 

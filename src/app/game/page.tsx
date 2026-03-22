@@ -5,16 +5,34 @@ import { useGameController } from "../../controllers/gameController";
 
 // --- DANH SÁCH TỌA ĐỘ CÁC CHẶNG (BẢN ĐỒ LỚN) ---
 const MAP_COORDINATES = [
-  { top: "65%", left: "18%" }, // 0: BẮT ĐẦU
+  { top: "65%", left: "11%" }, // 0: BẮT ĐẦU
   { top: "54%", left: "24%" }, // 1: CHẶNG 1
-  { top: "28%", left: "26%" }, // 2: CHẶNG 2
+  { top: "20%", left: "31%" }, // 2: CHẶNG 2
   { top: "25%", left: "44%" }, // 3: CHẶNG 3
-  { top: "42%", left: "55%" }, // 4: CHẶNG 4
+  { top: "57%", left: "50%" }, // 4: CHẶNG 4
   { top: "25%", left: "73%" }, // 5: CHẶNG 5
-  { top: "18%", left: "85%" }, // 6: KẾT THÚC 1 (Cổng trắng - Thắng)
-  { top: "50%", left: "85%" }, // 7: KẾT THÚC 2 (Cổng đen - Thua)
+  // { top: "18%", left: "85%" }, // 6: KẾT THÚC 1 (Cổng trắng - Thắng)
+  // { top: "50%", left: "85%" }, // 7: KẾT THÚC 2 (Cổng đen - Thua)
 ];
 
+const STAGE_PATHS: Record<number, { left: string, top: string }[]> = {
+  1: [{ left: "11%", top: "65%" }, { left: "20%", top: "63%" }],
+  2: [{ left: "20%", top: "32%" }, { left: "20%", top: "31%" }],
+  
+  // NẮN LẠI ĐƯỜNG TỪ CHẶNG 2 SANG CHẶNG 3
+  3: [
+    { left: "26%", top: "28%" }, // 1. Từ Chặng 2 (26%), nhích qua phải 1 xíu (đến 30%)
+    { left: "29%", top: "29%" }, // 2. Đi thẳng tắp xuống đường ngang
+    { left: "29%", top: "51%" }, // 3. Đi ngang qua phải 1 xíu (đến 47%) để khớp với đường lên
+    { left: "41%", top: "51%" },  // 4. Đi thẳng tắp lên vị trí Chặng 3
+    { left: "41%", top: "29%" },  //5.đi lên
+  ],
+  
+  4: [{ left: "52%", top: "29%" }, { left: "52%", top: "50%" },{ left: "57%", top: "50%" }],
+  5: [{ left: "66%", top: "51%" }, { left: "66%", top: "25%" }, { left: "73%", top: "25%" }],
+  // 6: [{ left: "80%", top: "25%" }, { left: "85%", top: "18%" }],
+  // 7: [{ left: "85%", top: "25%" }, { left: "85%", top: "50%" }],
+};
 type ViewMode = "MAIN_MAP" | "STAGE_READY" | "MINI_GAME" | "QUESTION";
 
 export default function GamePage() {

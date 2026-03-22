@@ -127,29 +127,24 @@ export default function GamePage() {
   const handleAnswerSubmit = (key: string) => {
     const isLastQuestion = game.currentQuestionIdx === game.totalQuestionsInStage - 1;
     
-    // BỎ QUA việc tính toán từ game.currentStageIdx
-    // Lấy thẳng "vị trí đồ họa hiện tại" làm mốc. Đang đứng ở đâu thì ghi nhận ở đó.
     const currentMapIndex = visualStageIdx; 
-    const nextMapIndex = currentMapIndex + 1; // Auto tiến 1 bước
+    const nextMapIndex = currentMapIndex + 1; 
     
     game.handleAnswer(key);
 
     if (isLastQuestion) {
-      // 1. Ép nhân vật đứng im ở vị trí HIỆN TẠI (trước khi kịp chuyển cảnh)
       setViewMode("MAIN_MAP");
       setVisualStageIdx(currentMapIndex); 
       setMiniCharX(10); 
       setFacingRight(true);
       setWalkStep(false);
 
-      // 2. Chờ 1/10 giây để trình duyệt kịp Render, sau đó kích hoạt bước đi tới chặng tiếp theo
       setTimeout(() => {
-        if (nextMapIndex <= 5) { // 5 là tọa độ chặng cuối cùng trước khi qua cổng
+        if (nextMapIndex <= 5) { 
           setVisualStageIdx(nextMapIndex); 
         }
       }, 100);
 
-      // 3. Đợi nhân vật đi tới nơi rồi mới mở bảng "Sẵn sàng"
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       
       if (nextMapIndex <= 5) {
@@ -160,11 +155,99 @@ export default function GamePage() {
     }
   };
 
+  // =========================================================================
+  // HIỆU ỨNG RUNG LẮC (SCREEN SHAKE) TĂNG DẦN VÀ NHIỄU HẠT (NOISE)
+  // =========================================================================
+  const getShakeClass = () => {
+    // Không rung nếu chưa bắt đầu, hoặc game đã có kết quả
+    if (!hasStarted || game.gameState === "WON" || game.gameState === "LOST") return "";
+    
+    // Rung theo từng cấp độ máu
+    if (game.hearts === 4) return "animate-shake-1"; // Rung rất nhẹ
+    if (game.hearts === 3) return "animate-shake-2"; // Rung vừa
+    if (game.hearts === 2) return "animate-shake-3"; // Rung mạnh
+    
+    // CÒN 1 TIM: Rung dữ dội + báo đỏ + NHIỄU SÓNG
+    if (game.hearts <= 1) return "animate-shake-4 animate-noise";  
+    
+    return "";
+  };
+
   const currentPos = MAP_COORDINATES[visualStageIdx] || MAP_COORDINATES[0];
 
   return (
     <div className="min-h-screen bg-sky-100 flex items-center justify-center p-4">
-      <div className="relative w-full max-w-5xl h-[70vh] min-h-[500px] bg-blue-50 border-8 border-gray-700 rounded-xl overflow-hidden shadow-2xl">
+      
+      {/* KHAI BÁO CSS RUNG LẮC VÀ NHIỄU */}
+      <style>{`
+        /* Level 1 (4 Tim): Rung siêu nhẹ, thoang thoảng */
+        @keyframes shakeLevel1 {
+          0% { transform: translate(0.5px, 0.5px) rotate(0deg); }
+          25% { transform: translate(-0.5px, -1px) rotate(-0.2deg); }
+          50% { transform: translate(-1px, 0px) rotate(0.2deg); }
+          75% { transform: translate(1px, 0.5px) rotate(0deg); }
+          100% { transform: translate(0.5px, -0.5px) rotate(-0.2deg); }
+        }
+        /* Level 2 (3 Tim): Rung rõ hơn một chút */
+        @keyframes shakeLevel2 {
+          0% { transform: translate(1px, 1px) rotate(0deg); }
+          25% { transform: translate(-1px, -2px) rotate(-0.5deg); }
+          50% { transform: translate(-2px, 0px) rotate(0.5deg); }
+          75% { transform: translate(2px, 1px) rotate(0deg); }
+          100% { transform: translate(1px, -1px) rotate(-0.5deg); }
+        }
+        /* Level 3 (2 Tim): Bắt đầu giật mạnh */
+        @keyframes shakeLevel3 {
+          0% { transform: translate(2px, 2px) rotate(0deg); }
+          20% { transform: translate(-2px, -3px) rotate(-1deg); }
+          40% { transform: translate(-3px, 1px) rotate(1deg); }
+          60% { transform: translate(3px, 2px) rotate(0deg); }
+          80% { transform: translate(1px, -2px) rotate(1deg); }
+          100% { transform: translate(-2px, 3px) rotate(-1deg); }
+        }
+        /* Level 4 (1 Tim): Giật bần bật, nhịp nhanh */
+        @keyframes shakeLevel4 {
+          0% { transform: translate(4px, 4px) rotate(0deg); }
+          20% { transform: translate(-4px, -5px) rotate(-2deg); }
+          40% { transform: translate(-5px, 2px) rotate(2deg); }
+          60% { transform: translate(5px, 4px) rotate(0deg); }
+          80% { transform: translate(2px, -4px) rotate(2deg); }
+          100% { transform: translate(-4px, 5px) rotate(-2deg); }
+        }
+
+        .animate-shake-1 { animation: shakeLevel1 0.5s infinite; }
+        .animate-shake-2 { animation: shakeLevel2 0.4s infinite; }
+        .animate-shake-3 { animation: shakeLevel3 0.25s infinite; }
+        .animate-shake-4 { 
+          animation: shakeLevel4 0.15s infinite; 
+          box-shadow: 0 0 35px rgba(220, 38, 38, 0.8); /* Viền đỏ rực rỡ báo động */
+        }
+
+        /* --- HIỆU ỨNG NHIỄU HẠT TĨNH ĐIỆN --- */
+        .animate-noise::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          z-index: 40; /* Đặt dưới các popup game over, nhưng trên mọi thứ khác */
+          pointer-events: none; /* Không cản trở click chuột */
+          opacity: 0.25; /* Độ mờ của nhiễu (tăng nhẹ để dễ nhìn hơn) */
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+          animation: noiseJitter 0.1s infinite; /* Nháy siêu nhanh */
+          mix-blend-mode: overlay; /* Hòa trộn vào màu nền giúp chân thực hơn */
+        }
+
+        /* Làm cho lớp nhiễu giật giật đổi vị trí liên tục */
+        @keyframes noiseJitter {
+          0% { transform: translate(0, 0); }
+          25% { transform: translate(-1%, 1%); }
+          50% { transform: translate(1%, -1%); }
+          75% { transform: translate(-2%, -2%); }
+          100% { transform: translate(1%, 2%); }
+        }
+      `}</style>
+
+      {/* ÁP DỤNG getShakeClass() VÀO KHUNG NÀY */}
+      <div className={`relative w-full max-w-5xl h-[70vh] min-h-[500px] bg-blue-50 border-8 border-gray-700 rounded-xl overflow-hidden shadow-2xl transition-shadow ${getShakeClass()}`}>
         
         {/* LỚP NỀN: BẢN ĐỒ LỚN */}
         <div className="absolute inset-0 z-0 bg-blue-100">
@@ -319,12 +402,6 @@ export default function GamePage() {
             
             {/* Nội dung đè lên trên Video */}
             <div className="relative z-10 flex flex-col items-center mb-12 text-center">
-              <h1 className="text-5xl font-bold mb-2 text-red-500 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
-                KẾT THÚC
-              </h1>
-              <p className="text-white text-xl mb-6 drop-shadow-md font-semibold">
-                Bạn đã bị bóng tối nuốt chửng...
-              </p>
               <button 
                 onClick={handleRestartGame} 
                 className="px-8 py-3 bg-red-600 text-white font-bold text-lg rounded-full hover:bg-red-700 transition-all shadow-[0_0_20px_rgba(220,38,38,0.6)] hover:scale-105"
@@ -348,12 +425,6 @@ export default function GamePage() {
 
             {/* Nội dung đè lên trên Video */}
             <div className="relative z-10 flex flex-col items-center mb-12 text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-2 text-yellow-400 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
-                {game.hearts >= 3 ? "🏆 ĐẠI CHIẾN THẮNG 🏆" : "🎉 HOÀN THÀNH 🎉"}
-              </h1>
-              <p className="text-white text-xl mb-6 drop-shadow-md font-semibold">
-                Bạn đã về đích với {game.hearts} trái tim!
-              </p>
               <button 
                 onClick={handleRestartGame} 
                 className="px-8 py-3 bg-white text-blue-900 font-bold text-lg rounded-full hover:bg-gray-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.6)] hover:scale-105"

@@ -17,8 +17,8 @@ services:
       - node_modules_vol:/app/node_modules
       - next_vol:/app/.next
     
-    # ĐÂY LÀ CHÌA KHÓA: Generate client -> Đẩy schema lên DB (tạo bảng) -> Chạy Dev
-    command: sh -c "npx prisma generate && npx prisma db push && npm run dev"
+# ĐÂY LÀ CHÌA KHÓA: Generate client -> Đẩy schema lên DB (tạo bảng) -> Nạp dữ liệu (Seed) -> Chạy Dev
+    command: npm run docker:dev
              
     depends_on:
       db:

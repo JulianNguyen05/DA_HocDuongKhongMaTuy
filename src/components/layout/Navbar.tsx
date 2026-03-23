@@ -9,8 +9,8 @@ const menu = [
   { name: "Ngã Rẽ Cuộc Đời", path: "/game" },
   { name: "Kiến Thức", path: "/flashcard" },
   { name: "Pháp Luật", path: "/tree" },
-  { name: "Bản Đồ", path: "/map" },
-  { name: "Điểm Tin", path: "/news" },
+  // { name: "Bản Đồ", path: "/map" },
+  // { name: "Điểm Tin", path: "/news" },
 ];
 
 export default function Navbar() {

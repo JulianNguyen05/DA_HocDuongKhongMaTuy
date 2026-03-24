@@ -39,6 +39,7 @@ services:
       - "3000:3000"
     environment:
       - DATABASE_URL=postgresql://admin:secretpassword@db:5432/khongmatuy_db
+      - HOSTNAME=0.0.0.0
     depends_on:
       setup-db:
         condition: service_completed_successfully

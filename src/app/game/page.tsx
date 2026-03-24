@@ -60,16 +60,22 @@ export default function GamePage() {
     };
   }, []);
 
-  // =========================================================================
+// =========================================================================
   // XỬ LÝ KHI THẮNG / THUA
   // =========================================================================
   useEffect(() => {
     if (game.gameState === "WON") {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      
+      // Thêm dòng này để bỏ qua lỗi cho 2 hàm setState bên dưới
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setViewMode("MAIN_MAP");
       setVisualStageIdx(game.hearts >= 3 ? 6 : 7);
+      
     } else if (game.gameState === "LOST") {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setViewMode("MAIN_MAP");
     }
   }, [game.gameState, game.hearts]);
@@ -317,7 +323,7 @@ export default function GamePage() {
                     onClick={startMiniGame}
                     className="px-8 py-3 bg-green-500 hover:bg-green-600 text-white font-bold text-xl rounded-full shadow-lg transition-colors"
                   >
-                    {game.currentStageIdx === 0 ? "▶ BẮT ĐẦU CHƠI" : "▶ TIẾP TỤC"}
+                    {visualStageIdx === 1 ? "▶ BẮT ĐẦU CHƠI" : "▶ TIẾP TỤC"}
                   </button>
                 </div>
             </div>

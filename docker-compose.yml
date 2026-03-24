@@ -1,26 +1,5 @@
 services:
-  web:
-    build: 
-      context: .
-      # Đã xóa 'target: deps' để Docker chạy trọn vẹn đến stage cuối cùng (runner) trong Dockerfile
-    
-    ports:
-      - "3000:3000"
-    
-    environment:
-      # Không cần khai báo NODE_ENV vì trong Dockerfile đã set sẵn là production
-      - DATABASE_URL=postgresql://admin:secretpassword@db:5432/khongmatuy_db
-    
-    # Đã XÓA TOÀN BỘ volumes: Không mount source code từ ngoài vào nữa, 
-    # code đã được "đóng băng" bên trong image khi build.
-    
-    # Đã XÓA command: Không chạy npm run docker:dev nữa. 
-    # Container sẽ tự động dùng lệnh CMD ["node", "server.js"] trong Dockerfile.
-             
-    depends_on:
-      db:
-        condition: service_healthy
-
+  # 1. Container DB khởi động đầu tiên
   db:
     image: postgres:15
     restart: always
@@ -38,6 +17,31 @@ services:
       timeout: 5s
       retries: 5
 
+  # 2. Container "Mồi" - Chạy 1 lần rồi tắt
+  setup-db:
+    build: 
+      context: .
+      target: builder # Sử dụng stage 'builder' trong Dockerfile vì nó có chứa sẵn Prisma và Source code
+    environment:
+      - DATABASE_URL=postgresql://admin:secretpassword@db:5432/khongmatuy_db
+    # Lệnh này sẽ đẩy cấu trúc bảng và nạp dữ liệu mẫu
+    command: sh -c "npx prisma db push && npx prisma db seed"
+    depends_on:
+      db:
+        condition: service_healthy # Chỉ bắt đầu khi DB đã khỏe mạnh
+
+  # 3. Container Web chính (Siêu nhẹ)
+  web:
+    build: 
+      context: .
+      # Không cần target, nó sẽ đi thẳng đến stage 'runner' cuối cùng
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://admin:secretpassword@db:5432/khongmatuy_db
+    depends_on:
+      setup-db:
+        condition: service_completed_successfully # BẮT BUỘC đợi container 'setup-db' hoàn thành công việc và tắt đi
+
 volumes:
   postgres_data:
-# Đã xóa node_modules_vol và next_vol vì không còn dùng tới ở Production

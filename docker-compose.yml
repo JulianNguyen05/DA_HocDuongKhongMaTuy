@@ -2,27 +2,24 @@ services:
   web:
     build: 
       context: .
-      target: deps # Chỉ lấy stage cài thư viện, source code sẽ được map từ máy thật vào
+      # Đã xóa 'target: deps' để Docker chạy trọn vẹn đến stage cuối cùng (runner) trong Dockerfile
+    
     ports:
       - "3000:3000"
     
     environment:
-      - NODE_ENV=development
-      - WATCHPACK_POLLING=true
-      - CHOKIDAR_USEPOLLING=true
+      # Không cần khai báo NODE_ENV vì trong Dockerfile đã set sẵn là production
       - DATABASE_URL=postgresql://admin:secretpassword@db:5432/khongmatuy_db
     
-    volumes:
-      - .:/app
-      - node_modules_vol:/app/node_modules
-      - next_vol:/app/.next
+    # Đã XÓA TOÀN BỘ volumes: Không mount source code từ ngoài vào nữa, 
+    # code đã được "đóng băng" bên trong image khi build.
     
-# ĐÂY LÀ CHÌA KHÓA: Generate client -> Đẩy schema lên DB (tạo bảng) -> Nạp dữ liệu (Seed) -> Chạy Dev
-    command: npm run docker:dev
+    # Đã XÓA command: Không chạy npm run docker:dev nữa. 
+    # Container sẽ tự động dùng lệnh CMD ["node", "server.js"] trong Dockerfile.
              
     depends_on:
       db:
-        condition: service_healthy # Bắt buộc đợi DB "khỏe mạnh" thì web mới chạy
+        condition: service_healthy
 
   db:
     image: postgres:15
@@ -35,7 +32,6 @@ services:
       POSTGRES_DB: khongmatuy_db
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    # Kiểm tra xem Postgres đã thực sự sẵn sàng nhận kết nối chưa
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U admin -d khongmatuy_db"]
       interval: 5s
@@ -44,5 +40,4 @@ services:
 
 volumes:
   postgres_data:
-  node_modules_vol:
-  next_vol:
+# Đã xóa node_modules_vol và next_vol vì không còn dùng tới ở Production

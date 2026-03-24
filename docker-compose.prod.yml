@@ -1,16 +1,5 @@
 services:
-  web:
-    build:
-      context: .
-      target: runner
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=production
-      - DATABASE_URL=postgresql://admin:secretpassword@db:5432/khongmatuy_db
-    depends_on:
-      - db
-
+  # 🗄️ Database
   db:
     image: postgres:15
     restart: always
@@ -20,6 +9,26 @@ services:
       POSTGRES_DB: khongmatuy_db
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    command: postgres -c max_connections=20
+    cpus: 0.5
+    mem_limit: 512m
+
+  # 🌐 Web (Next.js production)
+  web:
+    build:
+      context: .
+      target: runner
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://admin:secretpassword@db:5432/khongmatuy_db
+      - NODE_OPTIONS=--max-old-space-size=512
+    depends_on:
+      - db
+    cpus: 0.5
+    mem_limit: 512m
 
 volumes:
   postgres_data:

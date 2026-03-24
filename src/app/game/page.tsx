@@ -11,28 +11,22 @@ const MAP_COORDINATES = [
   { top: "25%", left: "44%" }, // 3: CHẶNG 3
   { top: "57%", left: "50%" }, // 4: CHẶNG 4
   { top: "25%", left: "73%" }, // 5: CHẶNG 5
-  // { top: "18%", left: "85%" }, // 6: KẾT THÚC 1 (Cổng trắng - Thắng)
-  // { top: "50%", left: "85%" }, // 7: KẾT THÚC 2 (Cổng đen - Thua)
 ];
 
 const STAGE_PATHS: Record<number, { left: string, top: string }[]> = {
   1: [{ left: "11%", top: "65%" }, { left: "20%", top: "63%" }],
   2: [{ left: "20%", top: "32%" }, { left: "20%", top: "31%" }],
-  
-  // NẮN LẠI ĐƯỜNG TỪ CHẶNG 2 SANG CHẶNG 3
   3: [
-    { left: "26%", top: "28%" }, // 1. Từ Chặng 2 (26%), nhích qua phải 1 xíu (đến 30%)
-    { left: "29%", top: "29%" }, // 2. Đi thẳng tắp xuống đường ngang
-    { left: "29%", top: "51%" }, // 3. Đi ngang qua phải 1 xíu (đến 47%) để khớp với đường lên
-    { left: "41%", top: "51%" },  // 4. Đi thẳng tắp lên vị trí Chặng 3
-    { left: "41%", top: "29%" },  //5.đi lên
+    { left: "26%", top: "28%" },
+    { left: "29%", top: "29%" },
+    { left: "29%", top: "51%" },
+    { left: "41%", top: "51%" },
+    { left: "41%", top: "29%" },
   ],
-  
   4: [{ left: "52%", top: "29%" }, { left: "52%", top: "50%" },{ left: "57%", top: "50%" }],
   5: [{ left: "66%", top: "51%" }, { left: "66%", top: "25%" }, { left: "73%", top: "25%" }],
-  // 6: [{ left: "80%", top: "25%" }, { left: "85%", top: "18%" }],
-  // 7: [{ left: "85%", top: "25%" }, { left: "85%", top: "50%" }],
 };
+
 type ViewMode = "MAIN_MAP" | "STAGE_READY" | "MINI_GAME" | "QUESTION";
 
 export default function GamePage() {
@@ -46,9 +40,11 @@ export default function GamePage() {
   const [miniCharX, setMiniCharX] = useState(10);
   const [facingRight, setFacingRight] = useState(true);
   const [walkStep, setWalkStep] = useState(false);
+  const [isJumping, setIsJumping] = useState(false); // State quản lý việc nhảy
 
   const miniCharXRef = useRef(miniCharX);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const moveIntervalRef = useRef<NodeJS.Timeout | null>(null); // Ref cho nút bấm giữ trên điện thoại
 
   useEffect(() => {
     miniCharXRef.current = miniCharX;
@@ -57,31 +53,26 @@ export default function GamePage() {
   useEffect(() => {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (moveIntervalRef.current) clearInterval(moveIntervalRef.current);
     };
   }, []);
 
-// =========================================================================
+  // =========================================================================
   // XỬ LÝ KHI THẮNG / THUA
   // =========================================================================
   useEffect(() => {
     if (game.gameState === "WON") {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      
-      // Thêm dòng này để bỏ qua lỗi cho 2 hàm setState bên dưới
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setViewMode("MAIN_MAP");
       setVisualStageIdx(game.hearts >= 3 ? 6 : 7);
-      
     } else if (game.gameState === "LOST") {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setViewMode("MAIN_MAP");
     }
   }, [game.gameState, game.hearts]);
 
   // =========================================================================
-  // ĐIỀU KHIỂN MINI GAME
+  // ĐIỀU KHIỂN BÀN PHÍM (PC)
   // =========================================================================
   useEffect(() => {
     if (viewMode !== "MINI_GAME") return;
@@ -103,6 +94,10 @@ export default function GamePage() {
         setViewMode("QUESTION");
         setWalkStep(false);
       }
+      // Thêm phím Space hoặc W/ArrowUp để Nhảy
+      else if ((key === " " || key === "w" || key === "arrowup") && !isJumping) {
+        handleJumpAction();
+      }
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
@@ -118,7 +113,53 @@ export default function GamePage() {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [viewMode]);
+  }, [viewMode, isJumping]);
+
+  // =========================================================================
+  // ĐIỀU KHIỂN CẢM ỨNG (ĐIỆN THOẠI)
+  // =========================================================================
+  const moveLeft = () => {
+    setMiniCharX((prev) => Math.max(5, prev - 3));
+    setFacingRight(false);
+    setWalkStep((prev) => !prev);
+  };
+
+  const moveRight = () => {
+    setMiniCharX((prev) => Math.min(85, prev + 3));
+    setFacingRight(true);
+    setWalkStep((prev) => !prev);
+  };
+
+  const handleTouchStartMove = (direction: 'left' | 'right') => {
+    if (moveIntervalRef.current) clearInterval(moveIntervalRef.current);
+    direction === 'left' ? moveLeft() : moveRight(); // Chạy ngay 1 nhịp
+    moveIntervalRef.current = setInterval(() => {
+      direction === 'left' ? moveLeft() : moveRight(); // Chạy lặp lại khi giữ
+    }, 100);
+  };
+
+  const handleTouchEndMove = () => {
+    if (moveIntervalRef.current) clearInterval(moveIntervalRef.current);
+    setWalkStep(false);
+  };
+
+  const handleJumpAction = () => {
+    // 1. Nếu đang ở gần rương -> Mở rương (Tương đương phím E)
+    if (miniCharXRef.current >= 75) {
+      if (moveIntervalRef.current) clearInterval(moveIntervalRef.current);
+      setViewMode("QUESTION");
+      setWalkStep(false);
+      return;
+    }
+
+    // 2. Nếu đang đi giữa đường -> Thực hiện động tác Nhảy (Tránh chướng ngại vật)
+    if (!isJumping) {
+      setIsJumping(true);
+      setTimeout(() => {
+        setIsJumping(false);
+      }, 500); // Thời gian nhảy lên và rớt xuống (0.5s)
+    }
+  };
 
   const handleStartGame = () => {
     setHasStarted(true);
@@ -145,12 +186,8 @@ export default function GamePage() {
     game.resetGame();
   };
 
-  // =========================================================================
-  // VŨ KHÍ 4.2: ĐỘC LẬP HÓA HOÀN TOÀN ĐỒ HỌA BƯỚC ĐI
-  // =========================================================================
   const handleAnswerSubmit = (key: string) => {
     const isLastQuestion = game.currentQuestionIdx === game.totalQuestionsInStage - 1;
-    
     const currentMapIndex = visualStageIdx; 
     const nextMapIndex = currentMapIndex + 1; 
     
@@ -179,32 +216,37 @@ export default function GamePage() {
     }
   };
 
-  // =========================================================================
-  // HIỆU ỨNG RUNG LẮC (SCREEN SHAKE) TĂNG DẦN VÀ NHIỄU HẠT (NOISE)
-  // =========================================================================
   const getShakeClass = () => {
-    // Không rung nếu chưa bắt đầu, hoặc game đã có kết quả
     if (!hasStarted || game.gameState === "WON" || game.gameState === "LOST") return "";
-    
-    // Rung theo từng cấp độ máu
-    if (game.hearts === 4) return "animate-shake-1"; // Rung rất nhẹ
-    if (game.hearts === 3) return "animate-shake-2"; // Rung vừa
-    if (game.hearts === 2) return "animate-shake-3"; // Rung mạnh
-    
-    // CÒN 1 TIM: Rung dữ dội + báo đỏ + NHIỄU SÓNG
+    if (game.hearts === 4) return "animate-shake-1"; 
+    if (game.hearts === 3) return "animate-shake-2"; 
+    if (game.hearts === 2) return "animate-shake-3"; 
     if (game.hearts <= 1) return "animate-shake-4 animate-noise";  
-    
     return "";
   };
 
   const currentPos = MAP_COORDINATES[visualStageIdx] || MAP_COORDINATES[0];
 
   return (
-    <div className="min-h-screen bg-sky-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-sky-100 flex items-center justify-center p-0 md:p-4 touch-none select-none">
       
-      {/* KHAI BÁO CSS RUNG LẮC VÀ NHIỄU */}
+      {/* =========================================
+          MÀN HÌNH KHÓA XOAY (CHỈ HIỆN KHI ĐIỆN THOẠI ĐỂ DỌC)
+          ========================================= */}
+      <div className="portrait-lock fixed inset-0 z-[100] bg-gray-900 text-white flex flex-col items-center justify-center p-6 text-center">
+        <div className="animate-spin duration-1000 mb-6">
+          <svg className="w-20 h-20 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+        </div>
+        <h2 className="text-3xl font-bold mb-4 text-blue-400">Vui lòng xoay ngang!</h2>
+        <p className="text-gray-300 text-lg">Trải nghiệm game tốt nhất ở màn hình ngang (Landscape).</p>
+      </div>
+
       <style>{`
-        /* Level 1 (4 Tim): Rung siêu nhẹ, thoang thoảng */
+        /* Ẩn màn hình khóa xoay khi đang ở màn hình ngang hoặc trên PC */
+        @media (orientation: landscape) {
+          .portrait-lock { display: none !important; }
+        }
+
         @keyframes shakeLevel1 {
           0% { transform: translate(0.5px, 0.5px) rotate(0deg); }
           25% { transform: translate(-0.5px, -1px) rotate(-0.2deg); }
@@ -212,7 +254,6 @@ export default function GamePage() {
           75% { transform: translate(1px, 0.5px) rotate(0deg); }
           100% { transform: translate(0.5px, -0.5px) rotate(-0.2deg); }
         }
-        /* Level 2 (3 Tim): Rung rõ hơn một chút */
         @keyframes shakeLevel2 {
           0% { transform: translate(1px, 1px) rotate(0deg); }
           25% { transform: translate(-1px, -2px) rotate(-0.5deg); }
@@ -220,7 +261,6 @@ export default function GamePage() {
           75% { transform: translate(2px, 1px) rotate(0deg); }
           100% { transform: translate(1px, -1px) rotate(-0.5deg); }
         }
-        /* Level 3 (2 Tim): Bắt đầu giật mạnh */
         @keyframes shakeLevel3 {
           0% { transform: translate(2px, 2px) rotate(0deg); }
           20% { transform: translate(-2px, -3px) rotate(-1deg); }
@@ -229,7 +269,6 @@ export default function GamePage() {
           80% { transform: translate(1px, -2px) rotate(1deg); }
           100% { transform: translate(-2px, 3px) rotate(-1deg); }
         }
-        /* Level 4 (1 Tim): Giật bần bật, nhịp nhanh */
         @keyframes shakeLevel4 {
           0% { transform: translate(4px, 4px) rotate(0deg); }
           20% { transform: translate(-4px, -5px) rotate(-2deg); }
@@ -244,23 +283,21 @@ export default function GamePage() {
         .animate-shake-3 { animation: shakeLevel3 0.25s infinite; }
         .animate-shake-4 { 
           animation: shakeLevel4 0.15s infinite; 
-          box-shadow: 0 0 35px rgba(220, 38, 38, 0.8); /* Viền đỏ rực rỡ báo động */
+          box-shadow: 0 0 35px rgba(220, 38, 38, 0.8); 
         }
 
-        /* --- HIỆU ỨNG NHIỄU HẠT TĨNH ĐIỆN --- */
         .animate-noise::after {
           content: "";
           position: absolute;
           inset: 0;
-          z-index: 40; /* Đặt dưới các popup game over, nhưng trên mọi thứ khác */
-          pointer-events: none; /* Không cản trở click chuột */
-          opacity: 0.25; /* Độ mờ của nhiễu (tăng nhẹ để dễ nhìn hơn) */
+          z-index: 40; 
+          pointer-events: none; 
+          opacity: 0.25; 
           background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-          animation: noiseJitter 0.1s infinite; /* Nháy siêu nhanh */
-          mix-blend-mode: overlay; /* Hòa trộn vào màu nền giúp chân thực hơn */
+          animation: noiseJitter 0.1s infinite; 
+          mix-blend-mode: overlay; 
         }
 
-        /* Làm cho lớp nhiễu giật giật đổi vị trí liên tục */
         @keyframes noiseJitter {
           0% { transform: translate(0, 0); }
           25% { transform: translate(-1%, 1%); }
@@ -270,8 +307,7 @@ export default function GamePage() {
         }
       `}</style>
 
-      {/* ÁP DỤNG getShakeClass() VÀO KHUNG NÀY */}
-      <div className={`relative w-full max-w-5xl h-[70vh] min-h-[500px] bg-blue-50 border-8 border-gray-700 rounded-xl overflow-hidden shadow-2xl transition-shadow ${getShakeClass()}`}>
+      <div className={`relative w-full max-w-5xl h-[100vh] md:h-[70vh] min-h-[400px] bg-blue-50 border-0 md:border-8 border-gray-700 md:rounded-xl overflow-hidden shadow-2xl transition-shadow ${getShakeClass()}`}>
         
         {/* LỚP NỀN: BẢN ĐỒ LỚN */}
         <div className="absolute inset-0 z-0 bg-blue-100">
@@ -296,7 +332,7 @@ export default function GamePage() {
               <img 
                 src="/images/game/walking.png" 
                 alt="Nhân vật Map Lớn" 
-                className="drop-shadow-2xl h-[60px] w-auto"
+                className="drop-shadow-2xl h-[40px] md:h-[60px] w-auto"
               />
             </div>
           </div>
@@ -340,8 +376,8 @@ export default function GamePage() {
             />
 
             {viewMode === "MINI_GAME" && (
-              <div className="absolute top-4 left-4 bg-black/60 text-white px-4 py-2 rounded-lg font-bold">
-                ⌨️ Dùng [A/D] hoặc [←/→] để di chuyển
+              <div className="absolute top-4 left-4 bg-black/60 text-white px-4 py-2 rounded-lg font-bold text-sm md:text-base hidden sm:block">
+                ⌨️ Dùng [A/D] để di chuyển, [W/Space] để Nhảy, [E] để mở Rương
               </div>
             )}
             
@@ -349,12 +385,18 @@ export default function GamePage() {
               Câu hỏi: {game.currentQuestionIdx + 1} / {game.totalQuestionsInStage}
             </div>
 
+            {/* NHÂN VẬT CHÍNH TRONG GAME */}
             <div
-              className="absolute transition-all duration-100 ease-linear w-[80px] h-[100px]"
-              style={{ bottom: "36%", left: `${miniCharX}%` }}
+              className="absolute transition-all ease-linear w-[60px] md:w-[80px] h-[80px] md:h-[100px]"
+              style={{ 
+                // Cập nhật tọa độ nhảy, nếu isJumping thì nhân vật bay lên trên 15%
+                bottom: isJumping ? "50%" : "36%", 
+                left: `${miniCharX}%`,
+                transitionDuration: isJumping ? "250ms" : "100ms" // Nhảy lên mượt mà
+              }}
             >
               <img 
-                src={walkStep ? "/images/game/walking.png" : "/images/game/5hearts.png"}
+                src={walkStep && !isJumping ? "/images/game/walking.png" : "/images/game/5hearts.png"}
                 alt="Nhân vật Mini game" 
                 className="absolute bottom-0 left-1/2 drop-shadow-xl max-w-none h-full w-auto"
                 style={{ 
@@ -366,13 +408,45 @@ export default function GamePage() {
 
             <div className="absolute transform -translate-x-1/2 flex justify-center items-end" style={{ bottom: "36%", left: "85%" }}>
               <div className="animate-bounce">
-                <span className="text-6xl drop-shadow-xl">🎁</span> 
+                <span className="text-5xl md:text-6xl drop-shadow-xl">🎁</span> 
               </div>
             </div>
 
             {miniCharX >= 75 && viewMode === "MINI_GAME" && (
-              <div className="absolute transform -translate-x-1/2 bg-yellow-400 text-yellow-900 px-4 py-2 rounded-xl font-bold animate-pulse shadow-lg whitespace-nowrap border-2 border-yellow-600" style={{ bottom: "60%", left: "85%" }}>
-                Nhấn [E] để mở rương!
+              <div className="absolute transform -translate-x-1/2 bg-yellow-400 text-yellow-900 px-4 py-2 rounded-xl font-bold animate-pulse shadow-lg whitespace-nowrap border-2 border-yellow-600" style={{ bottom: "55%", left: "85%" }}>
+                <span className="hidden md:inline">Nhấn [E] để mở rương!</span>
+                <span className="md:hidden">Nhấn NHẢY/MỞ!</span>
+              </div>
+            )}
+
+            {/* CỤM NÚT ĐIỀU KHIỂN CẢM ỨNG (MOBILE) */}
+            {viewMode === "MINI_GAME" && (
+              <div className="absolute bottom-6 left-0 right-0 px-6 flex justify-between items-center z-30 sm:hidden">
+                <div className="flex gap-3">
+                  <button
+                    onTouchStart={(e) => { e.preventDefault(); handleTouchStartMove('left'); }}
+                    onTouchEnd={(e) => { e.preventDefault(); handleTouchEndMove(); }}
+                    className="w-16 h-16 bg-white/40 backdrop-blur-sm rounded-full text-3xl font-bold flex items-center justify-center active:bg-white/80 border-2 border-white/50 shadow-lg"
+                  >
+                    ⬅️
+                  </button>
+                  <button
+                    onTouchStart={(e) => { e.preventDefault(); handleTouchStartMove('right'); }}
+                    onTouchEnd={(e) => { e.preventDefault(); handleTouchEndMove(); }}
+                    className="w-16 h-16 bg-white/40 backdrop-blur-sm rounded-full text-3xl font-bold flex items-center justify-center active:bg-white/80 border-2 border-white/50 shadow-lg"
+                  >
+                    ➡️
+                  </button>
+                </div>
+
+                <div>
+                  <button
+                    onClick={handleJumpAction}
+                    className="w-20 h-20 bg-blue-500/70 backdrop-blur-sm text-white rounded-full text-sm font-black flex items-center justify-center active:bg-blue-600 border-4 border-blue-300 shadow-xl"
+                  >
+                    NHẢY <br/> MỞ
+                  </button>
+                </div>
               </div>
             )}
 
@@ -416,15 +490,11 @@ export default function GamePage() {
         {/* LỚP PHỦ GAME OVER (THUA) */}
         {game.gameState === "LOST" && viewMode === "MAIN_MAP" && (
           <div className="absolute inset-0 z-50 bg-black flex flex-col items-center justify-end p-4 animate-fade-in overflow-hidden">
-            {/* Video Background */}
             <video 
               src="/video/bad-ending.mp4" 
-              autoPlay 
-              playsInline
+              autoPlay playsInline
               className="absolute inset-0 w-full h-full object-cover opacity-80 z-0"
             />
-            
-            {/* Nội dung đè lên trên Video */}
             <div className="relative z-10 flex flex-col items-center mb-12 text-center">
               <button 
                 onClick={handleRestartGame} 
@@ -439,15 +509,11 @@ export default function GamePage() {
         {/* LỚP PHỦ CHIẾN THẮNG (THẮNG) */}
         {game.gameState === "WON" && viewMode === "MAIN_MAP" && (
           <div className="absolute inset-0 z-50 bg-black flex flex-col items-center justify-end p-4 animate-fade-in overflow-hidden">
-            {/* Video Background */}
             <video 
               src="/video/good-ending.mp4" 
-              autoPlay 
-              playsInline
+              autoPlay playsInline
               className="absolute inset-0 w-full h-full object-cover opacity-90 z-0"
             />
-
-            {/* Nội dung đè lên trên Video */}
             <div className="relative z-10 flex flex-col items-center mb-12 text-center">
               <button 
                 onClick={handleRestartGame} 

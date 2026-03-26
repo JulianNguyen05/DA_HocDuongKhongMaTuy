@@ -46,6 +46,11 @@ export default function GamePage() {
   const gameContainerRef = useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  // --- STATE CHO ĐÓNG BĂNG MÀN HÌNH ĐÁP ÁN ---
+  const [frozenQuestion, setFrozenQuestion] = useState<any>(null);
+  const [frozenIdx, setFrozenIdx] = useState<number | null>(null);
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
+
   useEffect(() => {
     if (!isMoving) {
       setMainWalkStep(false);
@@ -57,7 +62,7 @@ export default function GamePage() {
     return () => clearInterval(interval);
   }, [isMoving]);
 
-  // Lắng nghe sự kiện Fullscreen (khi người dùng bấm ESC để thoát)
+  // Lắng nghe sự kiện Fullscreen
   useEffect(() => {
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
@@ -70,9 +75,7 @@ export default function GamePage() {
   }, []);
 
   const toggleFullScreen = (e?: React.MouseEvent<HTMLButtonElement>) => {
-    // Xóa focus khỏi nút để tránh lỗi nhấn Spacebar kích hoạt lại nút
     if (e) e.currentTarget.blur(); 
-
     if (!document.fullscreenElement) {
       gameContainerRef.current?.requestFullscreen().catch((err) => {
         console.error(`Lỗi khi mở toàn màn hình: ${err.message}`);
@@ -126,7 +129,6 @@ export default function GamePage() {
     ],
   };
 
-  // --- STATE MINI-GAME (PARKOUR) ---
   const [parkourX, setParkourX] = useState(10);
   const [parkourY, setParkourY] = useState(20);
   const [facingRight, setFacingRight] = useState(true);
@@ -136,10 +138,8 @@ export default function GamePage() {
     keys: { left: false, right: false, up: false }
   });
 
-  // --- STATE HIỆU ỨNG SÁT THƯƠNG ---
   const [damageAnim, setDamageAnim] = useState(false);
   const prevHeartsRef = useRef(game.hearts);
-
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -345,8 +345,7 @@ export default function GamePage() {
     const setKey = (e: KeyboardEvent, active: boolean) => {
       const keys = parkourRef.current.keys;
       const key = e.key.toLowerCase();
-
-      // CHẶN MẶC ĐỊNH CỦA TRÌNH DUYỆT ĐỂ PHÍM CÁCH KHÔNG CUỘN TRANG HAY KÍCH HOẠT NÚT
+      
       if (active && [" ", "w", "a", "d", "e", "arrowup", "arrowdown", "arrowleft", "arrowright"].includes(key)) {
         e.preventDefault();
       }
@@ -398,7 +397,7 @@ export default function GamePage() {
     setHasStarted(true);
     setVisualStageIdx(1);
     
-    // Tự động bật Fullscreen khi người chơi bấm nút này
+    // Tự động bật Toàn Màn Hình
     if (!document.fullscreenElement && gameContainerRef.current) {
       gameContainerRef.current.requestFullscreen().catch((err) => {
         console.error(`Lỗi khi mở toàn màn hình: ${err.message}`);
@@ -434,18 +433,33 @@ export default function GamePage() {
     game.resetGame();
   };
 
+  // --- XỬ LÝ LƯU TRỮ VÀ HIỂN THỊ ĐÁP ÁN (NEW) ---
   const handleAnswerSubmit = (key: string) => {
+    if (frozenQuestion) return; // Nếu đang trong 1.5s chờ thì khóa không cho bấm tiếp
+
     const isLastQuestion = game.currentQuestionIdx === game.totalQuestionsInStage - 1;
     const currentMapIndex = visualStageIdx;
     const nextMapIndex = currentMapIndex + 1;
 
+    // Lưu lại trạng thái câu hỏi hiện tại để "đóng băng" giao diện
+    setFrozenQuestion(game.currentQuestion);
+    setFrozenIdx(game.currentQuestionIdx);
+    setSelectedKey(key);
+
+    // Xử lý gửi đáp án để game trừ tim (nếu sai) hoặc cộng điểm
     game.handleAnswer(key);
 
+    // Chờ 1.5s cho người chơi xem kết quả đúng/sai rồi mới tắt màn hình câu hỏi
     setTimeout(() => {
+      setFrozenQuestion(null);
+      setFrozenIdx(null);
+      setSelectedKey(null);
+
       if (isLastQuestion) {
         setViewMode("MAIN_MAP");
         setVisualStageIdx(nextMapIndex <= 5 ? nextMapIndex : currentMapIndex);
       } else {
+        // Trả nhân vật về vạch xuất phát và TẮT MÀN HÌNH câu hỏi -> Quay về Game
         const platforms = STAGE_PLATFORMS[Math.max(1, visualStageIdx)] || STAGE_PLATFORMS[1];
         const startX = (platforms[0]?.left || 0) + 5;
         const startY = (platforms[0]?.bottom || 20) + 5;
@@ -460,7 +474,7 @@ export default function GamePage() {
           vx: 0, vy: 0, 
           keys: { left: false, right: false, up: false } 
         };
-        setViewMode("MINI_GAME");
+        setViewMode("MINI_GAME"); // Quay lại chạy bộ lấy câu tiếp theo
       }
     }, 1500);
   };
@@ -468,11 +482,15 @@ export default function GamePage() {
   const currentPos = MAP_COORDINATES[visualStageIdx] || MAP_COORDINATES[0];
   const isNearChest = parkourX >= (Number((STAGE_PLATFORMS[Math.max(1, visualStageIdx)] || STAGE_PLATFORMS[1]).slice(-1)[0]?.left) - 5);
 
+  // Xác định câu hỏi đang cần hiển thị (Lúc đang trả lời thì dùng câu đang bị đóng băng)
+  const displayQuestion = frozenQuestion || game.currentQuestion;
+  const displayIdx = frozenIdx !== null ? frozenIdx : game.currentQuestionIdx;
+
   return (
-    <div className="min-h-screen bg-sky-100 flex items-center justify-center p-0 md:p-4 touch-none select-none overflow-hidden">
+    <div className="fixed inset-0 z-[100] bg-black flex items-center justify-center touch-none select-none overflow-hidden font-sans">
 
       {/* KHÓA XOAY */}
-      <div className="portrait-lock fixed inset-0 z-[100] bg-gray-900 text-white flex flex-col items-center justify-center p-6 text-center touch-none">
+      <div className="portrait-lock absolute inset-0 z-[150] bg-gray-900 text-white flex flex-col items-center justify-center p-6 text-center touch-none">
         <div className="animate-spin duration-1000 mb-6">
           <svg className="w-20 h-20 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
         </div>
@@ -481,30 +499,25 @@ export default function GamePage() {
       </div>
 
       <style>{`
-        /* Ẩn màn hình khóa nếu thiết bị đang nằm ngang */
         @media (orientation: landscape) { .portrait-lock { display: none !important; } }
-
-        /* Ẩn thanh cuộn trong bảng câu hỏi để nhìn đẹp hơn */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* KHÓA TỶ LỆ MÀN HÌNH 16:9 CHUẨN ĐỂ KHÔNG BỊ CẮT XÉN MAP */
         .game-board-scale {
           width: 100vw;
           height: 100dvh;
-          max-width: 177.78dvh; /* Ngăn chiều ngang giãn vượt quá tỷ lệ 16:9 */
-          max-height: 56.25vw;  /* Ngăn chiều dọc giãn vượt quá tỷ lệ 16:9 */
+          max-width: 177.78dvh;
+          max-height: 56.25vw;
         }
         @media (min-width: 768px) {
           .game-board-scale {
             width: 100%;
             height: 80vh;
-            max-width: calc(80vh * 16 / 9); /* Trên PC giới hạn độ rộng theo chiều cao */
+            max-width: calc(80vh * 16 / 9);
             max-height: 80vh;
           }
         }
 
-        /* Animation khi mất máu */
         @keyframes damageShake {
           0% { transform: translate(4px, 4px) rotate(0deg); }
           20% { transform: translate(-4px, -5px) rotate(-2deg); }
@@ -518,7 +531,6 @@ export default function GamePage() {
           box-shadow: 0 0 35px rgba(220, 38, 38, 0.8); 
         }
 
-        /* Animation tim vỡ rớt xuống */
         @keyframes brokenHeartFall {
           0% { transform: translateY(-50px) scale(0.5); opacity: 0; }
           20% { transform: translateY(0px) scale(1.5); opacity: 1; }
@@ -533,7 +545,7 @@ export default function GamePage() {
       {/* Rung cả Container nếu dính hiệu ứng */}
       <div
         ref={gameContainerRef}
-        className={`game-board-scale relative w-full bg-blue-50 border-gray-700 overflow-hidden shadow-2xl transition-all will-change-transform mx-auto flex items-center justify-center ${damageAnim ? "animate-damage-shake" : ""} ${isFullscreen ? "max-w-none h-screen rounded-none border-0" : "border-0 md:border-8 md:rounded-xl"}`}
+        className={`game-board-scale relative bg-blue-50 overflow-hidden md:rounded-2xl border-0 md:border-8 border-gray-800 shadow-2xl transition-transform will-change-transform flex items-center justify-center mx-auto ${damageAnim ? "animate-damage-shake" : ""} ${isFullscreen ? "max-w-none h-screen w-screen rounded-none border-0" : ""}`}
       >
         
         {/* NÚT FULLSCREEN (HIỆN TRÊN MỌI THIẾT BỊ) */}
@@ -550,7 +562,7 @@ export default function GamePage() {
 
           {/* TOAST THÔNG BÁO TỪ CHỐI CLICK */}
           {toastMsg && (
-            <div className="absolute top-10 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-6 py-2 rounded-full font-bold shadow-xl z-50 animate-bounce whitespace-nowrap">
+            <div className="absolute top-10 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-6 py-2 rounded-full font-bold shadow-xl z-[70] animate-bounce whitespace-nowrap">
               ⚠️ {toastMsg}
             </div>
           )}
@@ -603,7 +615,7 @@ export default function GamePage() {
                   className="w-full h-full object-contain drop-shadow-md transition-transform duration-300"
                 />
                 {isActive && (
-                  <div className="absolute -top-8 md:-top-10 bg-yellow-400 text-yellow-900 text-xs md:text-sm font-black px-3 py-1.5 rounded-full whitespace-nowrap animate-pulse shadow-lg border-2 border-yellow-500">
+                  <div className="absolute -top-6 md:-top-10 bg-yellow-400 text-yellow-900 text-[10px] md:text-sm font-black px-2 md:px-3 py-1 md:py-1.5 rounded-full whitespace-nowrap animate-pulse shadow-lg border-2 border-yellow-500">
                     Nhấn để vào
                   </div>
                 )}
@@ -614,7 +626,7 @@ export default function GamePage() {
           {/* NÚT KHỞI HÀNH BẮT ĐẦU GAME */}
           {!hasStarted && viewMode === "MAIN_MAP" && (
             <div className="absolute inset-0 z-30 bg-black/40 flex items-center justify-center">
-              <button onClick={handleStartGame} className="px-8 py-4 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-black text-2xl rounded-full shadow-xl transform hover:scale-110 transition-transform border-4 border-yellow-600 animate-pulse outline-none focus:outline-none">
+              <button onClick={handleStartGame} className="px-6 md:px-8 py-3 md:py-4 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-black text-xl md:text-2xl rounded-full shadow-xl transform hover:scale-110 transition-transform border-4 border-yellow-600 animate-pulse outline-none focus:outline-none">
                 🚀 KHỞI HÀNH
               </button>
             </div>
@@ -623,13 +635,13 @@ export default function GamePage() {
           {/* POPUP XÁC NHẬN VÀO CHẶNG */}
           {viewMode === "STAGE_READY" && (
             <div className="absolute inset-0 z-30 bg-black/50 flex flex-col items-center justify-center p-4 animate-fade-in">
-              <div className="bg-white p-8 rounded-2xl shadow-2xl text-center transform hover:scale-105 transition-all">
-                <h2 className="text-3xl font-bold text-blue-800 mb-2">
+              <div className="bg-white p-6 md:p-8 rounded-2xl shadow-2xl text-center transform hover:scale-105 transition-all">
+                <h2 className="text-2xl md:text-3xl font-bold text-blue-800 mb-2">
                   {game.currentStage?.stage || "Chặng Bí Ẩn"}
                 </h2>
-                <p className="text-gray-600 mb-6">Sẵn sàng khám phá chưa?</p>
-                <button onClick={startMiniGame} className="px-8 py-3 bg-green-500 hover:bg-green-600 text-white font-bold text-xl rounded-full shadow-lg transition-colors outline-none focus:outline-none">
-                  ▶ BẮT ĐẦU CHẠY
+                <p className="text-sm md:text-base text-gray-600 mb-6">Sẵn sàng khám phá chưa?</p>
+                <button onClick={startMiniGame} className="px-6 md:px-8 py-2 md:py-3 bg-green-500 hover:bg-green-600 text-white font-bold text-lg md:text-xl rounded-full shadow-lg transition-colors outline-none focus:outline-none">
+                  ▶ BẮT ĐẦU
                 </button>
               </div>
             </div>
@@ -637,7 +649,7 @@ export default function GamePage() {
         </div>
 
         {(viewMode === "MINI_GAME" || viewMode === "QUESTION") && (
-          <div className="absolute inset-0 z-20 bg-gray-900 animate-fade-in touch-none">
+          <div className="absolute inset-0 z-20 bg-gray-900 animate-fade-in touch-none flex">
             <img
               src={`/images/game/ingame-map${Math.max(1, visualStageIdx)}.png`}
               onError={(e) => (e.currentTarget.src = "/images/game/ingame-map1.png")} // Fallback an toàn
@@ -646,18 +658,18 @@ export default function GamePage() {
             />
 
             {viewMode === "MINI_GAME" && (
-              <div className="absolute top-4 left-4 bg-black/60 text-white px-4 py-2 rounded-lg font-bold text-sm md:text-base hidden sm:block z-30">
+              <div className="absolute top-4 left-4 bg-black/60 text-white px-4 py-2 rounded-lg font-bold text-sm md:text-base hidden md:block z-30">
                 ⌨️ Dùng [A/D] di chuyển, [W/Space] Nhảy, [E] Nhặt đồ
               </div>
             )}
 
-            <div className="absolute top-4 right-4 bg-blue-600/90 text-white px-4 py-2 rounded-lg font-bold shadow-lg z-30">
-              Câu hỏi: {game.currentQuestionIdx + 1} / {game.totalQuestionsInStage}
+            <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-blue-600/90 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-base font-bold shadow-lg z-30 pointer-events-none">
+              Câu: {game.currentQuestionIdx + 1} / {game.totalQuestionsInStage}
             </div>
 
             {/* NHÂN VẬT PARKOUR */}
             <div
-              className="absolute w-[60px] md:w-[80px] h-[80px] md:h-[100px] will-change-[bottom,left]"
+              className="absolute w-[50px] md:w-[80px] h-[70px] md:h-[100px] will-change-[bottom,left]"
               style={{
                 bottom: `${parkourY}%`,
                 left: `${parkourX}%`,
@@ -672,7 +684,7 @@ export default function GamePage() {
             </div>
 
             {isNearChest && viewMode === "MINI_GAME" && (
-              <div className="absolute transform -translate-x-1/2 bg-yellow-400 text-yellow-900 px-4 py-2 rounded-xl font-bold animate-pulse shadow-lg whitespace-nowrap border-2 border-yellow-600 z-30 hidden md:block"
+              <div className="absolute transform -translate-x-1/2 bg-yellow-400 text-yellow-900 px-3 py-1 md:px-4 md:py-2 rounded-xl text-xs md:text-base font-bold animate-pulse shadow-lg whitespace-nowrap border-2 border-yellow-600 z-30 hidden md:block"
                 style={{
                   bottom: `${(STAGE_PLATFORMS[Math.max(1, visualStageIdx)] || STAGE_PLATFORMS[1]).slice(-1)[0]?.bottom + 20}%`,
                   left: `${Number((STAGE_PLATFORMS[Math.max(1, visualStageIdx)] || STAGE_PLATFORMS[1]).slice(-1)[0]?.left) + Number((STAGE_PLATFORMS[Math.max(1, visualStageIdx)] || STAGE_PLATFORMS[1]).slice(-1)[0]?.width) / 2}%`
@@ -683,16 +695,17 @@ export default function GamePage() {
 
             {/* CỤM ĐIỀU KHIỂN GAMEPAD (HIỆN TRÊN CẢ MOBILE & PC) */}
             {viewMode === "MINI_GAME" && (
-              <div className="absolute bottom-6 left-0 right-0 px-6 flex justify-between items-end z-40">
+              <div className="absolute bottom-4 left-0 right-0 px-4 flex justify-between items-end z-[60] pointer-events-none">
+                
                 {/* Joystick Trái / Phải */}
-                <div className="flex gap-2">
+                <div className="flex gap-1 md:gap-2 pointer-events-auto">
                   <button 
                     onTouchStart={(e) => { e.preventDefault(); handleMobileInput('left', true); }} 
                     onTouchEnd={(e) => { e.preventDefault(); handleMobileInput('left', false); }} 
                     onMouseDown={(e) => { e.preventDefault(); handleMobileInput('left', true); }} 
                     onMouseUp={(e) => { e.preventDefault(); handleMobileInput('left', false); }}
                     onMouseLeave={(e) => { e.preventDefault(); handleMobileInput('left', false); }}
-                    className="w-16 h-16 bg-black/40 backdrop-blur-sm rounded-full text-white text-2xl font-bold flex items-center justify-center active:bg-black/60 border-2 border-white/30 shadow-[0_0_15px_rgba(0,0,0,0.3)] select-none"
+                    className="w-14 h-14 bg-black/50 backdrop-blur-md rounded-full text-white/80 text-xl font-bold flex items-center justify-center active:bg-black/80 active:scale-95 border border-white/20 shadow-lg select-none outline-none"
                   >
                     ◀
                   </button>
@@ -702,24 +715,24 @@ export default function GamePage() {
                     onMouseDown={(e) => { e.preventDefault(); handleMobileInput('right', true); }} 
                     onMouseUp={(e) => { e.preventDefault(); handleMobileInput('right', false); }}
                     onMouseLeave={(e) => { e.preventDefault(); handleMobileInput('right', false); }}
-                    className="w-16 h-16 bg-black/40 backdrop-blur-sm rounded-full text-white text-2xl font-bold flex items-center justify-center active:bg-black/60 border-2 border-white/30 shadow-[0_0_15px_rgba(0,0,0,0.3)] select-none"
+                    className="w-14 h-14 bg-black/50 backdrop-blur-md rounded-full text-white/80 text-xl font-bold flex items-center justify-center active:bg-black/80 active:scale-95 border border-white/20 shadow-lg select-none outline-none"
                   >
                     ▶
                   </button>
                 </div>
 
                 {/* Nút Hành Động (Nhảy / Nhặt) */}
-                <div className="flex gap-3 items-end">
+                <div className="flex gap-2 items-end pointer-events-auto">
                   <button 
                     onTouchStart={(e) => { e.preventDefault(); handleMobileInput('open', true); }} 
                     onTouchEnd={(e) => { e.preventDefault(); handleMobileInput('open', false); }}
                     onMouseDown={(e) => { e.preventDefault(); handleMobileInput('open', true); }} 
                     onMouseUp={(e) => { e.preventDefault(); handleMobileInput('open', false); }}
                     onMouseLeave={(e) => { e.preventDefault(); handleMobileInput('open', false); }}
-                    className={`w-14 h-14 rounded-full text-xs font-black flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.3)] transition-all duration-200 border-4 select-none
+                    className={`w-12 h-12 rounded-full text-[10px] font-black flex items-center justify-center shadow-lg transition-all duration-200 border-2 active:scale-95 select-none outline-none
                       ${isNearChest 
                         ? "bg-yellow-400 text-yellow-900 border-yellow-200 scale-110 animate-pulse" 
-                        : "bg-gray-500/50 text-gray-300 border-gray-400/50"}`}
+                        : "bg-gray-800/60 backdrop-blur-md text-gray-400 border-gray-600/50"}`}
                   >
                     NHẶT
                   </button>
@@ -729,7 +742,7 @@ export default function GamePage() {
                     onMouseDown={(e) => { e.preventDefault(); handleMobileInput('jump', true); }} 
                     onMouseUp={(e) => { e.preventDefault(); handleMobileInput('jump', false); }}
                     onMouseLeave={(e) => { e.preventDefault(); handleMobileInput('jump', false); }}
-                    className="w-20 h-20 bg-blue-500/80 backdrop-blur-sm text-white rounded-full text-sm font-black flex items-center justify-center active:bg-blue-600 border-4 border-blue-200 shadow-[0_0_20px_rgba(0,0,0,0.3)] select-none"
+                    className="w-16 h-16 bg-blue-500/80 backdrop-blur-md text-white rounded-full text-xs font-black flex items-center justify-center active:bg-blue-700 active:scale-95 border-2 border-blue-300 shadow-lg mb-2 select-none outline-none"
                   >
                     NHẢY
                   </button>
@@ -738,47 +751,78 @@ export default function GamePage() {
             )}
 
             {/* BẢNG CÂU HỎI */}
-            {viewMode === "QUESTION" && game.currentQuestion && (
-              <div className="absolute inset-0 z-50 bg-black/60 flex flex-col items-center justify-center p-4 overflow-y-auto">
+            {viewMode === "QUESTION" && displayQuestion && (
+              <div className="absolute inset-0 z-[80] bg-black/70 flex flex-col items-center justify-center p-2 md:p-4">
 
                 {/* HIỆU ỨNG TIM VỠ (-1 MÁU) */}
                 {damageAnim && (
-                  <div className="absolute z-50 pointer-events-none flex flex-col items-center justify-center">
-                    <span className="text-8xl md:text-9xl drop-shadow-2xl animate-heart-break">💔</span>
-                    <span className="text-red-500 text-4xl md:text-6xl font-black mt-2 drop-shadow-lg animate-heart-break stroke-black">-1 TIM</span>
+                  <div className="absolute z-[90] pointer-events-none flex flex-col items-center justify-center">
+                    <span className="text-6xl md:text-8xl drop-shadow-2xl animate-heart-break">💔</span>
+                    <span className="text-red-500 text-3xl md:text-4xl font-black mt-2 drop-shadow-lg animate-heart-break stroke-black">-1 TIM</span>
                   </div>
                 )}
 
-                <div className={`bg-white p-3 md:p-8 rounded-2xl shadow-2xl max-w-sm md:max-w-xl lg:max-w-2xl w-full max-h-[90vh] overflow-y-auto text-center my-auto transition-transform ${damageAnim ? "scale-95 border-4 border-red-500" : "scale-100 animate-fade-in"}`}>
-                  <div className="flex justify-between items-center mb-2 md:mb-4 border-b pb-1.5 md:pb-3">
-                    <span className="text-xs md:text-base font-bold text-blue-800">
+                <div className={`bg-white p-4 md:p-8 rounded-xl shadow-2xl w-[95%] max-w-2xl max-h-[90vh] md:max-h-[85vh] flex flex-col transition-transform ${damageAnim ? "scale-95 border-4 border-red-500" : "scale-100 animate-fade-in"}`}>
+                  
+                  {/* Header Câu Hỏi */}
+                  <div className="flex justify-between items-center mb-3 md:mb-6 border-b pb-2 md:pb-3 shrink-0">
+                    <span className="text-sm md:text-xl font-bold text-blue-800 line-clamp-1">
                       {game.currentStage?.stage || "Chặng Bí Ẩn"}
                     </span>
-                    <span className="text-xs md:text-base font-bold text-red-500 bg-red-100 px-2 py-0.5 md:px-3 md:py-1 rounded-full shadow-sm">
+                    <span className="text-sm md:text-xl font-bold text-red-500 bg-red-50 px-2 md:px-3 py-1 rounded-full border border-red-100 whitespace-nowrap ml-2">
                       ❤️ x {game.hearts}
                     </span>
                   </div>
 
-                  <div className="mb-2 md:mb-4 text-[10px] md:text-sm font-semibold text-gray-500 bg-gray-100 rounded-full py-0.5 md:py-1 w-fit mx-auto px-3">
-                    Tiến độ: {game.currentQuestionIdx + 1} / {game.totalQuestionsInStage}
-                  </div>
+                  {/* Vùng Cuộn Chứa Nội Dung */}
+                  <div className="overflow-y-auto no-scrollbar flex-1 pb-2">
+                    <div className="mb-2 text-[10px] md:text-sm font-semibold text-gray-500 bg-gray-100 rounded-full py-0.5 md:py-1 w-fit mx-auto px-3">
+                      Câu: {displayIdx + 1} / {game.totalQuestionsInStage}
+                    </div>
 
-                  <h2 className="text-base md:text-xl lg:text-2xl font-bold text-gray-800 mb-3 md:mb-6 line-clamp-3 md:line-clamp-none">
-                    {game.currentQuestion.question}
-                  </h2>
+                    <h2 className="text-base md:text-2xl font-bold text-gray-800 mb-4 md:mb-8 text-center">
+                      {displayQuestion.question}
+                    </h2>
 
-                  <div className="grid grid-cols-2 gap-2 md:gap-4">
-                    {Object.entries(game.currentQuestion.options).map(([key, value]) => (
-                      <button
-                        key={key}
-                        onClick={() => handleAnswerSubmit(key)}
-                        disabled={damageAnim} // Không cho spam click khi đang hiện sát thương
-                        className="p-2 md:p-4 bg-gray-50 hover:bg-blue-600 hover:text-white text-gray-800 font-semibold rounded-lg transition-all border-2 border-gray-200 hover:border-blue-600 shadow-sm disabled:opacity-50 text-left flex items-start gap-1 md:gap-3 outline-none"
-                      >
-                        <span className="font-bold text-xs md:text-base">{key}.</span> 
-                        <span className="text-[10px] md:text-sm leading-tight flex-1 line-clamp-3 md:line-clamp-none">{value as React.ReactNode}</span>
-                      </button>
-                    ))}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+                      {Object.entries(displayQuestion.options).map(([key, value]) => {
+                        
+                        // LOGIC ĐỔI MÀU NÚT KHI ĐÓNG BĂNG ĐÁP ÁN
+                        let btnClass = "p-2 md:p-4 rounded-lg transition-all border-2 shadow-sm text-left flex items-start gap-1 md:gap-3 outline-none";
+                        
+                        if (frozenQuestion) {
+                          // Nếu đang hiển thị kết quả:
+                          const isCorrect = displayQuestion.correctAnswer ? key === displayQuestion.correctAnswer : false;
+                          const isSelected = key === selectedKey;
+
+                          if (isCorrect) {
+                            // Đáp án Đúng -> Hiện màu xanh rực
+                            btnClass += " bg-green-500 border-green-500 text-white font-bold scale-[1.02] shadow-[0_0_20px_rgba(34,197,94,0.8)] z-10";
+                          } else if (isSelected) {
+                            // Chọn sai -> Hiện màu đỏ
+                            btnClass += " bg-red-500 border-red-600 text-white font-bold opacity-90 shadow-[0_0_15px_rgba(239,68,68,0.8)]";
+                          } else {
+                            // Các đáp án còn lại -> Làm mờ đi
+                            btnClass += " bg-gray-200 border-gray-300 text-gray-400 font-semibold opacity-50";
+                          }
+                        } else {
+                          // Bình thường khi chưa chọn
+                          btnClass += " bg-gray-50 border-gray-200 text-gray-800 font-semibold hover:bg-blue-600 hover:text-white hover:border-blue-600 cursor-pointer active:scale-95";
+                        }
+
+                        return (
+                          <button
+                            key={key}
+                            onClick={() => handleAnswerSubmit(key)}
+                            disabled={!!frozenQuestion} // Khóa nút khi đang hiển thị kết quả
+                            className={btnClass}
+                          >
+                            <span className={`font-bold mr-2 ${frozenQuestion ? "" : "text-blue-600"}`}>{key}.</span> 
+                            <span className="leading-snug">{value as React.ReactNode}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -788,10 +832,10 @@ export default function GamePage() {
 
         {/* LỚP PHỦ GAME OVER */}
         {game.gameState === "LOST" && viewMode === "MAIN_MAP" && (
-          <div className="absolute inset-0 z-50 bg-black flex flex-col items-center justify-end p-4 animate-fade-in overflow-hidden">
+          <div className="absolute inset-0 z-[120] bg-black flex flex-col items-center justify-end p-4 animate-fade-in overflow-hidden">
             <video src="/video/bad-ending.mp4" autoPlay playsInline className="absolute inset-0 w-full h-full object-cover opacity-80 z-0" />
-            <div className="relative z-10 flex flex-col items-center mb-12 text-center">
-              <button onClick={handleRestartGame} className="px-8 py-3 bg-red-600 text-white font-bold text-lg rounded-full hover:bg-red-700 shadow-[0_0_20px_rgba(220,38,38,0.6)] hover:scale-105 outline-none focus:outline-none">
+            <div className="relative z-10 flex flex-col items-center mb-6 md:mb-12 text-center">
+              <button onClick={handleRestartGame} className="px-6 py-2 md:px-8 md:py-3 bg-red-600 text-white font-bold text-base md:text-lg rounded-full hover:bg-red-700 shadow-[0_0_20px_rgba(220,38,38,0.6)] hover:scale-105 active:scale-95 outline-none focus:outline-none">
                 🔄 Chơi lại từ đầu
               </button>
             </div>
@@ -800,10 +844,10 @@ export default function GamePage() {
 
         {/* LỚP PHỦ CHIẾN THẮNG */}
         {game.gameState === "WON" && viewMode === "MAIN_MAP" && (
-          <div className="absolute inset-0 z-50 bg-black flex flex-col items-center justify-end p-4 animate-fade-in overflow-hidden">
+          <div className="absolute inset-0 z-[120] bg-black flex flex-col items-center justify-end p-4 animate-fade-in overflow-hidden">
             <video src="/video/good-ending.mp4" autoPlay playsInline className="absolute inset-0 w-full h-full object-cover opacity-90 z-0" />
-            <div className="relative z-10 flex flex-col items-center mb-12 text-center">
-              <button onClick={handleRestartGame} className="px-8 py-3 bg-white text-blue-900 font-bold text-lg rounded-full hover:bg-gray-200 shadow-[0_0_20px_rgba(255,255,255,0.6)] hover:scale-105 outline-none focus:outline-none">
+            <div className="relative z-10 flex flex-col items-center mb-6 md:mb-12 text-center">
+              <button onClick={handleRestartGame} className="px-6 py-2 md:px-8 md:py-3 bg-white text-blue-900 font-bold text-base md:text-lg rounded-full hover:bg-gray-200 shadow-[0_0_20px_rgba(255,255,255,0.6)] hover:scale-105 active:scale-95 outline-none focus:outline-none">
                 🔄 Chơi lại
               </button>
             </div>

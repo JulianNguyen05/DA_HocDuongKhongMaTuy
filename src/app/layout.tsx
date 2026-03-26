@@ -23,9 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="vi">
+    <html lang="vi" suppressHydrationWarning>
       <body
         className={`${inter.className} bg-brand-cream text-gray-900 min-h-screen flex flex-col`}
+        suppressHydrationWarning
       >
         {/* COMPONENT YÊU CẦU XOAY MÀN HÌNH SẼ NẰM Ở ĐÂY */}
         {/* <RotatePrompt /> */}

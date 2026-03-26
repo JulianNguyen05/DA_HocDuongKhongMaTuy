@@ -397,6 +397,13 @@ export default function GamePage() {
   const handleStartGame = () => {
     setHasStarted(true);
     setVisualStageIdx(1);
+    
+    // Tự động bật Fullscreen khi người chơi bấm nút này
+    if (!document.fullscreenElement && gameContainerRef.current) {
+      gameContainerRef.current.requestFullscreen().catch((err) => {
+        console.error(`Lỗi khi mở toàn màn hình: ${err.message}`);
+      });
+    }
   };
 
   const handleMapNodeClick = (idx: number) => {
@@ -529,10 +536,10 @@ export default function GamePage() {
         className={`game-board-scale relative w-full bg-blue-50 border-gray-700 overflow-hidden shadow-2xl transition-all will-change-transform mx-auto flex items-center justify-center ${damageAnim ? "animate-damage-shake" : ""} ${isFullscreen ? "max-w-none h-screen rounded-none border-0" : "border-0 md:border-8 md:rounded-xl"}`}
       >
         
-        {/* NÚT FULLSCREEN (CHỈ HIỆN TRÊN MÁY TÍNH) */}
+        {/* NÚT FULLSCREEN (HIỆN TRÊN MỌI THIẾT BỊ) */}
         <button
           onClick={toggleFullScreen}
-          className="absolute bottom-4 right-4 z-[60] bg-black/50 hover:bg-black/80 text-white px-3 py-2 rounded-lg hidden md:flex items-center gap-2 transition-colors font-bold shadow-lg border border-white/20 outline-none focus:outline-none"
+          className="absolute top-4 right-4 md:bottom-4 md:right-4 md:top-auto z-[60] bg-black/50 hover:bg-black/80 text-white px-3 py-2 rounded-lg flex items-center gap-2 transition-colors font-bold shadow-lg border border-white/20 outline-none focus:outline-none"
           title="Bật/Tắt Toàn Màn Hình"
         >
           {isFullscreen ? "🗗 Thu nhỏ" : "⛶ Toàn màn hình"}

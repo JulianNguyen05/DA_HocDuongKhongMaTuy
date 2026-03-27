@@ -19,7 +19,7 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-// Xử lý sự kiện cuộn trang để ẩn/hiện Navbar
+  // Xử lý sự kiện cuộn trang để ẩn/hiện Navbar
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -27,15 +27,15 @@ export default function Navbar() {
       // 1. Nếu đang ở sát đỉnh (ví dụ < 10px), luôn hiện Navbar
       if (currentScrollY <= 10) {
         setIsVisible(true);
-      } 
+      }
       // 2. Nếu cuộn xuống, ẩn Navbar
       else if (currentScrollY > lastScrollY) {
         setIsVisible(false);
         setOpen(false);
       }
-      // 3. Nếu cuộn lên NHƯNG chưa tới đỉnh, vẫn giữ ẩn 
+      // 3. Nếu cuộn lên NHƯNG chưa tới đỉnh, vẫn giữ ẩn
       // (Bỏ logic hiện Navbar khi cuộn lên ở giữa trang)
-      
+
       setLastScrollY(currentScrollY);
     };
 
@@ -47,7 +47,9 @@ export default function Navbar() {
     // Thêm hiệu ứng trượt (translate-y) và mờ dần (opacity) khi isVisible thay đổi
     <div
       className={`fixed inset-x-0 z-[100] px-4 top-6 md:top-8 transition-all duration-500 ease-in-out ${
-        isVisible ? "translate-y-0 opacity-100" : "-translate-y-[150%] opacity-0 pointer-events-none"
+        isVisible
+          ? "translate-y-0 opacity-100"
+          : "-translate-y-[150%] opacity-0 pointer-events-none"
       }`}
     >
       <div className="relative flex justify-center w-full max-w-6xl mx-auto">
@@ -58,7 +60,8 @@ export default function Navbar() {
               href="/"
               className="relative z-10 flex items-center gap-2 group ml-4 mr-4"
             >
-              <span className="text-2xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-green-800 to-green-600 bg-clip-text text-transparent drop-shadow-sm">
+              {/* THAY ĐỔI: text-2xl -> text-xl trên mobile */}
+              <span className="text-xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-green-800 to-green-600 bg-clip-text text-transparent drop-shadow-sm">
                 Học đường không ma túy
               </span>
             </Link>
@@ -110,7 +113,7 @@ export default function Navbar() {
               />
               <span
                 className={`h-0.5 bg-current rounded-full transition-all duration-200 ${
-                  open ? "w-0 opacity-0" : "w-5"
+                  open ? "opacity-0" : "w-5"
                 }`}
               />
               <span

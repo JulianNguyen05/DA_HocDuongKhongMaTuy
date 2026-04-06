@@ -62,8 +62,17 @@ export function useParkourPhysics(
         jump: "Space",
         open: "KeyE",
       };
-      if (active) keysRef.current.add(codeMap[btn]);
-      else keysRef.current.delete(codeMap[btn]);
+
+      if (active) {
+        keysRef.current.add(codeMap[btn]);
+      } else {
+        // CHỐNG LỖI CHẠM QUÁ NHANH: Trì hoãn xóa nút Nhặt/Nhảy 100ms để vòng lặp kịp đọc
+        if (btn === "open" || btn === "jump") {
+          setTimeout(() => keysRef.current.delete(codeMap[btn]), 100);
+        } else {
+          keysRef.current.delete(codeMap[btn]);
+        }
+      }
     },
     [],
   );
@@ -84,6 +93,9 @@ export function useParkourPhysics(
       const vel = velRef.current;
       const platforms =
         STAGE_PLATFORMS[Math.max(1, visualStageIdx)] || STAGE_PLATFORMS[1];
+
+      const charWidth = 5; // Độ rộng nhân vật (%)
+      const charHeight = 15; // Chiều cao nhân vật (~15% màn hình)
 
       // 1. Di chuyển ngang (X)
       const moveSpeed = 30; // Tốc độ di chuyển theo % màn hình / giây
@@ -109,33 +121,67 @@ export function useParkourPhysics(
       // 3. Trọng lực
       vel.y -= 90 * deltaTime; // Gia tốc trọng trường kéo xuống
 
-      // 4. Áp dụng vận tốc vào tọa độ
+      // 4. Áp dụng vận tốc X và chặn biên + XỬ LÝ ĐỤNG TƯỜNG (Va chạm ngang)
       let newX = pos.x + vel.x * deltaTime;
-      let newY = pos.y + vel.y * deltaTime;
 
-      // Giới hạn biên màn hình
       if (newX < 0) newX = 0;
       if (newX > 95) newX = 95;
 
-      // 5. Xử lý va chạm với bệ đỡ (Platform)
+      for (const plat of platforms) {
+        // Nhân vật chỉ đụng tường nếu đang nằm trong khoảng chiều cao của khối đó
+        const isIntersectingY =
+          pos.y < plat.bottom + plat.height && pos.y + charHeight > plat.bottom;
+
+        if (isIntersectingY) {
+          // Đi sang PHẢI đập mỏ vào cạnh TRÁI của block
+          if (
+            vel.x > 0 &&
+            pos.x + charWidth <= plat.left &&
+            newX + charWidth > plat.left
+          ) {
+            newX = plat.left - charWidth;
+            vel.x = 0;
+          }
+          // Đi sang TRÁI đập lưng vào cạnh PHẢI của block
+          else if (
+            vel.x < 0 &&
+            pos.x >= plat.left + plat.width &&
+            newX < plat.left + plat.width
+          ) {
+            newX = plat.left + plat.width;
+            vel.x = 0;
+          }
+        }
+      }
+
+      // 5. Áp dụng vận tốc Y và Rớt sàn (Va chạm dọc)
+      let newY = pos.y + vel.y * deltaTime;
       isGroundedRef.current = false;
       let nearChestFlag = false;
 
-      for (const plat of platforms) {
-        // Kiểm tra hitbox đơn giản
+      for (let i = 0; i < platforms.length; i++) {
+        const plat = platforms[i];
         const isWithinX =
-          newX + 5 >= plat.left && newX <= plat.left + plat.width; // 5 là độ rộng tương đối của nhân vật
+          newX + charWidth >= plat.left && newX <= plat.left + plat.width;
         const isFalling = vel.y <= 0;
-        const isAbovePlat = pos.y >= plat.bottom; // Frame trước còn ở trên nền
 
-        if (isWithinX && isFalling && newY <= plat.bottom + plat.height) {
-          // Va chạm mặt trên của platform
+        // Tolerance: Frame trước nhân vật ở cao hơn hoặc bằng mặt dưới block
+        const isAbovePlat = pos.y >= plat.bottom;
+
+        if (
+          isWithinX &&
+          isFalling &&
+          isAbovePlat &&
+          newY <= plat.bottom + plat.height
+        ) {
+          // Va chạm mặt trên của platform (Đáp đất)
           newY = plat.bottom + plat.height;
           vel.y = 0;
           isGroundedRef.current = true;
 
-          // Kiểm tra xem bệ đỡ này có phải là đích đến (rương) không
-          if (plat.id > 100 && newX > plat.left + plat.width * 0.5) {
+          // SỬA LỖI MỞ RƯƠNG: Nhận diện rương là bệ đỡ CUỐI CÙNG của mảng
+          const isLastPlat = i === platforms.length - 1;
+          if (isLastPlat && newX > plat.left + plat.width * 0.5) {
             nearChestFlag = true;
           }
         }
@@ -168,11 +214,17 @@ export function useParkourPhysics(
         setWalkStep(false);
       }
 
-      // Mở rương nếu ấn phím E hoặc nút nhặt
+      // 8. XỬ LÝ MỞ RƯƠNG CHUẨN XÁC
       setIsNearChest(nearChestFlag);
-      if (nearChestFlag && keys.has("KeyE")) {
-        keys.delete("KeyE"); // Chống double click
-        setViewMode("QUESTION");
+
+      // Chống kẹt Unikey và bắt sự kiện chạm màn hình
+      const isPressingOpen = keys.has("KeyE") || keys.has("e") || keys.has("E");
+
+      if (nearChestFlag && isPressingOpen) {
+        keys.delete("KeyE");
+        keys.delete("e");
+        keys.delete("E");
+        setViewMode("QUESTION"); // <== Chuyển màn hình thành công!
       }
 
       requestRef.current = requestAnimationFrame(gameLoop);

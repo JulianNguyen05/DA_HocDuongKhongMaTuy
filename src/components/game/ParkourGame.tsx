@@ -50,9 +50,27 @@ export default function ParkourGame({
         Câu: {currentQuestionIdx + 1} / {totalQuestionsInStage}
       </div>
 
+      {/* 🔴 CHẾ ĐỘ DEBUG: HIỂN THỊ HITBOX CỦA CÁC BỆ ĐỠ */}
+      {currentPlatforms.map((plat, idx) => (
+        <div
+          key={`debug-${idx}`}
+          className="absolute border-2 border-red-500 bg-red-500/40 z-10 pointer-events-none flex items-end justify-center"
+          style={{
+            left: `${plat.left}%`,
+            bottom: `${plat.bottom}%`,
+            width: `${plat.width}%`,
+            height: `${plat.height}%`,
+          }}
+        >
+          <span className="text-[8px] md:text-xs text-white font-bold mb-1">
+            Mặt đất
+          </span>
+        </div>
+      ))}
+
       {/* NHÂN VẬT PARKOUR */}
       <div
-        className="absolute w-[50px] md:w-[80px] h-[70px] md:h-[100px] will-change-[bottom,left] z-20"
+        className="absolute w-[50px] md:w-[80px] h-[70px] md:h-[100px] will-change-[bottom,left] z-20 pointer-events-none"
         style={{ bottom: `${parkourY}%`, left: `${parkourX}%` }}
       >
         <img
@@ -73,7 +91,7 @@ export default function ParkourGame({
       {/* TOOLTIP HIỆN NÚT [E] KHI ĐỨNG GẦN RƯƠNG (PC) */}
       {isNearChest && lastPlat && (
         <div
-          className="absolute transform -translate-x-1/2 bg-yellow-400 text-yellow-900 px-3 py-1 md:px-4 md:py-2 rounded-xl text-xs md:text-base font-bold animate-pulse shadow-lg whitespace-nowrap border-2 border-yellow-600 z-30 hidden md:block"
+          className="absolute transform -translate-x-1/2 bg-yellow-400 text-yellow-900 px-3 py-1 md:px-4 md:py-2 rounded-xl text-xs md:text-base font-bold animate-pulse shadow-lg whitespace-nowrap border-2 border-yellow-600 z-30 hidden md:block pointer-events-none"
           style={{
             bottom: `${lastPlat.bottom + 20}%`,
             left: `${lastPlat.left + lastPlat.width / 2}%`,

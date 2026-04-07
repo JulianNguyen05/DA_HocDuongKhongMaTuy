@@ -232,6 +232,13 @@ export default function GamePage() {
           }
         }
 
+        /* ĐÃ THÊM: Hiệu ứng làm nét ảnh Pixel (Không bị mờ khi zoom) */
+        .pixel-art {
+          image-rendering: pixelated; /* Chrome, Edge, Safari */
+          image-rendering: crisp-edges; /* Firefox */
+          will-change: transform; /* Giúp render mượt mà bằng Card Đồ Họa */
+        }
+
         @keyframes damageShake {
           0% { transform: translate(4px, 4px) rotate(0deg); }
           20% { transform: translate(-4px, -5px) rotate(-2deg); }

@@ -29,6 +29,12 @@ export function useParkourPhysics(
   const requestRef = useRef<number>(0);
   const isGroundedRef = useRef(false);
 
+  // KỸ THUẬT REF: Lưu trữ các hàm từ ngoài truyền vào để tránh phá vỡ vòng lặp 60fps
+  const callbacksRef = useRef({ setToastMsg, setViewMode, onFall });
+  useEffect(() => {
+    callbacksRef.current = { setToastMsg, setViewMode, onFall };
+  });
+
   // Hàm Reset vị trí khi bắt đầu màn chơi mới
   const startMiniGamePosition = useCallback(() => {
     const startX = 5;
@@ -136,9 +142,9 @@ export function useParkourPhysics(
       if (newX > 95) newX = 95;
 
       for (const plat of platforms) {
-        // Nhân vật chỉ đụng tường nếu đang nằm trong khoảng chiều cao của khối đó
+        // ĐÃ SỬA: Tính toán tọa độ Y chuẩn để không đụng tường sai lệch
         const isIntersectingY =
-          pos.y < plat.bottom + plat.height && pos.y + charHeight > plat.bottom;
+          pos.y < plat.bottom && pos.y + charHeight > plat.bottom - plat.height;
 
         if (isIntersectingY) {
           // Đi sang PHẢI đập mỏ vào cạnh TRÁI của block
@@ -175,27 +181,28 @@ export function useParkourPhysics(
         // Tolerance: Frame trước nhân vật ở cao hơn hoặc bằng mặt dưới block
         const isAbovePlat = pos.y >= plat.bottom;
 
+        // ĐÃ SỬA LỖI LƠ LỬNG: Đáp xuống đúng mặt sàn (plat.bottom)
         if (
           isWithinX &&
           isFalling &&
           isAbovePlat &&
-          newY <= plat.bottom + plat.height
+          newY <= plat.bottom
         ) {
           // Va chạm mặt trên của platform (Đáp đất)
-          newY = plat.bottom + plat.height;
+          newY = plat.bottom;
           vel.y = 0;
           isGroundedRef.current = true;
         }
       }
 
       // ============================================
-      // VỰC THẲM (RỚT ĐÀI) - ĐÃ CẬP NHẬT LOGIC onFall
+      // VỰC THẲM (RỚT ĐÀI) - SỬ DỤNG CALLBACK TỪ REF
       // ============================================
       if (newY < -10) {
-        if (onFall) {
-          onFall(); // Gọi tín hiệu ra ngoài page.tsx để hiện màn hình "Gục ngã"
+        if (callbacksRef.current.onFall) {
+          callbacksRef.current.onFall(); // Gọi tín hiệu ra ngoài page.tsx
         } else {
-          setToastMsg("Bạn đã rơi xuống vực!");
+          callbacksRef.current.setToastMsg("Bạn đã rơi xuống vực!");
           startMiniGamePosition(); // Hồi sinh dự phòng
         }
         return; // Dừng vòng lặp vật lý ngay lập tức
@@ -209,11 +216,11 @@ export function useParkourPhysics(
       setParkourX(newX);
       setParkourY(newY);
 
-      // Hiệu ứng bước đi
+      // Hiệu ứng bước đi (Đã giảm xuống 8 frame để bước chân nhanh và mượt hơn)
       if (vel.x !== 0 && isGroundedRef.current) {
         walkAnimCounter++;
-        if (walkAnimCounter > 10) {
-          // Cứ sau 10 frame đổi ảnh 1 lần
+        if (walkAnimCounter > 8) {
+          // Cứ sau 8 frame đổi ảnh 1 lần
           setWalkStep((prev) => !prev);
           walkAnimCounter = 0;
         }
@@ -234,7 +241,7 @@ export function useParkourPhysics(
         keys.delete("KeyE");
         keys.delete("e");
         keys.delete("E");
-        setViewMode("QUESTION"); // <== Chuyển màn hình thành công!
+        callbacksRef.current.setViewMode("QUESTION"); // Chuyển màn hình thành công!
       }
 
       requestRef.current = requestAnimationFrame(gameLoop);
@@ -242,14 +249,9 @@ export function useParkourPhysics(
 
     requestRef.current = requestAnimationFrame(gameLoop);
     return () => cancelAnimationFrame(requestRef.current!);
-  }, [
-    viewMode,
-    visualStageIdx,
-    setToastMsg,
-    setViewMode,
-    startMiniGamePosition,
-    onFall // Thêm onFall vào dependency để tránh lỗi React hook
-  ]);
+    
+  // ĐÃ SỬA: Xóa sạch các hàm callback khỏi mảng dependency, triệt tiêu lỗi vòng lặp
+  }, [viewMode, visualStageIdx, startMiniGamePosition]); 
 
   return {
     parkourX,

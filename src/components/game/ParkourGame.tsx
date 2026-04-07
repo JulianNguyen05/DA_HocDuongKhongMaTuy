@@ -50,23 +50,24 @@ export default function ParkourGame({
         Câu: {currentQuestionIdx + 1} / {totalQuestionsInStage}
       </div>
 
-      {/* ========================================= */}
-      {/* HIỂN THỊ HITBOX MẶT ĐẤT (BẬT LÊN ĐỂ DEBUG) */}
-      {/* ========================================= */}
-      {currentPlatforms.map((plat, index) => (
-        <div
-          key={index}
-          className="absolute bg-red-500/40 border-2 border-red-600 flex items-center justify-center text-white text-xs font-bold pointer-events-none z-10"
-          style={{
-            left: `${plat.left}%`,
-            bottom: `${plat.bottom}%`, 
-            width: `${plat.width}%`,
-            height: `${plat.height}%`,
-          }}
-        >
-          Block {index + 1}
-        </div>
-      ))}
+      {/* =========================================
+        HIỂN THỊ HITBOX MẶT ĐẤT (BẬT LÊN ĐỂ DEBUG)
+        =========================================
+        {currentPlatforms.map((plat, index) => (
+          <div
+            key={index}
+            className="absolute bg-red-500/40 border-2 border-red-600 flex items-center justify-center text-white text-xs font-bold pointer-events-none z-10"
+            style={{
+              left: `${plat.left}%`,
+              bottom: `${plat.bottom}%`, 
+              width: `${plat.width}%`,
+              height: `${plat.height}%`,
+            }}
+          >
+            Block {index + 1}
+          </div>
+        ))}  
+      */}
 
       {/* NHÂN VẬT PARKOUR */}
       <div

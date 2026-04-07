@@ -42,7 +42,7 @@ export default function QuestionModal({
       )}
 
       <div
-        className={`bg-white p-4 md:p-8 rounded-xl shadow-2xl w-[95%] max-w-2xl max-h-[90vh] md:max-h-[85vh] flex flex-col transition-transform ${damageAnim ? "scale-95 border-4 border-red-500" : "scale-100 animate-fade-in"}`}
+        className={`bg-white p-3 md:p-8 rounded-xl shadow-2xl w-[85%] md:w-[95%] max-w-2xl max-h-[85vh] flex flex-col transition-transform ${damageAnim ? "scale-95 border-4 border-red-500" : "scale-100 animate-fade-in"}`}
       >
         {/* HEADER CÂU HỎI */}
         <div className="flex justify-between items-center mb-3 md:mb-6 border-b pb-2 md:pb-3 shrink-0">
@@ -60,7 +60,7 @@ export default function QuestionModal({
             Câu: {displayIdx + 1} / {totalQuestions}
           </div>
 
-          <h2 className="text-base md:text-2xl font-bold text-gray-800 mb-4 md:mb-8 text-center">
+          <h2 className="text-sm md:text-2xl font-bold text-gray-800 mb-3 md:mb-8 text-center">
             {displayQuestion.question}
           </h2>
 
@@ -68,7 +68,7 @@ export default function QuestionModal({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
             {Object.entries(displayQuestion.options).map(([key, value]) => {
               let btnClass =
-                "p-2 md:p-4 rounded-lg transition-all border-2 shadow-sm text-left flex items-start gap-1 md:gap-3 outline-none";
+                "p-1.5 md:p-4 text-xs md:text-base rounded-lg transition-all border-2 shadow-sm text-left flex items-start gap-1 md:gap-3 outline-none";
 
               // LOGIC ĐỔI MÀU NÚT KHI ĐÓNG BĂNG ĐÁP ÁN
               if (frozenQuestion) {

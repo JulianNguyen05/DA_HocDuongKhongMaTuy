@@ -128,7 +128,7 @@ export function useParkourPhysics(
         (keys.has("Space") || keys.has("KeyW") || keys.has("ArrowUp")) &&
         isGroundedRef.current
       ) {
-        vel.y = 45; // Lực nhảy lên
+        vel.y = 55; // Lực nhảy lên
         isGroundedRef.current = false;
       }
 

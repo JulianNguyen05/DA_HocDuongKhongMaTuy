@@ -80,7 +80,7 @@ export default function MainMap({
                 left: pos.left,
                 transform: "translate(-50%, -50%)",
               }}
-              className={`absolute z-20 cursor-pointer w-20 h-20 md:w-28 md:h-28 flex items-center justify-center transition-transform duration-300
+              className={`absolute z-20 cursor-pointer w-12 h-12 md:w-28 md:h-28 flex items-center justify-center transition-transform duration-300
               ${isLocked ? "grayscale opacity-60 scale-90" : "opacity-100"}
               ${isActive ? "scale-110 hover:scale-115" : "hover:scale-105"}
             `}

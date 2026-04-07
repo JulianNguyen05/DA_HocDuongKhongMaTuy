@@ -71,7 +71,7 @@ export default function ParkourGame({
 
       {/* NHÂN VẬT PARKOUR */}
       <div
-        className="absolute w-[50px] md:w-[80px] h-[70px] md:h-[100px] will-change-[bottom,left] z-20 pointer-events-none"
+        className="absolute w-[35px] md:w-[80px] h-[50px] md:h-[100px] will-change-[bottom,left] z-20 pointer-events-none"
         style={{ bottom: `${parkourY}%`, left: `${parkourX}%` }}
       >
         <img
@@ -103,7 +103,7 @@ export default function ParkourGame({
       )}
 
       {/* GAMEPAD CHO MOBILE */}
-      <div className="absolute bottom-4 left-0 right-0 px-4 flex justify-between items-end z-[60] pointer-events-none">
+      <div className="absolute bottom-4 left-0 right-0 px-4 flex justify-between items-end z-[60] pointer-events-none md:hidden">
         <div className="flex gap-1 md:gap-2 pointer-events-auto">
           <button
             onPointerDown={(e) => {
@@ -141,7 +141,7 @@ export default function ParkourGame({
           </button>
         </div>
 
-        <div className="flex gap-2 items-end pointer-events-auto">
+        <div className="flex flex-col gap-3 items-center pointer-events-auto">
           <button
             onPointerDown={(e) => {
               e.preventDefault();

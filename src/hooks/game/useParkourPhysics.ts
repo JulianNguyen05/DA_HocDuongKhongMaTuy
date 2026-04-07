@@ -42,10 +42,17 @@ export function useParkourPhysics(
 
   // Lắng nghe phím bấm (PC)
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => keysRef.current.add(e.code);
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Chặn cuộn trang khi ấn nút nhảy hoặc điều hướng
+      if (["Space", "KeyW", "KeyA", "KeyD", "KeyE", "ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.code)) {
+        e.preventDefault(); 
+      }
+      keysRef.current.add(e.code);
+    };
     const handleKeyUp = (e: KeyboardEvent) => keysRef.current.delete(e.code);
 
-    window.addEventListener("keydown", handleKeyDown);
+    // Dùng passive: false để cho phép preventDefault hoạt động
+    window.addEventListener("keydown", handleKeyDown, { passive: false });
     window.addEventListener("keyup", handleKeyUp);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
@@ -157,7 +164,6 @@ export function useParkourPhysics(
       // 5. Áp dụng vận tốc Y và Rớt sàn (Va chạm dọc)
       let newY = pos.y + vel.y * deltaTime;
       isGroundedRef.current = false;
-      let nearChestFlag = false;
 
       for (let i = 0; i < platforms.length; i++) {
         const plat = platforms[i];
@@ -178,12 +184,6 @@ export function useParkourPhysics(
           newY = plat.bottom + plat.height;
           vel.y = 0;
           isGroundedRef.current = true;
-
-          // SỬA LỖI MỞ RƯƠNG: Nhận diện rương là bệ đỡ CUỐI CÙNG của mảng
-          const isLastPlat = i === platforms.length - 1;
-          if (isLastPlat && newX > plat.left + plat.width * 0.5) {
-            nearChestFlag = true;
-          }
         }
       }
 
@@ -214,13 +214,23 @@ export function useParkourPhysics(
         setWalkStep(false);
       }
 
-      // 8. XỬ LÝ MỞ RƯƠNG CHUẨN XÁC
+      // ============================================
+      // 8. XỬ LÝ MỞ RƯƠNG CHUẨN XÁC (ĐÃ SỬA LỖI)
+      // ============================================
+      
+      // Lấy bệ đỡ cuối cùng của màn chơi (nơi đặt rương)
+      const lastPlat = platforms[platforms.length - 1];
+      
+      // Chỉ cần nhân vật chạm vào vùng cách mép trái của rương 5% là cho phép mở
+      const nearChestFlag = newX >= lastPlat.left - 5;
+      
       setIsNearChest(nearChestFlag);
 
       // Chống kẹt Unikey và bắt sự kiện chạm màn hình
       const isPressingOpen = keys.has("KeyE") || keys.has("e") || keys.has("E");
 
       if (nearChestFlag && isPressingOpen) {
+        // Xóa nút bấm để tránh mở lặp lại
         keys.delete("KeyE");
         keys.delete("e");
         keys.delete("E");

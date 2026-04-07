@@ -158,7 +158,7 @@ export default function GamePage() {
 
       <div
         ref={gameContainerRef}
-        className={`game-board-scale relative bg-blue-50 overflow-hidden md:rounded-2xl border-0 md:border-8 border-gray-800 shadow-2xl transition-transform flex items-center justify-center mx-auto 
+        className={`game-board-scale relative bg-blue-50 overflow-hidden md:rounded-2xl border-0 md:border-8 border-gray-800 shadow-2xl transition-transform flex items-center justify-center mx-auto `
         ${damageAnim ? "animate-damage-shake" : ""} 
         ${isFullscreen ? "max-w-none h-screen w-screen rounded-none border-0" : ""}`}
       >

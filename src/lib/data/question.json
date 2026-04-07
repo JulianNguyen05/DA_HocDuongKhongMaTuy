@@ -1,300 +1,300 @@
 [
   {
-    "stage": "Chặng 1: Câu hỏi dễ",
+    "stage": "Chặng 1: Khái niệm về Ma túy",
     "questions": [
       {
         "id": 1,
-        "question": "Ma túy là gì?",
-        "correctOption": "B",
+        "question": "Theo Luật Phòng, chống ma túy năm 2025, định nghĩa nào sau đây mô tả chính xác nhất về 'Chất ma túy'?",
+        "correctOption": "C",
         "options": {
-          "A": "Thực phẩm",
-          "B": "Chất gây nghiện ảnh hưởng đến hệ thần kinh",
-          "C": "Thuốc bổ",
-          "D": "Nước giải khát"
+          "A": "Là hóa chất thường được sử dụng trong quá trình điều chế, sản xuất ma túy.",
+          "B": "Là chất gây ảo giác, nếu sử dụng nhiều lần có thể dẫn tới tình trạng nghiện.",
+          "C": "Là chất gây nghiện, chất hướng thần được quy định trong danh mục chất ma túy Chính phủ ban hành.",
+          "D": "Là bất kỳ chất kích thích thần kinh nào bị cấm lưu hành trên thị trường."
         }
       },
       {
         "id": 2,
-        "question": "Sử dụng ma túy có thể gây ra điều gì?",
-        "correctOption": "D",
+        "question": "'Chất hướng thần' được phân biệt với các loại chất khác dựa trên đặc điểm nào?",
+        "correctOption": "B",
         "options": {
-          "A": "Tăng trí nhớ",
-          "B": "Tăng sức khỏe",
-          "C": "Không ảnh hưởng",
-          "D": "Nghiện"
+          "A": "Là chất dễ gây tình trạng nghiện ngay từ lần đầu sử dụng.",
+          "B": "Là chất kích thích hoặc ức chế thần kinh hoặc gây ảo giác, nếu sử dụng nhiều lần có thể dẫn tới tình trạng nghiện.",
+          "C": "Là hóa chất tiền đề để tổng hợp heroin.",
+          "D": "Là thuốc giảm đau được dùng trong y tế dự phòng."
         }
       },
       {
         "id": 3,
-        "question": "Ma túy ảnh hưởng nhiều nhất đến bộ phận nào?",
-        "correctOption": "C",
+        "question": "Khái niệm 'Tiền chất' trong quản lý phòng chống ma túy được hiểu như thế nào?",
+        "correctOption": "B",
         "options": {
-          "A": "Tóc",
-          "B": "Móng",
-          "C": "Hệ thần kinh",
-          "D": "Da"
+          "A": "Là loại ma túy mới xuất hiện chưa có trong danh mục.",
+          "B": "Là hóa chất thường được sử dụng trong quá trình điều chế, sản xuất chất ma túy được quy định trong danh mục do Chính phủ ban hành.",
+          "C": "Là các loại cây có chứa chất ma túy như thuốc phiện, cần sa.",
+          "D": "Là thuốc hướng thần được bán không kê đơn."
         }
       },
       {
         "id": 4,
-        "question": "Khẩu hiệu phổ biến trong phòng chống ma túy là gì?",
-        "correctOption": "A",
+        "question": "'Thuốc thú y có chứa chất ma túy, tiền chất' được quy định nhằm mục đích gì?",
+        "correctOption": "C",
         "options": {
-          "A": "Nói không với ma túy",
-          "B": "Làm theo bạn",
-          "C": "Thử cho biết",
-          "D": "Không quan tâm"
+          "A": "Cấm tuyệt đối việc sử dụng trong thú y.",
+          "B": "Cho phép người dân tự do mua về chữa bệnh cho vật nuôi.",
+          "C": "Quản lý chặt chẽ thuốc thú y có chứa chất ma túy, tiền chất để tránh việc lạm dụng hoặc điều chế trái phép.",
+          "D": "Tăng thuế đối với các loại thuốc thú y."
         }
       },
       {
         "id": 5,
-        "question": "Ma túy có thể gây hại cho ai?",
+        "question": "Theo Điều 5 Luật Phòng, chống ma túy năm 2025, có bao nhiêu hành vi bị nghiêm cấm?",
         "correctOption": "C",
         "options": {
-          "A": "Chỉ người lớn",
-          "B": "Chỉ học sinh",
-          "C": "Mọi người",
-          "D": "Chỉ người già"
+          "A": "12 hành vi.",
+          "B": "13 hành vi.",
+          "C": "14 hành vi.",
+          "D": "15 hành vi."
         }
       }
     ]
   },
   {
-    "stage": "Chặng 2: Nhận biết ma túy",
+    "stage": "Chặng 2: Trách nhiệm & Xử lý vi phạm",
     "questions": [
       {
         "id": 6,
-        "question": "Loại ma túy nào thường có dạng tinh thể giống đá?",
-        "correctOption": "D",
+        "question": "Hành vi nào sau đây bị nghiêm cấm theo Luật Phòng, chống ma túy năm 2025?",
+        "correctOption": "B",
         "options": {
-          "A": "Thuốc lá",
-          "B": "Cà phê",
-          "C": "Cần sa",
-          "D": "Ma túy đá"
+          "A": "Tham gia các buổi hội thảo tuyên truyền về phòng, chống ma túy.",
+          "B": "Hướng dẫn người khác sản xuất, sử dụng trái phép chất ma túy dưới mọi hình thức.",
+          "C": "Tố giác tội phạm ma túy cho cơ quan Công an.",
+          "D": "Cung cấp thông tin về tác hại của ma túy cho học sinh."
         }
       },
       {
         "id": 7,
-        "question": "Cần sa thường có dạng gì?",
-        "correctOption": "B",
+        "question": "Cơ quan nào là lực lượng nòng cốt, chủ trì trong công tác phòng, chống ma túy?",
+        "correctOption": "A",
         "options": {
-          "A": "Viên nén",
-          "B": "Lá khô",
-          "C": "Tinh thể",
-          "D": "Nước"
+          "A": "Cơ quan Công an nhân dân.",
+          "B": "Bộ Y tế.",
+          "C": "Bộ Giáo dục và Đào tạo.",
+          "D": "Ủy ban nhân dân các cấp."
         }
       },
       {
         "id": 8,
-        "question": "Thuốc lắc thường có dạng nào?",
+        "question": "Một trong những chính sách của Nhà nước về phòng, chống ma túy là gì?",
         "correctOption": "C",
         "options": {
-          "A": "Bột",
-          "B": "Nước",
-          "C": "Viên nén",
-          "D": "Lá"
+          "A": "Chỉ ưu tiên các biện pháp phạt tiền đối với người sử dụng ma túy.",
+          "B": "Khuyến khích trồng cây có chứa chất ma túy ở vùng sâu vùng xa.",
+          "C": "Ưu tiên nguồn lực phòng, chống ma túy cho vùng đồng bào dân tộc thiểu số, biên giới, hải đảo và các khu vực trọng điểm.",
+          "D": "Giữ bí mật tuyệt đối về tình trạng ma túy, không tuyên truyền rộng rãi."
         }
       },
       {
         "id": 9,
-        "question": "Heroin thường có dạng gì?",
-        "correctOption": "A",
+        "question": "Theo quy định hiện hành, người có hành vi sử dụng trái phép chất ma túy lần đầu sẽ bị xử lý như thế nào?",
+        "correctOption": "C",
         "options": {
-          "A": "Bột trắng",
-          "B": "Hạt",
-          "C": "Lá khô",
-          "D": "Nước"
+          "A": "Bị khởi tố hình sự và phạt tù giam.",
+          "B": "Đưa ngay vào cơ sở cai nghiện bắt buộc.",
+          "C": "Bị lập hồ sơ quản lý người sử dụng trái phép chất ma túy.",
+          "D": "Chỉ nhắc nhở và thông báo cho gia đình."
         }
       },
       {
         "id": 10,
-        "question": "Ma túy tổng hợp thường xuất hiện dưới dạng nào?",
-        "correctOption": "D",
+        "question": "Thời hạn quản lý người sử dụng trái phép chất ma túy là bao lâu?",
+        "correctOption": "C",
         "options": {
-          "A": "Chỉ dạng nước",
-          "B": "Chỉ dạng lá",
-          "C": "Chỉ dạng khí",
-          "D": "Viên nén hoặc tinh thể"
+          "A": "06 tháng kể từ ngày có quyết định quản lý.",
+          "B": "12 tháng kể từ ngày bắt đầu sử dụng ma túy.",
+          "C": "01 năm kể từ ngày Chủ tịch UBND cấp xã ra quyết định quản lý.",
+          "D": "02 năm kể từ ngày phát hiện hành vi vi phạm."
         }
       }
     ]
   },
   {
-    "stage": "Chặng 3: Dấu hiệu nhận biết",
+    "stage": "Chặng 3: Vai trò của Gia đình & Xã hội",
     "questions": [
       {
         "id": 11,
-        "question": "Dấu hiệu nào có thể nghi ngờ người sử dụng ma túy?",
-        "correctOption": "B",
+        "question": "Cá nhân có trách nhiệm gì trong phòng, chống ma túy?",
+        "correctOption": "D",
         "options": {
-          "A": "Ăn uống đều",
-          "B": "Mắt đỏ, hành vi lạ",
-          "C": "Ngủ đúng giờ",
-          "D": "Học tập tốt"
+          "A": "Cung cấp nơi ở cho người bị truy nã về tội ma túy.",
+          "B": "Tự ý mua bán ma túy để 'nghiên cứu' tác hại.",
+          "C": "Không cần tham gia vì đó là việc của lực lượng Công an.",
+          "D": "Tham gia các hoạt động phòng, chống ma túy; báo cáo kịp thời cho cơ quan chức năng khi phát hiện hành vi vi phạm."
         }
       },
       {
         "id": 12,
-        "question": "Người nghiện ma túy thường có biểu hiện nào?",
-        "correctOption": "C",
+        "question": "Gia đình của người nghiện ma túy có trách nhiệm gì?",
+        "correctOption": "D",
         "options": {
-          "A": "Tăng cân nhanh",
-          "B": "Cao hơn",
-          "C": "Sút cân nhanh",
-          "D": "Khỏe hơn"
+          "A": "Đuổi người nghiện ra khỏi nhà để không ảnh hưởng đến gia đình.",
+          "B": "Tự ý trói, giam giữ người nghiện tại nhà để cai nghiện.",
+          "C": "Giấu diếm thông tin để bảo vệ danh dự gia đình.",
+          "D": "Khai báo với cơ quan chức năng và phối hợp hỗ trợ người nghiện tham gia cai nghiện."
         }
       },
       {
         "id": 13,
-        "question": "Người dùng ma túy thường có tâm trạng thế nào?",
-        "correctOption": "D",
+        "question": "Cơ quan, tổ chức có trách nhiệm gì khi phát hiện thành viên của mình nghiện ma túy?",
+        "correctOption": "C",
         "options": {
-          "A": "Luôn vui vẻ",
-          "B": "Không thay đổi",
-          "C": "Luôn ổn định",
-          "D": "Thay đổi thất thường"
+          "A": "Sa thải ngay lập tức mà không cần thông báo cho ai.",
+          "B": "Bỏ qua nếu người đó có năng lực làm việc tốt.",
+          "C": "Phối hợp với gia đình, chính quyền địa phương để động viên, hỗ trợ người đó đi cai nghiện.",
+          "D": "Phạt tiền người lao động đó."
         }
       },
       {
         "id": 14,
-        "question": "Thức khuya nhiều và cáu gắt bất thường có thể là dấu hiệu của?",
-        "correctOption": "A",
+        "question": "Cơ sở giáo dục có trách nhiệm gì trong công tác phòng, chống ma túy?",
+        "correctOption": "D",
         "options": {
-          "A": "Sử dụng ma túy",
-          "B": "Làm việc",
-          "C": "Học bài",
-          "D": "Chơi thể thao"
+          "A": "Cấm tất cả học sinh mang điện thoại đến trường.",
+          "B": "Kiểm tra túi xách của học sinh mỗi ngày.",
+          "C": "Mời Công an bắt giữ ngay lập tức bất kỳ học sinh nào nghi ngờ dùng ma túy.",
+          "D": "Giáo dục kiến thức, kỹ năng phòng ngừa ma túy cho học sinh, sinh viên và phối hợp với gia đình, chính quyền để quản lý."
         }
       },
       {
         "id": 15,
-        "question": "Người nghiện ma túy thường gặp vấn đề gì về sức khỏe?",
-        "correctOption": "B",
+        "question": "Người nghiện ma túy có quyền và trách nhiệm gì đối với việc cai nghiện?",
+        "correctOption": "C",
         "options": {
-          "A": "Tăng sức khỏe",
-          "B": "Suy giảm sức khỏe",
-          "C": "Tăng trí nhớ",
-          "D": "Không thay đổi"
+          "A": "Từ chối cai nghiện nếu cảm thấy không cần thiết.",
+          "B": "Chỉ cai nghiện khi được trả tiền hỗ trợ.",
+          "C": "Được giữ bí mật thông tin cá nhân và có trách nhiệm tuân thủ nghiêm ngặt phác đồ điều trị cai nghiện.",
+          "D": "Tự ý mua thuốc cai nghiện về nhà dùng không cần hướng dẫn của bác sĩ."
         }
       }
     ]
   },
   {
-    "stage": "Chặng 4: Hậu quả",
+    "stage": "Chặng 4: Các biện pháp Cai nghiện",
     "questions": [
       {
         "id": 16,
-        "question": "Ma túy có thể gây tổn thương cơ quan nào?",
-        "correctOption": "D",
+        "question": "Có bao nhiêu hình thức cai nghiện ma túy theo Luật PCMT 2025?",
+        "correctOption": "A",
         "options": {
-          "A": "Gan",
-          "B": "Tim",
-          "C": "Não",
-          "D": "Tất cả các đáp án trên"
+          "A": "Cai nghiện tự nguyện và cai nghiện bắt buộc.",
+          "B": "Cai nghiện tại nhà và cai nghiện tại bệnh viện.",
+          "C": "Cai nghiện bằng thuốc đông y và tây y.",
+          "D": "Cai nghiện tại cộng đồng và cai nghiện tại nước ngoài."
         }
       },
       {
         "id": 17,
-        "question": "Sử dụng ma túy lâu dài có thể dẫn đến?",
+        "question": "Việc cai nghiện ma túy tự nguyện được thực hiện ở đâu?",
         "correctOption": "C",
         "options": {
-          "A": "Tăng tuổi thọ",
-          "B": "Khỏe hơn",
-          "C": "Tử vong",
-          "D": "Không ảnh hưởng"
+          "A": "Bắt buộc phải thực hiện tại Trạm y tế xã.",
+          "B": "Tại nhà riêng dưới sự giám sát của Công an.",
+          "C": "Tại gia đình, cộng đồng hoặc tại các cơ sở cai nghiện ma túy.",
+          "D": "Chỉ được thực hiện tại bệnh viện tuyến Trung ương."
         }
       },
       {
         "id": 18,
-        "question": "Ma túy có thể gây ảnh hưởng đến gia đình như thế nào?",
+        "question": "Nhà nước có chính sách hỗ trợ gì cho người cai nghiện tự nguyện?",
         "correctOption": "B",
         "options": {
-          "A": "Không ảnh hưởng",
-          "B": "Mâu thuẫn và tan vỡ",
-          "C": "Hạnh phúc hơn",
-          "D": "Giàu hơn"
+          "A": "Cấp phát tiền mặt hàng tháng.",
+          "B": "Hỗ trợ một phần kinh phí đối với người cai nghiện tự nguyện tại cơ sở cai nghiện công lập (tùy đối tượng chính sách).",
+          "C": "Mua nhà cho người hoàn thành cai nghiện.",
+          "D": "Miễn phí hoàn toàn chi phí ăn ở cho tất cả mọi người tại mọi cơ sở tư nhân."
         }
       },
       {
         "id": 19,
-        "question": "Ma túy có thể dẫn đến điều gì trong xã hội?",
+        "question": "Biện pháp 'Điều trị nghiện chất dạng thuốc phiện bằng thuốc thay thế' thường dùng loại thuốc nào phổ biến nhất hiện nay?",
         "correctOption": "D",
         "options": {
-          "A": "Tăng dân số",
-          "B": "Phát triển kinh tế",
-          "C": "Không ảnh hưởng",
-          "D": "Gia tăng tội phạm"
+          "A": "Paracetamol.",
+          "B": "Thuốc kháng sinh.",
+          "C": "Vitamin C tổng hợp.",
+          "D": "Methadone hoặc Buprenorphine."
         }
       },
       {
         "id": 20,
-        "question": "Ma túy ảnh hưởng đến học tập như thế nào?",
-        "correctOption": "A",
+        "question": "Mục đích chính của việc điều trị bằng thuốc thay thế (như Methadone) là gì?",
+        "correctOption": "D",
         "options": {
-          "A": "Giảm khả năng học tập",
-          "B": "Học tốt hơn",
-          "C": "Tăng trí nhớ",
-          "D": "Không ảnh hưởng"
+          "A": "Giúp người bệnh cảm thấy 'phê' hơn mà không bị bắt.",
+          "B": "Chữa khỏi hoàn toàn bệnh nghiện ngay lập tức.",
+          "C": "Cung cấp thuốc miễn phí để người nghiện bán lại.",
+          "D": "Giảm dần sự lệ thuộc vào ma túy bất hợp pháp, giảm lây nhiễm HIV và giúp người bệnh hòa nhập cộng đồng."
         }
       }
     ]
   },
   {
-    "stage": "Chặng 5: Xử lý tình huống",
+    "stage": "Chặng 5: Quy định Bắt buộc & Quản lý",
     "questions": [
       {
         "id": 21,
-        "question": "Nếu bạn bè rủ sử dụng ma túy, bạn nên làm gì?",
+        "question": "Ai có thẩm quyền lập hồ sơ đề nghị áp dụng biện pháp đưa vào cơ sở cai nghiện bắt buộc đối với người nghiện ma túy từ đủ 18 tuổi trở lên?",
         "correctOption": "C",
         "options": {
-          "A": "Đồng ý",
-          "B": "Thử một lần",
-          "C": "Từ chối",
-          "D": "Rủ thêm người"
+          "A": "Trưởng Trạm Y tế xã.",
+          "B": "Hiệu trưởng trường học.",
+          "C": "Trưởng Công an cấp xã nơi người đó cư trú hoặc có hành vi vi phạm.",
+          "D": "Đăng công khai lên loa phát thanh xã."
         }
       },
       {
         "id": 22,
-        "question": "Khi phát hiện người buôn bán ma túy, bạn nên?",
+        "question": "Hồ sơ đăng ký cai nghiện ma túy tự nguyện tại cơ sở công lập đối với người dưới 18 tuổi BẮT BUỘC phải có văn bản gì?",
         "correctOption": "B",
         "options": {
-          "A": "Làm ngơ",
-          "B": "Báo cơ quan chức năng",
-          "C": "Che giấu",
-          "D": "Mua thử"
+          "A": "Quyết định của Tòa án hình sự.",
+          "B": "Ý kiến của cha, mẹ, người giám hộ hoặc người đại diện hợp pháp.",
+          "C": "Thư giới thiệu của giáo viên chủ nhiệm.",
+          "D": "Bản cam kết trả nợ của gia đình."
         }
       },
       {
         "id": 23,
-        "question": "Khi tham gia tiệc, để tránh ma túy cần?",
-        "correctOption": "D",
+        "question": "Người đang điều trị bằng thuốc thay thế (Methadone) nếu không chấp hành đeo thiết bị giám sát điện tử thì bị xử lý ra saо?",
+        "correctOption": "C",
         "options": {
-          "A": "Uống mọi thứ",
-          "B": "Không quan tâm",
-          "C": "Thử cho biết",
-          "D": "Không uống đồ lạ"
+          "A": "Bị cắt liều thuốc Methadone ngày hôm đó.",
+          "B": "Bị phạt vi phạm hành chính 5 triệu đồng.",
+          "C": "Bị áp dụng biện pháp đưa đi cai nghiện bắt buộc.",
+          "D": "Chỉ bị nhắc nhở trước toàn khu dân cư."
         }
       },
       {
         "id": 24,
-        "question": "Nếu phát hiện người thân nghiện ma túy, nên?",
-        "correctOption": "A",
+        "question": "Ai là người bị đưa RA KHỎI danh sách người nghiện ma túy tại địa phương?",
+        "correctOption": "B",
         "options": {
-          "A": "Khuyên đi cai nghiện",
-          "B": "Cho tiền",
-          "C": "Bỏ mặc",
-          "D": "Che giấu"
+          "A": "Người đã bỏ trốn khỏi địa phương trên 6 tháng.",
+          "B": "Người đã hoàn thành cai tự nguyện/thuốc thay thế; phải đi chấp hành án phạt tù; chuyển đi nơi khác hoặc đã chết.",
+          "C": "Người đang đi du lịch nước ngoài 1 tuần.",
+          "D": "Người bị ốm nằm viện tuyến Trung ương."
         }
       },
       {
         "id": 25,
-        "question": "Thông điệp quan trọng nhất về ma túy là gì?",
-        "correctOption": "C",
+        "question": "Theo khoản 3 Điều 33 Luật PCMT 2025, người từ đủ 12 đến dưới 18 tuổi bị đưa vào cơ sở cai nghiện bắt buộc khi nào?",
+        "correctOption": "D",
         "options": {
-          "A": "Thử một lần",
-          "B": "Không quan tâm",
-          "C": "Tránh xa ma túy để bảo vệ bản thân",
-          "D": "Làm theo bạn"
+          "A": "Sử dụng ma túy lần đầu tại trường học.",
+          "B": "Bị bắt quả tang đang đi mua ma túy.",
+          "C": "Có hành vi trộm cắp để lấy tiền mua ma túy.",
+          "D": "Không đăng ký cai nghiện tự nguyện; không thực hiện hoặc tự ý chấm dứt cai nghiện tự nguyện."
         }
       }
     ]

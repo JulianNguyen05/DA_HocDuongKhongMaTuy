@@ -8,6 +8,7 @@ interface ParkourGameProps {
   parkourY: number;
   facingRight: boolean;
   walkStep: boolean;
+  isJumping: boolean; 
   isNearChest: boolean;
   currentQuestionIdx: number;
   totalQuestionsInStage: number;
@@ -23,6 +24,7 @@ export default function ParkourGame({
   parkourY,
   facingRight,
   walkStep,
+  isJumping,
   isNearChest,
   currentQuestionIdx,
   totalQuestionsInStage,
@@ -76,7 +78,11 @@ export default function ParkourGame({
       >
         <img
           src={
-            walkStep ? "/images/game/walking.png" : "/images/game/5hearts.png"
+            isJumping
+              ? "/images/game/walking.png"
+              : walkStep
+                ? "/images/game/walking.png"
+                : "/images/game/5hearts.png"
           }
           alt="Nhân vật Parkour"
           className="absolute bottom-0 left-1/2 drop-shadow-xl max-w-none h-full w-auto"

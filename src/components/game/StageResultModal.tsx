@@ -1,6 +1,6 @@
 "use client";
 
-import { ADVICE_DATA, GameQuestion } from "@/lib/constants/gameConstants";
+import {GameQuestion} from "@/lib/constants/gameConstants";
 
 interface StageResultModalProps {
   correctCount: number;
@@ -40,7 +40,7 @@ export default function StageResultModal({
                 Ôn tập lại các câu sai:
               </h3>
               {incorrectQuestions.map((q, idx) => {
-                const adviceObj = ADVICE_DATA.find((a) => a.id === q.id);
+
 
                 const correctKey = q.correctOption || q.correctAnswer || "";
 
@@ -60,14 +60,6 @@ export default function StageResultModal({
                     <p className="text-xs md:text-sm text-green-700 font-bold mb-2 bg-green-100 p-2 rounded-lg inline-block w-full">
                       ✅ Đáp án đúng: {correctKey && `${correctKey}.`}{" "}
                       {answerText}
-                    </p>
-                    <p className="text-xs md:text-sm text-gray-700 font-medium italic mt-1 leading-relaxed">
-                      💡{" "}
-                      <span className="text-blue-600 font-bold">
-                        Giải thích:
-                      </span>{" "}
-                      {adviceObj?.advice ||
-                        "Hãy ôn tập kỹ hơn về kiến thức này nhé!"}
                     </p>
                   </div>
                 );

@@ -53,6 +53,7 @@ export default function GamePage() {
     parkourY,
     facingRight,
     walkStep,
+    isJumping, 
     isNearChest,
     handleMobileInput,
     startMiniGamePosition,
@@ -308,6 +309,7 @@ export default function GamePage() {
             facingRight={facingRight}
             walkStep={walkStep}
             isNearChest={isNearChest}
+            isJumping={isJumping}
             currentQuestionIdx={game.currentQuestionIdx}
             totalQuestionsInStage={game.totalQuestionsInStage}
             onMobileInput={handleMobileInput}

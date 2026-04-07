@@ -255,11 +255,14 @@ export function useParkourPhysics(
   // ĐÃ SỬA: Xóa sạch các hàm callback khỏi mảng dependency, triệt tiêu lỗi vòng lặp
   }, [viewMode, visualStageIdx, startMiniGamePosition]); 
 
+const isJumping = !isGroundedRef.current;
+
   return {
     parkourX,
     parkourY,
     facingRight,
     walkStep,
+    isJumping, 
     isNearChest,
     handleMobileInput,
     startMiniGamePosition,

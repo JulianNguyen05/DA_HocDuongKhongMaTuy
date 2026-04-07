@@ -112,7 +112,7 @@ export function useParkourPhysics(
       const charHeight = 15; // Chiều cao nhân vật (~15% màn hình)
 
       // 1. Di chuyển ngang (X)
-      const moveSpeed = 18; // Tốc độ di chuyển theo % màn hình / giây
+      const moveSpeed = 25; // Tốc độ di chuyển theo % màn hình / giây
       if (keys.has("KeyA") || keys.has("ArrowLeft")) {
         vel.x = -moveSpeed;
         setFacingRight(false);

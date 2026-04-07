@@ -41,22 +41,12 @@ export function useGameController() {
   const handleAnswer = (selectedKey: string) => {
     if (!currentQuestion) return;
 
-    if (selectedKey === currentQuestion.correctOption) {
+    // KIỂM TRA ĐÚNG/SAI
+    const isCorrect = selectedKey === currentQuestion.correctOption;
+
+    if (isCorrect) {
       // TRẢ LỜI ĐÚNG
-      if (currentQuestionIdx + 1 < currentStage.questions.length) {
-        setCurrentQuestionIdx((prev) => prev + 1);
-        setShowHintIdx([]);
-      } else {
-        // Hết chặng -> Chuyển chặng
-        if (currentStageIdx + 1 < stages.length) {
-          setCurrentStageIdx((prev) => prev + 1);
-          setCurrentQuestionIdx(0);
-          setShowHintIdx([]);
-        } else {
-          // Thắng game
-          setGameState("WON");
-        }
-      }
+      // (Có thể thêm code cộng điểm ở đây)
     } else {
       // TRẢ LỜI SAI
       setHearts((prev) => prev - 1);
@@ -64,6 +54,24 @@ export function useGameController() {
 
       if (hearts - 1 <= 0) {
         setGameState("LOST");
+        return; // Hết tim thì ngưng luôn, không chuyển câu nữa
+      }
+    }
+
+    // ĐOẠN NÀY LÀ LOGIC CHUYỂN CÂU/CHUYỂN CHẶNG DÙNG CHUNG CHO CẢ ĐÚNG LẪN SAI
+    if (currentQuestionIdx + 1 < currentStage.questions.length) {
+      // Qua câu tiếp theo trong cùng chặng
+      setCurrentQuestionIdx((prev) => prev + 1);
+      setShowHintIdx([]);
+    } else {
+      // Hết câu của chặng -> Chuyển chặng mới
+      if (currentStageIdx + 1 < stages.length) {
+        setCurrentStageIdx((prev) => prev + 1);
+        setCurrentQuestionIdx(0);
+        setShowHintIdx([]);
+      } else {
+        // Hết tất cả chặng -> Thắng game
+        setGameState("WON");
       }
     }
   };

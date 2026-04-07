@@ -13,6 +13,7 @@ export function useParkourPhysics(
   visualStageIdx: number,
   setToastMsg: (msg: string) => void,
   setViewMode: (mode: ViewMode) => void,
+  onFall?: () => void // Thêm callback onFall
 ) {
   // UI State (Chỉ chứa những gì cần re-render)
   const [parkourX, setParkourX] = useState(5);
@@ -187,11 +188,17 @@ export function useParkourPhysics(
         }
       }
 
-      // Vực thẳm (Chết)
+      // ============================================
+      // VỰC THẲM (RỚT ĐÀI) - ĐÃ CẬP NHẬT LOGIC onFall
+      // ============================================
       if (newY < -10) {
-        setToastMsg("Bạn đã rơi xuống vực!");
-        startMiniGamePosition(); // Hồi sinh lại từ đầu
-        return;
+        if (onFall) {
+          onFall(); // Gọi tín hiệu ra ngoài page.tsx để hiện màn hình "Gục ngã"
+        } else {
+          setToastMsg("Bạn đã rơi xuống vực!");
+          startMiniGamePosition(); // Hồi sinh dự phòng
+        }
+        return; // Dừng vòng lặp vật lý ngay lập tức
       }
 
       // 6. Cập nhật Refs
@@ -214,16 +221,9 @@ export function useParkourPhysics(
         setWalkStep(false);
       }
 
-      // ============================================
-      // 8. XỬ LÝ MỞ RƯƠNG CHUẨN XÁC (ĐÃ SỬA LỖI)
-      // ============================================
-      
-      // Lấy bệ đỡ cuối cùng của màn chơi (nơi đặt rương)
+      // 8. XỬ LÝ MỞ RƯƠNG CHUẨN XÁC
       const lastPlat = platforms[platforms.length - 1];
-      
-      // Chỉ cần nhân vật chạm vào vùng cách mép trái của rương 5% là cho phép mở
       const nearChestFlag = newX >= lastPlat.left - 5;
-      
       setIsNearChest(nearChestFlag);
 
       // Chống kẹt Unikey và bắt sự kiện chạm màn hình
@@ -248,6 +248,7 @@ export function useParkourPhysics(
     setToastMsg,
     setViewMode,
     startMiniGamePosition,
+    onFall // Thêm onFall vào dependency để tránh lỗi React hook
   ]);
 
   return {

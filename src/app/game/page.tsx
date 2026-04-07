@@ -1,15 +1,10 @@
 "use client";
 
-import { GameQuestion } from "@/lib/constants/gameConstants";
-
 import { useState, useRef, useEffect } from "react";
+import { GameQuestion } from "@/lib/constants/gameConstants";
 import { useGameController } from "@/controllers/gameController";
-import {
-  MAP_COORDINATES,
-  STAGE_PLATFORMS,
-} from "@/lib/constants/gameConstants";
 
-// Import UI Components (Bạn sẽ tạo các file này trong src/components/game)
+// Import UI Components
 import MainMap from "@/components/game/MainMap";
 import ParkourGame from "@/components/game/ParkourGame";
 import QuestionModal from "@/components/game/QuestionModal";
@@ -18,7 +13,7 @@ import GameEndOverlay from "@/components/game/GameEndOverlay";
 import PortraitLock from "@/components/game/PortraitLock";
 import StageReadyPopup from "@/components/game/StageReadyPopup";
 
-// Import Custom Hooks (Bạn sẽ tạo các file này trong src/hooks/game)
+// Import Custom Hooks
 import { useFullscreen } from "@/hooks/game/useFullscreen";
 import { useMapMovement } from "@/hooks/game/useMapMovement";
 import { useParkourPhysics } from "@/hooks/game/useParkourPhysics";
@@ -44,29 +39,73 @@ export default function GamePage() {
   const { charPos, moveDuration, isMoving, mainWalkStep } =
     useMapMovement(visualStageIdx);
 
-  // 3. Logic Vật lý Parkour (ẩn giấu hàng trăm dòng code loop 60fps)
+  // --- STATE QUẢN LÝ RỚT ĐÀI ---
+  const [isFallen, setIsFallen] = useState(false);
+
+  // Hàm xử lý khi người chơi nhảy hụt rớt xuống vực
+  const handlePlayerFall = () => {
+    setIsFallen(true);
+  };
+
+  // 3. Logic Vật lý Parkour
   const {
     parkourX,
     parkourY,
     facingRight,
     walkStep,
-    isNearChest, // <--- Thêm isNearChest vào đây
+    isNearChest,
     handleMobileInput,
     startMiniGamePosition,
-  } = useParkourPhysics(viewMode, visualStageIdx, setToastMsg, setViewMode);
+  } = useParkourPhysics(viewMode, visualStageIdx, setToastMsg, setViewMode, handlePlayerFall);
 
   // --- STATE QUẢN LÝ CÂU HỎI ---
-  const [frozenQuestion, setFrozenQuestion] = useState<GameQuestion | null>(
-    null,
-  );
+  const [frozenQuestion, setFrozenQuestion] = useState<GameQuestion | null>(null);
   const [frozenIdx, setFrozenIdx] = useState<number | null>(null);
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [damageAnim, setDamageAnim] = useState(false);
 
   const [stageCorrectCount, setStageCorrectCount] = useState(0);
-  const [stageIncorrectQuestions, setStageIncorrectQuestions] = useState<
-    GameQuestion[]
-  >([]);
+  const [stageIncorrectQuestions, setStageIncorrectQuestions] = useState<GameQuestion[]>([]);
+
+  // --- LOGIC NHẠC NỀN (BACKGROUND MUSIC) ---
+  const bgmRef = useRef<HTMLAudioElement>(null);
+  const currentTrackRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const audio = bgmRef.current;
+    if (!audio) return;
+
+    // Nếu game over, rớt đài, hoặc chưa bắt đầu -> Dừng nhạc
+    if (!hasStarted || game.gameState === "WON" || game.gameState === "LOST" || isFallen) {
+      audio.pause();
+      return;
+    }
+
+    // Xác định track nhạc từ m1 đến m5 (Nếu visualStageIdx = 0 thì mặc định phát m1)
+    const trackIndex = visualStageIdx >= 1 && visualStageIdx <= 5 ? visualStageIdx : 1;
+
+    // Nếu nhảy sang map mới -> Đổi nhạc
+    if (currentTrackRef.current !== trackIndex) {
+      currentTrackRef.current = trackIndex;
+      audio.src = `/video/MTS/m${trackIndex}.mp3`;
+      audio.volume = 0.6; // Mức âm lượng 60% cho êm tai, bạn có thể chỉnh lại
+      audio.load();
+      audio.play().catch(e => console.warn("Trình duyệt chặn phát nhạc tự động:", e));
+    } 
+    // Nếu nhạc đang bị pause (ví dụ sau khi vừa bấm 'Chơi lại' từ rớt đài) -> Tiếp tục phát
+    else if (audio.paused) {
+      audio.play().catch(e => console.warn("Trình duyệt chặn phát nhạc tự động:", e));
+    }
+  }, [visualStageIdx, hasStarted, game.gameState, isFallen]);
+
+
+  // --- THEO DÕI TRẠNG THÁI GAME OVER ---
+  useEffect(() => {
+    if (game.gameState === "WON" || game.gameState === "LOST") {
+      setViewMode("MAIN_MAP");
+      setDamageAnim(false);
+    }
+  }, [game.gameState]);
 
   // ==========================================
   // CÁC HÀM ĐIỀU KHIỂN LUỒNG GAME
@@ -75,7 +114,12 @@ export default function GamePage() {
   const handleStartGame = () => {
     setHasStarted(true);
     setVisualStageIdx(1);
-    // Có thể tự động gọi toggleFullScreen() ở đây nếu muốn
+    
+    if (!document.fullscreenElement && gameContainerRef.current) {
+      gameContainerRef.current.requestFullscreen().catch((err) => {
+        console.error(`Lỗi khi mở toàn màn hình: ${err.message}`);
+      });
+    }
   };
 
   const handleMapNodeClick = (idx: number) => {
@@ -88,7 +132,7 @@ export default function GamePage() {
   };
 
   const startMiniGame = () => {
-    startMiniGamePosition(); // Gọi hàm reset vị trí từ Custom Hook
+    startMiniGamePosition();
     setViewMode("MINI_GAME");
   };
 
@@ -98,7 +142,18 @@ export default function GamePage() {
     setViewMode("MAIN_MAP");
     setStageCorrectCount(0);
     setStageIncorrectQuestions([]);
+    currentTrackRef.current = null; // Reset track nhạc
     game.resetGame();
+  };
+
+  const handleRetryFromFall = () => {
+    setIsFallen(false);
+    setVisualStageIdx(1); 
+    game.resetGame(); 
+    setStageCorrectCount(0);
+    setStageIncorrectQuestions([]);
+    currentTrackRef.current = null; // Reset để load lại nhạc m1
+    setViewMode("STAGE_READY"); 
   };
 
   const handleCloseStageResult = () => {
@@ -113,11 +168,9 @@ export default function GamePage() {
   const handleAnswerSubmit = (key: string) => {
     if (frozenQuestion) return;
 
-    const isLastQuestion =
-      game.currentQuestionIdx === game.totalQuestionsInStage - 1;
+    const isLastQuestion = game.currentQuestionIdx === game.totalQuestionsInStage - 1;
     const currentQuestionSnapshot = game.currentQuestion;
 
-    // Kiểm tra đúng / sai
     const correctKey = currentQuestionSnapshot?.correctOption;
     const isCorrect = key === correctKey;
 
@@ -127,50 +180,98 @@ export default function GamePage() {
 
     if (isCorrect) {
       setStageCorrectCount((prev) => prev + 1);
-    } else if (currentQuestionSnapshot) {
-      setStageIncorrectQuestions((prev) => [
-        ...prev,
-        currentQuestionSnapshot as GameQuestion,
-      ]);
+    } else {
+      setDamageAnim(true);
+      if (currentQuestionSnapshot) {
+        setStageIncorrectQuestions((prev) => [
+          ...prev,
+          currentQuestionSnapshot as GameQuestion,
+        ]);
+      }
     }
 
     game.handleAnswer(key);
 
     setTimeout(() => {
+      setDamageAnim(false);
       setFrozenQuestion(null);
       setFrozenIdx(null);
       setSelectedKey(null);
 
       if (isLastQuestion) {
         setViewMode("STAGE_RESULT");
-      } else {
-        startMiniGamePosition(); // Trả nhân vật về vạch xuất phát chặng
-        setViewMode("MINI_GAME");
-      }
+      } 
     }, 1500);
   };
 
-  // UI RENDER SIÊU GỌN
   return (
     <div className="fixed inset-0 z-[100] bg-black flex items-center justify-center touch-none select-none overflow-hidden font-sans">
-      {/* Component khóa xoay màn hình đã tách */}
+      
+      {/* Audio Element Ẩn cho Nhạc Nền */}
+      <audio ref={bgmRef} loop className="hidden" />
+
       <PortraitLock />
+
+      <style>{`
+        @media (orientation: landscape) { .portrait-lock { display: none !important; } }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .game-board-scale {
+          width: 100vw;
+          height: 100dvh;
+          max-width: 177.78dvh;
+          max-height: 56.25vw;
+        }
+        @media (min-width: 768px) {
+          .game-board-scale {
+            width: 100%;
+            height: 80vh;
+            max-width: calc(80vh * 16 / 9);
+            max-height: 80vh;
+          }
+        }
+
+        @keyframes damageShake {
+          0% { transform: translate(4px, 4px) rotate(0deg); }
+          20% { transform: translate(-4px, -5px) rotate(-2deg); }
+          40% { transform: translate(-5px, 2px) rotate(2deg); }
+          60% { transform: translate(5px, 4px) rotate(0deg); }
+          80% { transform: translate(2px, -4px) rotate(2deg); }
+          100% { transform: translate(0, 0) rotate(0deg); }
+        }
+        .animate-damage-shake { 
+          animation: damageShake 0.15s infinite; 
+          box-shadow: 0 0 35px rgba(220, 38, 38, 0.8); 
+        }
+
+        @keyframes brokenHeartFall {
+          0% { transform: translateY(-50px) scale(0.5); opacity: 0; }
+          20% { transform: translateY(0px) scale(1.5); opacity: 1; }
+          80% { transform: translateY(20px) scale(1.2); opacity: 1; }
+          100% { transform: translateY(100px) scale(1); opacity: 0; }
+        }
+        .animate-heart-break {
+          animation: brokenHeartFall 1.2s ease-in-out forwards;
+        }
+      `}</style>
 
       <div
         ref={gameContainerRef}
-        className={`game-board-scale relative bg-blue-50 overflow-hidden md:rounded-2xl border-0 md:border-8 border-gray-800 shadow-2xl transition-transform flex items-center justify-center mx-auto `
+        className={`game-board-scale relative bg-blue-50 overflow-hidden md:rounded-2xl border-0 md:border-8 border-gray-800 shadow-2xl transition-transform flex items-center justify-center mx-auto 
         ${damageAnim ? "animate-damage-shake" : ""} 
         ${isFullscreen ? "max-w-none h-screen w-screen rounded-none border-0" : ""}`}
       >
-        {/* Nút Fullscreen */}
         <button
-          onClick={toggleFullScreen}
-          className="absolute top-4 right-4 z-[60] bg-black/50 text-white px-3 py-2 rounded-lg font-bold"
+          onClick={(e) => {
+            e.currentTarget.blur();
+            toggleFullScreen();
+          }}
+          className="absolute top-4 right-4 z-[60] bg-black/50 hover:bg-black/80 text-white px-3 py-2 rounded-lg font-bold outline-none"
         >
           {isFullscreen ? "🗗 Thu nhỏ" : "⛶ Toàn màn hình"}
         </button>
 
-        {/* 1. MÀN HÌNH MAP LỚN */}
         {viewMode === "MAIN_MAP" && (
           <MainMap
             charPos={charPos}
@@ -185,7 +286,6 @@ export default function GamePage() {
           />
         )}
 
-        {/* 2. POPUP CHUẨN BỊ VÀO CHẶNG */}
         {viewMode === "STAGE_READY" && (
           <StageReadyPopup
             stageName={game.currentStage?.stage}
@@ -193,7 +293,6 @@ export default function GamePage() {
           />
         )}
 
-        {/* 3. MÀN HÌNH CHƠI PARKOUR & NỀN CỦA QUESTION */}
         {(viewMode === "MINI_GAME" || viewMode === "QUESTION") && (
           <ParkourGame
             visualStageIdx={visualStageIdx}
@@ -208,7 +307,6 @@ export default function GamePage() {
           />
         )}
 
-        {/* 4. MODAL CÂU HỎI */}
         {viewMode === "QUESTION" && (
           <QuestionModal
             stageName={game.currentStage?.stage || "Chặng Bí Ẩn"}
@@ -225,7 +323,6 @@ export default function GamePage() {
           />
         )}
 
-        {/* 5. MODAL TỔNG KẾT CHẶNG */}
         {viewMode === "STAGE_RESULT" && (
           <StageResultModal
             correctCount={stageCorrectCount}
@@ -235,7 +332,6 @@ export default function GamePage() {
           />
         )}
 
-        {/* 6. OVERLAY KẾT THÚC GAME (THẮNG/THUA) */}
         {(game.gameState === "WON" || game.gameState === "LOST") &&
           viewMode === "MAIN_MAP" && (
             <GameEndOverlay
@@ -243,6 +339,26 @@ export default function GamePage() {
               onRestart={handleRestartGame}
             />
           )}
+
+        {isFallen && (
+          <div className="absolute inset-0 z-[120] bg-black/90 flex flex-col items-center justify-center p-4 animate-fade-in touch-auto">
+            <div className="bg-gray-900 border-2 md:border-4 border-red-600 p-6 md:p-8 rounded-3xl shadow-[0_0_40px_rgba(220,38,38,0.4)] flex flex-col items-center text-center max-w-sm transform scale-105 transition-transform">
+              <span className="text-6xl md:text-7xl mb-4 animate-bounce">💀</span>
+              <h2 className="text-2xl md:text-3xl font-black text-red-500 mb-2 uppercase drop-shadow-md">
+                Bạn đã gục ngã
+              </h2>
+              <p className="text-gray-300 md:text-lg font-medium mb-8">
+                Hãy cố gắng vực dậy!
+              </p>
+              <button
+                onClick={handleRetryFromFall}
+                className="w-full px-8 py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-black text-lg rounded-xl shadow-[0_5px_15px_rgba(220,38,38,0.5)] transition-all hover:scale-105 active:scale-95 outline-none"
+              >
+                🔄 CHƠI LẠI TỪ ĐẦU
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ export function useFullscreen() {
         // Thử khóa màn hình ngang (Landscape) trên Mobile nếu API hỗ trợ
         if (screen.orientation && "lock" in screen.orientation) {
           try {
-            await screen.orientation.lock("landscape");
+            await (screen.orientation as any).lock("landscape");
           } catch (e) {
             console.warn("Trình duyệt không hỗ trợ khóa hướng màn hình.", e);
           }

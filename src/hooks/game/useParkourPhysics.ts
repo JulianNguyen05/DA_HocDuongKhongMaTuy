@@ -112,7 +112,7 @@ export function useParkourPhysics(
       const charHeight = 15; // Chiều cao nhân vật (~15% màn hình)
 
       // 1. Di chuyển ngang (X)
-      const moveSpeed = 30; // Tốc độ di chuyển theo % màn hình / giây
+      const moveSpeed = 18; // Tốc độ di chuyển theo % màn hình / giây
       if (keys.has("KeyA") || keys.has("ArrowLeft")) {
         vel.x = -moveSpeed;
         setFacingRight(false);
@@ -142,9 +142,9 @@ export function useParkourPhysics(
       if (newX > 95) newX = 95;
 
       for (const plat of platforms) {
-        // ĐÃ SỬA: Tính toán tọa độ Y chuẩn để không đụng tường sai lệch
+        // ĐÃ SỬA: Tính toán tọa độ Y chuẩn theo khung đỏ (Khung tính từ đáy cộng thêm chiều cao)
         const isIntersectingY =
-          pos.y < plat.bottom && pos.y + charHeight > plat.bottom - plat.height;
+          pos.y < plat.bottom + plat.height && pos.y + charHeight > plat.bottom;
 
         if (isIntersectingY) {
           // Đi sang PHẢI đập mỏ vào cạnh TRÁI của block
@@ -178,18 +178,20 @@ export function useParkourPhysics(
           newX + charWidth >= plat.left && newX <= plat.left + plat.width;
         const isFalling = vel.y <= 0;
 
-        // Tolerance: Frame trước nhân vật ở cao hơn hoặc bằng mặt dưới block
-        const isAbovePlat = pos.y >= plat.bottom;
+        // ĐÃ SỬA: Bề mặt để nhân vật đứng lên phải là CẠNH TRÊN CỦA BLOCK
+        const surfaceY = plat.bottom + plat.height;
 
-        // ĐÃ SỬA LỖI LƠ LỬNG: Đáp xuống đúng mặt sàn (plat.bottom)
+        // Tolerance: Frame trước nhân vật ở cao hơn hoặc bằng mặt trên block
+        const isAbovePlat = pos.y >= surfaceY - 0.5; // Bù trừ 0.5 sai số float
+
         if (
           isWithinX &&
           isFalling &&
           isAbovePlat &&
-          newY <= plat.bottom
+          newY <= surfaceY
         ) {
           // Va chạm mặt trên của platform (Đáp đất)
-          newY = plat.bottom;
+          newY = surfaceY;
           vel.y = 0;
           isGroundedRef.current = true;
         }
@@ -216,11 +218,11 @@ export function useParkourPhysics(
       setParkourX(newX);
       setParkourY(newY);
 
-      // Hiệu ứng bước đi (Đã giảm xuống 8 frame để bước chân nhanh và mượt hơn)
+      // Hiệu ứng bước đi 
       if (vel.x !== 0 && isGroundedRef.current) {
         walkAnimCounter++;
-        if (walkAnimCounter > 8) {
-          // Cứ sau 8 frame đổi ảnh 1 lần
+        // ĐÃ SỬA: Tăng từ 8 lên 15 (hoặc 20). Số càng to bước chân vung càng chậm.
+        if (walkAnimCounter > 10) { 
           setWalkStep((prev) => !prev);
           walkAnimCounter = 0;
         }

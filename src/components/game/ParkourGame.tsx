@@ -50,7 +50,7 @@ export default function ParkourGame({
         Câu: {currentQuestionIdx + 1} / {totalQuestionsInStage}
       </div>
 
-      {/* =========================================
+     {/* =========================================
         HIỂN THỊ HITBOX MẶT ĐẤT (BẬT LÊN ĐỂ DEBUG)
         =========================================
         {currentPlatforms.map((plat, index) => (

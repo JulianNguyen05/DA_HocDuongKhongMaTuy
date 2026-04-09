@@ -7,42 +7,52 @@ export interface GameQuestion {
 }
 
 
+// 1. TỌA ĐỘ CÁC RƯƠNG (Điều chỉnh lại để rương nằm CHÍNH GIỮA mặt đường xám)
 export const MAP_COORDINATES = [
-  { top: "65%", left: "11%" }, // 0: BẮT ĐẦU
-  { top: "57%", left: "26%" }, // 1: CHẶNG 1
-  { top: "23%", left: "23%" }, // 2: CHẶNG 2
-  { top: "23%", left: "45%" }, // 3: CHẶNG 3
-  { top: "43%", left: "61%" }, // 4: CHẶNG 4
-  { top: "22%", left: "80%" }, // 5: CHẶNG 5
+  { top: "67%", left: "12%" }, // 0: BẮT ĐẦU
+  { top: "54%", left: "24%" }, // 1: CHẶNG 1
+  { top: "28%", left: "29%" }, // 2: CHẶNG 2
+  { top: "28%", left: "45%" }, // 3: CHẶNG 3
+  { top: "52%", left: "62%" }, // 4: CHẶNG 4
+  { top: "25%", left: "76%" }, // 5: CHẶNG 5
 ];
 
-export const STAGE_PATHS: Record<number, { left: string; top: string }[]> = {
-  1: [
-    { left: "11%", top: "65%" },
-    { left: "22%", top: "62%" },
-  ],
-  2: [
-    { left: "20%", top: "32%" },
-    { left: "20%", top: "31%" },
-  ],
-  3: [
-    { left: "26%", top: "28%" },
-    { left: "29%", top: "29%" },
-    { left: "29%", top: "51%" },
-    { left: "41%", top: "51%" },
-    { left: "41%", top: "29%" },
-  ],
-  4: [
-    { left: "52%", top: "29%" },
-    { left: "52%", top: "50%" },
-    { left: "57%", top: "50%" },
-  ],
-  5: [
-    { left: "66%", top: "51%" },
-    { left: "66%", top: "25%" },
-    { left: "73%", top: "25%" },
-  ],
-};
+// 2. ĐƯỜNG ĐI ZIG-ZAG (Góc cua 90 độ bám sát nét vẽ của map)
+export const PATH_WAYPOINTS = [
+  { top: "67%", left: "12%" }, // 0. Bắt đầu
+  { top: "67%", left: "24%" }, // 1. Khúc cua 1: Rẽ lên
+  { top: "54%", left: "24%" }, // 2. Đi qua: CHẶNG 1
+  { top: "28%", left: "24%" }, // 3. Khúc cua 2: Rẽ phải
+  { top: "28%", left: "29%" }, // 4. Đi qua: CHẶNG 2
+  { top: "28%", left: "34%" }, // 5. Khúc cua 3: Rẽ xuống
+  { top: "52%", left: "34%" }, // 6. Khúc cua 4: Rẽ phải
+  { top: "52%", left: "45%" }, // 7. Khúc cua 5: Đi ngang qua nhà -> Rẽ lên
+  { top: "28%", left: "45%" }, // 8. Đi qua: CHẶNG 3 (Nằm ở góc cua)
+  { top: "28%", left: "54%" }, // 9. Khúc cua 6: Rẽ xuống
+  { top: "52%", left: "54%" }, // 10. Khúc cua 7: Rẽ phải
+  { top: "52%", left: "62%" }, // 11. Đi qua: CHẶNG 4
+  { top: "52%", left: "68%" }, // 12. Khúc cua 8: Rẽ lên
+  { top: "48%", left: "68%" }, // 13. Khúc cua 9 (Ngã ba): Đi thẳng lên
+  { top: "25%", left: "68%" }, // 14. Khúc cua 10: Rẽ phải
+  { top: "25%", left: "76%" }, // 15. Đi qua: CHẶNG 5
+  { top: "25%", left: "86%" }, // 16. Tới KẾT THÚC 1
+];
+
+// (Tùy chọn) Nhánh phụ cho Kết Thúc 2
+export const PATH_TO_ENDING_2 = [
+  { top: "48%", left: "68%" }, // Rẽ phải từ ngã ba (Điểm số 13 ở mảng trên)
+  { top: "48%", left: "86%" }, // Tới KẾT THÚC 2
+];
+
+// 3. KẾT NỐI: Rương số mấy sẽ tương ứng với Waypoint số mấy?
+export const STAGE_WAYPOINT_INDICES = [
+  0,  // Chặng Bắt đầu = WP 0
+  2,  // Chặng 1 = WP 2
+  4,  // Chặng 2 = WP 4
+  8,  // Chặng 3 = WP 8
+  11, // Chặng 4 = WP 11
+  15, // Chặng 5 = WP 15
+];
 
 export const STAGE_PLATFORMS: Record<
   number,

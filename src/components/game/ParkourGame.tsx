@@ -8,7 +8,7 @@ interface ParkourGameProps {
   parkourY: number;
   facingRight: boolean;
   walkStep: boolean;
-  isJumping: boolean; 
+  isJumping: boolean;
   isNearChest: boolean;
   currentQuestionIdx: number;
   totalQuestionsInStage: number;
@@ -48,11 +48,11 @@ export default function ParkourGame({
         ⌨️ Dùng [A/D] di chuyển, [W/Space] Nhảy, [E] Nhặt đồ
       </div>
 
-      <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-blue-600/90 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-base font-bold shadow-lg z-30 pointer-events-none">
+      <div className="absolute top-2 md:top-4 left-1/2 transform -translate-x-1/2 bg-blue-600/90 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-base font-bold shadow-lg z-30 pointer-events-none">
         Câu: {currentQuestionIdx + 1} / {totalQuestionsInStage}
       </div>
 
-     {/* =========================================
+      {/* =========================================
         HIỂN THỊ HITBOX MẶT ĐẤT (BẬT LÊN ĐỂ DEBUG)
         =========================================
         {currentPlatforms.map((plat, index) => (
@@ -73,7 +73,7 @@ export default function ParkourGame({
 
       {/* NHÂN VẬT PARKOUR */}
       <div
-        className="absolute w-[35px] md:w-[80px] h-[50px] md:h-[100px] will-change-[bottom,left] z-20 pointer-events-none"
+        className="absolute w-[25px] md:w-[80px] h-[35px] md:h-[100px] will-change-[bottom,left] z-20 pointer-events-none"
         style={{ bottom: `${parkourY}%`, left: `${parkourX}%` }}
       >
         <img
@@ -109,7 +109,7 @@ export default function ParkourGame({
       )}
 
       {/* GAMEPAD CHO MOBILE */}
-      <div className="absolute bottom-4 left-0 right-0 px-4 flex justify-between items-end z-[60] pointer-events-none md:hidden">
+      <div className="absolute bottom-4 left-0 right-0 px-4 flex justify-between items-end z-[60] pointer-events-none">
         <div className="flex gap-1 md:gap-2 pointer-events-auto">
           <button
             onPointerDown={(e) => {

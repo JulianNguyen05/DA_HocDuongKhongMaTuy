@@ -109,7 +109,7 @@ export default function ParkourGame({
       )}
 
       {/* GAMEPAD CHO MOBILE */}
-      <div className="absolute bottom-4 left-0 right-0 px-4 flex justify-between items-end z-[60] pointer-events-none lg:hidden">
+      <div className="absolute bottom-4 left-0 right-0 px-4 flex justify-between items-end z-[60] pointer-events-none"> 
         <div className="flex gap-1 md:gap-2 pointer-events-auto">
           <button
             onPointerDown={(e) => {

@@ -521,16 +521,11 @@ export default async function FlashcardPage() {
 
 "use client";
 
-import { GameQuestion } from "@/lib/constants/gameConstants";
-
 import { useState, useRef, useEffect } from "react";
+import { GameQuestion } from "@/lib/constants/gameConstants";
 import { useGameController } from "@/controllers/gameController";
-import {
-  MAP_COORDINATES,
-  STAGE_PLATFORMS,
-} from "@/lib/constants/gameConstants";
 
-// Import UI Components (Bạn sẽ tạo các file này trong src/components/game)
+// Import UI Components
 import MainMap from "@/components/game/MainMap";
 import ParkourGame from "@/components/game/ParkourGame";
 import QuestionModal from "@/components/game/QuestionModal";
@@ -539,7 +534,7 @@ import GameEndOverlay from "@/components/game/GameEndOverlay";
 import PortraitLock from "@/components/game/PortraitLock";
 import StageReadyPopup from "@/components/game/StageReadyPopup";
 
-// Import Custom Hooks (Bạn sẽ tạo các file này trong src/hooks/game)
+// Import Custom Hooks
 import { useFullscreen } from "@/hooks/game/useFullscreen";
 import { useMapMovement } from "@/hooks/game/useMapMovement";
 import { useParkourPhysics } from "@/hooks/game/useParkourPhysics";
@@ -565,29 +560,74 @@ export default function GamePage() {
   const { charPos, moveDuration, isMoving, mainWalkStep } =
     useMapMovement(visualStageIdx);
 
-  // 3. Logic Vật lý Parkour (ẩn giấu hàng trăm dòng code loop 60fps)
+  // --- STATE QUẢN LÝ RỚT ĐÀI ---
+  const [isFallen, setIsFallen] = useState(false);
+
+  // Hàm xử lý khi người chơi nhảy hụt rớt xuống vực
+  const handlePlayerFall = () => {
+    setIsFallen(true);
+  };
+
+  // 3. Logic Vật lý Parkour
   const {
     parkourX,
     parkourY,
     facingRight,
     walkStep,
-    isNearChest, // <--- Thêm isNearChest vào đây
+    isJumping, 
+    isNearChest,
     handleMobileInput,
     startMiniGamePosition,
-  } = useParkourPhysics(viewMode, visualStageIdx, setToastMsg, setViewMode);
+  } = useParkourPhysics(viewMode, visualStageIdx, setToastMsg, setViewMode, handlePlayerFall);
 
   // --- STATE QUẢN LÝ CÂU HỎI ---
-  const [frozenQuestion, setFrozenQuestion] = useState<GameQuestion | null>(
-    null,
-  );
+  const [frozenQuestion, setFrozenQuestion] = useState<GameQuestion | null>(null);
   const [frozenIdx, setFrozenIdx] = useState<number | null>(null);
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [damageAnim, setDamageAnim] = useState(false);
 
   const [stageCorrectCount, setStageCorrectCount] = useState(0);
-  const [stageIncorrectQuestions, setStageIncorrectQuestions] = useState<
-    GameQuestion[]
-  >([]);
+  const [stageIncorrectQuestions, setStageIncorrectQuestions] = useState<GameQuestion[]>([]);
+
+  // --- LOGIC NHẠC NỀN (BACKGROUND MUSIC) ---
+  const bgmRef = useRef<HTMLAudioElement>(null);
+  const currentTrackRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const audio = bgmRef.current;
+    if (!audio) return;
+
+    // Nếu game over, rớt đài, hoặc chưa bắt đầu -> Dừng nhạc
+    if (!hasStarted || game.gameState === "WON" || game.gameState === "LOST" || isFallen) {
+      audio.pause();
+      return;
+    }
+
+    // Xác định track nhạc từ m1 đến m5 (Nếu visualStageIdx = 0 thì mặc định phát m1)
+    const trackIndex = visualStageIdx >= 1 && visualStageIdx <= 5 ? visualStageIdx : 1;
+
+    // Nếu nhảy sang map mới -> Đổi nhạc
+    if (currentTrackRef.current !== trackIndex) {
+      currentTrackRef.current = trackIndex;
+      audio.src = `/video/MTS/m${trackIndex}.mp3`;
+      audio.volume = 0.6; // Mức âm lượng 60% cho êm tai, bạn có thể chỉnh lại
+      audio.load();
+      audio.play().catch(e => console.warn("Trình duyệt chặn phát nhạc tự động:", e));
+    } 
+    // Nếu nhạc đang bị pause (ví dụ sau khi vừa bấm 'Chơi lại' từ rớt đài) -> Tiếp tục phát
+    else if (audio.paused) {
+      audio.play().catch(e => console.warn("Trình duyệt chặn phát nhạc tự động:", e));
+    }
+  }, [visualStageIdx, hasStarted, game.gameState, isFallen]);
+
+
+  // --- THEO DÕI TRẠNG THÁI GAME OVER ---
+  useEffect(() => {
+    if (game.gameState === "WON" || game.gameState === "LOST") {
+      setViewMode("MAIN_MAP");
+      setDamageAnim(false);
+    }
+  }, [game.gameState]);
 
   // ==========================================
   // CÁC HÀM ĐIỀU KHIỂN LUỒNG GAME
@@ -596,7 +636,12 @@ export default function GamePage() {
   const handleStartGame = () => {
     setHasStarted(true);
     setVisualStageIdx(1);
-    // Có thể tự động gọi toggleFullScreen() ở đây nếu muốn
+    
+    if (!document.fullscreenElement && gameContainerRef.current) {
+      gameContainerRef.current.requestFullscreen().catch((err) => {
+        console.error(`Lỗi khi mở toàn màn hình: ${err.message}`);
+      });
+    }
   };
 
   const handleMapNodeClick = (idx: number) => {
@@ -609,7 +654,7 @@ export default function GamePage() {
   };
 
   const startMiniGame = () => {
-    startMiniGamePosition(); // Gọi hàm reset vị trí từ Custom Hook
+    startMiniGamePosition();
     setViewMode("MINI_GAME");
   };
 
@@ -619,7 +664,18 @@ export default function GamePage() {
     setViewMode("MAIN_MAP");
     setStageCorrectCount(0);
     setStageIncorrectQuestions([]);
+    currentTrackRef.current = null; // Reset track nhạc
     game.resetGame();
+  };
+
+  const handleRetryFromFall = () => {
+    setIsFallen(false);
+    setVisualStageIdx(1); 
+    game.resetGame(); 
+    setStageCorrectCount(0);
+    setStageIncorrectQuestions([]);
+    currentTrackRef.current = null; // Reset để load lại nhạc m1
+    setViewMode("STAGE_READY"); 
   };
 
   const handleCloseStageResult = () => {
@@ -634,11 +690,9 @@ export default function GamePage() {
   const handleAnswerSubmit = (key: string) => {
     if (frozenQuestion) return;
 
-    const isLastQuestion =
-      game.currentQuestionIdx === game.totalQuestionsInStage - 1;
+    const isLastQuestion = game.currentQuestionIdx === game.totalQuestionsInStage - 1;
     const currentQuestionSnapshot = game.currentQuestion;
 
-    // Kiểm tra đúng / sai
     const correctKey = currentQuestionSnapshot?.correctOption;
     const isCorrect = key === correctKey;
 
@@ -648,34 +702,88 @@ export default function GamePage() {
 
     if (isCorrect) {
       setStageCorrectCount((prev) => prev + 1);
-    } else if (currentQuestionSnapshot) {
-      setStageIncorrectQuestions((prev) => [
-        ...prev,
-        currentQuestionSnapshot as GameQuestion,
-      ]);
+    } else {
+      setDamageAnim(true);
+      if (currentQuestionSnapshot) {
+        setStageIncorrectQuestions((prev) => [
+          ...prev,
+          currentQuestionSnapshot as GameQuestion,
+        ]);
+      }
     }
 
     game.handleAnswer(key);
 
     setTimeout(() => {
+      setDamageAnim(false);
       setFrozenQuestion(null);
       setFrozenIdx(null);
       setSelectedKey(null);
 
       if (isLastQuestion) {
         setViewMode("STAGE_RESULT");
-      } else {
-        startMiniGamePosition(); // Trả nhân vật về vạch xuất phát chặng
-        setViewMode("MINI_GAME");
-      }
+      } 
     }, 1500);
   };
 
-  // UI RENDER SIÊU GỌN
   return (
     <div className="fixed inset-0 z-[100] bg-black flex items-center justify-center touch-none select-none overflow-hidden font-sans">
-      {/* Component khóa xoay màn hình đã tách */}
+      
+      {/* Audio Element Ẩn cho Nhạc Nền */}
+      <audio ref={bgmRef} loop className="hidden" />
+
       <PortraitLock />
+
+      <style>{`
+        @media (orientation: landscape) { .portrait-lock { display: none !important; } }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .game-board-scale {
+          width: 100vw;
+          height: 100dvh;
+          max-width: 177.78dvh;
+          max-height: 56.25vw;
+        }
+        @media (min-width: 768px) {
+          .game-board-scale {
+            width: 100%;
+            height: 80vh;
+            max-width: calc(80vh * 16 / 9);
+            max-height: 80vh;
+          }
+        }
+
+        /* ĐÃ THÊM: Hiệu ứng làm nét ảnh Pixel (Không bị mờ khi zoom) */
+        .pixel-art {
+          image-rendering: pixelated; /* Chrome, Edge, Safari */
+          image-rendering: crisp-edges; /* Firefox */
+          will-change: transform; /* Giúp render mượt mà bằng Card Đồ Họa */
+        }
+
+        @keyframes damageShake {
+          0% { transform: translate(4px, 4px) rotate(0deg); }
+          20% { transform: translate(-4px, -5px) rotate(-2deg); }
+          40% { transform: translate(-5px, 2px) rotate(2deg); }
+          60% { transform: translate(5px, 4px) rotate(0deg); }
+          80% { transform: translate(2px, -4px) rotate(2deg); }
+          100% { transform: translate(0, 0) rotate(0deg); }
+        }
+        .animate-damage-shake { 
+          animation: damageShake 0.15s infinite; 
+          box-shadow: 0 0 35px rgba(220, 38, 38, 0.8); 
+        }
+
+        @keyframes brokenHeartFall {
+          0% { transform: translateY(-50px) scale(0.5); opacity: 0; }
+          20% { transform: translateY(0px) scale(1.5); opacity: 1; }
+          80% { transform: translateY(20px) scale(1.2); opacity: 1; }
+          100% { transform: translateY(100px) scale(1); opacity: 0; }
+        }
+        .animate-heart-break {
+          animation: brokenHeartFall 1.2s ease-in-out forwards;
+        }
+      `}</style>
 
       <div
         ref={gameContainerRef}
@@ -683,15 +791,16 @@ export default function GamePage() {
         ${damageAnim ? "animate-damage-shake" : ""} 
         ${isFullscreen ? "max-w-none h-screen w-screen rounded-none border-0" : ""}`}
       >
-        {/* Nút Fullscreen */}
         <button
-          onClick={toggleFullScreen}
-          className="absolute top-4 right-4 z-[60] bg-black/50 text-white px-3 py-2 rounded-lg font-bold"
+          onClick={(e) => {
+            e.currentTarget.blur();
+            toggleFullScreen();
+          }}
+          className="absolute top-4 right-4 z-[60] bg-black/50 hover:bg-black/80 text-white px-3 py-2 rounded-lg font-bold outline-none"
         >
           {isFullscreen ? "🗗 Thu nhỏ" : "⛶ Toàn màn hình"}
         </button>
 
-        {/* 1. MÀN HÌNH MAP LỚN */}
         {viewMode === "MAIN_MAP" && (
           <MainMap
             charPos={charPos}
@@ -706,7 +815,6 @@ export default function GamePage() {
           />
         )}
 
-        {/* 2. POPUP CHUẨN BỊ VÀO CHẶNG */}
         {viewMode === "STAGE_READY" && (
           <StageReadyPopup
             stageName={game.currentStage?.stage}
@@ -714,7 +822,6 @@ export default function GamePage() {
           />
         )}
 
-        {/* 3. MÀN HÌNH CHƠI PARKOUR & NỀN CỦA QUESTION */}
         {(viewMode === "MINI_GAME" || viewMode === "QUESTION") && (
           <ParkourGame
             visualStageIdx={visualStageIdx}
@@ -723,13 +830,13 @@ export default function GamePage() {
             facingRight={facingRight}
             walkStep={walkStep}
             isNearChest={isNearChest}
+            isJumping={isJumping}
             currentQuestionIdx={game.currentQuestionIdx}
             totalQuestionsInStage={game.totalQuestionsInStage}
             onMobileInput={handleMobileInput}
           />
         )}
 
-        {/* 4. MODAL CÂU HỎI */}
         {viewMode === "QUESTION" && (
           <QuestionModal
             stageName={game.currentStage?.stage || "Chặng Bí Ẩn"}
@@ -746,7 +853,6 @@ export default function GamePage() {
           />
         )}
 
-        {/* 5. MODAL TỔNG KẾT CHẶNG */}
         {viewMode === "STAGE_RESULT" && (
           <StageResultModal
             correctCount={stageCorrectCount}
@@ -756,7 +862,6 @@ export default function GamePage() {
           />
         )}
 
-        {/* 6. OVERLAY KẾT THÚC GAME (THẮNG/THUA) */}
         {(game.gameState === "WON" || game.gameState === "LOST") &&
           viewMode === "MAIN_MAP" && (
             <GameEndOverlay
@@ -764,11 +869,30 @@ export default function GamePage() {
               onRestart={handleRestartGame}
             />
           )}
+
+        {isFallen && (
+          <div className="absolute inset-0 z-[120] bg-black/90 flex flex-col items-center justify-center p-4 animate-fade-in touch-auto">
+            <div className="bg-gray-900 border-2 md:border-4 border-red-600 p-6 md:p-8 rounded-3xl shadow-[0_0_40px_rgba(220,38,38,0.4)] flex flex-col items-center text-center max-w-sm transform scale-105 transition-transform">
+              <span className="text-6xl md:text-7xl mb-4 animate-bounce">💀</span>
+              <h2 className="text-2xl md:text-3xl font-black text-red-500 mb-2 uppercase drop-shadow-md">
+                Bạn đã gục ngã
+              </h2>
+              <p className="text-gray-300 md:text-lg font-medium mb-8">
+                Hãy cố gắng vực dậy!
+              </p>
+              <button
+                onClick={handleRetryFromFall}
+                className="w-full px-8 py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-black text-lg rounded-xl shadow-[0_5px_15px_rgba(220,38,38,0.5)] transition-all hover:scale-105 active:scale-95 outline-none"
+              >
+                🔄 CHƠI LẠI TỪ ĐẦU
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 }
-
 
 ==================================================
 📁 File: src/app/global.d.ts
@@ -1758,9 +1882,15 @@ export default function GameEndOverlay({
 
 "use client";
 
-import { MAP_COORDINATES } from "@/lib/constants/gameConstants";
+import { useState, useEffect } from "react";
+import { 
+  MAP_COORDINATES, 
+  PATH_WAYPOINTS, 
+  STAGE_WAYPOINT_INDICES 
+} from "@/lib/constants/gameConstants";
 
 interface MainMapProps {
+  // Vẫn giữ khai báo các Prop này để file page.tsx không bị báo lỗi
   charPos: { top: string; left: string };
   moveDuration: string;
   isMoving: boolean;
@@ -1773,16 +1903,68 @@ interface MainMapProps {
 }
 
 export default function MainMap({
-  charPos,
-  moveDuration,
-  isMoving,
-  mainWalkStep,
   visualStageIdx,
   hasStarted,
   toastMsg,
   onNodeClick,
   onStart,
 }: MainMapProps) {
+  // --- TẠO STATE ĐIỀU KHIỂN RIÊNG ĐỂ ĐI THEO ĐƯỜNG ZIG-ZAG ---
+  const [localPos, setLocalPos] = useState({ top: "67%", left: "12%" });
+  const [localIsMoving, setLocalIsMoving] = useState(false);
+  const [localWalkStep, setLocalWalkStep] = useState(false);
+
+  // 1. Đồng bộ vị trí ban đầu (Load map)
+  useEffect(() => {
+    if (!localIsMoving) {
+      const currentStage = Math.max(0, visualStageIdx - 1);
+      const waypointIdx = STAGE_WAYPOINT_INDICES[currentStage] || 0;
+      setLocalPos(PATH_WAYPOINTS[waypointIdx] || PATH_WAYPOINTS[0]);
+    }
+  }, [visualStageIdx, localIsMoving]);
+
+  // 2. Tạo hoạt ảnh vung chân liên tục VÀ RÕ RÀNG HƠN
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (localIsMoving) {
+      interval = setInterval(() => {
+        setLocalWalkStep((prev) => !prev);
+      }, 300); // 🕒 TĂNG LÊN 300ms để vung chân chậm lại, dễ nhìn hơn
+    } else {
+      setLocalWalkStep(false);
+    }
+    return () => clearInterval(interval);
+  }, [localIsMoving]);
+
+  const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  // 3. LOGIC LƯỚT QUA TỪNG KHÚC CUA TRÊN PATH_WAYPOINTS
+  const handleChestClick = async (idx: number) => {
+    if (idx > visualStageIdx || localIsMoving) return;
+
+    // Bấm rương cũ -> Mở ngay lập tức không cần đi lại
+    if (idx < visualStageIdx) {
+      onNodeClick(idx);
+      return;
+    }
+
+    // NẾU LÀ RƯƠNG MỚI -> Đi qua từng tọa độ bẻ góc
+    setLocalIsMoving(true);
+    const startStageIdx = visualStageIdx - 1;
+    const endStageIdx = visualStageIdx;       
+
+    const startWaypoint = STAGE_WAYPOINT_INDICES[startStageIdx];
+    const endWaypoint = STAGE_WAYPOINT_INDICES[endStageIdx];
+
+    for (let i = startWaypoint + 1; i <= endWaypoint; i++) {
+      setLocalPos(PATH_WAYPOINTS[i]);
+      await sleep(800); // 🕒 TĂNG LÊN 0.8s (800ms) để nhân vật đi chậm lại ở mỗi khúc cua
+    }
+
+    setLocalIsMoving(false);
+    onNodeClick(idx); // Đã tới rương -> Báo cho page.tsx mở bảng Tình Huống
+  };
+
   return (
     <>
       <img
@@ -1798,33 +1980,35 @@ export default function MainMap({
         </div>
       )}
 
-      {/* NHÂN VẬT ĐI BỘ TRÊN MAP LỚN */}
-      <div
-        className="absolute z-10"
-        style={{
-          top: charPos.top,
-          left: charPos.left,
-          transitionProperty: "top, left",
-          transitionDuration: moveDuration,
-          transitionTimingFunction: "linear",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <img
-          src={
-            isMoving && mainWalkStep
-              ? "/images/game/walking.png"
-              : "/images/game/5hearts.png"
-          }
-          alt="Nhân vật Map Lớn"
-          className="h-[40px] md:h-[60px] w-auto"
-        />
-      </div>
+      {/* NHÂN VẬT CHUYỂN ĐỘNG CHẬM RÃI VÀ RÕ HOẠT ẢNH */}
+      {hasStarted && (
+        <div
+          className="absolute z-10"
+          style={{
+            top: localPos.top,
+            left: localPos.left,
+            transitionProperty: "top, left",
+            transitionDuration: "0.8s", // 🕒 TĂNG LÊN 0.8s (Đồng bộ với sleep 800)
+            transitionTimingFunction: "linear",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <img
+            src={
+              localIsMoving && localWalkStep
+                ? "/images/game/walking.png"
+                : "/images/game/5hearts.png"
+            }
+            alt="Nhân vật Map Lớn"
+            className="h-[40px] md:h-[60px] w-auto drop-shadow-xl"
+          />
+        </div>
+      )}
 
-      {/* CÁC ĐIỂM CHẶNG (RƯƠNG) TRên BẢN ĐỒ */}
+      {/* CÁC ĐIỂM CHẶNG (RƯƠNG) */}
       {hasStarted &&
         MAP_COORDINATES.map((pos, idx) => {
-          if (idx === 0) return null; // Bỏ qua vị trí 0 (chỗ xuất phát)
+          if (idx === 0) return null; 
           const isCompleted = idx < visualStageIdx;
           const isActive = idx === visualStageIdx;
           const isLocked = idx > visualStageIdx;
@@ -1832,15 +2016,16 @@ export default function MainMap({
           return (
             <div
               key={idx}
-              onClick={() => onNodeClick(idx)}
+              // GỌI HÀM CỦA CHÚNG TA THAY VÌ onNodeClick TRỰC TIẾP
+              onClick={() => handleChestClick(idx)}
               style={{
                 top: pos.top,
                 left: pos.left,
                 transform: "translate(-50%, -50%)",
               }}
-              className={`absolute z-20 cursor-pointer w-20 h-20 md:w-28 md:h-28 flex items-center justify-center transition-transform duration-300
+              className={`absolute z-20 cursor-pointer w-12 h-12 md:w-28 md:h-28 flex items-center justify-center transition-transform duration-300
               ${isLocked ? "grayscale opacity-60 scale-90" : "opacity-100"}
-              ${isActive ? "scale-110 hover:scale-115" : "hover:scale-105"}
+              ${isActive && !localIsMoving ? "scale-110 hover:scale-115" : "hover:scale-105"}
             `}
             >
               <img
@@ -1852,7 +2037,7 @@ export default function MainMap({
                 alt={isCompleted ? "Rương mở" : "Rương đóng"}
                 className="w-full h-full object-contain drop-shadow-md transition-transform duration-300"
               />
-              {isActive && (
+              {isActive && !localIsMoving && (
                 <div className="absolute -top-6 md:-top-10 bg-yellow-400 text-yellow-900 text-[10px] md:text-sm font-black px-2 md:px-3 py-1 md:py-1.5 rounded-full whitespace-nowrap animate-pulse shadow-lg border-2 border-yellow-500">
                   Nhấn để vào
                 </div>
@@ -1890,6 +2075,7 @@ interface ParkourGameProps {
   parkourY: number;
   facingRight: boolean;
   walkStep: boolean;
+  isJumping: boolean;
   isNearChest: boolean;
   currentQuestionIdx: number;
   totalQuestionsInStage: number;
@@ -1905,6 +2091,7 @@ export default function ParkourGame({
   parkourY,
   facingRight,
   walkStep,
+  isJumping,
   isNearChest,
   currentQuestionIdx,
   totalQuestionsInStage,
@@ -1928,36 +2115,41 @@ export default function ParkourGame({
         ⌨️ Dùng [A/D] di chuyển, [W/Space] Nhảy, [E] Nhặt đồ
       </div>
 
-      <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-blue-600/90 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-base font-bold shadow-lg z-30 pointer-events-none">
+      <div className="absolute top-2 md:top-4 left-1/2 transform -translate-x-1/2 bg-blue-600/90 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-base font-bold shadow-lg z-30 pointer-events-none">
         Câu: {currentQuestionIdx + 1} / {totalQuestionsInStage}
       </div>
 
-      {/* 🔴 CHẾ ĐỘ DEBUG: HIỂN THỊ HITBOX CỦA CÁC BỆ ĐỠ */}
-      {currentPlatforms.map((plat, idx) => (
-        <div
-          key={`debug-${idx}`}
-          className="absolute border-2 border-red-500 bg-red-500/40 z-10 pointer-events-none flex items-end justify-center"
-          style={{
-            left: `${plat.left}%`,
-            bottom: `${plat.bottom}%`,
-            width: `${plat.width}%`,
-            height: `${plat.height}%`,
-          }}
-        >
-          <span className="text-[8px] md:text-xs text-white font-bold mb-1">
-            Mặt đất
-          </span>
-        </div>
-      ))}
+      {/* =========================================
+        HIỂN THỊ HITBOX MẶT ĐẤT (BẬT LÊN ĐỂ DEBUG)
+        =========================================
+        {currentPlatforms.map((plat, index) => (
+          <div
+            key={index}
+            className="absolute bg-red-500/40 border-2 border-red-600 flex items-center justify-center text-white text-xs font-bold pointer-events-none z-10"
+            style={{
+              left: `${plat.left}%`,
+              bottom: `${plat.bottom}%`, 
+              width: `${plat.width}%`,
+              height: `${plat.height}%`,
+            }}
+          >
+            Block {index + 1}
+          </div>
+        ))}  
+      */}
 
       {/* NHÂN VẬT PARKOUR */}
       <div
-        className="absolute w-[50px] md:w-[80px] h-[70px] md:h-[100px] will-change-[bottom,left] z-20 pointer-events-none"
+        className="absolute w-[25px] md:w-[80px] h-[35px] md:h-[100px] will-change-[bottom,left] z-20 pointer-events-none"
         style={{ bottom: `${parkourY}%`, left: `${parkourX}%` }}
       >
         <img
           src={
-            walkStep ? "/images/game/walking.png" : "/images/game/5hearts.png"
+            isJumping
+              ? "/images/game/walking.png"
+              : walkStep
+                ? "/images/game/walking.png"
+                : "/images/game/5hearts.png"
           }
           alt="Nhân vật Parkour"
           className="absolute bottom-0 left-1/2 drop-shadow-xl max-w-none h-full w-auto"
@@ -2022,7 +2214,7 @@ export default function ParkourGame({
           </button>
         </div>
 
-        <div className="flex gap-2 items-end pointer-events-auto">
+        <div className="flex flex-col gap-3 items-center pointer-events-auto">
           <button
             onPointerDown={(e) => {
               e.preventDefault();
@@ -2153,7 +2345,7 @@ export default function QuestionModal({
       )}
 
       <div
-        className={`bg-white p-4 md:p-8 rounded-xl shadow-2xl w-[95%] max-w-2xl max-h-[90vh] md:max-h-[85vh] flex flex-col transition-transform ${damageAnim ? "scale-95 border-4 border-red-500" : "scale-100 animate-fade-in"}`}
+        className={`bg-white p-3 md:p-8 rounded-xl shadow-2xl w-[85%] md:w-[95%] max-w-2xl max-h-[85vh] flex flex-col transition-transform ${damageAnim ? "scale-95 border-4 border-red-500" : "scale-100 animate-fade-in"}`}
       >
         {/* HEADER CÂU HỎI */}
         <div className="flex justify-between items-center mb-3 md:mb-6 border-b pb-2 md:pb-3 shrink-0">
@@ -2171,7 +2363,7 @@ export default function QuestionModal({
             Câu: {displayIdx + 1} / {totalQuestions}
           </div>
 
-          <h2 className="text-base md:text-2xl font-bold text-gray-800 mb-4 md:mb-8 text-center">
+          <h2 className="text-sm md:text-2xl font-bold text-gray-800 mb-3 md:mb-8 text-center">
             {displayQuestion.question}
           </h2>
 
@@ -2179,7 +2371,7 @@ export default function QuestionModal({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
             {Object.entries(displayQuestion.options).map(([key, value]) => {
               let btnClass =
-                "p-2 md:p-4 rounded-lg transition-all border-2 shadow-sm text-left flex items-start gap-1 md:gap-3 outline-none";
+                "p-1.5 md:p-4 text-xs md:text-base rounded-lg transition-all border-2 shadow-sm text-left flex items-start gap-1 md:gap-3 outline-none";
 
               // LOGIC ĐỔI MÀU NÚT KHI ĐÓNG BĂNG ĐÁP ÁN
               if (frozenQuestion) {
@@ -2272,7 +2464,7 @@ export default function StageReadyPopup({
 
 "use client";
 
-import { ADVICE_DATA, GameQuestion } from "@/lib/constants/gameConstants";
+import {GameQuestion} from "@/lib/constants/gameConstants";
 
 interface StageResultModalProps {
   correctCount: number;
@@ -2312,7 +2504,7 @@ export default function StageResultModal({
                 Ôn tập lại các câu sai:
               </h3>
               {incorrectQuestions.map((q, idx) => {
-                const adviceObj = ADVICE_DATA.find((a) => a.id === q.id);
+
 
                 const correctKey = q.correctOption || q.correctAnswer || "";
 
@@ -2332,14 +2524,6 @@ export default function StageResultModal({
                     <p className="text-xs md:text-sm text-green-700 font-bold mb-2 bg-green-100 p-2 rounded-lg inline-block w-full">
                       ✅ Đáp án đúng: {correctKey && `${correctKey}.`}{" "}
                       {answerText}
-                    </p>
-                    <p className="text-xs md:text-sm text-gray-700 font-medium italic mt-1 leading-relaxed">
-                      💡{" "}
-                      <span className="text-blue-600 font-bold">
-                        Giải thích:
-                      </span>{" "}
-                      {adviceObj?.advice ||
-                        "Hãy ôn tập kỹ hơn về kiến thức này nhé!"}
                     </p>
                   </div>
                 );
@@ -2439,7 +2623,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 const menu = [
-  { name: "Ngã Rẽ Cuộc Đời", path: "/game" },
+  { name: "Your Choice - Your Life", path: "/game" },
   { name: "Thông tin về các loại ma túy", path: "/flashcard" },
   { name: "Pháp Luật", path: "/tree" },
   // { name: "Bản Đồ", path: "/map" },
@@ -3369,22 +3553,12 @@ export function useGameController() {
   const handleAnswer = (selectedKey: string) => {
     if (!currentQuestion) return;
 
-    if (selectedKey === currentQuestion.correctOption) {
+    // KIỂM TRA ĐÚNG/SAI
+    const isCorrect = selectedKey === currentQuestion.correctOption;
+
+    if (isCorrect) {
       // TRẢ LỜI ĐÚNG
-      if (currentQuestionIdx + 1 < currentStage.questions.length) {
-        setCurrentQuestionIdx((prev) => prev + 1);
-        setShowHintIdx([]);
-      } else {
-        // Hết chặng -> Chuyển chặng
-        if (currentStageIdx + 1 < stages.length) {
-          setCurrentStageIdx((prev) => prev + 1);
-          setCurrentQuestionIdx(0);
-          setShowHintIdx([]);
-        } else {
-          // Thắng game
-          setGameState("WON");
-        }
-      }
+      // (Có thể thêm code cộng điểm ở đây)
     } else {
       // TRẢ LỜI SAI
       setHearts((prev) => prev - 1);
@@ -3392,6 +3566,24 @@ export function useGameController() {
 
       if (hearts - 1 <= 0) {
         setGameState("LOST");
+        return; // Hết tim thì ngưng luôn, không chuyển câu nữa
+      }
+    }
+
+    // ĐOẠN NÀY LÀ LOGIC CHUYỂN CÂU/CHUYỂN CHẶNG DÙNG CHUNG CHO CẢ ĐÚNG LẪN SAI
+    if (currentQuestionIdx + 1 < currentStage.questions.length) {
+      // Qua câu tiếp theo trong cùng chặng
+      setCurrentQuestionIdx((prev) => prev + 1);
+      setShowHintIdx([]);
+    } else {
+      // Hết câu của chặng -> Chuyển chặng mới
+      if (currentStageIdx + 1 < stages.length) {
+        setCurrentStageIdx((prev) => prev + 1);
+        setCurrentQuestionIdx(0);
+        setShowHintIdx([]);
+      } else {
+        // Hết tất cả chặng -> Thắng game
+        setGameState("WON");
       }
     }
   };
@@ -6159,7 +6351,7 @@ export function useFullscreen() {
         // Thử khóa màn hình ngang (Landscape) trên Mobile nếu API hỗ trợ
         if (screen.orientation && "lock" in screen.orientation) {
           try {
-            await screen.orientation.lock("landscape");
+            await (screen.orientation as any).lock("landscape");
           } catch (e) {
             console.warn("Trình duyệt không hỗ trợ khóa hướng màn hình.", e);
           }
@@ -6255,6 +6447,7 @@ export function useParkourPhysics(
   visualStageIdx: number,
   setToastMsg: (msg: string) => void,
   setViewMode: (mode: ViewMode) => void,
+  onFall?: () => void // Thêm callback onFall
 ) {
   // UI State (Chỉ chứa những gì cần re-render)
   const [parkourX, setParkourX] = useState(5);
@@ -6270,6 +6463,12 @@ export function useParkourPhysics(
   const requestRef = useRef<number>(0);
   const isGroundedRef = useRef(false);
 
+  // KỸ THUẬT REF: Lưu trữ các hàm từ ngoài truyền vào để tránh phá vỡ vòng lặp 60fps
+  const callbacksRef = useRef({ setToastMsg, setViewMode, onFall });
+  useEffect(() => {
+    callbacksRef.current = { setToastMsg, setViewMode, onFall };
+  });
+
   // Hàm Reset vị trí khi bắt đầu màn chơi mới
   const startMiniGamePosition = useCallback(() => {
     const startX = 5;
@@ -6284,10 +6483,17 @@ export function useParkourPhysics(
 
   // Lắng nghe phím bấm (PC)
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => keysRef.current.add(e.code);
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Chặn cuộn trang khi ấn nút nhảy hoặc điều hướng
+      if (["Space", "KeyW", "KeyA", "KeyD", "KeyE", "ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.code)) {
+        e.preventDefault(); 
+      }
+      keysRef.current.add(e.code);
+    };
     const handleKeyUp = (e: KeyboardEvent) => keysRef.current.delete(e.code);
 
-    window.addEventListener("keydown", handleKeyDown);
+    // Dùng passive: false để cho phép preventDefault hoạt động
+    window.addEventListener("keydown", handleKeyDown, { passive: false });
     window.addEventListener("keyup", handleKeyUp);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
@@ -6340,7 +6546,7 @@ export function useParkourPhysics(
       const charHeight = 15; // Chiều cao nhân vật (~15% màn hình)
 
       // 1. Di chuyển ngang (X)
-      const moveSpeed = 30; // Tốc độ di chuyển theo % màn hình / giây
+      const moveSpeed = 25; // Tốc độ di chuyển theo % màn hình / giây
       if (keys.has("KeyA") || keys.has("ArrowLeft")) {
         vel.x = -moveSpeed;
         setFacingRight(false);
@@ -6356,7 +6562,7 @@ export function useParkourPhysics(
         (keys.has("Space") || keys.has("KeyW") || keys.has("ArrowUp")) &&
         isGroundedRef.current
       ) {
-        vel.y = 45; // Lực nhảy lên
+        vel.y = 55; // Lực nhảy lên
         isGroundedRef.current = false;
       }
 
@@ -6370,7 +6576,7 @@ export function useParkourPhysics(
       if (newX > 95) newX = 95;
 
       for (const plat of platforms) {
-        // Nhân vật chỉ đụng tường nếu đang nằm trong khoảng chiều cao của khối đó
+        // ĐÃ SỬA: Tính toán tọa độ Y chuẩn theo khung đỏ (Khung tính từ đáy cộng thêm chiều cao)
         const isIntersectingY =
           pos.y < plat.bottom + plat.height && pos.y + charHeight > plat.bottom;
 
@@ -6399,7 +6605,6 @@ export function useParkourPhysics(
       // 5. Áp dụng vận tốc Y và Rớt sàn (Va chạm dọc)
       let newY = pos.y + vel.y * deltaTime;
       isGroundedRef.current = false;
-      let nearChestFlag = false;
 
       for (let i = 0; i < platforms.length; i++) {
         const plat = platforms[i];
@@ -6407,33 +6612,36 @@ export function useParkourPhysics(
           newX + charWidth >= plat.left && newX <= plat.left + plat.width;
         const isFalling = vel.y <= 0;
 
-        // Tolerance: Frame trước nhân vật ở cao hơn hoặc bằng mặt dưới block
-        const isAbovePlat = pos.y >= plat.bottom;
+        // ĐÃ SỬA: Bề mặt để nhân vật đứng lên phải là CẠNH TRÊN CỦA BLOCK
+        const surfaceY = plat.bottom + plat.height;
+
+        // Tolerance: Frame trước nhân vật ở cao hơn hoặc bằng mặt trên block
+        const isAbovePlat = pos.y >= surfaceY - 0.5; // Bù trừ 0.5 sai số float
 
         if (
           isWithinX &&
           isFalling &&
           isAbovePlat &&
-          newY <= plat.bottom + plat.height
+          newY <= surfaceY
         ) {
           // Va chạm mặt trên của platform (Đáp đất)
-          newY = plat.bottom + plat.height;
+          newY = surfaceY;
           vel.y = 0;
           isGroundedRef.current = true;
-
-          // SỬA LỖI MỞ RƯƠNG: Nhận diện rương là bệ đỡ CUỐI CÙNG của mảng
-          const isLastPlat = i === platforms.length - 1;
-          if (isLastPlat && newX > plat.left + plat.width * 0.5) {
-            nearChestFlag = true;
-          }
         }
       }
 
-      // Vực thẳm (Chết)
+      // ============================================
+      // VỰC THẲM (RỚT ĐÀI) - SỬ DỤNG CALLBACK TỪ REF
+      // ============================================
       if (newY < -10) {
-        setToastMsg("Bạn đã rơi xuống vực!");
-        startMiniGamePosition(); // Hồi sinh lại từ đầu
-        return;
+        if (callbacksRef.current.onFall) {
+          callbacksRef.current.onFall(); // Gọi tín hiệu ra ngoài page.tsx
+        } else {
+          callbacksRef.current.setToastMsg("Bạn đã rơi xuống vực!");
+          startMiniGamePosition(); // Hồi sinh dự phòng
+        }
+        return; // Dừng vòng lặp vật lý ngay lập tức
       }
 
       // 6. Cập nhật Refs
@@ -6444,11 +6652,11 @@ export function useParkourPhysics(
       setParkourX(newX);
       setParkourY(newY);
 
-      // Hiệu ứng bước đi
+      // Hiệu ứng bước đi 
       if (vel.x !== 0 && isGroundedRef.current) {
         walkAnimCounter++;
-        if (walkAnimCounter > 10) {
-          // Cứ sau 10 frame đổi ảnh 1 lần
+        // ĐÃ SỬA: Tăng từ 8 lên 15 (hoặc 20). Số càng to bước chân vung càng chậm.
+        if (walkAnimCounter > 10) { 
           setWalkStep((prev) => !prev);
           walkAnimCounter = 0;
         }
@@ -6457,16 +6665,19 @@ export function useParkourPhysics(
       }
 
       // 8. XỬ LÝ MỞ RƯƠNG CHUẨN XÁC
+      const lastPlat = platforms[platforms.length - 1];
+      const nearChestFlag = newX >= lastPlat.left - 5;
       setIsNearChest(nearChestFlag);
 
       // Chống kẹt Unikey và bắt sự kiện chạm màn hình
       const isPressingOpen = keys.has("KeyE") || keys.has("e") || keys.has("E");
 
       if (nearChestFlag && isPressingOpen) {
+        // Xóa nút bấm để tránh mở lặp lại
         keys.delete("KeyE");
         keys.delete("e");
         keys.delete("E");
-        setViewMode("QUESTION"); // <== Chuyển màn hình thành công!
+        callbacksRef.current.setViewMode("QUESTION"); // Chuyển màn hình thành công!
       }
 
       requestRef.current = requestAnimationFrame(gameLoop);
@@ -6474,25 +6685,23 @@ export function useParkourPhysics(
 
     requestRef.current = requestAnimationFrame(gameLoop);
     return () => cancelAnimationFrame(requestRef.current!);
-  }, [
-    viewMode,
-    visualStageIdx,
-    setToastMsg,
-    setViewMode,
-    startMiniGamePosition,
-  ]);
+    
+  // ĐÃ SỬA: Xóa sạch các hàm callback khỏi mảng dependency, triệt tiêu lỗi vòng lặp
+  }, [viewMode, visualStageIdx, startMiniGamePosition]); 
+
+const isJumping = !isGroundedRef.current;
 
   return {
     parkourX,
     parkourY,
     facingRight,
     walkStep,
+    isJumping, 
     isNearChest,
     handleMobileInput,
     startMiniGamePosition,
   };
 }
-
 
 ==================================================
 📁 File: src/lib/constants/gameConstants.ts
@@ -6506,170 +6715,53 @@ export interface GameQuestion {
   correctAnswer?: string; // Dùng dự phòng nếu data của bạn dùng key này
 }
 
-export const ADVICE_DATA = [
-  {
-    id: 1,
-    advice:
-      "Ma túy là các chất hóa học (tự nhiên hoặc tổng hợp) có tác động mạnh lên hệ thần kinh trung ương, gây ảo giác, kích thích hoặc ức chế, và đặc biệt là gây ra tình trạng lệ thuộc (nghiện).",
-  },
-  {
-    id: 2,
-    advice:
-      "Sử dụng ma túy dù chỉ một lần cũng có thể kích thích não bộ, phá vỡ hoạt động bình thường của hệ thần kinh, dẫn đến sự lệ thuộc không thể kiểm soát cả về thể chất lẫn tinh thần (nghiện).",
-  },
-  {
-    id: 3,
-    advice:
-      "Ma túy tác động trực tiếp và tàn phá hệ thần kinh trung ương (não bộ), làm biến đổi cấu trúc và chức năng của não, gây ra các rối loạn về nhận thức, ảo giác và mất kiểm soát hành vi.",
-  },
-  {
-    id: 4,
-    advice:
-      '"Nói không với ma túy" là thông điệp tuyên truyền cốt lõi, ngắn gọn và mạnh mẽ nhất trên toàn cầu để nâng cao nhận thức cộng đồng về việc kiên quyết tránh xa hiểm họa này.',
-  },
-  {
-    id: 5,
-    advice:
-      "Ma túy không phân biệt tuổi tác, giới tính hay tầng lớp xã hội. Bất kỳ ai vô tình hay cố ý sử dụng đều sẽ bị tổn hại nghiêm trọng về sức khỏe, tinh thần và mất đi tương lai.",
-  },
-  {
-    id: 6,
-    advice:
-      "Ma túy đá (Methamphetamine) thường được tổng hợp dưới dạng tinh thể trong suốt hoặc có màu nhạt, trông rất giống những mảnh đá vỡ hay hạt muối to.",
-  },
-  {
-    id: 7,
-    advice:
-      "Cần sa (Marijuana) thường được chế biến từ hoa, lá khô và thân của cây cần sa, sau đó được băm nhỏ để hút trực tiếp như hút thuốc lá.",
-  },
-  {
-    id: 8,
-    advice:
-      "Thuốc lắc (MDMA) thường được sản xuất dưới dạng các viên nén nhiều màu sắc rực rỡ, có in các hình thù hoặc logo bắt mắt nhằm thu hút sự tò mò của giới trẻ.",
-  },
-  {
-    id: 9,
-    advice:
-      "Heroin nguyên chất thường xuất hiện dưới dạng bột tơi xốp màu trắng (hoặc màu nâu/vàng tùy mức độ lẫn tạp chất), không mùi và có vị đắng.",
-  },
-  {
-    id: 10,
-    advice:
-      "Các loại ma túy tổng hợp (như thuốc lắc, ma túy đá, ketamine) chủ yếu được điều chế hóa học trong các phòng thí nghiệm và thường có dạng viên nén hoặc tinh thể.",
-  },
-  {
-    id: 11,
-    advice:
-      "Dấu hiệu sinh lý thường thấy ở người dùng ma túy là mắt hay bị đỏ, đồng tử giãn, kèm theo các hành vi bất thường, lén lút, né tránh đám đông hoặc hay nói dối.",
-  },
-  {
-    id: 12,
-    advice:
-      "Ma túy làm rối loạn hệ tiêu hóa và quá trình chuyển hóa, gây chán ăn, mất ngủ triền miên khiến cơ thể suy kiệt và sút cân nghiêm trọng chỉ trong thời gian ngắn.",
-  },
-  {
-    id: 13,
-    advice:
-      "Hóa chất trong ma túy làm rối loạn hệ thần kinh, khiến cảm xúc của người dùng thay đổi cực đoan: lúc hưng phấn, bay bổng thái quá, lúc lại trầm cảm, cáu bẳn và dễ kích động.",
-  },
-  {
-    id: 14,
-    advice:
-      "Rối loạn giấc ngủ (thức trắng nhiều đêm liền) và dễ nổi nóng, mất kiểm soát cảm xúc là những triệu chứng lâm sàng rất phổ biến của người nghiện, đặc biệt là người dùng ma túy đá.",
-  },
-  {
-    id: 15,
-    advice:
-      "Ma túy tàn phá nội tạng, làm suy giảm hệ miễn dịch trầm trọng, khiến cơ thể luôn trong trạng thái yếu ớt, mệt mỏi và rất dễ mắc các bệnh lây nhiễm.",
-  },
-  {
-    id: 16,
-    advice:
-      "Độc tính của ma túy tàn phá toàn diện cơ thể người nghiện: làm teo não, hoang tưởng, nhồi máu cơ tim, viêm gan, suy thận và các bệnh hô hấp nghiêm trọng.",
-  },
-  {
-    id: 17,
-    advice:
-      "Lạm dụng ma túy lâu dài sẽ dẫn đến suy đa tạng, có nguy cơ cao bị sốc thuốc (quá liều) hoặc mắc các bệnh truyền nhiễm (HIV/AIDS do dùng chung kim tiêm), cuối cùng dẫn đến cái chết.",
-  },
-  {
-    id: 18,
-    advice:
-      "Người nghiện thường vắt kiệt tài chính gia đình để mua ma túy, sinh ra tính bạo lực, bạo hành người thân, làm mất niềm tin và cuối cùng dẫn đến gia đình ly tán, tan vỡ.",
-  },
-  {
-    id: 19,
-    advice:
-      "Để có tiền thỏa mãn cơn nghiện, người dùng ma túy dễ dàng bị lôi kéo vào con đường phạm pháp như trộm cắp, cướp giật, lừa đảo hoặc buôn bán ma túy, làm mất an ninh trật tự xã hội.",
-  },
-  {
-    id: 20,
-    advice:
-      "Ma túy làm suy giảm nghiêm trọng trí nhớ, làm mất khả năng tập trung và tư duy, dẫn đến việc người dùng chểnh mảng học hành, thường xuyên trốn học và cuối cùng là bỏ học.",
-  },
-  {
-    id: 21,
-    advice:
-      'Kỹ năng quan trọng nhất là phải có bản lĩnh nói "Không" một cách dứt khoát. Việc từ chối ngay từ đầu giúp bảo vệ bản thân khỏi bước sa chân đầu tiên vào vực thẳm nghiện ngập.',
-  },
-  {
-    id: 22,
-    advice:
-      "Buôn bán ma túy là tội phạm hình sự rất nghiêm trọng. Bạn cần báo cáo ngay cho công an, thầy cô hoặc người lớn đáng tin cậy một cách bí mật để có biện pháp ngăn chặn kịp thời.",
-  },
-  {
-    id: 23,
-    advice:
-      'Hiện nay có nhiều loại ma túy "trá hình" được pha trộn tinh vi vào đồ uống. Tuyệt đối không nhận đồ ăn/thức uống từ người lạ hoặc uống tiếp ly nước đã bị khuất tầm mắt để tự bảo vệ mình.',
-  },
-  {
-    id: 24,
-    advice:
-      "Người nghiện là người mang bệnh và rất cần sự hỗ trợ y tế, tâm lý. Gia đình không nên bỏ mặc hay che giấu, mà cần kiên nhẫn đưa họ đến các trung tâm cai nghiện để được điều trị đúng cách.",
-  },
-  {
-    id: 25,
-    advice:
-      "Sức khỏe và tương lai của bạn là tài sản vô giá. Kiên quyết tránh xa ma túy là cách duy nhất, an toàn nhất để bảo vệ chính bản thân, gia đình và có một cuộc sống ý nghĩa.",
-  },
-];
 
+// 1. TỌA ĐỘ CÁC RƯƠNG (Điều chỉnh lại để rương nằm CHÍNH GIỮA mặt đường xám)
 export const MAP_COORDINATES = [
-  { top: "65%", left: "11%" }, // 0: BẮT ĐẦU
-  { top: "57%", left: "26%" }, // 1: CHẶNG 1
-  { top: "23%", left: "23%" }, // 2: CHẶNG 2
-  { top: "23%", left: "45%" }, // 3: CHẶNG 3
-  { top: "43%", left: "61%" }, // 4: CHẶNG 4
-  { top: "22%", left: "80%" }, // 5: CHẶNG 5
+  { top: "67%", left: "12%" }, // 0: BẮT ĐẦU
+  { top: "54%", left: "24%" }, // 1: CHẶNG 1
+  { top: "28%", left: "29%" }, // 2: CHẶNG 2
+  { top: "28%", left: "45%" }, // 3: CHẶNG 3
+  { top: "52%", left: "62%" }, // 4: CHẶNG 4
+  { top: "25%", left: "76%" }, // 5: CHẶNG 5
 ];
 
-export const STAGE_PATHS: Record<number, { left: string; top: string }[]> = {
-  1: [
-    { left: "11%", top: "65%" },
-    { left: "22%", top: "62%" },
-  ],
-  2: [
-    { left: "20%", top: "32%" },
-    { left: "20%", top: "31%" },
-  ],
-  3: [
-    { left: "26%", top: "28%" },
-    { left: "29%", top: "29%" },
-    { left: "29%", top: "51%" },
-    { left: "41%", top: "51%" },
-    { left: "41%", top: "29%" },
-  ],
-  4: [
-    { left: "52%", top: "29%" },
-    { left: "52%", top: "50%" },
-    { left: "57%", top: "50%" },
-  ],
-  5: [
-    { left: "66%", top: "51%" },
-    { left: "66%", top: "25%" },
-    { left: "73%", top: "25%" },
-  ],
-};
+// 2. ĐƯỜNG ĐI ZIG-ZAG (Góc cua 90 độ bám sát nét vẽ của map)
+export const PATH_WAYPOINTS = [
+  { top: "67%", left: "12%" }, // 0. Bắt đầu
+  { top: "67%", left: "24%" }, // 1. Khúc cua 1: Rẽ lên
+  { top: "54%", left: "24%" }, // 2. Đi qua: CHẶNG 1
+  { top: "28%", left: "24%" }, // 3. Khúc cua 2: Rẽ phải
+  { top: "28%", left: "29%" }, // 4. Đi qua: CHẶNG 2
+  { top: "28%", left: "34%" }, // 5. Khúc cua 3: Rẽ xuống
+  { top: "52%", left: "34%" }, // 6. Khúc cua 4: Rẽ phải
+  { top: "52%", left: "45%" }, // 7. Khúc cua 5: Đi ngang qua nhà -> Rẽ lên
+  { top: "28%", left: "45%" }, // 8. Đi qua: CHẶNG 3 (Nằm ở góc cua)
+  { top: "28%", left: "54%" }, // 9. Khúc cua 6: Rẽ xuống
+  { top: "52%", left: "54%" }, // 10. Khúc cua 7: Rẽ phải
+  { top: "52%", left: "62%" }, // 11. Đi qua: CHẶNG 4
+  { top: "52%", left: "68%" }, // 12. Khúc cua 8: Rẽ lên
+  { top: "48%", left: "68%" }, // 13. Khúc cua 9 (Ngã ba): Đi thẳng lên
+  { top: "25%", left: "68%" }, // 14. Khúc cua 10: Rẽ phải
+  { top: "25%", left: "76%" }, // 15. Đi qua: CHẶNG 5
+  { top: "25%", left: "86%" }, // 16. Tới KẾT THÚC 1
+];
+
+// (Tùy chọn) Nhánh phụ cho Kết Thúc 2
+export const PATH_TO_ENDING_2 = [
+  { top: "48%", left: "68%" }, // Rẽ phải từ ngã ba (Điểm số 13 ở mảng trên)
+  { top: "48%", left: "86%" }, // Tới KẾT THÚC 2
+];
+
+// 3. KẾT NỐI: Rương số mấy sẽ tương ứng với Waypoint số mấy?
+export const STAGE_WAYPOINT_INDICES = [
+  0,  // Chặng Bắt đầu = WP 0
+  2,  // Chặng 1 = WP 2
+  4,  // Chặng 2 = WP 4
+  8,  // Chặng 3 = WP 8
+  11, // Chặng 4 = WP 11
+  15, // Chặng 5 = WP 15
+];
 
 export const STAGE_PLATFORMS: Record<
   number,
@@ -6687,8 +6779,9 @@ export const STAGE_PLATFORMS: Record<
     { id: 201, left: 81, width: 25, bottom: 54, height: 5 }, // Đứng ở 59
   ],
   2: [
-    { id: 1, left: 0, width: 70, bottom: 30, height: 5 }, // Đứng ở 35
-    { id: 2, left: 84, width: 30, bottom: 31, height: 5 }, // Đứng ở 36
+    { id: 1, left: 0, width: 22, bottom: 32, height: 5 }, 
+    { id: 2, left: 45, width: 30, bottom: 32, height: 5 }, 
+    { id: 3, left: 82, width: 20, bottom: 32, height: 5 }, 
   ],
   3: [
     { id: 1, left: 0, width: 10, bottom: 25, height: 5 }, // Đứng ở 30
@@ -7699,301 +7792,301 @@ export const STAGE_PLATFORMS: Record<
 
 [
   {
-    "stage": "Chặng 1: Câu hỏi dễ",
+    "stage": "Chặng 1: Khái niệm về Ma túy",
     "questions": [
       {
         "id": 1,
-        "question": "Ma túy là gì?",
-        "correctOption": "B",
+        "question": "Theo Luật Phòng, chống ma túy năm 2025, định nghĩa nào sau đây mô tả chính xác nhất về 'Chất ma túy'?",
+        "correctOption": "C",
         "options": {
-          "A": "Thực phẩm",
-          "B": "Chất gây nghiện ảnh hưởng đến hệ thần kinh",
-          "C": "Thuốc bổ",
-          "D": "Nước giải khát"
+          "A": "Là hóa chất thường được sử dụng trong quá trình điều chế, sản xuất ma túy.",
+          "B": "Là chất gây ảo giác, nếu sử dụng nhiều lần có thể dẫn tới tình trạng nghiện.",
+          "C": "Là chất gây nghiện, chất hướng thần được quy định trong danh mục chất ma túy Chính phủ ban hành.",
+          "D": "Là bất kỳ chất kích thích thần kinh nào bị cấm lưu hành trên thị trường."
         }
       },
       {
         "id": 2,
-        "question": "Sử dụng ma túy có thể gây ra điều gì?",
-        "correctOption": "D",
+        "question": "'Chất hướng thần' được phân biệt với các loại chất khác dựa trên đặc điểm nào?",
+        "correctOption": "B",
         "options": {
-          "A": "Tăng trí nhớ",
-          "B": "Tăng sức khỏe",
-          "C": "Không ảnh hưởng",
-          "D": "Nghiện"
+          "A": "Là chất dễ gây tình trạng nghiện ngay từ lần đầu sử dụng.",
+          "B": "Là chất kích thích hoặc ức chế thần kinh hoặc gây ảo giác, nếu sử dụng nhiều lần có thể dẫn tới tình trạng nghiện.",
+          "C": "Là hóa chất tiền đề để tổng hợp heroin.",
+          "D": "Là thuốc giảm đau được dùng trong y tế dự phòng."
         }
       },
       {
         "id": 3,
-        "question": "Ma túy ảnh hưởng nhiều nhất đến bộ phận nào?",
-        "correctOption": "C",
+        "question": "Khái niệm 'Tiền chất' trong quản lý phòng chống ma túy được hiểu như thế nào?",
+        "correctOption": "B",
         "options": {
-          "A": "Tóc",
-          "B": "Móng",
-          "C": "Hệ thần kinh",
-          "D": "Da"
+          "A": "Là loại ma túy mới xuất hiện chưa có trong danh mục.",
+          "B": "Là hóa chất thường được sử dụng trong quá trình điều chế, sản xuất chất ma túy được quy định trong danh mục do Chính phủ ban hành.",
+          "C": "Là các loại cây có chứa chất ma túy như thuốc phiện, cần sa.",
+          "D": "Là thuốc hướng thần được bán không kê đơn."
         }
       },
       {
         "id": 4,
-        "question": "Khẩu hiệu phổ biến trong phòng chống ma túy là gì?",
-        "correctOption": "A",
+        "question": "'Thuốc thú y có chứa chất ma túy, tiền chất' được quy định nhằm mục đích gì?",
+        "correctOption": "C",
         "options": {
-          "A": "Nói không với ma túy",
-          "B": "Làm theo bạn",
-          "C": "Thử cho biết",
-          "D": "Không quan tâm"
+          "A": "Cấm tuyệt đối việc sử dụng trong thú y.",
+          "B": "Cho phép người dân tự do mua về chữa bệnh cho vật nuôi.",
+          "C": "Quản lý chặt chẽ thuốc thú y có chứa chất ma túy, tiền chất để tránh việc lạm dụng hoặc điều chế trái phép.",
+          "D": "Tăng thuế đối với các loại thuốc thú y."
         }
       },
       {
         "id": 5,
-        "question": "Ma túy có thể gây hại cho ai?",
+        "question": "Theo Điều 5 Luật Phòng, chống ma túy năm 2025, có bao nhiêu hành vi bị nghiêm cấm?",
         "correctOption": "C",
         "options": {
-          "A": "Chỉ người lớn",
-          "B": "Chỉ học sinh",
-          "C": "Mọi người",
-          "D": "Chỉ người già"
+          "A": "12 hành vi.",
+          "B": "13 hành vi.",
+          "C": "14 hành vi.",
+          "D": "15 hành vi."
         }
       }
     ]
   },
   {
-    "stage": "Chặng 2: Nhận biết ma túy",
+    "stage": "Chặng 2: Trách nhiệm & Xử lý vi phạm",
     "questions": [
       {
         "id": 6,
-        "question": "Loại ma túy nào thường có dạng tinh thể giống đá?",
-        "correctOption": "D",
+        "question": "Hành vi nào sau đây bị nghiêm cấm theo Luật Phòng, chống ma túy năm 2025?",
+        "correctOption": "B",
         "options": {
-          "A": "Thuốc lá",
-          "B": "Cà phê",
-          "C": "Cần sa",
-          "D": "Ma túy đá"
+          "A": "Tham gia các buổi hội thảo tuyên truyền về phòng, chống ma túy.",
+          "B": "Hướng dẫn người khác sản xuất, sử dụng trái phép chất ma túy dưới mọi hình thức.",
+          "C": "Tố giác tội phạm ma túy cho cơ quan Công an.",
+          "D": "Cung cấp thông tin về tác hại của ma túy cho học sinh."
         }
       },
       {
         "id": 7,
-        "question": "Cần sa thường có dạng gì?",
-        "correctOption": "B",
+        "question": "Cơ quan nào là lực lượng nòng cốt, chủ trì trong công tác phòng, chống ma túy?",
+        "correctOption": "A",
         "options": {
-          "A": "Viên nén",
-          "B": "Lá khô",
-          "C": "Tinh thể",
-          "D": "Nước"
+          "A": "Cơ quan Công an nhân dân.",
+          "B": "Bộ Y tế.",
+          "C": "Bộ Giáo dục và Đào tạo.",
+          "D": "Ủy ban nhân dân các cấp."
         }
       },
       {
         "id": 8,
-        "question": "Thuốc lắc thường có dạng nào?",
+        "question": "Một trong những chính sách của Nhà nước về phòng, chống ma túy là gì?",
         "correctOption": "C",
         "options": {
-          "A": "Bột",
-          "B": "Nước",
-          "C": "Viên nén",
-          "D": "Lá"
+          "A": "Chỉ ưu tiên các biện pháp phạt tiền đối với người sử dụng ma túy.",
+          "B": "Khuyến khích trồng cây có chứa chất ma túy ở vùng sâu vùng xa.",
+          "C": "Ưu tiên nguồn lực phòng, chống ma túy cho vùng đồng bào dân tộc thiểu số, biên giới, hải đảo và các khu vực trọng điểm.",
+          "D": "Giữ bí mật tuyệt đối về tình trạng ma túy, không tuyên truyền rộng rãi."
         }
       },
       {
         "id": 9,
-        "question": "Heroin thường có dạng gì?",
-        "correctOption": "A",
+        "question": "Theo quy định hiện hành, người có hành vi sử dụng trái phép chất ma túy lần đầu sẽ bị xử lý như thế nào?",
+        "correctOption": "C",
         "options": {
-          "A": "Bột trắng",
-          "B": "Hạt",
-          "C": "Lá khô",
-          "D": "Nước"
+          "A": "Bị khởi tố hình sự và phạt tù giam.",
+          "B": "Đưa ngay vào cơ sở cai nghiện bắt buộc.",
+          "C": "Bị lập hồ sơ quản lý người sử dụng trái phép chất ma túy.",
+          "D": "Chỉ nhắc nhở và thông báo cho gia đình."
         }
       },
       {
         "id": 10,
-        "question": "Ma túy tổng hợp thường xuất hiện dưới dạng nào?",
-        "correctOption": "D",
+        "question": "Thời hạn quản lý người sử dụng trái phép chất ma túy là bao lâu?",
+        "correctOption": "C",
         "options": {
-          "A": "Chỉ dạng nước",
-          "B": "Chỉ dạng lá",
-          "C": "Chỉ dạng khí",
-          "D": "Viên nén hoặc tinh thể"
+          "A": "06 tháng kể từ ngày có quyết định quản lý.",
+          "B": "12 tháng kể từ ngày bắt đầu sử dụng ma túy.",
+          "C": "01 năm kể từ ngày Chủ tịch UBND cấp xã ra quyết định quản lý.",
+          "D": "02 năm kể từ ngày phát hiện hành vi vi phạm."
         }
       }
     ]
   },
   {
-    "stage": "Chặng 3: Dấu hiệu nhận biết",
+    "stage": "Chặng 3: Vai trò của Gia đình & Xã hội",
     "questions": [
       {
         "id": 11,
-        "question": "Dấu hiệu nào có thể nghi ngờ người sử dụng ma túy?",
-        "correctOption": "B",
+        "question": "Cá nhân có trách nhiệm gì trong phòng, chống ma túy?",
+        "correctOption": "D",
         "options": {
-          "A": "Ăn uống đều",
-          "B": "Mắt đỏ, hành vi lạ",
-          "C": "Ngủ đúng giờ",
-          "D": "Học tập tốt"
+          "A": "Cung cấp nơi ở cho người bị truy nã về tội ma túy.",
+          "B": "Tự ý mua bán ma túy để 'nghiên cứu' tác hại.",
+          "C": "Không cần tham gia vì đó là việc của lực lượng Công an.",
+          "D": "Tham gia các hoạt động phòng, chống ma túy; báo cáo kịp thời cho cơ quan chức năng khi phát hiện hành vi vi phạm."
         }
       },
       {
         "id": 12,
-        "question": "Người nghiện ma túy thường có biểu hiện nào?",
-        "correctOption": "C",
+        "question": "Gia đình của người nghiện ma túy có trách nhiệm gì?",
+        "correctOption": "D",
         "options": {
-          "A": "Tăng cân nhanh",
-          "B": "Cao hơn",
-          "C": "Sút cân nhanh",
-          "D": "Khỏe hơn"
+          "A": "Đuổi người nghiện ra khỏi nhà để không ảnh hưởng đến gia đình.",
+          "B": "Tự ý trói, giam giữ người nghiện tại nhà để cai nghiện.",
+          "C": "Giấu diếm thông tin để bảo vệ danh dự gia đình.",
+          "D": "Khai báo với cơ quan chức năng và phối hợp hỗ trợ người nghiện tham gia cai nghiện."
         }
       },
       {
         "id": 13,
-        "question": "Người dùng ma túy thường có tâm trạng thế nào?",
-        "correctOption": "D",
+        "question": "Cơ quan, tổ chức có trách nhiệm gì khi phát hiện thành viên của mình nghiện ma túy?",
+        "correctOption": "C",
         "options": {
-          "A": "Luôn vui vẻ",
-          "B": "Không thay đổi",
-          "C": "Luôn ổn định",
-          "D": "Thay đổi thất thường"
+          "A": "Sa thải ngay lập tức mà không cần thông báo cho ai.",
+          "B": "Bỏ qua nếu người đó có năng lực làm việc tốt.",
+          "C": "Phối hợp với gia đình, chính quyền địa phương để động viên, hỗ trợ người đó đi cai nghiện.",
+          "D": "Phạt tiền người lao động đó."
         }
       },
       {
         "id": 14,
-        "question": "Thức khuya nhiều và cáu gắt bất thường có thể là dấu hiệu của?",
-        "correctOption": "A",
+        "question": "Cơ sở giáo dục có trách nhiệm gì trong công tác phòng, chống ma túy?",
+        "correctOption": "D",
         "options": {
-          "A": "Sử dụng ma túy",
-          "B": "Làm việc",
-          "C": "Học bài",
-          "D": "Chơi thể thao"
+          "A": "Cấm tất cả học sinh mang điện thoại đến trường.",
+          "B": "Kiểm tra túi xách của học sinh mỗi ngày.",
+          "C": "Mời Công an bắt giữ ngay lập tức bất kỳ học sinh nào nghi ngờ dùng ma túy.",
+          "D": "Giáo dục kiến thức, kỹ năng phòng ngừa ma túy cho học sinh, sinh viên và phối hợp với gia đình, chính quyền để quản lý."
         }
       },
       {
         "id": 15,
-        "question": "Người nghiện ma túy thường gặp vấn đề gì về sức khỏe?",
-        "correctOption": "B",
+        "question": "Người nghiện ma túy có quyền và trách nhiệm gì đối với việc cai nghiện?",
+        "correctOption": "C",
         "options": {
-          "A": "Tăng sức khỏe",
-          "B": "Suy giảm sức khỏe",
-          "C": "Tăng trí nhớ",
-          "D": "Không thay đổi"
+          "A": "Từ chối cai nghiện nếu cảm thấy không cần thiết.",
+          "B": "Chỉ cai nghiện khi được trả tiền hỗ trợ.",
+          "C": "Được giữ bí mật thông tin cá nhân và có trách nhiệm tuân thủ nghiêm ngặt phác đồ điều trị cai nghiện.",
+          "D": "Tự ý mua thuốc cai nghiện về nhà dùng không cần hướng dẫn của bác sĩ."
         }
       }
     ]
   },
   {
-    "stage": "Chặng 4: Hậu quả",
+    "stage": "Chặng 4: Các biện pháp Cai nghiện",
     "questions": [
       {
         "id": 16,
-        "question": "Ma túy có thể gây tổn thương cơ quan nào?",
-        "correctOption": "D",
+        "question": "Có bao nhiêu hình thức cai nghiện ma túy theo Luật PCMT 2025?",
+        "correctOption": "A",
         "options": {
-          "A": "Gan",
-          "B": "Tim",
-          "C": "Não",
-          "D": "Tất cả các đáp án trên"
+          "A": "Cai nghiện tự nguyện và cai nghiện bắt buộc.",
+          "B": "Cai nghiện tại nhà và cai nghiện tại bệnh viện.",
+          "C": "Cai nghiện bằng thuốc đông y và tây y.",
+          "D": "Cai nghiện tại cộng đồng và cai nghiện tại nước ngoài."
         }
       },
       {
         "id": 17,
-        "question": "Sử dụng ma túy lâu dài có thể dẫn đến?",
+        "question": "Việc cai nghiện ma túy tự nguyện được thực hiện ở đâu?",
         "correctOption": "C",
         "options": {
-          "A": "Tăng tuổi thọ",
-          "B": "Khỏe hơn",
-          "C": "Tử vong",
-          "D": "Không ảnh hưởng"
+          "A": "Bắt buộc phải thực hiện tại Trạm y tế xã.",
+          "B": "Tại nhà riêng dưới sự giám sát của Công an.",
+          "C": "Tại gia đình, cộng đồng hoặc tại các cơ sở cai nghiện ma túy.",
+          "D": "Chỉ được thực hiện tại bệnh viện tuyến Trung ương."
         }
       },
       {
         "id": 18,
-        "question": "Ma túy có thể gây ảnh hưởng đến gia đình như thế nào?",
+        "question": "Nhà nước có chính sách hỗ trợ gì cho người cai nghiện tự nguyện?",
         "correctOption": "B",
         "options": {
-          "A": "Không ảnh hưởng",
-          "B": "Mâu thuẫn và tan vỡ",
-          "C": "Hạnh phúc hơn",
-          "D": "Giàu hơn"
+          "A": "Cấp phát tiền mặt hàng tháng.",
+          "B": "Hỗ trợ một phần kinh phí đối với người cai nghiện tự nguyện tại cơ sở cai nghiện công lập (tùy đối tượng chính sách).",
+          "C": "Mua nhà cho người hoàn thành cai nghiện.",
+          "D": "Miễn phí hoàn toàn chi phí ăn ở cho tất cả mọi người tại mọi cơ sở tư nhân."
         }
       },
       {
         "id": 19,
-        "question": "Ma túy có thể dẫn đến điều gì trong xã hội?",
+        "question": "Biện pháp 'Điều trị nghiện chất dạng thuốc phiện bằng thuốc thay thế' thường dùng loại thuốc nào phổ biến nhất hiện nay?",
         "correctOption": "D",
         "options": {
-          "A": "Tăng dân số",
-          "B": "Phát triển kinh tế",
-          "C": "Không ảnh hưởng",
-          "D": "Gia tăng tội phạm"
+          "A": "Paracetamol.",
+          "B": "Thuốc kháng sinh.",
+          "C": "Vitamin C tổng hợp.",
+          "D": "Methadone hoặc Buprenorphine."
         }
       },
       {
         "id": 20,
-        "question": "Ma túy ảnh hưởng đến học tập như thế nào?",
-        "correctOption": "A",
+        "question": "Mục đích chính của việc điều trị bằng thuốc thay thế (như Methadone) là gì?",
+        "correctOption": "D",
         "options": {
-          "A": "Giảm khả năng học tập",
-          "B": "Học tốt hơn",
-          "C": "Tăng trí nhớ",
-          "D": "Không ảnh hưởng"
+          "A": "Giúp người bệnh cảm thấy 'phê' hơn mà không bị bắt.",
+          "B": "Chữa khỏi hoàn toàn bệnh nghiện ngay lập tức.",
+          "C": "Cung cấp thuốc miễn phí để người nghiện bán lại.",
+          "D": "Giảm dần sự lệ thuộc vào ma túy bất hợp pháp, giảm lây nhiễm HIV và giúp người bệnh hòa nhập cộng đồng."
         }
       }
     ]
   },
   {
-    "stage": "Chặng 5: Xử lý tình huống",
+    "stage": "Chặng 5: Quy định Bắt buộc & Quản lý",
     "questions": [
       {
         "id": 21,
-        "question": "Nếu bạn bè rủ sử dụng ma túy, bạn nên làm gì?",
+        "question": "Ai có thẩm quyền lập hồ sơ đề nghị áp dụng biện pháp đưa vào cơ sở cai nghiện bắt buộc đối với người nghiện ma túy từ đủ 18 tuổi trở lên?",
         "correctOption": "C",
         "options": {
-          "A": "Đồng ý",
-          "B": "Thử một lần",
-          "C": "Từ chối",
-          "D": "Rủ thêm người"
+          "A": "Trưởng Trạm Y tế xã.",
+          "B": "Hiệu trưởng trường học.",
+          "C": "Trưởng Công an cấp xã nơi người đó cư trú hoặc có hành vi vi phạm.",
+          "D": "Đăng công khai lên loa phát thanh xã."
         }
       },
       {
         "id": 22,
-        "question": "Khi phát hiện người buôn bán ma túy, bạn nên?",
+        "question": "Hồ sơ đăng ký cai nghiện ma túy tự nguyện tại cơ sở công lập đối với người dưới 18 tuổi BẮT BUỘC phải có văn bản gì?",
         "correctOption": "B",
         "options": {
-          "A": "Làm ngơ",
-          "B": "Báo cơ quan chức năng",
-          "C": "Che giấu",
-          "D": "Mua thử"
+          "A": "Quyết định của Tòa án hình sự.",
+          "B": "Ý kiến của cha, mẹ, người giám hộ hoặc người đại diện hợp pháp.",
+          "C": "Thư giới thiệu của giáo viên chủ nhiệm.",
+          "D": "Bản cam kết trả nợ của gia đình."
         }
       },
       {
         "id": 23,
-        "question": "Khi tham gia tiệc, để tránh ma túy cần?",
-        "correctOption": "D",
+        "question": "Người đang điều trị bằng thuốc thay thế (Methadone) nếu không chấp hành đeo thiết bị giám sát điện tử thì bị xử lý ra saо?",
+        "correctOption": "C",
         "options": {
-          "A": "Uống mọi thứ",
-          "B": "Không quan tâm",
-          "C": "Thử cho biết",
-          "D": "Không uống đồ lạ"
+          "A": "Bị cắt liều thuốc Methadone ngày hôm đó.",
+          "B": "Bị phạt vi phạm hành chính 5 triệu đồng.",
+          "C": "Bị áp dụng biện pháp đưa đi cai nghiện bắt buộc.",
+          "D": "Chỉ bị nhắc nhở trước toàn khu dân cư."
         }
       },
       {
         "id": 24,
-        "question": "Nếu phát hiện người thân nghiện ma túy, nên?",
-        "correctOption": "A",
+        "question": "Ai là người bị đưa RA KHỎI danh sách người nghiện ma túy tại địa phương?",
+        "correctOption": "B",
         "options": {
-          "A": "Khuyên đi cai nghiện",
-          "B": "Cho tiền",
-          "C": "Bỏ mặc",
-          "D": "Che giấu"
+          "A": "Người đã bỏ trốn khỏi địa phương trên 6 tháng.",
+          "B": "Người đã hoàn thành cai tự nguyện/thuốc thay thế; phải đi chấp hành án phạt tù; chuyển đi nơi khác hoặc đã chết.",
+          "C": "Người đang đi du lịch nước ngoài 1 tuần.",
+          "D": "Người bị ốm nằm viện tuyến Trung ương."
         }
       },
       {
         "id": 25,
-        "question": "Thông điệp quan trọng nhất về ma túy là gì?",
-        "correctOption": "C",
+        "question": "Theo khoản 3 Điều 33 Luật PCMT 2025, người từ đủ 12 đến dưới 18 tuổi bị đưa vào cơ sở cai nghiện bắt buộc khi nào?",
+        "correctOption": "D",
         "options": {
-          "A": "Thử một lần",
-          "B": "Không quan tâm",
-          "C": "Tránh xa ma túy để bảo vệ bản thân",
-          "D": "Làm theo bạn"
+          "A": "Sử dụng ma túy lần đầu tại trường học.",
+          "B": "Bị bắt quả tang đang đi mua ma túy.",
+          "C": "Có hành vi trộm cắp để lấy tiền mua ma túy.",
+          "D": "Không đăng ký cai nghiện tự nguyện; không thực hiện hoặc tự ý chấm dứt cai nghiện tự nguyện."
         }
       }
     ]

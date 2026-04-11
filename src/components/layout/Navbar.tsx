@@ -9,6 +9,7 @@ const menu = [
   { name: "Your Choice - Your Life", path: "/game" },
   { name: "Thông tin về các loại ma túy", path: "/flashcard" },
   { name: "Pháp Luật", path: "/tree" },
+  { name: "Pháp Luật VER2", path: "/tree_ver2" },
   // { name: "Bản Đồ", path: "/map" },
   // { name: "Điểm Tin", path: "/news" },
 ];

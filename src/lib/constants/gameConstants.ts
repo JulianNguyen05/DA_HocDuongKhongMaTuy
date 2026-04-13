@@ -4,6 +4,7 @@ export interface GameQuestion {
   options: Record<string, string>; // Ví dụ: { A: "Đáp án 1", B: "Đáp án 2" }
   correctOption?: string; // Khóa của đáp án đúng (A, B, C...)
   correctAnswer?: string; // Dùng dự phòng nếu data của bạn dùng key này
+  reference?: string;
 }
 
 

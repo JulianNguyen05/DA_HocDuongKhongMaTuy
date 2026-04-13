@@ -52,9 +52,11 @@ export default function ParkourGame({
         Câu: {currentQuestionIdx + 1} / {totalQuestionsInStage}
       </div>
 
-      {/* =========================================
-        HIỂN THỊ HITBOX MẶT ĐẤT (BẬT LÊN ĐỂ DEBUG)
-        =========================================
+{/*
+        // =========================================
+        // HIỂN THỊ HITBOX MẶT ĐẤT (BẬT LÊN ĐỂ DEBUG)
+        // =========================================
+        
         {currentPlatforms.map((plat, index) => (
           <div
             key={index}
@@ -69,7 +71,7 @@ export default function ParkourGame({
             Block {index + 1}
           </div>
         ))}  
-      */}
+*/}
 
       {/* NHÂN VẬT PARKOUR */}
       <div

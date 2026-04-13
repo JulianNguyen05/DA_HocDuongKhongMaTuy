@@ -76,12 +76,10 @@ export const STAGE_PLATFORMS: Record<
     { id: 3, left: 82, width: 20, bottom: 32, height: 5 }, 
   ],
   3: [
-    { id: 1, left: 0, width: 10, bottom: 25, height: 5 }, // Đứng ở 30
+    { id: 1, left: 0, width: 13, bottom: 25, height: 5 }, // Đứng ở 30
     { id: 2, left: 1, width: 16, bottom: 16, height: 2 }, // Đứng ở 18
     { id: 3, left: 14, width: 20, bottom: 18, height: 2 }, // Đứng ở 20
     { id: 4, left: 23, width: 48, bottom: 41, height: 2 }, // Đứng ở 43
-    { id: 5, left: 65, width: 50, bottom: 23, height: 5 }, // Đứng ở 28
-    { id: 7, left: 19, width: 47, bottom: -3, height: 5 }, // Đứng ở 2
     { id: 6, left: 81, width: 20, bottom: 30, height: 5 }, // Đứng ở 35
   ],
   4: [

@@ -1,6 +1,6 @@
 "use client";
 
-import {GameQuestion} from "@/lib/constants/gameConstants";
+import { GameQuestion } from "@/lib/constants/gameConstants";
 
 interface StageResultModalProps {
   correctCount: number;
@@ -40,8 +40,6 @@ export default function StageResultModal({
                 Ôn tập lại các câu sai:
               </h3>
               {incorrectQuestions.map((q, idx) => {
-
-
                 const correctKey = q.correctOption || q.correctAnswer || "";
 
                 const answerText = correctKey
@@ -57,10 +55,22 @@ export default function StageResultModal({
                       <span className="text-red-500">❌ Câu hỏi:</span>{" "}
                       {q.question}
                     </p>
-                    <p className="text-xs md:text-sm text-green-700 font-bold mb-2 bg-green-100 p-2 rounded-lg inline-block w-full">
-                      ✅ Đáp án đúng: {correctKey && `${correctKey}.`}{" "}
-                      {answerText}
-                    </p>
+                    
+                    {/* Hiển thị đáp án đúng */}
+                    <div className="text-xs md:text-sm text-green-700 font-bold mb-2 bg-green-100 p-2 rounded-lg flex items-start gap-1">
+                      <span>✅ Đáp án đúng:</span>
+                      <span>
+                        {correctKey && `${correctKey}.`} {answerText}
+                      </span>
+                    </div>
+
+                    {/* HIỂN THỊ REFERENCE (TRÍCH DẪN ĐIỀU LUẬT) */}
+                    {q.reference && (
+                      <div className="text-[10px] md:text-xs text-blue-700 italic bg-blue-50 p-2 rounded-lg border border-blue-100 mt-1 flex items-center gap-1">
+                        <span className="not-italic">📖 Căn cứ pháp lý:</span>
+                        <span className="font-semibold">{q.reference}</span>
+                      </div>
+                    )}
                   </div>
                 );
               })}

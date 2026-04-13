@@ -7,6 +7,7 @@ export interface Question {
   question: string;
   options: Record<string, string>;
   correctOption: string;
+  reference?: string; // Thêm reference từ file JSON mới
   type?: "IMAGE" | "TEXT" | "SITUATION" | "DETECTIVE";
   image?: string;
   hints?: string[];
@@ -101,6 +102,7 @@ export function useGameController() {
     isDistorted,
     showHintIdx,
     gameState,
+    currentReference: currentQuestion?.reference, // Trả về thông tin trích dẫn điều luật
     handleAnswer,
     revealHint,
     resetGame,

@@ -1,6 +1,6 @@
 [
   {
-    "stage": "Chặng 1: Khái niệm về Ma túy",
+    "stage": "Chặng 1: Khái niệm & Định nghĩa",
     "questions": [
       {
         "id": 1,
@@ -11,7 +11,8 @@
           "B": "Là chất gây ảo giác, nếu sử dụng nhiều lần có thể dẫn tới tình trạng nghiện.",
           "C": "Là chất gây nghiện, chất hướng thần được quy định trong danh mục chất ma túy Chính phủ ban hành.",
           "D": "Là bất kỳ chất kích thích thần kinh nào bị cấm lưu hành trên thị trường."
-        }
+        },
+        "reference": "Khoản 1 Điều 2 Luật PCMT năm 2025"
       },
       {
         "id": 2,
@@ -19,10 +20,11 @@
         "correctOption": "B",
         "options": {
           "A": "Là chất dễ gây tình trạng nghiện ngay từ lần đầu sử dụng.",
-          "B": "Là chất kích thích hoặc ức chế thần kinh hoặc gây ảo giác, nếu sử dụng nhiều lần có thể dẫn tới tình trạng nghiện.",
+          "B": "Là chất kích thích hoặc ức chế thần kinh hoặc gây ảo giác, nếu sử dụng nhiều lần có thể dẫn tới tình trạng nghiện đối với người sử dụng.",
           "C": "Là hóa chất tiền đề để tổng hợp heroin.",
           "D": "Là thuốc giảm đau được dùng trong y tế dự phòng."
-        }
+        },
+        "reference": "Khoản 3 Điều 2 Luật PCMT năm 2025"
       },
       {
         "id": 3,
@@ -31,249 +33,270 @@
         "options": {
           "A": "Là loại ma túy mới xuất hiện chưa có trong danh mục.",
           "B": "Là hóa chất thường được sử dụng trong quá trình điều chế, sản xuất chất ma túy được quy định trong danh mục do Chính phủ ban hành.",
-          "C": "Là các loại cây có chứa chất ma túy như thuốc phiện, cần sa.",
-          "D": "Là thuốc hướng thần được bán không kê đơn."
-        }
+          "C": "Là các loại thuốc chữa bệnh có chứa hàm lượng nhỏ ma túy.",
+          "D": "Là ngân sách nhà nước cấp cho công tác phòng chống ma túy."
+        },
+        "reference": "Khoản 4 Điều 2 Luật PCMT năm 2025"
       },
       {
         "id": 4,
-        "question": "'Thuốc thú y có chứa chất ma túy, tiền chất' được quy định nhằm mục đích gì?",
+        "question": "'Người sử dụng trái phép chất ma túy' có những tiêu chí pháp lý nào để xác định?",
         "correctOption": "C",
         "options": {
-          "A": "Cấm tuyệt đối việc sử dụng trong thú y.",
-          "B": "Cho phép người dân tự do mua về chữa bệnh cho vật nuôi.",
-          "C": "Quản lý chặt chẽ thuốc thú y có chứa chất ma túy, tiền chất để tránh việc lạm dụng hoặc điều chế trái phép.",
-          "D": "Tăng thuế đối với các loại thuốc thú y."
-        }
+          "A": "Có hành vi tàng trữ chất ma túy trong nhà.",
+          "B": "Là người bị lệ thuộc vào ma túy, không thể ngừng sử dụng.",
+          "C": "Có hành vi sử dụng chất ma túy mà không được sự cho phép của người hoặc cơ quan chuyên môn có thẩm quyền và xét nghiệm chất ma túy trong cơ thể có kết quả dương tính.",
+          "D": "Là người đang bị quản lý tại cơ sở cai nghiện."
+        },
+        "reference": "Khoản 9 Điều 2 Luật PCMT năm 2025"
       },
       {
         "id": 5,
-        "question": "Theo Điều 5 Luật Phòng, chống ma túy năm 2025, có bao nhiêu hành vi bị nghiêm cấm?",
+        "question": "Hoạt động 'Cai nghiện ma túy' mang bản chất gì theo quy định của pháp luật?",
         "correctOption": "C",
         "options": {
-          "A": "12 hành vi.",
-          "B": "13 hành vi.",
-          "C": "14 hành vi.",
-          "D": "15 hành vi."
-        }
+          "A": "Là hình phạt tù giam đối với người vì phạm.",
+          "B": "Là quá trình cách ly vĩnh viễn người nghiện khỏi xã hội.",
+          "C": "Là quá trình thực hiện các hoạt động hỗ trợ về y tế, tâm lý, xã hội, giúp người nghiện ma túy dừng sử dụng chất ma túy, phục hồi thể chất, tinh thần.",
+          "D": "Là việc cung cấp tiền chất thay thế miễn phí trọn đời."
+        },
+        "reference": "Khoản 12 Điều 2 Luật PCMT năm 2025"
       }
     ]
   },
   {
-    "stage": "Chặng 2: Trách nhiệm & Xử lý vi phạm",
+    "stage": "Chặng 2: Hành vi cấm & Nghĩa vụ",
     "questions": [
       {
         "id": 6,
-        "question": "Hành vi nào sau đây bị nghiêm cấm theo Luật Phòng, chống ma túy năm 2025?",
+        "question": "Hành vi nào sau đây nằm trong nhóm các hành vi bị nghiêm cấm theo Điều 5 của Luật?",
         "correctOption": "B",
         "options": {
-          "A": "Tham gia các buổi hội thảo tuyên truyền về phòng, chống ma túy.",
-          "B": "Hướng dẫn người khác sản xuất, sử dụng trái phép chất ma túy dưới mọi hình thức.",
-          "C": "Tố giác tội phạm ma túy cho cơ quan Công an.",
-          "D": "Cung cấp thông tin về tác hại của ma túy cho học sinh."
-        }
+          "A": "Giao nộp ma túy nhặt được cho cơ quan công an.",
+          "B": "Hướng dẫn trồng cây có chứa chất ma túy.",
+          "C": "Xét nghiệm chất ma túy cho nhân viên công ty định kỳ.",
+          "D": "Áp dụng giám sát điện tử đối với người đang cai nghiện tự nguyện."
+        },
+        "reference": "Khoản 1 Điều 5 Luật PCMT năm 2025"
       },
       {
         "id": 7,
-        "question": "Cơ quan nào là lực lượng nòng cốt, chủ trì trong công tác phòng, chống ma túy?",
+        "question": "Người bị yêu cầu xác định tình trạng nghiện có nghĩa vụ gì tại cơ sở y tế?",
         "correctOption": "A",
         "options": {
-          "A": "Cơ quan Công an nhân dân.",
-          "B": "Bộ Y tế.",
-          "C": "Bộ Giáo dục và Đào tạo.",
-          "D": "Ủy ban nhân dân các cấp."
-        }
+          "A": "Khai báo trung thực về tiền sử sử dụng ma túy, chấp hành nội quy cơ sở.",
+          "B": "Được quyền từ chối trả lời bác sĩ.",
+          "C": "Có quyền chứng minh mình bị nghiện.",
+          "D": "Được yêu cầu bác sĩ kê đơn thuốc ngủ liều cao."
+        },
+        "reference": "Điểm b Khoản 5 Điều 31 Luật PCMT năm 2025"
       },
       {
         "id": 8,
-        "question": "Một trong những chính sách của Nhà nước về phòng, chống ma túy là gì?",
+        "question": "Nếu người cai nghiện tự ý chấm dứt cai nghiện tại cơ sở tư nhân trái phép, cơ sở tư nhân phải xử lý ra sao?",
         "correctOption": "C",
         "options": {
-          "A": "Chỉ ưu tiên các biện pháp phạt tiền đối với người sử dụng ma túy.",
-          "B": "Khuyến khích trồng cây có chứa chất ma túy ở vùng sâu vùng xa.",
-          "C": "Ưu tiên nguồn lực phòng, chống ma túy cho vùng đồng bào dân tộc thiểu số, biên giới, hải đảo và các khu vực trọng điểm.",
-          "D": "Giữ bí mật tuyệt đối về tình trạng ma túy, không tuyên truyền rộng rãi."
-        }
+          "A": "Thông báo ngay với gia đình người cai nghiện.",
+          "B": "Đi tìm người cai nghiện.",
+          "C": "Thông báo trong 24 giờ và phối hợp với Công an cấp xã lập hồ sơ đưa người đó đi cai nghiện bắt buộc.",
+          "D": "Không cần làm gì vì đó là tự nguyện."
+        },
+        "reference": "Khoản 5 Điều 33 Luật PCMT năm 2025"
       },
       {
         "id": 9,
-        "question": "Theo quy định hiện hành, người có hành vi sử dụng trái phép chất ma túy lần đầu sẽ bị xử lý như thế nào?",
-        "correctOption": "C",
+        "question": "Một người trên 18 tuổi sẽ bị Tòa án áp dụng biện pháp 'Đưa đi cai nghiện bắt buộc' nếu rơi vào trường hợp nào?",
+        "correctOption": "B",
         "options": {
-          "A": "Bị khởi tố hình sự và phạt tù giam.",
-          "B": "Đưa ngay vào cơ sở cai nghiện bắt buộc.",
-          "C": "Bị lập hồ sơ quản lý người sử dụng trái phép chất ma túy.",
-          "D": "Chỉ nhắc nhở và thông báo cho gia đình."
-        }
+          "A": "Tự nguyện đăng ký cai nghiện tại cơ sở công lập.",
+          "B": "Không đăng ký, tự ý chấm dứt cai nghiện tự nguyện, hoặc bị phát hiện sử dụng ma túy trong thời gian cai/điều trị thay thế.",
+          "C": "Vi phạm luật giao thông đường bộ.",
+          "D": "Có kết quả xét nghiệm dương tính lần đầu tiên."
+        },
+        "reference": "Khoản 1 Điều 35 Luật PCMT năm 2025"
       },
       {
         "id": 10,
-        "question": "Thời hạn quản lý người sử dụng trái phép chất ma túy là bao lâu?",
-        "correctOption": "C",
+        "question": "Nếu đối tượng kiên quyết không hợp tác lấy mẫu nước tiểu để xét nghiệm, người có thẩm quyền sẽ làm gì?",
+        "correctOption": "B",
         "options": {
-          "A": "06 tháng kể từ ngày có quyết định quản lý.",
-          "B": "12 tháng kể từ ngày bắt đầu sử dụng ma túy.",
-          "C": "01 năm kể từ ngày Chủ tịch UBND cấp xã ra quyết định quản lý.",
-          "D": "02 năm kể từ ngày phát hiện hành vi vi phạm."
-        }
+          "A": "Mời người nhà đến khuyên bảo.",
+          "B": "Áp dụng biện pháp áp giải người vi phạm đến địa điểm xét nghiệm để tiến hành xét nghiệm.",
+          "C": "Lập biên bản phạt tiền rồi cho ra về.",
+          "D": "Mặc định coi là dương tính và đưa đi cai nghiện bắt buộc."
+        },
+        "reference": "Khoản 2 Điều 23 Luật PCMT năm 2025"
       }
     ]
   },
   {
-    "stage": "Chặng 3: Vai trò của Gia đình & Xã hội",
+    "stage": "Chặng 3: Quản lý & Xét nghiệm",
     "questions": [
       {
         "id": 11,
-        "question": "Cá nhân có trách nhiệm gì trong phòng, chống ma túy?",
-        "correctOption": "D",
+        "question": "Việc xét nghiệm chất ma túy trong cơ thể được thực hiện đối với người thuộc nhóm nào?",
+        "correctOption": "B",
         "options": {
-          "A": "Cung cấp nơi ở cho người bị truy nã về tội ma túy.",
-          "B": "Tự ý mua bán ma túy để 'nghiên cứu' tác hại.",
-          "C": "Không cần tham gia vì đó là việc của lực lượng Công an.",
-          "D": "Tham gia các hoạt động phòng, chống ma túy; báo cáo kịp thời cho cơ quan chức năng khi phát hiện hành vi vi phạm."
-        }
+          "A": "Chỉ người đang chấp hành án phạt tù.",
+          "B": "Người bị phát hiện hoặc có căn cứ cho rằng sử dụng trái phép; người đang quản lý/cai nghiện/điều trị thay thế.",
+          "C": "Mọi sinh viên đang học tại các trường đại học mỗi năm một lần.",
+          "D": "Bất kỳ ai đi đăng ký kết hôn."
+        },
+        "reference": "Khoản 1 Điều 23 Luật PCMT năm 2025"
       },
       {
         "id": 12,
-        "question": "Gia đình của người nghiện ma túy có trách nhiệm gì?",
-        "correctOption": "D",
+        "question": "Hoạt động nào liên quan đến ma túy được coi là 'Hoạt động hợp pháp'?",
+        "correctOption": "B",
         "options": {
-          "A": "Đuổi người nghiện ra khỏi nhà để không ảnh hưởng đến gia đình.",
-          "B": "Tự ý trói, giam giữ người nghiện tại nhà để cai nghiện.",
-          "C": "Giấu diếm thông tin để bảo vệ danh dự gia đình.",
-          "D": "Khai báo với cơ quan chức năng và phối hợp hỗ trợ người nghiện tham gia cai nghiện."
-        }
+          "A": "Trồng cây thuốc phiện tại vườn nhà để ngâm rượu chữa bệnh.",
+          "B": "Sản xuất chất ma túy, tiền chất, thuốc gây nghiện được cơ quan nhà nước có thẩm quyền cho phép.",
+          "C": "Vận chuyển ma túy thuê cho người khác nhưng không biết đó là ma túy.",
+          "D": "Giao dịch mua bán tiền chất không cần hóa đơn chứng từ."
+        },
+        "reference": "Khoản 1 Điều 13 Luật PCMT năm 2025"
       },
       {
         "id": 13,
-        "question": "Cơ quan, tổ chức có trách nhiệm gì khi phát hiện thành viên của mình nghiện ma túy?",
-        "correctOption": "C",
+        "question": "Người từ đủ 18 tuổi sau khi được cơ sở y tế xác định là 'Nghiện ma túy' có trách nhiệm gì ngay sau đó?",
+        "correctOption": "B",
         "options": {
-          "A": "Sa thải ngay lập tức mà không cần thông báo cho ai.",
-          "B": "Bỏ qua nếu người đó có năng lực làm việc tốt.",
-          "C": "Phối hợp với gia đình, chính quyền địa phương để động viên, hỗ trợ người đó đi cai nghiện.",
-          "D": "Phạt tiền người lao động đó."
-        }
+          "A": "Bị bắt giam ngay lập tức.",
+          "B": "Đăng ký cai nghiện ma túy tự nguyện hoặc điều trị nghiện bằng thuốc thay thế với Công an cấp xã nơi cư trú.",
+          "C": "Bị Tòa án xét xử hình sự.",
+          "D": "Bắt buộc phải đi lao động công ích."
+        },
+        "reference": "Khoản 6 Điều 31 Luật PCMT năm 2025"
       },
       {
         "id": 14,
-        "question": "Cơ sở giáo dục có trách nhiệm gì trong công tác phòng, chống ma túy?",
-        "correctOption": "D",
+        "question": "Việc Tòa án quyết định đưa người từ 12 đến dưới 18 tuổi đi cai nghiện bắt buộc mang tính chất pháp lý gì?",
+        "correctOption": "C",
         "options": {
-          "A": "Cấm tất cả học sinh mang điện thoại đến trường.",
-          "B": "Kiểm tra túi xách của học sinh mỗi ngày.",
-          "C": "Mời Công an bắt giữ ngay lập tức bất kỳ học sinh nào nghi ngờ dùng ma túy.",
-          "D": "Giáo dục kiến thức, kỹ năng phòng ngừa ma túy cho học sinh, sinh viên và phối hợp với gia đình, chính quyền để quản lý."
-        }
+          "A": "Là biện pháp xử lý vi phạm hành chính.",
+          "B": "Là hình phạt tù giam hình sự.",
+          "C": "Không phải là biện pháp xử lý hành chính.",
+          "D": "Là án treo."
+        },
+        "reference": "Khoản 8 Điều 36 Luật PCMT năm 2025"
       },
       {
         "id": 15,
-        "question": "Người nghiện ma túy có quyền và trách nhiệm gì đối với việc cai nghiện?",
-        "correctOption": "C",
+        "question": "Người nước ngoài cư trú tại Việt Nam nếu nghiện ma túy thì quyền và nghĩa vụ của họ là gì?",
+        "correctOption": "B",
         "options": {
-          "A": "Từ chối cai nghiện nếu cảm thấy không cần thiết.",
-          "B": "Chỉ cai nghiện khi được trả tiền hỗ trợ.",
-          "C": "Được giữ bí mật thông tin cá nhân và có trách nhiệm tuân thủ nghiêm ngặt phác đồ điều trị cai nghiện.",
-          "D": "Tự ý mua thuốc cai nghiện về nhà dùng không cần hướng dẫn của bác sĩ."
-        }
+          "A": "Được miễn trừ ngoại giao, không bị xử lý.",
+          "B": "Phải đăng ký cai nghiện tự nguyện và tự chi trả toàn bộ chi phí; nếu không sẽ bị xử lý theo pháp luật.",
+          "C": "Được nhà nước Việt Nam hỗ trợ kinh phí cai nghiện 100%.",
+          "D": "Bị trục xuất ngay lập tức mà không cần hỏi ý kiến."
+        },
+        "reference": "Khoản 2 Điều 40 Luật PCMT năm 2025"
       }
     ]
   },
   {
-    "stage": "Chặng 4: Các biện pháp Cai nghiện",
+    "stage": "Chặng 4: Xử lý & Chấp hành",
     "questions": [
       {
         "id": 16,
-        "question": "Có bao nhiêu hình thức cai nghiện ma túy theo Luật PCMT 2025?",
-        "correctOption": "A",
+        "question": "Nếu người đang quản lý sau cai bị phạt tù giam, khi mãn hạn tù mà thời gian quản lý sau cai vẫn còn thì tính sao?",
+        "correctOption": "B",
         "options": {
-          "A": "Cai nghiện tự nguyện và cai nghiện bắt buộc.",
-          "B": "Cai nghiện tại nhà và cai nghiện tại bệnh viện.",
-          "C": "Cai nghiện bằng thuốc đông y và tây y.",
-          "D": "Cai nghiện tại cộng đồng và cai nghiện tại nước ngoài."
-        }
+          "A": "Bị xóa bỏ thời hạn quản lý sau cai.",
+          "B": "Phải tiếp tục quản lý sau cai nghiện ma túy thời hạn còn lại.",
+          "C": "Bắt đầu tính thời gian 2 năm lại từ đầu.",
+          "D": "Bị đưa thẳng vào cơ sở cai nghiện bắt buộc."
+        },
+        "reference": "Khoản 1 Điều 47 Luật PCMT năm 2025"
       },
       {
         "id": 17,
-        "question": "Việc cai nghiện ma túy tự nguyện được thực hiện ở đâu?",
+        "question": "Nếu người đang cai tự nguyện vi phạm pháp luật (chưa đến mức phạt tù) lần thứ 3 thì hậu quả pháp lý là gì?",
         "correctOption": "C",
         "options": {
-          "A": "Bắt buộc phải thực hiện tại Trạm y tế xã.",
-          "B": "Tại nhà riêng dưới sự giám sát của Công an.",
-          "C": "Tại gia đình, cộng đồng hoặc tại các cơ sở cai nghiện ma túy.",
-          "D": "Chỉ được thực hiện tại bệnh viện tuyến Trung ương."
-        }
+          "A": "Bị Công an nhắc nhở.",
+          "B": "Tổ chức kiểm điểm trước dân.",
+          "C": "Bị áp dụng biện pháp đưa đi cai nghiện bắt buộc.",
+          "D": "Phạt tiền cưỡng chế tài sản."
+        },
+        "reference": "Khoản 4 Điều 47 Luật PCMT năm 2025"
       },
       {
         "id": 18,
-        "question": "Nhà nước có chính sách hỗ trợ gì cho người cai nghiện tự nguyện?",
+        "question": "Biện pháp 'Đưa đi cai nghiện bắt buộc' theo Luật Xử lý vi phạm hành chính được áp dụng tại đâu?",
         "correctOption": "B",
         "options": {
-          "A": "Cấp phát tiền mặt hàng tháng.",
-          "B": "Hỗ trợ một phần kinh phí đối với người cai nghiện tự nguyện tại cơ sở cai nghiện công lập (tùy đối tượng chính sách).",
-          "C": "Mua nhà cho người hoàn thành cai nghiện.",
-          "D": "Miễn phí hoàn toàn chi phí ăn ở cho tất cả mọi người tại mọi cơ sở tư nhân."
-        }
+          "A": "Tại nhà văn hóa xã.",
+          "B": "Tại Cơ sở cai nghiện ma túy công lập.",
+          "C": "Tại đồn công an.",
+          "D": "Tại bệnh viện đa khoa tư nhân."
+        },
+        "reference": "Khoản 3 Điều 54 Luật PCMT năm 2025"
       },
       {
         "id": 19,
-        "question": "Biện pháp 'Điều trị nghiện chất dạng thuốc phiện bằng thuốc thay thế' thường dùng loại thuốc nào phổ biến nhất hiện nay?",
-        "correctOption": "D",
+        "question": "Hành vi 'Cưỡng bức, lôi kéo người khác sử dụng trái phép chất ma túy' có bị nghiêm cấm không?",
+        "correctOption": "B",
         "options": {
-          "A": "Paracetamol.",
-          "B": "Thuốc kháng sinh.",
-          "C": "Vitamin C tổng hợp.",
-          "D": "Methadone hoặc Buprenorphine."
-        }
+          "A": "Chỉ nghiêm cấm nếu lôi kéo trẻ em.",
+          "B": "Có, đây là hành vi bị nghiêm cấm theo Điều 5.",
+          "C": "Không, hành vi này chỉ bị xử phạt hành chính.",
+          "D": "Tùy thuộc vào loại ma túy được sử dụng."
+        },
+        "reference": "Khoản 5 Điều 5 Luật PCMT năm 2025"
       },
       {
         "id": 20,
-        "question": "Mục đích chính của việc điều trị bằng thuốc thay thế (như Methadone) là gì?",
-        "correctOption": "D",
+        "question": "Người sử dụng trái phép ma túy khi được triệu tập trong thời gian quản lý thì phải làm gì?",
+        "correctOption": "B",
         "options": {
-          "A": "Giúp người bệnh cảm thấy 'phê' hơn mà không bị bắt.",
-          "B": "Chữa khỏi hoàn toàn bệnh nghiện ngay lập tức.",
-          "C": "Cung cấp thuốc miễn phí để người nghiện bán lại.",
-          "D": "Giảm dần sự lệ thuộc vào ma túy bất hợp pháp, giảm lây nhiễm HIV và giúp người bệnh hòa nhập cộng đồng."
-        }
+          "A": "Có quyền từ chối nếu bận việc riêng.",
+          "B": "Có mặt theo đúng giấy triệu tập và yêu cầu.",
+          "C": "Chỉ cần ủy quyền cho người nhà đi thay.",
+          "D": "Có thể lên muộn 1 tuần."
+        },
+        "reference": "Khoản 2 Điều 25 Luật PCMT năm 2025"
       }
     ]
   },
   {
-    "stage": "Chặng 5: Quy định Bắt buộc & Quản lý",
+    "stage": "Chặng 5: Hồ sơ & Thủ tục",
     "questions": [
       {
         "id": 21,
-        "question": "Ai có thẩm quyền lập hồ sơ đề nghị áp dụng biện pháp đưa vào cơ sở cai nghiện bắt buộc đối với người nghiện ma túy từ đủ 18 tuổi trở lên?",
+        "question": "Khi có kết quả xác định tình trạng nghiện của trẻ từ 12 đến dưới 18 tuổi, cơ sở y tế phải gửi kết quả cho ai?",
         "correctOption": "C",
         "options": {
-          "A": "Trưởng Trạm Y tế xã.",
-          "B": "Hiệu trưởng trường học.",
-          "C": "Trưởng Công an cấp xã nơi người đó cư trú hoặc có hành vi vi phạm.",
+          "A": "Gửi cho Hiệu trưởng trường học.",
+          "B": "Chỉ gửi cho Công an xã.",
+          "C": "Gửi cho cơ quan đề nghị, người được xác định và cha, mẹ hoặc người giám hộ của trẻ.",
           "D": "Đăng công khai lên loa phát thanh xã."
-        }
+        },
+        "reference": "Khoản 4 Điều 31 Luật PCMT năm 2025"
       },
       {
         "id": 22,
-        "question": "Hồ sơ đăng ký cai nghiện ma túy tự nguyện tại cơ sở công lập đối với người dưới 18 tuổi BẮT BUỘC phải có văn bản gì?",
+        "question": "Hồ sơ đăng ký cai nghiện tự nguyện tại cơ sở công lập cho người dưới 18 tuổi BẮT BUỘC phải có văn bản gì?",
         "correctOption": "B",
         "options": {
           "A": "Quyết định của Tòa án hình sự.",
           "B": "Ý kiến của cha, mẹ, người giám hộ hoặc người đại diện hợp pháp.",
           "C": "Thư giới thiệu của giáo viên chủ nhiệm.",
           "D": "Bản cam kết trả nợ của gia đình."
-        }
+        },
+        "reference": "Khoản 2 Điều 34 Luật PCMT năm 2025"
       },
       {
         "id": 23,
-        "question": "Người đang điều trị bằng thuốc thay thế (Methadone) nếu không chấp hành đeo thiết bị giám sát điện tử thì bị xử lý ra saо?",
+        "question": "Người đang điều trị bằng thuốc thay thế nếu không chấp hành đeo thiết bị giám sát điện tử thì bị xử lý ra sao?",
         "correctOption": "C",
         "options": {
-          "A": "Bị cắt liều thuốc Methadone ngày hôm đó.",
+          "A": "Bị cắt liều thuốc ngày hôm đó.",
           "B": "Bị phạt vi phạm hành chính 5 triệu đồng.",
           "C": "Bị áp dụng biện pháp đưa đi cai nghiện bắt buộc.",
           "D": "Chỉ bị nhắc nhở trước toàn khu dân cư."
-        }
+        },
+        "reference": "Khoản 2 Điều 47 Luật PCMT năm 2025"
       },
       {
         "id": 24,
@@ -281,21 +304,23 @@
         "correctOption": "B",
         "options": {
           "A": "Người đã bỏ trốn khỏi địa phương trên 6 tháng.",
-          "B": "Người đã hoàn thành cai tự nguyện/thuốc thay thế; phải đi chấp hành án phạt tù; chuyển đi nơi khác hoặc đã chết.",
-          "C": "Người đang đi du lịch nước ngoài 1 tuần.",
-          "D": "Người bị ốm nằm viện tuyến Trung ương."
-        }
+          "B": "Người đã hoàn thành cai tự nguyện/thuốc thay thế; chấp hành án phạt tù; chuyển đi nơi khác hoặc đã chết.",
+          "C": "Người đã nộp đủ tiền phạt.",
+          "D": "Người đi du lịch nước ngoài."
+        },
+        "reference": "Khoản 3 Điều 48 Luật PCMT năm 2025"
       },
       {
         "id": 25,
-        "question": "Theo khoản 3 Điều 33 Luật PCMT 2025, người từ đủ 12 đến dưới 18 tuổi bị đưa vào cơ sở cai nghiện bắt buộc khi nào?",
-        "correctOption": "D",
+        "question": "Trước khi hồ sơ cai nghiện bắt buộc được chuyển lên Tòa án, người bị đề nghị có quyền gì?",
+        "correctOption": "B",
         "options": {
-          "A": "Sử dụng ma túy lần đầu tại trường học.",
-          "B": "Bị bắt quả tang đang đi mua ma túy.",
-          "C": "Có hành vi trộm cắp để lấy tiền mua ma túy.",
-          "D": "Không đăng ký cai nghiện tự nguyện; không thực hiện hoặc tự ý chấm dứt cai nghiện tự nguyện."
-        }
+          "A": "Được quyền thuê luật sư bào chữa ngay tại trụ sở công an.",
+          "B": "Được thông báo bằng văn bản, có quyền đọc hồ sơ và ghi chép trong thời hạn 03 ngày làm việc.",
+          "C": "Không có quyền gì.",
+          "D": "Được yêu cầu hủy bỏ hồ sơ không cần lý do."
+        },
+        "reference": "Khoản 3 Điều 35 Luật PCMT năm 2025"
       }
     ]
   }

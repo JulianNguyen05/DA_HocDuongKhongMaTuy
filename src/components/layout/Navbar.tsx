@@ -8,10 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const menu = [
   { name: "Your Choice - Your Life", path: "/game" },
   { name: "Thông tin về các loại ma túy", path: "/flashcard" },
-  { name: "Pháp Luật", path: "/tree" },
-  { name: "Pháp Luật VER2", path: "/tree_ver2" },
-  // { name: "Bản Đồ", path: "/map" },
-  // { name: "Điểm Tin", path: "/news" },
+  { name: "Pháp Luật", path: "/tree_ver2" },
 ];
 
 export default function Navbar() {
@@ -20,23 +17,33 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Xử lý sự kiện cuộn trang để ẩn/hiện Navbar
+  // THÊM MỚI: State để ép Navbar ẩn đi khi mở Modal Mindmap
+  const [isForcedHidden, setIsForcedHidden] = useState(false);
+
+  // Lắng nghe sự kiện từ các Component khác (Ví dụ: Modal của TreeInteractive)
+  useEffect(() => {
+    const handleHide = () => setIsForcedHidden(true);
+    const handleShow = () => setIsForcedHidden(false);
+
+    window.addEventListener("hideNavbar", handleHide);
+    window.addEventListener("showNavbar", handleShow);
+
+    return () => {
+      window.removeEventListener("hideNavbar", handleHide);
+      window.removeEventListener("showNavbar", handleShow);
+    };
+  }, []);
+
+  // Xử lý sự kiện cuộn trang
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // 1. Nếu đang ở sát đỉnh (ví dụ < 10px), luôn hiện Navbar
       if (currentScrollY <= 10) {
         setIsVisible(true);
-      }
-      // 2. Nếu cuộn xuống, ẩn Navbar
-      else if (currentScrollY > lastScrollY) {
+      } else if (currentScrollY > lastScrollY) {
         setIsVisible(false);
         setOpen(false);
       }
-      // 3. Nếu cuộn lên NHƯNG chưa tới đỉnh, vẫn giữ ẩn
-      // (Bỏ logic hiện Navbar khi cuộn lên ở giữa trang)
-
       setLastScrollY(currentScrollY);
     };
 
@@ -45,10 +52,10 @@ export default function Navbar() {
   }, [lastScrollY]);
 
   return (
-    // Thêm hiệu ứng trượt (translate-y) và mờ dần (opacity) khi isVisible thay đổi
     <div
       className={`fixed inset-x-0 z-[100] px-4 top-6 md:top-8 transition-all duration-500 ease-in-out ${
-        isVisible
+        /* THAY ĐỔI: Phải thỏa mãn cả 2 điều kiện mới được hiện */
+        !isForcedHidden && isVisible
           ? "translate-y-0 opacity-100"
           : "-translate-y-[150%] opacity-0 pointer-events-none"
       }`}
@@ -61,7 +68,6 @@ export default function Navbar() {
               href="/"
               className="relative z-10 flex items-center gap-2 group ml-4 mr-4"
             >
-              {/* THAY ĐỔI: text-2xl -> text-xl trên mobile */}
               <span className="text-xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-green-800 to-green-600 bg-clip-text text-transparent drop-shadow-sm">
                 Học đường không ma túy
               </span>
@@ -102,25 +108,19 @@ export default function Navbar() {
           {/* MOBILE MENU BUTTON */}
           <button
             onClick={() => setOpen(!open)}
-            aria-label="Toggle Menu"
-            title="Mở menu"
+            aria-label="Mở menu" // Thêm dòng này để sửa lỗi Accessibility
+            title="Mở menu" // Thêm dòng này để khi rê chuột vào sẽ hiện chú thích
             className="md:hidden p-2 rounded-full transition relative z-20 bg-white/50 backdrop-blur-md border border-white/50 text-gray-800"
           >
             <div className="w-6 h-5 flex flex-col justify-between items-end">
               <span
-                className={`h-0.5 bg-current rounded-full transform transition-all duration-300 ${
-                  open ? "w-6 rotate-45 translate-y-2.5" : "w-6"
-                }`}
+                className={`h-0.5 bg-current rounded-full transform transition-all duration-300 ${open ? "w-6 rotate-45 translate-y-2.5" : "w-6"}`}
               />
               <span
-                className={`h-0.5 bg-current rounded-full transition-all duration-200 ${
-                  open ? "opacity-0" : "w-5"
-                }`}
+                className={`h-0.5 bg-current rounded-full transition-all duration-200 ${open ? "opacity-0" : "w-5"}`}
               />
               <span
-                className={`h-0.5 bg-current rounded-full transform transition-all duration-300 ${
-                  open ? "w-6 -rotate-45 -translate-y-2" : "w-4"
-                }`}
+                className={`h-0.5 bg-current rounded-full transform transition-all duration-300 ${open ? "w-6 -rotate-45 -translate-y-2" : "w-4"}`}
               />
             </div>
           </button>
@@ -144,7 +144,7 @@ export default function Navbar() {
                   className={`px-5 py-3 rounded-2xl text-base font-bold transition-all ${
                     pathname === item.path
                       ? "bg-green-50 text-green-700"
-                      : "hover:bg-gray-50 text-gray-600 text-left"
+                      : "hover:bg-gray-50 text-gray-600"
                   }`}
                 >
                   {item.name}

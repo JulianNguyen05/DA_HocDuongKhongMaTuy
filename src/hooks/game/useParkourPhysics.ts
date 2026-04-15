@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { STAGE_PLATFORMS } from "@/lib/constants/gameConstants";
+import { STAGE_PLATFORMS, STAGE_OBSTACLES } from "@/lib/constants/gameConstants";
 
 type ViewMode =
   | "MAIN_MAP"
@@ -13,7 +13,8 @@ export function useParkourPhysics(
   visualStageIdx: number,
   setToastMsg: (msg: string) => void,
   setViewMode: (mode: ViewMode) => void,
-  onFall?: () => void // Thêm callback onFall
+  onFall?: () => void,
+  onObstacleHit?: () => void // Callback khi chạm vật cản
 ) {
   // UI State (Chỉ chứa những gì cần re-render)
   const [parkourX, setParkourX] = useState(5);
@@ -29,10 +30,14 @@ export function useParkourPhysics(
   const requestRef = useRef<number>(0);
   const isGroundedRef = useRef(false);
 
+  // Cooldown cho va chạm vật cản (tránh trừ máu liên tục)
+  const lastObstacleHitRef = useRef<number>(0);
+  const OBSTACLE_HIT_COOLDOWN = 1500; // 1.5 giây
+
   // KỸ THUẬT REF: Lưu trữ các hàm từ ngoài truyền vào để tránh phá vỡ vòng lặp 60fps
-  const callbacksRef = useRef({ setToastMsg, setViewMode, onFall });
+  const callbacksRef = useRef({ setToastMsg, setViewMode, onFall, onObstacleHit });
   useEffect(() => {
-    callbacksRef.current = { setToastMsg, setViewMode, onFall };
+    callbacksRef.current = { setToastMsg, setViewMode, onFall, onObstacleHit };
   });
 
   // Hàm Reset vị trí khi bắt đầu màn chơi mới
@@ -52,7 +57,7 @@ export function useParkourPhysics(
     const handleKeyDown = (e: KeyboardEvent) => {
       // Chặn cuộn trang khi ấn nút nhảy hoặc điều hướng
       if (["Space", "KeyW", "KeyA", "KeyD", "KeyE", "ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.code)) {
-        e.preventDefault(); 
+        e.preventDefault();
       }
       keysRef.current.add(e.code);
     };
@@ -109,7 +114,7 @@ export function useParkourPhysics(
         STAGE_PLATFORMS[Math.max(1, visualStageIdx)] || STAGE_PLATFORMS[1];
 
       const charWidth = 5; // Độ rộng nhân vật (%)
-      const charHeight = 15; // Chiều cao nhân vật (~15% màn hình)
+      const charHeight = 8; // Chiều cao nhân vật (~8% màn hình)
 
       // 1. Di chuyển ngang (X)
       const moveSpeed = 25; // Tốc độ di chuyển theo % màn hình / giây
@@ -128,12 +133,12 @@ export function useParkourPhysics(
         (keys.has("Space") || keys.has("KeyW") || keys.has("ArrowUp")) &&
         isGroundedRef.current
       ) {
-        vel.y = 55; // Lực nhảy lên
+        vel.y = 70; // Lực nhảy lên (tăng cao để nhảy qua chướng ngại vật)
         isGroundedRef.current = false;
       }
 
       // 3. Trọng lực
-      vel.y -= 90 * deltaTime; // Gia tốc trọng trường kéo xuống
+      vel.y -= 150 * deltaTime; // Gia tốc trọng trường kéo xuống (tăng từ 90 cho bớt bay)
 
       // 4. Áp dụng vận tốc X và chặn biên + XỬ LÝ ĐỤNG TƯỜNG (Va chạm ngang)
       let newX = pos.x + vel.x * deltaTime;
@@ -198,21 +203,57 @@ export function useParkourPhysics(
       }
 
       // ============================================
-      // VỰC THẲM (RỚT ĐÀI) - SỬ DỤNG CALLBACK TỪ REF
+      // VỰC THẲM (RỚT ĐÀI) - Trừ máu + Reset vị trí
       // ============================================
       if (newY < -10) {
         if (callbacksRef.current.onFall) {
-          callbacksRef.current.onFall(); // Gọi tín hiệu ra ngoài page.tsx
-        } else {
-          callbacksRef.current.setToastMsg("Bạn đã rơi xuống vực!");
-          startMiniGamePosition(); // Hồi sinh dự phòng
+          callbacksRef.current.onFall(); // Trừ 1 máu ở page.tsx
         }
-        return; // Dừng vòng lặp vật lý ngay lập tức
+        // Reset vị trí nhân vật về đầu map, tiếp tục game loop
+        startMiniGamePosition();
+        requestRef.current = requestAnimationFrame(gameLoop);
+        return;
       }
 
       // 6. Cập nhật Refs
       pos.x = newX;
       pos.y = newY;
+
+      // ============================================
+      // VA CHẠM VẬT CẢN (OBSTACLES)
+      // ============================================
+      const obstacles = STAGE_OBSTACLES[Math.max(1, visualStageIdx)] || [];
+      const now = performance.now();
+
+      for (const obs of obstacles) {
+        // Kiểm tra va chạm AABB — Thu nhỏ hitbox vật cản 40% để tránh chạm oan
+        const charLeft = newX;
+        const charRight = newX + charWidth;
+        const charBottom = newY;
+        const charTop = newY + charHeight;
+
+        // Padding 20% mỗi bên → hitbox thực tế chỉ ~60% kích thước hiển thị
+        const padX = obs.width * 0.2;
+        const padY = obs.height * 0.2;
+        const obsLeft = obs.left + padX;
+        const obsRight = obs.left + obs.width - padX;
+        const obsBottom = obs.bottom + padY;
+        const obsTop = obs.bottom + obs.height - padY;
+
+        const isColliding =
+          charRight > obsLeft &&
+          charLeft < obsRight &&
+          charTop > obsBottom &&
+          charBottom < obsTop;
+
+        if (isColliding && now - lastObstacleHitRef.current > OBSTACLE_HIT_COOLDOWN) {
+          lastObstacleHitRef.current = now;
+          if (callbacksRef.current.onObstacleHit) {
+            callbacksRef.current.onObstacleHit(); // Trừ 1 máu ở page.tsx
+          }
+          break; // Chỉ xử lý 1 va chạm mỗi lần
+        }
+      }
 
       // 7. Đồng bộ ra UI State (Giới hạn tần suất để tối ưu)
       setParkourX(newX);
@@ -222,7 +263,7 @@ export function useParkourPhysics(
       if (vel.x !== 0 && isGroundedRef.current) {
         walkAnimCounter++;
         // ĐÃ SỬA: Tăng từ 8 lên 15 (hoặc 20). Số càng to bước chân vung càng chậm.
-        if (walkAnimCounter > 10) { 
+        if (walkAnimCounter > 10) {
           setWalkStep((prev) => !prev);
           walkAnimCounter = 0;
         }
@@ -251,18 +292,18 @@ export function useParkourPhysics(
 
     requestRef.current = requestAnimationFrame(gameLoop);
     return () => cancelAnimationFrame(requestRef.current!);
-    
-  // ĐÃ SỬA: Xóa sạch các hàm callback khỏi mảng dependency, triệt tiêu lỗi vòng lặp
-  }, [viewMode, visualStageIdx, startMiniGamePosition]); 
 
-const isJumping = !isGroundedRef.current;
+    // ĐÃ SỬA: Xóa sạch các hàm callback khỏi mảng dependency, triệt tiêu lỗi vòng lặp
+  }, [viewMode, visualStageIdx, startMiniGamePosition]);
+
+  const isJumping = !isGroundedRef.current;
 
   return {
     parkourX,
     parkourY,
     facingRight,
     walkStep,
-    isJumping, 
+    isJumping,
     isNearChest,
     handleMobileInput,
     startMiniGamePosition,

@@ -1,6 +1,7 @@
 "use server";
 
 import { PrismaClient } from "@prisma/client";
+import lawsData from "@/lib/data/laws.json"; // Import cứng dữ liệu từ file JSON
 
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
 const prisma = globalForPrisma.prisma || new PrismaClient();
@@ -51,43 +52,32 @@ export async function getChatbotResponse(query: string) {
 
     // B. LỌC TỪ KHÓA
     const stopWords = /là gì|thế nào|cho tôi biết|chi tiết|của|và|các|những|có|khi|làm sao|để|về|cách|dấu hiệu|nhận biết|biểu hiện|tác hại|nguy hiểm|hậu quả|pháp luật|hình phạt|điều|khoản|tội|mức phạt|bao nhiêu năm/g;
-    
     let keyword = lowerQuery.replace(stopWords, "").trim().replace(/\s+/g, " ");
-    if (!keyword) keyword = lowerQuery.trim(); // Khôi phục nếu xoá nhầm hết từ khóa chính
+    if (!keyword) keyword = lowerQuery.trim();
 
-    // C. TRUY VẤN DATABASE & TRẢ LỜI
+    // C. TRUY VẤN DỮ LIỆU & TRẢ LỜI
     
-    // ƯU TIÊN 1: TÌM TRONG PHÁP LUẬT NẾU CÂU HỎI CÓ CHỨA SỐ HOẶC TỪ KHÓA LUẬT
+    // ƯU TIÊN 1: TÌM TRONG JSON PHÁP LUẬT NẾU CÂU HỎI CÓ CHỨA SỐ HOẶC TỪ KHÓA LUẬT
     const matchNumber = query.match(/\d+/);
+
     if (matchNumber || /pháp luật|tù|phạt|điều|khoản|tội/i.test(lowerQuery)) {
       const lawKeyword = matchNumber ? matchNumber[0] : keyword;
 
-      const laws = await prisma.lawArticle.findMany({
-        where: {
-          OR: [
-            { articleNum: { contains: lawKeyword, mode: "insensitive" } },
-            { name: { contains: keyword, mode: "insensitive" } },
-          ],
-        },
-        include: {
-          clauses: {
-            orderBy: { clauseNum: 'asc' }, // Sắp xếp Khoản 1, 2, 3...
-            include: {
-              points: {
-                orderBy: { pointLetter: 'asc' } // Sắp xếp Điểm a, b, c...
-              }
-            }
-          }
-        },
-        take: 1, // Lấy 1 Điều chính xác nhất
-      });
+      // Tìm kiếm trong mảng JSON thay vì gọi database
+      const matchedLaws = lawsData.filter(law => 
+        law.articleNum.includes(lawKeyword) || 
+        law.name.toLowerCase().includes(keyword.toLowerCase())
+      );
 
-      if (laws.length > 0) {
-        const law = laws[0];
+      if (matchedLaws.length > 0) {
+        const law = matchedLaws[0]; // Lấy Điều luật khớp đầu tiên
         answer = `Dưới đây là chi tiết quy định về **Điều ${law.articleNum} - ${law.name}**:\n\n`;
 
         if (law.clauses && law.clauses.length > 0) {
-          law.clauses.forEach((clause) => {
+          // Sắp xếp các khoản theo thứ tự clauseNum (tương đương orderBy ASC trong Prisma)
+          const sortedClauses = [...law.clauses].sort((a, b) => a.clauseNum - b.clauseNum);
+
+          sortedClauses.forEach((clause) => {
             if (clause.isAdditional) {
                answer += `**Hình phạt bổ sung:** ${clause.penaltySummary}\n`;
             } else {
@@ -95,7 +85,12 @@ export async function getChatbotResponse(query: string) {
             }
 
             if (clause.points && clause.points.length > 0) {
-              clause.points.forEach((point) => {
+              // Sắp xếp các điểm theo thứ tự a, b, c... (tương đương orderBy ASC)
+              const sortedPoints = [...clause.points].sort((a, b) => 
+                (a.pointLetter || "").localeCompare(b.pointLetter || "")
+              );
+
+              sortedPoints.forEach((point) => {
                 const prefix = point.pointLetter ? `Điểm ${point.pointLetter})` : "-";
                 answer += `  ${prefix} ${point.content}\n`;
               });
@@ -109,7 +104,7 @@ export async function getChatbotResponse(query: string) {
       }
     }
 
-    // ƯU TIÊN 2: TÌM TRONG BẢNG MA TÚY (FLASHCARD)
+    // ƯU TIÊN 2: TÌM TRONG BẢNG MA TÚY (FLASHCARD TỪ PRISMA)
     const flashcards = await prisma.flashcard.findMany({
       where: {
         OR: [
@@ -139,7 +134,7 @@ export async function getChatbotResponse(query: string) {
     }
 
     // D. KHÔNG TÌM THẤY GÌ CẢ
-    return `Xin lỗi, tôi không tìm thấy thông tin chi tiết về **"${query}"** trong cơ sở dữ liệu hiện tại. Bạn hãy thử dùng từ khóa chính xác hơn (ví dụ: "Heroin", "Cần sa", "Điều 247").` + defaultFooter;
+    return `Xin lỗi, tôi không tìm thấy thông tin chi tiết về **"${query}"** trong cơ sở dữ liệu hiện tại.\nBạn hãy thử dùng từ khóa chính xác hơn (ví dụ: "Heroin", "Cần sa", "Điều 247").` + defaultFooter;
 
   } catch (error) {
     console.error("Chatbot Error:", error);

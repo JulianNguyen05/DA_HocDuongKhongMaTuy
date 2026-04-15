@@ -1,3 +1,4 @@
+// src\app\chatbot\page.tsx
 export const dynamic = "force-dynamic";
 
 import ChatWindow from "@/components/chatbot/ChatWindow";

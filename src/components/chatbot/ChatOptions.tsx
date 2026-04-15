@@ -1,3 +1,4 @@
+// src\components\chatbot\ChatOptions.tsx
 "use client";
 
 type Option = { id: string; label: string };

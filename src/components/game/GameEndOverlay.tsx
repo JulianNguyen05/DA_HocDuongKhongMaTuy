@@ -3,11 +3,13 @@
 interface GameEndOverlayProps {
   gameState: "WON" | "LOST";
   onRestart: () => void;
+  onExit?: () => void;
 }
 
 export default function GameEndOverlay({
   gameState,
   onRestart,
+  onExit,
 }: GameEndOverlayProps) {
   const isWon = gameState === "WON";
 
@@ -21,14 +23,14 @@ export default function GameEndOverlay({
       />
       <div className="relative z-10 flex flex-col items-center mb-6 md:mb-12 text-center">
         <button
-          onClick={onRestart}
+          onClick={isWon ? (onExit || onRestart) : onRestart}
           className={`px-6 py-2 md:px-8 md:py-3 font-bold text-base md:text-lg rounded-full shadow-[0_0_20px_rgba(255,255,255,0.6)] hover:scale-105 active:scale-95 outline-none transition-all ${
             isWon
               ? "bg-white text-blue-900 hover:bg-gray-200"
               : "bg-red-600 text-white shadow-[0_0_20px_rgba(220,38,38,0.6)] hover:bg-red-700"
           }`}
         >
-          {isWon ? "🔄 Chơi lại" : "🔄 Chơi lại từ đầu"}
+          {isWon ? "🚪 Thoát Game" : "🔄 Chơi lại từ đầu"}
         </button>
       </div>
     </div>

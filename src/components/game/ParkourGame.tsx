@@ -1,6 +1,8 @@
 "use client";
 
-import { STAGE_PLATFORMS } from "@/lib/constants/gameConstants";
+import { useState, useEffect, useRef } from "react";
+import { STAGE_PLATFORMS, STAGE_OBSTACLES, OBSTACLE_IMAGE_MAP } from "@/lib/constants/gameConstants";
+import ObstacleGuide from "@/components/game/ObstacleGuide";
 
 interface ParkourGameProps {
   visualStageIdx: number;
@@ -10,8 +12,13 @@ interface ParkourGameProps {
   walkStep: boolean;
   isJumping: boolean;
   isNearChest: boolean;
+  nearTrashId?: number | null;
+  openedTrashIds?: Set<number>;
+  trashRewardMsg?: { label: string; effect: number } | null;
   currentQuestionIdx: number;
   totalQuestionsInStage: number;
+  hearts: number;
+  damageAnim: boolean;
   onMobileInput: (
     btn: "left" | "right" | "jump" | "open",
     active: boolean,
@@ -26,8 +33,13 @@ export default function ParkourGame({
   walkStep,
   isJumping,
   isNearChest,
+  nearTrashId,
+  openedTrashIds,
+  trashRewardMsg,
   currentQuestionIdx,
   totalQuestionsInStage,
+  hearts,
+  damageAnim,
   onMobileInput,
 }: ParkourGameProps) {
   // Lấy bệ đỡ cuối cùng của chặng để xác định rương nằm ở đâu
@@ -35,43 +47,137 @@ export default function ParkourGame({
     STAGE_PLATFORMS[Math.max(1, visualStageIdx)] || STAGE_PLATFORMS[1];
   const lastPlat = currentPlatforms.slice(-1)[0];
 
+  // Lấy danh sách vật cản của chặng hiện tại
+  const currentObstacles = STAGE_OBSTACLES[Math.max(1, visualStageIdx)] || [];
+
+  // State cho hiệu ứng trái tim vỡ (dùng counter để animation luôn chạy lại)
+  const [heartBreakKey, setHeartBreakKey] = useState(0);
+  const [showHeartBreak, setShowHeartBreak] = useState(false);
+  const prevHeartsRef = useRef(hearts);
+
+  useEffect(() => {
+    if (hearts < prevHeartsRef.current) {
+      // Tăng key để React remount element → animation chạy lại từ đầu
+      setHeartBreakKey((k) => k + 1);
+      setShowHeartBreak(true);
+      const timer = setTimeout(() => setShowHeartBreak(false), 1200);
+      prevHeartsRef.current = hearts;
+      return () => clearTimeout(timer);
+    }
+    prevHeartsRef.current = hearts;
+  }, [hearts]);
+
   return (
     <>
       <img
         src={`/images/game/ingame-map${Math.max(1, visualStageIdx)}.png`}
         onError={(e) => (e.currentTarget.src = "/images/game/ingame-map1.png")}
         alt={`Bản đồ Ingame chặng ${visualStageIdx}`}
-        className={`w-full h-full ${visualStageIdx === 4 || visualStageIdx === 5 ? "object-fill" : "object-cover"} transition-all duration-300`}
+        className="w-full h-full object-fill transition-all duration-300"
       />
 
-      <div className="absolute top-4 left-4 bg-black/60 text-white px-4 py-2 rounded-lg font-bold text-sm md:text-base hidden md:block z-30">
-        ⌨️ Dùng [A/D] di chuyển, [W/Space] Nhảy, [E] Nhặt đồ
+      {/* SỔ TAY SINH TỒN (NÚT HƯỚNG DẪN VẬT CẢN) */}
+      <ObstacleGuide />
+
+      {/* HƯỚNG DẪN CHƠI TRÊN PC - Đã đẩy xuống top-20 để không đè lên nút Sổ tay */}
+      <div className="absolute top-20 left-4 bg-black/60 text-white px-4 py-2 rounded-lg font-bold text-sm md:text-base hidden md:block z-30 pointer-events-none">
+        ⌨️ Dùng [A/D] di chuyển, [W/Space] Nhảy, [E] Mở Rương
       </div>
 
       <div className="absolute top-2 md:top-4 left-1/2 transform -translate-x-1/2 bg-blue-600/90 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-base font-bold shadow-lg z-30 pointer-events-none">
         Câu: {currentQuestionIdx + 1} / {totalQuestionsInStage}
       </div>
 
-{/*
-        // =========================================
-        // HIỂN THỊ HITBOX MẶT ĐẤT (BẬT LÊN ĐỂ DEBUG)
-        // =========================================
-        
-        {currentPlatforms.map((plat, index) => (
+      {/* ❤️ HEARTS HUD - Góc trên bên phải */}
+      <div className="absolute top-2 md:top-4 right-14 md:right-48 flex items-center gap-1 z-30 pointer-events-none">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <span
+            key={i}
+            className={`text-lg md:text-2xl transition-all duration-300 ${i < hearts
+              ? "opacity-100 scale-100"
+              : "opacity-30 scale-75 grayscale"
+              }`}
+          >
+            {i < hearts ? "❤️" : "🖤"}
+          </span>
+        ))}
+      </div>
+
+      {/* 💔 HIỆU ỨNG TRÁI TIM VỠ - Xuất hiện khi bị trừ máu */}
+      {showHeartBreak && (
+        <div key={heartBreakKey} className="absolute top-1/4 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+          {/* Mảnh trái tim trái */}
           <div
-            key={index}
-            className="absolute bg-red-500/40 border-2 border-red-600 flex items-center justify-center text-white text-xs font-bold pointer-events-none z-10"
+            className="absolute text-4xl md:text-6xl"
             style={{
-              left: `${plat.left}%`,
-              bottom: `${plat.bottom}%`, 
-              width: `${plat.width}%`,
-              height: `${plat.height}%`,
+              animation: "heartBreakLeft 1s ease-out forwards",
             }}
           >
-            Block {index + 1}
+            💔
           </div>
-        ))}  
-*/}
+          {/* Mảnh trái tim phải */}
+          <div
+            className="absolute text-4xl md:text-6xl"
+            style={{
+              animation: "heartBreakRight 1s ease-out forwards",
+            }}
+          >
+            💔
+          </div>
+          {/* Text -1 */}
+          <div
+            className="absolute left-1/2 -translate-x-1/2 text-red-500 font-black text-2xl md:text-4xl"
+            style={{
+              animation: "heartMinusOne 1s ease-out forwards",
+              textShadow: "0 0 10px rgba(220,38,38,0.8), 0 0 20px rgba(220,38,38,0.5)",
+            }}
+          >
+            -1
+          </div>
+        </div>
+      )}
+
+      {/* CSS Animations cho hiệu ứng trái tim vỡ */}
+      <style>{`
+        @keyframes heartBreakLeft {
+          0% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
+          30% { transform: translate(-15px, -10px) rotate(-15deg) scale(1.3); opacity: 1; }
+          100% { transform: translate(-40px, 60px) rotate(-45deg) scale(0.4); opacity: 0; }
+        }
+        @keyframes heartBreakRight {
+          0% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
+          30% { transform: translate(15px, -10px) rotate(15deg) scale(1.3); opacity: 1; }
+          100% { transform: translate(40px, 60px) rotate(45deg) scale(0.4); opacity: 0; }
+        }
+        @keyframes heartMinusOne {
+          0% { transform: translate(-50%, 0) scale(0.5); opacity: 0; }
+          20% { transform: translate(-50%, -20px) scale(1.5); opacity: 1; }
+          60% { transform: translate(-50%, -40px) scale(1.2); opacity: 1; }
+          100% { transform: translate(-50%, -80px) scale(0.8); opacity: 0; }
+        }
+      `}</style>
+
+      {/* VẬT CẢN (OBSTACLES) + DEBUG HITBOX */}
+      {currentObstacles.map((obs) => (
+        <div
+          key={obs.id}
+          className="absolute z-10 pointer-events-none"
+          style={{
+            left: `${obs.left}%`,
+            bottom: `${obs.bottom}%`,
+            width: `${obs.width}%`,
+            height: `${obs.height}%`,
+          }}
+        >
+          <img
+            src={OBSTACLE_IMAGE_MAP[obs.type] || "/images/game/canxa.png"}
+            alt={`Vật cản ${obs.type}`}
+            className="w-full h-full object-contain drop-shadow-lg"
+            style={{ imageRendering: "auto" }}
+          />
+
+        </div>
+      ))}
 
       {/* NHÂN VẬT PARKOUR */}
       <div
@@ -95,18 +201,19 @@ export default function ParkourGame({
             transformOrigin: "bottom center",
           }}
         />
+
       </div>
 
-      {/* TOOLTIP HIỆN NÚT [E] KHI ĐỨNG GẦN RƯƠNG (PC) */}
-      {isNearChest && lastPlat && (
+      {/* TOOLTIP HIỆN NÚT [E] KHU VỰC CUỐI MAP ĐỂ MỞ HỘP QUÀ ẨN */}
+      {isNearChest && (
         <div
           className="absolute transform -translate-x-1/2 bg-yellow-400 text-yellow-900 px-3 py-1 md:px-4 md:py-2 rounded-xl text-xs md:text-base font-bold animate-pulse shadow-lg whitespace-nowrap border-2 border-yellow-600 z-30 hidden md:block pointer-events-none"
           style={{
-            bottom: `${lastPlat.bottom + 20}%`,
-            left: `${lastPlat.left + lastPlat.width / 2}%`,
+            bottom: `${parkourY + 20}%`, // Hiện tooltip trên đầu nhân vật
+            left: `${parkourX}%`,
           }}
         >
-          <span>Nhấn [E] để nhặt đồ!</span>
+          <span>Nhấn [E] lấy quà!</span>
         </div>
       )}
 
@@ -166,7 +273,7 @@ export default function ParkourGame({
             className={`w-12 h-12 rounded-full text-[10px] font-black flex items-center justify-center shadow-lg transition-all duration-200 border-2 active:scale-95 select-none outline-none
               ${isNearChest ? "bg-yellow-400 text-yellow-900 border-yellow-200 scale-110 animate-pulse" : "bg-gray-800/60 backdrop-blur-md text-gray-400 border-gray-600/50"}`}
           >
-            NHẶT
+            Mở
           </button>
           <button
             onPointerDown={(e) => {

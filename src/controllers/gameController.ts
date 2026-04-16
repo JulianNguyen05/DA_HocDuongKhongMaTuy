@@ -18,8 +18,32 @@ export interface StageData {
   questions: Question[];
 }
 
+// Hàm xáo trộn Fisher-Yates
+function shuffleArray<T>(arr: T[]): T[] {
+  const shuffled = [...arr];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+// Xáo trộn thứ tự các đáp án trong câu hỏi
+function shuffleOptions(options: Record<string, string>): Record<string, string> {
+  const entries = Object.entries(options);
+  const shuffled = shuffleArray(entries);
+  return Object.fromEntries(shuffled);
+}
+
 export function useGameController() {
-  const stages: StageData[] = gameData as StageData[];
+  // Xáo trộn câu hỏi trong mỗi chặng (chỉ 1 lần khi khởi tạo)
+  const [shuffledStages, setShuffledStages] = useState<StageData[]>(() =>
+    (gameData as StageData[]).map((stage) => ({
+      ...stage,
+      questions: shuffleArray(stage.questions),
+    }))
+  );
+  const stages = shuffledStages;
 
   // --- Game State ---
   const [currentStageIdx, setCurrentStageIdx] = useState(0);
@@ -45,11 +69,8 @@ export function useGameController() {
     // KIỂM TRA ĐÚNG/SAI
     const isCorrect = selectedKey === currentQuestion.correctOption;
 
-    if (isCorrect) {
-      // TRẢ LỜI ĐÚNG
-      // (Có thể thêm code cộng điểm ở đây)
-    } else {
-      // TRẢ LỜI SAI
+    if (!isCorrect) {
+      // TRẢ LỜI SAI → Trừ tim
       setHearts((prev) => prev - 1);
       triggerDistortion();
 
@@ -59,9 +80,8 @@ export function useGameController() {
       }
     }
 
-    // ĐOẠN NÀY LÀ LOGIC CHUYỂN CÂU/CHUYỂN CHẶNG DÙNG CHUNG CHO CẢ ĐÚNG LẪN SAI
+    // CHUYỂN CÂU / CHẶNG (cả đúng lẫn sai đều qua câu tiếp theo)
     if (currentQuestionIdx + 1 < currentStage.questions.length) {
-      // Qua câu tiếp theo trong cùng chặng
       setCurrentQuestionIdx((prev) => prev + 1);
       setShowHintIdx([]);
     } else {
@@ -71,7 +91,6 @@ export function useGameController() {
         setCurrentQuestionIdx(0);
         setShowHintIdx([]);
       } else {
-        // Hết tất cả chặng -> Thắng game
         setGameState("WON");
       }
     }
@@ -92,6 +111,37 @@ export function useGameController() {
     setGameState("PLAYING");
   };
 
+  // Chơi lại chính chặng hiện tại (giữ nguyên currentStageIdx) + xáo trộn lại câu hỏi
+  const restartCurrentStage = () => {
+    // Xáo trộn lại câu hỏi của chặng hiện tại
+    setShuffledStages((prev) =>
+      prev.map((stage, idx) =>
+        idx === currentStageIdx
+          ? { ...stage, questions: shuffleArray(stage.questions) }
+          : stage
+      )
+    );
+    setCurrentQuestionIdx(0);
+    setHearts(5);
+    setIsDistorted(false);
+    setShowHintIdx([]);
+    setGameState("PLAYING");
+  };
+
+  // Trừ 1 máu, trả về số máu còn lại
+  const loseOneHeart = (): number => {
+    const newHearts = Math.max(0, hearts - 1);
+    setHearts(newHearts);
+    if (newHearts <= 0) {
+      setGameState("LOST");
+    }
+    return newHearts;
+  };
+
+  const gainOneHeart = () => {
+    setHearts((prev) => Math.min(5, prev + 1));
+  };
+
   // Trả về các state và hàm để giao diện (page.tsx) sử dụng
   return {
     currentStage,
@@ -106,5 +156,8 @@ export function useGameController() {
     handleAnswer,
     revealHint,
     resetGame,
+    restartCurrentStage,
+    loseOneHeart,
+    gainOneHeart,
   };
 }

@@ -39,12 +39,25 @@ export default function GamePage() {
   const { charPos, moveDuration, isMoving, mainWalkStep } =
     useMapMovement(visualStageIdx);
 
-  // --- STATE QUẢN LÝ RỚT ĐÀI ---
-  const [isFallen, setIsFallen] = useState(false);
+  // Hàm xử lý khi người chơi chạm vật cản
+  const handleObstacleHit = () => {
+    const remaining = game.loseOneHeart();
+    setDamageAnim(true);
+    setTimeout(() => setDamageAnim(false), 500);
+    if (remaining <= 0) {
+      setViewMode("MAIN_MAP");
+    }
+  };
 
   // Hàm xử lý khi người chơi nhảy hụt rớt xuống vực
   const handlePlayerFall = () => {
-    setIsFallen(true);
+    const remaining = game.loseOneHeart();
+    setDamageAnim(true);
+    setTimeout(() => setDamageAnim(false), 500);
+    if (remaining <= 0) {
+      setViewMode("MAIN_MAP");
+    }
+    // Nếu còn máu, vị trí sẽ được reset bởi useParkourPhysics
   };
 
   // 3. Logic Vật lý Parkour
@@ -57,7 +70,14 @@ export default function GamePage() {
     isNearChest,
     handleMobileInput,
     startMiniGamePosition,
-  } = useParkourPhysics(viewMode, visualStageIdx, setToastMsg, setViewMode, handlePlayerFall);
+  } = useParkourPhysics(
+    viewMode, 
+    visualStageIdx, 
+    setToastMsg, 
+    setViewMode, 
+    handlePlayerFall, 
+    handleObstacleHit
+  );
 
   // --- STATE QUẢN LÝ CÂU HỎI ---
   const [frozenQuestion, setFrozenQuestion] = useState<GameQuestion | null>(null);
@@ -76,8 +96,8 @@ export default function GamePage() {
     const audio = bgmRef.current;
     if (!audio) return;
 
-    // Nếu game over, rớt đài, hoặc chưa bắt đầu -> Dừng nhạc
-    if (!hasStarted || game.gameState === "WON" || game.gameState === "LOST" || isFallen) {
+    // Nếu game over hoặc chưa bắt đầu -> Dừng nhạc
+    if (!hasStarted || game.gameState === "WON" || game.gameState === "LOST") {
       audio.pause();
       return;
     }
@@ -97,7 +117,7 @@ export default function GamePage() {
     else if (audio.paused) {
       audio.play().catch(e => console.warn("Trình duyệt chặn phát nhạc tự động:", e));
     }
-  }, [visualStageIdx, hasStarted, game.gameState, isFallen]);
+  }, [visualStageIdx, hasStarted, game.gameState]);
 
 
   // --- THEO DÕI TRẠNG THÁI GAME OVER ---
@@ -138,26 +158,37 @@ export default function GamePage() {
   };
 
   const handleRestartGame = () => {
-    setHasStarted(false);
-    setVisualStageIdx(0);
-    setViewMode("MAIN_MAP");
+    // Nếu màn hình kết thúc vì THẮNG TRỌN VẸN -> reset game về map 1
+    if (game.gameState === "WON") {
+      game.resetGame();
+      setVisualStageIdx(1);
+      setViewMode("MAIN_MAP");
+      setStageCorrectCount(0);
+      setStageIncorrectQuestions([]);
+      return;
+    }
+
+    // Nếu thua hoặc muốn chơi lại -> chơi lại chính chặng hiện tại
+    setViewMode("STAGE_READY");
     setStageCorrectCount(0);
     setStageIncorrectQuestions([]);
-    currentTrackRef.current = null; // Reset track nhạc
-    game.resetGame();
+    game.restartCurrentStage();
   };
 
   const handleRetryFromFall = () => {
-    setIsFallen(false);
-    setVisualStageIdx(1); 
-    game.resetGame(); 
+    // Chơi lại chính chặng hiện tại
+    setViewMode("STAGE_READY");
     setStageCorrectCount(0);
     setStageIncorrectQuestions([]);
-    currentTrackRef.current = null; // Reset để load lại nhạc m1
-    setViewMode("STAGE_READY"); 
+    game.restartCurrentStage();
   };
 
   const handleCloseStageResult = () => {
+    // Nếu hết máu thì bắt chơi lại map hiện tại, không cho qua map mới
+    if (game.hearts <= 0 || game.gameState === "LOST") {
+      handleRestartGame();
+      return;
+    }
     const currentMapIndex = visualStageIdx;
     const nextMapIndex = currentMapIndex + 1;
     setViewMode("MAIN_MAP");
@@ -191,6 +222,9 @@ export default function GamePage() {
       }
     }
 
+    // Capture hearts count trước khi gọi handleAnswer để tránh stale closure
+    const heartsAfterAnswer = isCorrect ? game.hearts : game.hearts - 1;
+
     game.handleAnswer(key);
 
     setTimeout(() => {
@@ -199,9 +233,16 @@ export default function GamePage() {
       setFrozenIdx(null);
       setSelectedKey(null);
 
+      // Nếu hết máu -> về MAIN_MAP để hiện GameEndOverlay (video bị nghiện)
+      if (heartsAfterAnswer <= 0) {
+        setViewMode("MAIN_MAP");
+        return;
+      }
+
+      // Hết câu của chặng -> hiện kết quả
       if (isLastQuestion) {
         setViewMode("STAGE_RESULT");
-      } 
+      }
     }, 1500);
   };
 
@@ -308,10 +349,12 @@ export default function GamePage() {
             parkourY={parkourY}
             facingRight={facingRight}
             walkStep={walkStep}
-            isNearChest={isNearChest}
             isJumping={isJumping}
+            isNearChest={isNearChest}
             currentQuestionIdx={game.currentQuestionIdx}
             totalQuestionsInStage={game.totalQuestionsInStage}
+            hearts={game.hearts}
+            damageAnim={damageAnim}
             onMobileInput={handleMobileInput}
           />
         )}
@@ -346,28 +389,13 @@ export default function GamePage() {
             <GameEndOverlay
               gameState={game.gameState}
               onRestart={handleRestartGame}
+              onExit={() => {
+                window.location.href = "/";
+              }}
             />
           )}
 
-        {isFallen && (
-          <div className="absolute inset-0 z-[120] bg-black/90 flex flex-col items-center justify-center p-4 animate-fade-in touch-auto">
-            <div className="bg-gray-900 border-2 md:border-4 border-red-600 p-6 md:p-8 rounded-3xl shadow-[0_0_40px_rgba(220,38,38,0.4)] flex flex-col items-center text-center max-w-sm transform scale-105 transition-transform">
-              <span className="text-6xl md:text-7xl mb-4 animate-bounce">💀</span>
-              <h2 className="text-2xl md:text-3xl font-black text-red-500 mb-2 uppercase drop-shadow-md">
-                Bạn đã gục ngã
-              </h2>
-              <p className="text-gray-300 md:text-lg font-medium mb-8">
-                Hãy cố gắng vực dậy!
-              </p>
-              <button
-                onClick={handleRetryFromFall}
-                className="w-full px-8 py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-black text-lg rounded-xl shadow-[0_5px_15px_rgba(220,38,38,0.5)] transition-all hover:scale-105 active:scale-95 outline-none"
-              >
-                🔄 CHƠI LẠI TỪ ĐẦU
-              </button>
-            </div>
-          </div>
-        )}
+        {/* Overlay rớt đài đã được thay bằng hệ thống trừ máu + reset vị trí */}
       </div>
     </div>
   );

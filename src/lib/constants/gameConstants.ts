@@ -68,34 +68,93 @@ export const STAGE_PLATFORMS: Record<
     { id: 198, left: 38, width: 25, bottom: 34, height: 5 }, // Đứng ở 39
     { id: 199, left: 60, width: 23, bottom: 37, height: 5 }, // Đứng ở 42
     { id: 200, left: 63, width: 8, bottom: 47, height: 5 }, // Đứng ở 52
-    { id: 201, left: 81, width: 25, bottom: 54, height: 5 }, // Đứng ở 59
+    { id: 201, left: 81, width: 25, bottom: 34, height: 25 }, // Đứng ở 59
+    { id: 202, left: 56, width: 3, bottom: 39, height: 7 }, // Thung  rac
+    { id: 203, left: 85, bottom: 59, width: 9, height: 9 },  // bệ đở cuối 
   ],
+  // Map 2: Cổng Đại Học Nha Trang - đường lát đá phẳng sát đáy ảnh
   2: [
-    { id: 1, left: 0, width: 22, bottom: 32, height: 5 }, 
-    { id: 2, left: 45, width: 30, bottom: 32, height: 5 }, 
-    { id: 3, left: 82, width: 20, bottom: 32, height: 5 }, 
+    { id: 1, left: 0, width: 100, bottom: 6, height: 4 },
+    { id: 2, left: 61, bottom: 9, width: 4, height: 8 },  // Thùng rác 
+    { id: 3, left: 80, bottom: 9, width: 8, height: 8 },  // bệ đở cuối 
   ],
   3: [
     { id: 1, left: 0, width: 13, bottom: 25, height: 5 }, // Đứng ở 30
     { id: 2, left: 1, width: 16, bottom: 16, height: 2 }, // Đứng ở 18
     { id: 3, left: 14, width: 20, bottom: 18, height: 2 }, // Đứng ở 20
     { id: 4, left: 23, width: 48, bottom: 41, height: 2 }, // Đứng ở 43
+    { id: 5, left: 21, width: 45, bottom: 1, height: 2 }, // Đứng ở 43
+    { id: 7, left: 63, width: 25, bottom: 1, height: 25 }, // Đứng ở 43
     { id: 6, left: 81, width: 20, bottom: 30, height: 5 }, // Đứng ở 35
+    { id: 8, left: 40, bottom: 3, width: 4, height: 8 },// Thùng rác 
+    { id: 9, left: 86, bottom: 36, width: 9, height: 9 } // rương cuối 
   ],
+  // Map 4: Tòa nhà Trường Học - sân gạch phẳng rộng sát đáy ảnh
   4: [
-    { id: 1, left: 0, width: 14, bottom: 31, height: 5 }, // Đứng ở 36
-    { id: 4, left: 23, width: 8, bottom: 33, height: 5 }, // Đứng ở 38
-    { id: 7, left: 39, width: 9, bottom: 37, height: 5 }, // Đứng ở 42
-    { id: 9, left: 56, width: 10, bottom: 39, height: 5 }, // Đứng ở 44
-    { id: 11, left: 76, width: 9, bottom: 46, height: 5 }, // Đứng ở 51
-    { id: 12, left: 90, width: 11, bottom: 53, height: 5 }, // Đứng ở 58
+    { id: 1, left: 0, width: 100, bottom: 17, height: 4 },
+    { id: 3, left: 42, width: 7.1, bottom: 21, height: 8 },
+    { id: 2, left: 88, width: 13, bottom: 21, height: 4 },   // Bệ rương cuối map (nhân vật phải đi tới đây)
   ],
   5: [
     { id: 1, left: 0, width: 14, bottom: 31, height: 5 },
-    { id: 4, left: 23, width: 8, bottom: 33, height: 5 },
-    { id: 7, left: 39, width: 9, bottom: 37, height: 5 },
+    { id: 4, left: 25, width: 6, bottom: 33, height: 5 },
+    { id: 7, left: 41, width: 6.2, bottom: 37, height: 5 },
+    { id: 8, left: 30, width: 2.5, bottom: 36, height: 8 }, // thùng rác 
     { id: 9, left: 56, width: 10, bottom: 39, height: 5 },
     { id: 11, left: 76, width: 9, bottom: 46, height: 5 },
     { id: 12, left: 90, width: 11, bottom: 53, height: 5 },
+  ],
+};
+
+// ============================================
+// VẬT CẢN (OBSTACLES) - Chạm vào sẽ bị trừ 1 máu
+// type: "canxa" -> canxa.png, "kim" -> Kim.png, "thungrac" -> ThungRac.png, "mathuy" -> mathuy.png
+// ============================================
+export const OBSTACLE_IMAGE_MAP: Record<string, string> = {
+  canxa: "/images/game/canxa.png",
+  kim: "/images/game/Kim.png",
+  thungrac: "/images/game/ThungRac.png",
+  mathuy: "/images/game/mathuy.png",
+};
+
+export const STAGE_OBSTACLES: Record<
+  number,
+  { id: number; type: string; left: number; bottom: number; width: number; height: number }[]
+> = {
+  // Map 1
+  1: [
+    { id: 1001, type: "canxa", left: 40, bottom: 39, width: 5, height: 8 },
+    { id: 1002, type: "kim", left: 70, bottom: 42, width: 5, height: 10 },
+    { id: 1003, type: "thungrac", left: 55.5, bottom: 39, width: 4, height: 8 },
+    { id: 1004, type: "mathuy", left: 20, bottom: 40, width: 5, height: 8 },
+  ],
+  // Map 2: mặt bệ = 16
+  2: [
+    { id: 2001, type: "kim", left: 73, bottom: 10, width: 7, height: 10 },
+    { id: 2002, type: "canxa", left: 45, bottom: 9, width: 5, height: 8 },
+    { id: 2003, type: "thungrac", left: 60, bottom: 9, width: 6, height: 8 },
+    { id: 2004, type: "mathuy", left: 27, bottom: 9, width: 5, height: 8 },
+  ],
+  // Map 3
+  3: [
+    { id: 3001, type: "thungrac", left: 40, bottom: 3, width: 4, height: 8 },
+    { id: 3002, type: "kim", left: 40, bottom: 43, width: 5, height: 8 },
+    { id: 3003, type: "canxa", left: 19, bottom: 18, width: 5, height: 8 },
+    { id: 3004, type: "mathuy", left: 30, bottom: 43, width: 5, height: 8 },
+  ],
+  // Map 4: mặt bệ = 21
+  4: [
+    { id: 4001, type: "canxa", left: 55, bottom: 45, width: 5, height: 8 },
+    { id: 4002, type: "kim", left: 55, bottom: 21, width: 5, height: 8 },
+    { id: 4003, type: "thungrac", left: 42, bottom: 21, width: 4, height: 8 },
+    { id: 4005, type: "thungrac", left: 46, bottom: 21, width: 3.8, height: 8 },
+    { id: 4004, type: "mathuy", left: 28, bottom: 21, width: 5, height: 8 },
+  ],
+  // Map 5
+  5: [
+    { id: 5001, type: "thungrac", left: 30, width: 3, bottom: 36, height: 8 },
+    { id: 5002, type: "canxa", left: 38, bottom: 40, width: 5, height: 7 },
+    { id: 5003, type: "kim", left: 62, bottom: 44, width: 5, height: 8 },
+    { id: 5004, type: "mathuy", left: 80, bottom: 51, width: 5, height: 8 },
   ],
 };

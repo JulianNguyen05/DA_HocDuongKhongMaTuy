@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { STAGE_PLATFORMS, STAGE_OBSTACLES, OBSTACLE_IMAGE_MAP } from "@/lib/constants/gameConstants";
+import ObstacleGuide from "@/components/game/ObstacleGuide";
 
 interface ParkourGameProps {
   visualStageIdx: number;
@@ -75,7 +76,11 @@ export default function ParkourGame({
         className="w-full h-full object-fill transition-all duration-300"
       />
 
-      <div className="absolute top-4 left-4 bg-black/60 text-white px-4 py-2 rounded-lg font-bold text-sm md:text-base hidden md:block z-30">
+      {/* SỔ TAY SINH TỒN (NÚT HƯỚNG DẪN VẬT CẢN) */}
+      <ObstacleGuide />
+
+      {/* HƯỚNG DẪN CHƠI TRÊN PC - Đã đẩy xuống top-20 để không đè lên nút Sổ tay */}
+      <div className="absolute top-20 left-4 bg-black/60 text-white px-4 py-2 rounded-lg font-bold text-sm md:text-base hidden md:block z-30 pointer-events-none">
         ⌨️ Dùng [A/D] di chuyển, [W/Space] Nhảy, [E] Mở Rương
       </div>
 
@@ -151,29 +156,6 @@ export default function ParkourGame({
           100% { transform: translate(-50%, -80px) scale(0.8); opacity: 0; }
         }
       `}</style>
-
-      {/* 🎁 HỘP QUÀ - Ẩn đi */}
-      {/* lastPlat && (
-        <div
-          className={`absolute z-15 pointer-events-none transition-transform duration-300 ${
-            isNearChest ? "scale-110 animate-bounce" : "scale-100"
-          }`}
-          style={{
-            left: `${lastPlat.left + lastPlat.width / 2 - 3}%`,
-            bottom: `${lastPlat.bottom + lastPlat.height}%`,
-            width: "6%",
-            height: "10%",
-          }}
-        >
-          <img
-            src="/images/game/git.png"
-            alt="Hộp quà"
-            className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(255,215,0,0.6)]"
-          />
-        </div>
-      ) */}
-
-
 
       {/* VẬT CẢN (OBSTACLES) + DEBUG HITBOX */}
       {currentObstacles.map((obs) => (

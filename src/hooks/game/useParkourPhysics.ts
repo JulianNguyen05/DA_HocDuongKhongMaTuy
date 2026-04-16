@@ -222,6 +222,9 @@ export function useParkourPhysics(
       // ============================================
       // VA CHẠM VẬT CẢN (OBSTACLES)
       // ============================================
+      // ============================================
+      // VA CHẠM VẬT CẢN (OBSTACLES)
+      // ============================================
       const obstacles = STAGE_OBSTACLES[Math.max(1, visualStageIdx)] || [];
       const now = performance.now();
 
@@ -271,12 +274,15 @@ export function useParkourPhysics(
         setWalkStep(false);
       }
 
-      // 8. XỬ LÝ MỞ RƯƠNG CHUẨN XÁC
+      // 8. XỬ LÝ MỞ RƯƠNG (HỘP QUÀ TẠI CUỐI MAP)
+      // Vị trí mở hộp quà giờ được link trực tiếp với "Bệ Đỡ Cuối Cùng" khai báo trong gameConstants (id cuối).
+      // Khi nhân vật bước tới sát bờ trái của bệ rương là có thể mở.
       const lastPlat = platforms[platforms.length - 1];
-      const nearChestFlag = newX >= lastPlat.left - 5;
+      const nearChestFlag = newX >= lastPlat.left - 5 && newX <= lastPlat.left + lastPlat.width + 5;
+      
       setIsNearChest(nearChestFlag);
 
-      // Chống kẹt Unikey và bắt sự kiện chạm màn hình
+      // Chống kẹt Unikey và bắt sự kiện chạm màn hình MỞ HỘP QUÀ
       const isPressingOpen = keys.has("KeyE") || keys.has("e") || keys.has("E");
 
       if (nearChestFlag && isPressingOpen) {
@@ -284,7 +290,7 @@ export function useParkourPhysics(
         keys.delete("KeyE");
         keys.delete("e");
         keys.delete("E");
-        callbacksRef.current.setViewMode("QUESTION"); // Chuyển màn hình thành công!
+        callbacksRef.current.setViewMode("QUESTION"); // Chuyển sang trả lời câu hỏi
       }
 
       requestRef.current = requestAnimationFrame(gameLoop);

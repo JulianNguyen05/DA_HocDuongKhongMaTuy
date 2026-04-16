@@ -70,7 +70,14 @@ export default function GamePage() {
     isNearChest,
     handleMobileInput,
     startMiniGamePosition,
-  } = useParkourPhysics(viewMode, visualStageIdx, setToastMsg, setViewMode, handlePlayerFall, handleObstacleHit);
+  } = useParkourPhysics(
+    viewMode, 
+    visualStageIdx, 
+    setToastMsg, 
+    setViewMode, 
+    handlePlayerFall, 
+    handleObstacleHit
+  );
 
   // --- STATE QUẢN LÝ CÂU HỎI ---
   const [frozenQuestion, setFrozenQuestion] = useState<GameQuestion | null>(null);
@@ -151,7 +158,18 @@ export default function GamePage() {
   };
 
   const handleRestartGame = () => {
-    // Chơi lại chính chặng hiện tại (không quay về đầu)
+    // Nếu màn hình kết thúc vì thua -> reset TRỌN VẸN game về map 1
+    if (game.gameState === "LOST") {
+      game.resetGame();
+      setVisualStageIdx(1);
+      setViewMode("MAIN_MAP");
+      setStageCorrectCount(0);
+      setStageIncorrectQuestions([]);
+      return;
+    }
+
+    // Nếu không (hoặc game WON muốn test lại map hiện tại, nhưng vì WON đã exit nên cái này backup)
+    // Chơi lại chính chặng hiện tại
     setViewMode("STAGE_READY");
     setStageCorrectCount(0);
     setStageIncorrectQuestions([]);
@@ -167,6 +185,11 @@ export default function GamePage() {
   };
 
   const handleCloseStageResult = () => {
+    // Nếu hết máu thì bắt chơi lại map hiện tại, không cho qua map mới
+    if (game.hearts <= 0 || game.gameState === "LOST") {
+      handleRestartGame();
+      return;
+    }
     const currentMapIndex = visualStageIdx;
     const nextMapIndex = currentMapIndex + 1;
     setViewMode("MAIN_MAP");
@@ -200,6 +223,9 @@ export default function GamePage() {
       }
     }
 
+    // Capture hearts count trước khi gọi handleAnswer để tránh stale closure
+    const heartsAfterAnswer = isCorrect ? game.hearts : game.hearts - 1;
+
     game.handleAnswer(key);
 
     setTimeout(() => {
@@ -208,9 +234,16 @@ export default function GamePage() {
       setFrozenIdx(null);
       setSelectedKey(null);
 
+      // Nếu hết máu -> về MAIN_MAP để hiện GameEndOverlay (video bị nghiện)
+      if (heartsAfterAnswer <= 0) {
+        setViewMode("MAIN_MAP");
+        return;
+      }
+
+      // Hết câu của chặng -> hiện kết quả
       if (isLastQuestion) {
         setViewMode("STAGE_RESULT");
-      } 
+      }
     }, 1500);
   };
 
@@ -317,8 +350,8 @@ export default function GamePage() {
             parkourY={parkourY}
             facingRight={facingRight}
             walkStep={walkStep}
-            isNearChest={isNearChest}
             isJumping={isJumping}
+            isNearChest={isNearChest}
             currentQuestionIdx={game.currentQuestionIdx}
             totalQuestionsInStage={game.totalQuestionsInStage}
             hearts={game.hearts}
@@ -357,6 +390,9 @@ export default function GamePage() {
             <GameEndOverlay
               gameState={game.gameState}
               onRestart={handleRestartGame}
+              onExit={() => {
+                window.location.href = "/";
+              }}
             />
           )}
 

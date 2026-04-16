@@ -173,27 +173,7 @@ export default function ParkourGame({
         </div>
       ) */}
 
-      {/* =========================================
-         HIỂN THỊ HITBOX MẶT ĐẤT (DEBUG) 
-         ========================================= */}
-      {currentPlatforms.map((plat, index) => (
-        <div
-          key={index}
-          className="absolute bg-red-500/40 border-2 border-red-600 flex items-center justify-center text-white text-[8px] md:text-[10px] font-bold pointer-events-none z-10 whitespace-nowrap text-center"
-          style={{
-            left: `${plat.left}%`,
-            bottom: `${plat.bottom}%`,
-            width: `${plat.width}%`,
-            height: `${plat.height}%`,
-          }}
-        >
-          ID:{plat.id}
-          <br />
-          L:{plat.left} B:{plat.bottom}
-          <br />
-          W:{plat.width} H:{plat.height}
-        </div>
-      ))}
+
 
       {/* VẬT CẢN (OBSTACLES) + DEBUG HITBOX */}
       {currentObstacles.map((obs) => (
@@ -213,17 +193,7 @@ export default function ParkourGame({
             className="w-full h-full object-contain drop-shadow-lg"
             style={{ imageRendering: "auto" }}
           />
-          {/* DEBUG: Viền + tọa độ vật cản */}
-          <div className="absolute inset-0 border-2 border-yellow-400 bg-yellow-400/20 flex flex-col items-center justify-end">
-            <span className="text-[7px] md:text-[10px] text-yellow-200 font-bold bg-black/70 px-1 rounded whitespace-nowrap">
-              {obs.type}
-            </span>
-            <span className="text-[6px] md:text-[9px] text-yellow-100 bg-black/70 px-1 rounded whitespace-nowrap">
-              ID:{obs.id} L:{obs.left} B:{obs.bottom}
-              <br />
-              W:{obs.width} H:{obs.height}
-            </span>
-          </div>
+
         </div>
       ))}
 
@@ -249,12 +219,7 @@ export default function ParkourGame({
             transformOrigin: "bottom center",
           }}
         />
-        {/* DEBUG: Hitbox nhân vật */}
-        {/* <div className="absolute inset-0 border-2 border-green-400 bg-green-400/20 flex items-end justify-center">
-          <span className="text-[6px] md:text-[9px] text-green-200 font-bold bg-black/80 px-1 rounded whitespace-nowrap">
-            X:{parkourX.toFixed(1)} Y:{parkourY.toFixed(1)}
-          </span>
-        </div> */}
+
       </div>
 
       {/* TOOLTIP HIỆN NÚT [E] KHU VỰC CUỐI MAP ĐỂ MỞ HỘP QUÀ ẨN */}

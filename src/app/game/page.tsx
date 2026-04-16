@@ -158,8 +158,8 @@ export default function GamePage() {
   };
 
   const handleRestartGame = () => {
-    // Nếu màn hình kết thúc vì thua -> reset TRỌN VẸN game về map 1
-    if (game.gameState === "LOST") {
+    // Nếu màn hình kết thúc vì THẮNG TRỌN VẸN -> reset game về map 1
+    if (game.gameState === "WON") {
       game.resetGame();
       setVisualStageIdx(1);
       setViewMode("MAIN_MAP");
@@ -168,8 +168,7 @@ export default function GamePage() {
       return;
     }
 
-    // Nếu không (hoặc game WON muốn test lại map hiện tại, nhưng vì WON đã exit nên cái này backup)
-    // Chơi lại chính chặng hiện tại
+    // Nếu thua hoặc muốn chơi lại -> chơi lại chính chặng hiện tại
     setViewMode("STAGE_READY");
     setStageCorrectCount(0);
     setStageIncorrectQuestions([]);

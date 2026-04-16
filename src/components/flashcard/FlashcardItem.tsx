@@ -1,3 +1,4 @@
+// src\components\flashcard\FlashcardItem.tsx
 "use client";
 import { useState, useEffect } from "react"; // ✅ Đã thêm useEffect
 import Image from "next/image";
@@ -32,6 +33,16 @@ export default function FlashcardItem({
   const [showDetail, setShowDetail] = useState(false);
 
   const imageSrc = imageUrl || "/no-image.jpg";
+
+  const hasDetails = Boolean(
+    scientificName || 
+    otherNames || 
+    concept || 
+    origin || 
+    distribution || 
+    identification.length > 0 || 
+    harmfulEffects.length > 0
+  );
 
   // ✅ THÊM PHẦN NÀY: Khóa cuộn trang (body scroll lock) khi mở Modal
   useEffect(() => {
@@ -100,12 +111,18 @@ export default function FlashcardItem({
               {shortDesc || "Chưa có mô tả ngắn."}
             </p>
             
-            <button 
-              onClick={(e) => { e.stopPropagation(); setShowDetail(true); }}
-              className="bg-white hover:bg-green-600 text-gray-900 hover:text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              Xem chi tiết tác hại
-            </button>
+            {/* KIỂM TRA: CHỈ HIỂN THỊ NÚT NẾU CÓ DỮ LIỆU CHI TIẾT */}
+            {hasDetails && (
+              <button 
+                onClick={(e) => { 
+                  e.stopPropagation();
+                  setShowDetail(true); 
+                }}
+                className="bg-white hover:bg-green-600 text-gray-900 hover:text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
+              >
+                Xem chi tiết tác hại
+              </button>
+            )}
           </div>
         </div>
       </div>

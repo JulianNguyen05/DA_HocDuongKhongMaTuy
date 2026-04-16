@@ -1,18 +1,43 @@
+// src/components/flashcard/FlashcardBoard.tsx
 "use client";
 import { useState } from "react";
 import FlashcardItem from "./FlashcardItem";
-import { DrugCategories } from "@/models/Flashcard";
 
-type CategoryKey = keyof DrugCategories;
+// ===== ĐỊNH NGHĨA KHOẢN MỤC DỮ LIỆU ĐỂ TRÁNH LỖI 'any' CỦA ESLINT =====
+export interface DrugItem {
+  name: string;
+  imageUrl?: string | null;
+  shortDesc?: string | null;
+  scientificName?: string | null;
+  otherNames?: string | null;
+  concept?: string | null;
+  origin?: string | null;
+  distribution?: string | null;
+  identification?: string[];
+  harmfulEffects?: string[];
+}
 
-export default function FlashcardBoard({ initialData }: { initialData: DrugCategories }) {
-  const [activeTab, setActiveTab] = useState<CategoryKey>("tu_nhien");
+export interface FlashcardData {
+  [key: string]: {
+    title: string;
+    drugs: DrugItem[];
+  };
+}
+
+export default function FlashcardBoard({ initialData }: { initialData: FlashcardData }) {
+  const tabs = Object.keys(initialData);
+  
+  // Khởi tạo tab mặc định ngay từ đầu, KHÔNG dùng useEffect để tránh lỗi React cascading renders
+  const [activeTab, setActiveTab] = useState<string>(tabs[0] || "");
+
+  // Nếu không có tab nào hoặc dữ liệu chưa sẵn sàng thì không hiển thị
+  if (!activeTab || !initialData[activeTab]) return null;
 
   return (
     <div className="w-full pt-8 pb-24">
       {/* TABS MENU */}
       <div className="flex flex-wrap justify-center items-center gap-2 mb-16 max-w-3xl mx-auto px-4">
-        {(Object.keys(initialData) as CategoryKey[]).map((key) => {
+        {tabs.map((key) => {
           const isActive = activeTab === key;
           
           return (
@@ -33,7 +58,7 @@ export default function FlashcardBoard({ initialData }: { initialData: DrugCateg
 
       {/* HIỂN THỊ THẺ MA TÚY */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
-        {initialData[activeTab].drugs.map((drug, index) => (
+        {initialData[activeTab].drugs.map((drug: DrugItem, index: number) => (
           <FlashcardItem 
             key={index}
             name={drug.name}

@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const menu = [
   { name: "Your Choice - Your Life", path: "/game" },
-  { name: "Thông tin về các loại ma túy", path: "/flashcard" },
+  { name: "Nhận diện các loại ma túy", path: "/flashcard" },
   { name: "Pháp Luật", path: "/tree_ver2" },
 ];
 

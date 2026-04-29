@@ -1,28 +1,66 @@
 {
   "legalFramework": {
-    "name": "1. Khung pháp lý về phòng, chống ma túy",
+    "name": "1. KHUNG PHÁP LÝ VỀ PHÒNG, CHỐNG MA TÚY",
     "children": [
       {
-        "name": "- Chất ma túy là gì?",
+        "name": "- Các văn bản luật",
         "children": [
-          { "name": "Theo quy định tại khoản 1 Điều 2 Luật Phòng, chống ma túy 2025, chất ma túy là chất gây nghiện, chất hướng thần được quy định trong danh mục chất ma túy do Chính phủ ban hành ." }
+          {
+            "name": "+ Bộ luật hình sự 2015",
+            "children": [
+              {
+                "name": "Chương XX của Bộ luật này gồm có 14 hành vi được quy định là tội phạm về ma túy."
+              },
+              {
+                "name": "Đây là nhóm tội phạm đặc biệt nguy hiểm, gây ảnh hưởng nghiêm trọng đến trật tự xã hội, sức khỏe cộng đồng và an ninh quốc gia."
+              },
+              {
+                "name": "Hình phạt nghiêm khắc nhất cho nhóm tội phạm này là tử hình."
+              }
+            ]
+          },
+          {
+            "name": "+ Luật Xử lý vi phạm hành chính 2012",
+            "children": [
+              {
+                "name": "Luật này tạo cơ sở pháp lý cho việc xử lý các hành vi vi phạm pháp luật về ma túy nhưng chưa đến mức bị xem là tội phạm."
+              },
+              {
+                "name": "Bên cạnh đó, Luật này còn quy định về biện pháp xử lý hành chính liên quan đến người nghiện ma túy và thẩm quyền xử lý hành vi vi phạm hành chính về ma túy."
+              }
+            ]
+          },
+          {
+            "name": "+ Luật Phòng, chống ma túy 2025",
+            "children": [
+              {
+                "name": "Luật này quy định về phòng, chống ma túy; quản lý người sử dụng trái phép chất ma túy; cai nghiện ma túy; trách nhiệm của cá nhân, gia đình, cơ quan, tổ chức trong phòng, chống ma túy; quản lý nhà nước và hợp tác quốc tế về phòng, chống ma túy."
+              }
+            ]
+          }
         ]
       },
       {
-        "name": "- Các hành vi bị nghiêm cấm.",
+        "name": "- Các văn bản dưới luật",
         "children": [
-          { "name": "Điều 5 Luật Phòng, chống ma túy 2025 nghiêm cấm thực hiện 11 hành vi sau đây:" },
-          { "name": "1. Trồng cây có chứa chất ma túy, hướng dẫn trồng cây có chứa chất ma túy." },
-          { "name": "2. Nghiên cứu, giám định, kiểm nghiệm, kiểm định, sản xuất, tàng trữ, vận chuyển, bảo quản, tồn trữ, mua bán, phân phối, xử lý, trao đổi, xuất khẩu, nhập khẩu, tạm nhập, tái xuất, tạm xuất, tái nhập, quá cảnh trái phép chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y, thức ăn chăn nuôi, thức ăn thủy sản có chứa chất ma túy, tiền chất." },
-          { "name": "3. Chiếm đoạt chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y, thức ăn chăn nuôi, thức ăn thủy sản có chứa chất ma túy, tiền chất." },
-          { "name": "4. Giao nhận, quản lý, kiểm soát, lưu giữ, cấp phát, bảo quản chất ma túy, tiền chất trái quy định của pháp luật; cho phép người sử dụng chất ma túy, thuốc gây nghiện hoặc thuốc hướng thần trái quy định của pháp luật." },
-          { "name": "5. Sử dụng, tổ chức sử dụng trái phép chất ma túy; cưỡng bức, lôi kéo người khác sử dụng trái phép chất ma túy; chứa chấp, hỗ trợ việc sử dụng trái phép chất ma túy." },
-          { "name": "6. Sản xuất, tàng trữ, vận chuyển, mua bán phương tiện, dụng cụ dùng vào việc sản xuất hoặc sử dụng trái phép chất ma túy." },
-          { "name": "7. Cản trở việc xét nghiệm chất ma túy trong cơ thể, xác định tình trạng nghiện ma túy, quản lý người sử dụng trái phép chất ma túy, cai nghiện ma túy, quản lý sau cai nghiện ma túy." },
-          { "name": "8. Trả thù hoặc cản trở người thực thi nhiệm vụ phòng, chống ma túy, người tham gia phòng, chống ma túy." },
-          { "name": "9. Lợi dụng chức vụ, quyền hạn, nghề nghiệp để vi phạm pháp luật về phòng, chống ma túy." },
-          { "name": "10. Hướng dẫn sản xuất, sử dụng trái phép chất ma túy; quảng cáo, tiếp thị chất ma túy." },
-          { "name": "11. Kỳ thị người sử dụng trái phép chất ma túy, người cai nghiện ma túy, người sau cai nghiện ma túy." }
+          {
+            "name": "+ Pháp lệnh số 01/2022/UBTVQH15"
+          },
+          {
+            "name": "+ Nghị định 105/2021/NĐ-CP"
+          },
+          {
+            "name": "+ Nghị định 109/2021/NĐ-CP"
+          },
+          {
+            "name": "+ Nghị định 282/2025/NĐ-CP"
+          },
+          {
+            "name": "+ Nghị định 28/2026/NĐ-CP"
+          },
+          {
+            "name": "+ Thông tư liên tịch số 17/2007/TTLT-BCA-VKSNDTC-TANDTC-BTP"
+          }
         ]
       }
     ]
@@ -31,38 +69,61 @@
     "name": "2. Phòng ngừa",
     "children": [
       {
-        "name": "a/ Điều 24 Luật Phòng, chống ma túy 2025 quy định:",
+        "name": "- Điều 24 Luật Phòng, chống ma túy 2025 quy định:",
         "children": [
-          { "name": "“ Quản lý người sử dụng trái phép chất ma túy là biện pháp phòng ngừa nhằm giúp người sử dụng trái phép chất ma túy không tiếp tục sử dụng trái phép chất ma túy, phòng ngừa người sử dụng trái phép chất ma túy thực hiện hành vi vi phạm pháp luật ”." },
-          { "name": "Quản lý người sử dụng trái phép chất ma túy không phải là biện pháp xử lý hành chính." }
-        ]
-      },
-      { "name": "b/ Thời hạn quản lý người sử dụng trái phép chất ma túy: 01 năm kể từ ngày ra quyết định quản lý." },
-      { "name": "c/ Ủy ban nhân dân cấp xã thực hiện quản lý, giáo dục người sử dụng trái phép chất ma túy tại địa phương." },
-      {
-        "name": "d/ Trưởng Công an cấp xã có trách nhiệm trực tiếp giúp Ủy ban nhân dân cấp xã thực hiện quản lý người sử dụng trái phép chất ma túy và có các nhiệm vụ, quyền hạn sau đây:",
-        "children": [
-          { "name": "- Ra quyết định và tổ chức quản lý người sử dụng trái phép chất ma túy trong thời hạn 24 giờ kể từ khi nhận được kết quả xét nghiệm dương tính với chất ma túy của người cư trú tại địa phương;" },
-          { "name": "- Quản lý cư trú; triệu tập; xét nghiệm chất ma túy trong cơ thể; phòng ngừa, ngăn chặn hành vi gây mất an ninh, trật tự của người sử dụng trái phép chất ma túy;" },
-          { "name": "- Phối hợp với các cơ quan, tổ chức, đoàn thể, cá nhân tư vấn, động viên, giáo dục, giúp đỡ người sử dụng trái phép chất ma túy để họ không tiếp tục sử dụng trái phép chất ma túy." },
           {
-            "name": "Trong thời hạn quản lý, Trưởng Công an cấp xã ra quyết định dừng quản lý người sử dụng trái phép chất ma túy trong các trường hợp sau đây:",
-            "children": [
-              { "name": "- Người sử dụng trái phép chất ma túy được xác định là người nghiện ma túy;" },
-              { "name": "- Người sử dụng trái phép chất ma túy bị áp dụng biện pháp xử lý hành chính đưa vào cơ sở giáo dục bắt buộc, đưa vào trường giáo dưỡng; biện pháp xử lý chuyển hướng giáo dục tại trường giáo dưỡng;" },
-              { "name": "- Người sử dụng trái phép chất ma túy phải chấp hành án phạt tù;" },
-              { "name": "- Người sử dụng trái phép chất ma túy chết hoặc bị Tòa án tuyên bố mất tích;" },
-              { "name": "- Người sử dụng trái phép chất ma túy bị tạm giữ, tạm giam theo quy định của Bộ luật Tố tụng hình sự mà thời hạn tạm giữ, tạm giam dài hơn thời hạn quản lý người sử dụng trái phép chất ma túy còn lại." }
-            ]
+            "name": "“ Quản lý người sử dụng trái phép chất ma túy là biện pháp phòng ngừa nhằm giúp người sử dụng trái phép chất ma túy không tiếp tục sử dụng trái phép chất ma túy, phòng ngừa người sử dụng trái phép chất ma túy thực hiện hành vi vi phạm pháp luật ”."
+          },
+          {
+            "name": "Quản lý người sử dụng trái phép chất ma túy không phải là biện pháp xử lý hành chính."
           }
         ]
       },
       {
-        "name": "e/ Đối với người sử dụng trái phép chất ma túy không có nơi cư trú ổn định",
+        "name": "- Thời hạn quản lý người sử dụng trái phép chất ma túy: 01 năm kể từ ngày ra quyết định quản lý."
+      },
+      {
+        "name": "- Ủy ban nhân dân cấp xã thực hiện quản lý, giáo dục người sử dụng trái phép chất ma túy tại địa phương."
+      },
+      {
+        "name": "- Trưởng Công an cấp xã có trách nhiệm trực tiếp giúp Ủy ban nhân dân cấp xã thực hiện quản lý người sử dụng trái phép chất ma túy và có các nhiệm vụ, quyền hạn sau đây:",
         "children": [
-          { "name": "Sau khi xác định tình trạng nghiện kết luận người đó không nghiện ma túy thì Ủy ban nhân dân cấp xã, Trưởng Công an cấp xã nơi phát hiện người sử dụng trái phép chất ma túy quản lý người sử dụng trái phép chất ma túy và phối hợp với Ủy ban nhân dân cấp xã, Trưởng Công an cấp xã nơi người sử dụng trái phép chất ma túy đăng ký thường trú thực hiện việc quản lý phù hợp theo quy định tại các khoản 2, 3, 4 và 5 Điều 24 Luật Phòng, chống ma túy 2025." },
-          { "name": "Quyết định quản lý người sử dụng trái phép chất ma túy được gửi ngay cho Ủy ban nhân dân cấp xã, Trưởng Công an cấp xã nơi người sử dụng trái phép chất ma túy đăng ký thường trú để phối hợp quản lý." }
+          {
+            "name": "+ Ra quyết định và tổ chức quản lý người sử dụng trái phép chất ma túy trong thời hạn 24 giờ kể từ khi nhận được kết quả xét nghiệm dương tính với chất ma túy của người cư trú tại địa phương;"
+          },
+          {
+            "name": "+ Quản lý cư trú; triệu tập; xét nghiệm chất ma túy trong cơ thể; phòng ngừa, ngăn chặn hành vi gây mất an ninh, trật tự của người sử dụng trái phép chất ma túy;"
+          },
+          {
+            "name": "+ Phối hợp với các cơ quan, tổ chức, đoàn thể, cá nhân tư vấn, động viên, giáo dục, giúp đỡ người sử dụng trái phép chất ma túy để họ không tiếp tục sử dụng trái phép chất ma túy."
+          }
         ]
+      },
+      {
+        "name": "- Trong thời hạn quản lý, Trưởng Công an cấp xã ra quyết định dừng quản lý người sử dụng trái phép chất ma túy trong các trường hợp sau đây:",
+        "children": [
+          {
+            "name": "+ Người sử dụng trái phép chất ma túy được xác định là người nghiện ma túy;"
+          },
+          {
+            "name": "+ Người sử dụng trái phép chất ma túy bị áp dụng biện pháp xử lý hành chính đưa vào cơ sở giáo dục bắt buộc, đưa vào trường giáo dưỡng; biện pháp xử lý chuyển hướng giáo dục tại trường giáo dưỡng;"
+          },
+          {
+            "name": "+ Người sử dụng trái phép chất ma túy phải chấp hành án phạt tù;"
+          },
+          {
+            "name": "+ Người sử dụng trái phép chất ma túy chết hoặc bị Tòa án tuyên bố mất tích;"
+          },
+          {
+            "name": "+ Người sử dụng trái phép chất ma túy bị tạm giữ, tạm giam theo quy định của Bộ luật Tố tụng hình sự mà thời hạn tạm giữ, tạm giam dài hơn thời hạn quản lý người sử dụng trái phép chất ma túy còn lại."
+          }
+        ]
+      },
+      {
+        "name": "- Đối với người sử dụng trái phép chất ma túy không có nơi cư trú ổn định, sau khi xác định tình trạng nghiện kết luận người đó không nghiện ma túy thì Ủy ban nhân dân cấp xã, Trưởng Công an cấp xã nơi phát hiện người sử dụng trái phép chất ma túy quản lý người sử dụng trái phép chất ma túy và phối hợp với Ủy ban nhân dân cấp xã, Trưởng Công an cấp xã nơi người sử dụng trái phép chất ma túy đăng ký thường trú thực hiện việc quản lý phù hợp theo quy định tại các khoản 2, 3, 4 và 5 Điều 24 Luật Phòng, chống ma túy 2025."
+      },
+      {
+        "name": "- Quyết định quản lý người sử dụng trái phép chất ma túy được gửi ngay cho Ủy ban nhân dân cấp xã, Trưởng Công an cấp xã nơi người sử dụng trái phép chất ma túy đăng ký thường trú để phối hợp quản lý."
       }
     ]
   },
@@ -70,70 +131,165 @@
     "name": "3. Đấu tranh chống hành vi vi phạm pháp luật về ma túy",
     "children": [
       {
-        "name": "3.1. Hành vi vi phạm hành chính về ma túy",
+        "name": "3.1. Các hành vi bị nghiêm cấm.",
+        "children": [
+          {
+            "name": "Điều 5 Luật Phòng, chống ma túy 2025 nghiêm cấm thực hiện 11 hành vi sau đây:",
+            "children": [
+              {
+                "name": "1. Trồng cây có chứa chất ma túy, hướng dẫn trồng cây có chứa chất ma túy."
+              },
+              {
+                "name": "2. Nghiên cứu, giám định, kiểm nghiệm, kiểm định, sản xuất, tàng trữ, vận chuyển, bảo quản, tồn trữ, mua bán, phân phối, xử lý, trao đổi, xuất khẩu, nhập khẩu, tạm nhập, tái xuất, tạm xuất, tái nhập, quá cảnh trái phép chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y, thức ăn chăn nuôi, thức ăn thủy sản có chứa chất ma túy, tiền chất."
+              },
+              {
+                "name": "3. Chiếm đoạt chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y, thức ăn chăn nuôi, thức ăn thủy sản có chứa chất ma túy, tiền chất."
+              },
+              {
+                "name": "4. Giao nhận, quản lý, kiểm soát, lưu giữ, cấp phát, bảo quản chất ma túy, tiền chất trái quy định của pháp luật; cho phép người sử dụng chất ma túy, thuốc gây nghiện hoặc thuốc hướng thần trái quy định của pháp luật."
+              },
+              {
+                "name": "5. Sử dụng, tổ chức sử dụng trái phép chất ma túy; cưỡng bức, lôi kéo người khác sử dụng trái phép chất ma túy; chứa chấp, hỗ trợ việc sử dụng trái phép chất ma túy."
+              },
+              {
+                "name": "6. Sản xuất, tàng trữ, vận chuyển, mua bán phương tiện, dụng cụ dùng vào việc sản xuất hoặc sử dụng trái phép chất ma túy."
+              },
+              {
+                "name": "7. Cản trở việc xét nghiệm chất ma túy trong cơ thể, xác định tình trạng nghiện ma túy, quản lý người sử dụng trái phép chất ma túy, cai nghiện ma túy, quản lý sau cai nghiện ma túy."
+              },
+              {
+                "name": "8. Trả thù hoặc cản trở người thực thi nhiệm vụ phòng, chống ma túy, người tham gia phòng, chống ma túy."
+              },
+              {
+                "name": "9. Lợi dụng chức vụ, quyền hạn, nghề nghiệp để vi phạm pháp luật về phòng, chống ma túy."
+              },
+              {
+                "name": "10. Hướng dẫn sản xuất, sử dụng trái phép chất ma túy; quảng cáo, tiếp thị chất ma túy."
+              },
+              {
+                "name": "11. Kỳ thị người sử dụng trái phép chất ma túy, người cai nghiện ma túy, người sau cai nghiện ma túy."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "3.2. Hành vi vi phạm hành chính về ma túy",
         "children": [
           {
             "name": "Điều 30 Nghị định 282/2025/NĐ-CP quy định về xử phạt vi phạm hành chính về hành vi vi phạm các quy định về phòng, chống và kiểm soát ma túy, như sau:",
             "children": [
               {
-                "name": "1. Phạt cảnh cáo hoặc phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với một trong những hành vi sau đây:",
+                "name": "“1. Phạt cảnh cáo hoặc phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng đối với một trong những hành vi sau đây:",
                 "children": [
-                  { "name": "a) Sử dụng trái phép chất ma túy nhưng không bị truy cứu trách nhiệm hình sự;" },
-                  { "name": "b) Kỳ thị người sử dụng trái phép chất ma túy, người cai nghiện ma túy, người sau cai nghiện ma túy." }
+                  {
+                    "name": "a) Sử dụng trái phép chất ma túy nhưng không bị truy cứu trách nhiệm hình sự;"
+                  },
+                  {
+                    "name": "b) Kỳ thị người sử dụng trái phép chất ma túy, người cai nghiện ma túy, người sau cai nghiện ma túy."
+                  }
                 ]
               },
               {
                 "name": "2. Phạt tiền từ 2.000.000 đồng đến 5.000.000 đồng đối với một trong những hành vi sau đây:",
                 "children": [
-                  { "name": "a) Tàng trữ, vận chuyển trái phép hoặc chiếm đoạt chất ma túy nhưng chưa đến mức truy cứu trách nhiệm hình sự;" },
-                  { "name": "b) Chiếm đoạt tiền chất dùng vào việc sản xuất trái phép chất ma túy nhưng chưa đến mức truy cứu trách nhiệm hình sự;" },
-                  { "name": "c) Sản xuất, tàng trữ, vận chuyển, mua bán phương tiện, dụng cụ dùng vào việc sản xuất hoặc sử dụng trái phép chất ma túy nhưng chưa đến mức truy cứu trách nhiệm hình sự." }
+                  {
+                    "name": "a) Tàng trữ, vận chuyển trái phép hoặc chiếm đoạt chất ma túy nhưng chưa đến mức truy cứu trách nhiệm hình sự;"
+                  },
+                  {
+                    "name": "b) Chiếm đoạt tiền chất dùng vào việc sản xuất trái phép chất ma túy nhưng chưa đến mức truy cứu trách nhiệm hình sự;"
+                  },
+                  {
+                    "name": "c) Sản xuất, tàng trữ, vận chuyển, mua bán phương tiện, dụng cụ dùng vào việc sản xuất hoặc sử dụng trái phép chất ma túy nhưng chưa đến mức truy cứu trách nhiệm hình sự."
+                  }
                 ]
               },
-              { "name": "3. Phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng đối với hành vi trồng cây có chứa chất ma túy hoặc hướng dẫn trồng cây có chứa chất ma túy." },
+              {
+                "name": "3. Phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng đối với hành vi trồng cây có chứa chất ma túy hoặc hướng dẫn trồng cây có chứa chất ma túy."
+              },
               {
                 "name": "4. Phạt tiền từ 10.000.000 đồng đến 20.000.000 đồng đối với một trong những hành vi sau đây:",
                 "children": [
-                  { "name": "a) Môi giới, giúp sức hoặc hành vi khác giúp người khác sử dụng trái phép chất ma túy;" },
-                  { "name": "b) Chống lại hoặc cản trở việc xét nghiệm chất ma túy trong cơ thể, xác định tình trạng nghiện ma túy, quản lý người sử dụng trái phép chất ma túy, cai nghiện ma túy, quản lý sau cai nghiện ma túy." }
+                  {
+                    "name": "a) Môi giới, giúp sức hoặc hành vi khác giúp người khác sử dụng trái phép chất ma túy;"
+                  },
+                  {
+                    "name": "b) Chống lại hoặc cản trở việc xét nghiệm chất ma túy trong cơ thể, xác định tình trạng nghiện ma túy, quản lý người sử dụng trái phép chất ma túy, cai nghiện ma túy, quản lý sau cai nghiện ma túy."
+                  }
                 ]
               },
               {
                 "name": "5. Phạt tiền từ 20.000.000 đồng đến 40.000.000 đồng đối với một trong những hành vi sau đây:",
                 "children": [
-                  { "name": "a) Lợi dụng chức vụ, quyền hạn, nghề nghiệp để vi phạm pháp luật về phòng, chống ma túy;" },
-                  { "name": "b) Vi phạm quy định về xuất khẩu, nhập khẩu, tạm nhập, tái xuất, quá cảnh chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về tạm xuất, tái nhập chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần; vi phạm quy định về xuất khẩu, nhập khẩu, tạm nhập, tái xuất, tạm xuất, tái nhập, quá cảnh thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất;" },
-                  { "name": "c) Vi phạm quy định về nghiên cứu, giám định, sản xuất, bảo quản chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về nghiên cứu, giám định, sản xuất, bảo quản thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất;" },
-                  { "name": "d) Vi phạm quy định về giao nhận, vận chuyển chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về giao nhận, vận chuyển thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất;" },
-                  { "name": "đ) Vi phạm quy định về phân phối, mua bán, trao đổi chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về phân phối, mua bán, trao đổi thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất;" },
-                  { "name": "e) Vi phạm quy định về quản lý, kiểm soát, lưu giữ chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần tại khu vực cửa khẩu, khu vực biên giới, trên biển nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về quản lý, kiểm soát, lưu giữ thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất tại khu vực cửa khẩu, khu vực biên giới, trên biển;" },
-                  { "name": "g) Vi phạm quy định về cấp phát, cho phép sử dụng chất ma túy, thuốc gây nghiện hoặc thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về cấp phát, cho phép sử dụng thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất;" },
-                  { "name": "h) Người đứng đầu, người đại diện theo pháp luật, người được giao quản lý cơ sở kinh doanh, dịch vụ, người quản lý phương tiện giao thông hoặc cá nhân khác có trách nhiệm quản lý nhà hàng, cơ sở cho thuê lưu trú, câu lạc bộ, hoạt động kinh doanh karaoke, hoạt động kinh doanh vũ trường, kinh doanh trò chơi điện tử, các phương tiện giao thông nhưng thiếu trách nhiệm trong thực hiện quy định quản lý nhà nước đối với hoạt động kinh doanh để xảy ra hoạt động tàng trữ, mua bán, sử dụng trái phép chất ma túy trong khu vực, phương tiện do mình quản lý." }
+                  {
+                    "name": "a) Lợi dụng chức vụ, quyền hạn, nghề nghiệp để vi phạm pháp luật về phòng, chống ma túy;"
+                  },
+                  {
+                    "name": "b) Vi phạm quy định về xuất khẩu, nhập khẩu, tạm nhập, tái xuất, quá cảnh chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về tạm xuất, tái nhập chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần; vi phạm quy định về xuất khẩu, nhập khẩu, tạm nhập, tái xuất, tạm xuất, tái nhập, quá cảnh thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất;"
+                  },
+                  {
+                    "name": "c) Vi phạm quy định về nghiên cứu, giám định, sản xuất, bảo quản chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về nghiên cứu, giám định, sản xuất, bảo quản thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất;"
+                  },
+                  {
+                    "name": "d) Vi phạm quy định về giao nhận, vận chuyển chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về giao nhận, vận chuyển thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất;"
+                  },
+                  {
+                    "name": "đ) Vi phạm quy định về phân phối, mua bán, trao đổi chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về phân phối, mua bán, trao đổi thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất;"
+                  },
+                  {
+                    "name": "e) Vi phạm quy định về quản lý, kiểm soát, lưu giữ chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần tại khu vực cửa khẩu, khu vực biên giới, trên biển nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về quản lý, kiểm soát, lưu giữ thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất tại khu vực cửa khẩu, khu vực biên giới, trên biển;"
+                  },
+                  {
+                    "name": "g) Vi phạm quy định về cấp phát, cho phép sử dụng chất ma túy, thuốc gây nghiện hoặc thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về cấp phát, cho phép sử dụng thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất;"
+                  },
+                  {
+                    "name": "h) Người đứng đầu, người đại diện theo pháp luật, người được giao quản lý cơ sở kinh doanh, dịch vụ, người quản lý phương tiện giao thông hoặc cá nhân khác có trách nhiệm quản lý nhà hàng, cơ sở cho thuê lưu trú, câu lạc bộ, hoạt động kinh doanh karaoke, hoạt động kinh doanh vũ trường, kinh doanh trò chơi điện tử, các phương tiện giao thông nhưng thiếu trách nhiệm trong thực hiện quy định quản lý nhà nước đối với hoạt động kinh doanh để xảy ra hoạt động tàng trữ, mua bán, sử dụng trái phép chất ma túy trong khu vực, phương tiện do mình quản lý."
+                  }
                 ]
               },
               {
                 "name": "6. Phạt tiền từ 40.000.000 đồng đến 50.000.000 đồng đối với một trong những hành vi sau đây:",
                 "children": [
-                  { "name": "a) Nghiên cứu, giám định, kiểm nghiệm, kiểm định, sản xuất, tàng trữ, vận chuyển, bảo quản, tồn trữ, mua bán, phân phối, xử lý, trao đổi, xuất khẩu, nhập khẩu, tạm nhập, tái xuất, tạm xuất, tái nhập, quá cảnh trái phép tiền chất, thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất;" },
-                  { "name": "b) Chiếm đoạt thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất;" },
-                  { "name": "c) Trả thù hoặc cản trở người thực thi nhiệm vụ phòng, chống ma túy, người tham gia phòng, chống ma túy;" },
-                  { "name": "d) Hướng dẫn sản xuất, hướng dẫn sử dụng trái phép chất ma túy." }
+                  {
+                    "name": "a) Nghiên cứu, giám định, kiểm nghiệm, kiểm định, sản xuất, tàng trữ, vận chuyển, bảo quản, tồn trữ, mua bán, phân phối, xử lý, trao đổi, xuất khẩu, nhập khẩu, tạm nhập, tái xuất, tạm xuất, tái nhập, quá cảnh trái phép tiền chất, thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất;"
+                  },
+                  {
+                    "name": "b) Chiếm đoạt thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất;"
+                  },
+                  {
+                    "name": "c) Trả thù hoặc cản trở người thực thi nhiệm vụ phòng, chống ma túy, người tham gia phòng, chống ma túy;"
+                  },
+                  {
+                    "name": "d) Hướng dẫn sản xuất, hướng dẫn sử dụng trái phép chất ma túy."
+                  }
                 ]
               },
-              { "name": "7. Phạt tiền từ 50.000.000 đồng đến 75.000.000 đồng đối với hành vi cung cấp địa điểm, phương tiện cho người khác tàng trữ trái phép chất ma túy." },
+              {
+                "name": "7. Phạt tiền từ 50.000.000 đồng đến 75.000.000 đồng đối với hành vi cung cấp địa điểm, phương tiện cho người khác tàng trữ trái phép chất ma túy."
+              },
               {
                 "name": "8. Hình thức xử phạt bổ sung:",
                 "children": [
-                  { "name": "a) Tịch thu tang vật, phương tiện vi phạm hành chính đối với hành vi vi phạm quy định tại điểm a khoản 1; các khoản 2 và 3; điểm a khoản 4; các điểm b, c, d, đ, e và g khoản 5; các điểm a và b khoản 6 Điều này;" },
-                  { "name": "b) Tước quyền sử dụng giấy phép, chứng chỉ hành nghề, Giấy chứng nhận đủ điều kiện về an ninh, trật tự từ 03 tháng đến 06 tháng đối với hành vi vi phạm quy định tại điểm h khoản 5 Điều này, trừ trường hợp có quy định pháp luật về việc thu hồi giấy phép, chứng chỉ hành nghề, Giấy chứng nhận đủ điều kiện về an ninh, trật tự;" },
-                  { "name": "c) Đình chỉ hoạt động từ 03 tháng đến 06 tháng đối với hành vi vi phạm quy định tại điểm b khoản 5 Điều này;" },
-                  { "name": "d) Căn cứ vào tính chất, mức độ, hậu quả vi phạm, đối tượng vi phạm và tình tiết giảm nhẹ, tình tiết tăng nặng để quyết định áp dụng hình thức xử phạt trục xuất đối với người nước ngoài thực hiện hành vi vi phạm hành chính quy định tại các khoản 6 và 7 Điều này." }
+                  {
+                    "name": "a) Tịch thu tang vật, phương tiện vi phạm hành chính đối với hành vi vi phạm quy định tại điểm a khoản 1; các khoản 2 và 3; điểm a khoản 4; các điểm b, c, d, đ, e và g khoản 5; các điểm a và b khoản 6 Điều này;"
+                  },
+                  {
+                    "name": "b) Tước quyền sử dụng giấy phép, chứng chỉ hành nghề, Giấy chứng nhận đủ điều kiện về an ninh, trật tự từ 03 tháng đến 06 tháng đối với hành vi vi phạm quy định tại điểm h khoản 5 Điều này, trừ trường hợp có quy định pháp luật về việc thu hồi giấy phép, chứng chỉ hành nghề, Giấy chứng nhận đủ điều kiện về an ninh, trật tự;"
+                  },
+                  {
+                    "name": "c) Đình chỉ hoạt động từ 03 tháng đến 06 tháng đối với hành vi vi phạm quy định tại điểm b khoản 5 Điều này;"
+                  },
+                  {
+                    "name": "d) Căn cứ vào tính chất, mức độ, hậu quả vi phạm, đối tượng vi phạm và tình tiết giảm nhẹ, tình tiết tăng nặng để quyết định áp dụng hình thức xử phạt trục xuất đối với người nước ngoài thực hiện hành vi vi phạm hành chính quy định tại các khoản 6 và 7 Điều này."
+                  }
                 ]
               },
               {
                 "name": "9. Biện pháp khắc phục hậu quả:",
                 "children": [
-                  { "name": "Buộc nộp lại số lợi bất hợp pháp có được do thực hiện hành vi vi phạm quy định tại các điểm b và c khoản 2; điểm a khoản 4; các điểm b, c và đ khoản 5; điểm a khoản 6 Điều này”." }
+                  {
+                    "name": "Buộc nộp lại số lợi bất hợp pháp có được do thực hiện hành vi vi phạm quy định tại các điểm b và c khoản 2; điểm a khoản 4; các điểm b, c và đ khoản 5; điểm a khoản 6 Điều này”."
+                  }
                 ]
               }
             ]
@@ -142,37 +298,65 @@
             "name": "Điều 31 Nghị định 282/2025/NĐ-CP quy định về xử phạt vi phạm hành chính về hành vi vi phạm các quy định về về cai nghiện ma túy, như sau:",
             "children": [
               {
-                "name": "1. Phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng đối với một trong những hành vi sau đây:",
+                "name": "“1. Phạt tiền từ 5.000.000 đồng đến 10.000.000 đồng đối với một trong những hành vi sau đây:",
                 "children": [
-                  { "name": "a) Không ban hành quy trình cai nghiện ma túy, quy trình cung cấp dịch vụ cai nghiện tự nguyện tại gia đình, cộng đồng;" },
-                  { "name": "b) Không thông báo công khai, minh bạch về loại dịch vụ, quy trình thực hiện dịch vụ, giá dịch vụ cai nghiện ma túy;" },
-                  { "name": "c) Không ký hợp đồng dịch vụ cai nghiện ma túy;" },
-                  { "name": "d) Không thông báo cho Ủy ban nhân dân cấp có thẩm quyền khi người cai nghiện ma túy tự ý chấm dứt hoặc hoàn thành việc sử dụng dịch vụ cai nghiện ma túy." }
+                  {
+                    "name": "a) Không ban hành quy trình cai nghiện ma túy, quy trình cung cấp dịch vụ cai nghiện tự nguyện tại gia đình, cộng đồng;"
+                  },
+                  {
+                    "name": "b) Không thông báo công khai, minh bạch về loại dịch vụ, quy trình thực hiện dịch vụ, giá dịch vụ cai nghiện ma túy;"
+                  },
+                  {
+                    "name": "c) Không ký hợp đồng dịch vụ cai nghiện ma túy;"
+                  },
+                  {
+                    "name": "d) Không thông báo cho Ủy ban nhân dân cấp có thẩm quyền khi người cai nghiện ma túy tự ý chấm dứt hoặc hoàn thành việc sử dụng dịch vụ cai nghiện ma túy."
+                  }
                 ]
               },
               {
                 "name": "2. Phạt tiền từ 10.000.000 đồng đến 15.000.000 đồng đối với một trong những hành vi sau đây:",
                 "children": [
-                  { "name": "a) Không chấp hành quyết định thu hồi Giấy phép hoạt động cai nghiện ma túy;" },
-                  { "name": "b) Không chấp hành quyết định đình chỉ hoạt động cai nghiện ma túy có thời hạn." }
+                  {
+                    "name": "a) Không chấp hành quyết định thu hồi Giấy phép hoạt động cai nghiện ma túy;"
+                  },
+                  {
+                    "name": "b) Không chấp hành quyết định đình chỉ hoạt động cai nghiện ma túy có thời hạn."
+                  }
                 ]
               },
-              { "name": "3. Phạt tiền từ 15.000.000 đồng đến 20.000.000 đồng đối với hành vi thực hiện không đúng, không đầy đủ quy trình cai nghiện ma túy, quy trình cung cấp dịch vụ cai nghiện tự nguyện tại gia đình, cộng đồng." },
+              {
+                "name": "3. Phạt tiền từ 15.000.000 đồng đến 20.000.000 đồng đối với hành vi thực hiện không đúng, không đầy đủ quy trình cai nghiện ma túy, quy trình cung cấp dịch vụ cai nghiện tự nguyện tại gia đình, cộng đồng."
+              },
               {
                 "name": "4. Phạt tiền từ 20.000.000 đồng đến 40.000.000 đồng đối với một trong những hành vi sau đây:",
                 "children": [
-                  { "name": "a) Thực hiện cai nghiện ma túy vượt quá phạm vi hoạt động được ghi trong Giấy phép hoạt động cai nghiện ma túy tự nguyện;" },
-                  { "name": "b) Thực hiện cai nghiện ma túy vượt quá phạm vi chức năng, nhiệm vụ được cơ quan nhà nước có thẩm quyền giao đối với cơ sở cai nghiện ma túy công lập." }
+                  {
+                    "name": "a) Thực hiện cai nghiện ma túy vượt quá phạm vi hoạt động được ghi trong Giấy phép hoạt động cai nghiện ma túy tự nguyện;"
+                  },
+                  {
+                    "name": "b) Thực hiện cai nghiện ma túy vượt quá phạm vi chức năng, nhiệm vụ được cơ quan nhà nước có thẩm quyền giao đối với cơ sở cai nghiện ma túy công lập."
+                  }
                 ]
               },
-              { "name": "5. Phạt tiền từ 40.000.000 đồng đến 50.000.000 đồng đối với hành vi cho mượn, cho thuê, chuyển nhượng hoặc sử dụng Giấy phép hoạt động cai nghiện ma túy tự nguyện vào mục đích khác." },
-              { "name": "6. Phạt tiền từ 50.000.000 đồng đến 75.000.000 đồng đối với hành vi tổ chức cai nghiện ma túy khi chưa được đăng ký, chưa được cấp phép hoạt động hoặc chưa đáp ứng các điều kiện hoạt động theo quy định." },
+              {
+                "name": "5. Phạt tiền từ 40.000.000 đồng đến 50.000.000 đồng đối với hành vi cho mượn, cho thuê, chuyển nhượng hoặc sử dụng Giấy phép hoạt động cai nghiện ma túy tự nguyện vào mục đích khác."
+              },
+              {
+                "name": "6. Phạt tiền từ 50.000.000 đồng đến 75.000.000 đồng đối với hành vi tổ chức cai nghiện ma túy khi chưa được đăng ký, chưa được cấp phép hoạt động hoặc chưa đáp ứng các điều kiện hoạt động theo quy định."
+              },
               {
                 "name": "7. Các biện pháp khắc phục hậu quả:",
                 "children": [
-                  { "name": "a) Buộc thông báo cho Ủy ban nhân dân cấp có thẩm quyền khi người cai nghiện ma túy tự ý chấm dứt hoặc hoàn thành việc sử dụng dịch vụ cai nghiện ma túy do thực hiện hành vi vi phạm quy định tại điểm d khoản 1 Điều này;" },
-                  { "name": "b) Buộc thông báo công khai, minh bạch về loại dịch vụ, quy trình thực hiện dịch vụ, giá dịch vụ cai nghiện ma túy do thực hiện hành vi vi phạm quy định tại điểm b khoản 1 Điều này;" },
-                  { "name": "c) Buộc ký hợp đồng dịch vụ cai nghiện ma túy do thực hiện hành vi vi phạm quy định tại điểm c khoản 1 Điều này”." }
+                  {
+                    "name": "a) Buộc thông báo cho Ủy ban nhân dân cấp có thẩm quyền khi người cai nghiện ma túy tự ý chấm dứt hoặc hoàn thành việc sử dụng dịch vụ cai nghiện ma túy do thực hiện hành vi vi phạm quy định tại điểm d khoản 1 Điều này;"
+                  },
+                  {
+                    "name": "b) Buộc thông báo công khai, minh bạch về loại dịch vụ, quy trình thực hiện dịch vụ, giá dịch vụ cai nghiện ma túy do thực hiện hành vi vi phạm quy định tại điểm b khoản 1 Điều này;"
+                  },
+                  {
+                    "name": "c) Buộc ký hợp đồng dịch vụ cai nghiện ma túy do thực hiện hành vi vi phạm quy định tại điểm c khoản 1 Điều này”."
+                  }
                 ]
               }
             ]
@@ -180,9 +364,1167 @@
         ]
       },
       {
-        "name": "3.2. Hành vi là tội phạm về ma túy",
+        "name": "3.3. Hành vi là tội phạm về ma túy",
         "children": [
-          { "name": "Như file đã gửi trước đó." }
+          {
+            "name": "Điều 247. Tội trồng cây thuốc phiện, cây côca, cây cần sa hoặc các loại cây khác có chứa chất ma túy",
+            "children": [
+              {
+                "name": "1. Người nào trồng cây thuốc phiện, cây côca, cây cần sa hoặc các loại cây khác có chứa chất ma túy do Chính phủ quy định thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 06 tháng đến 03 năm:",
+                "children": [
+                  {
+                    "name": "a) Đã được giáo dục 02 lần và đã được tạo điều kiện ổn định cuộc sống;"
+                  },
+                  {
+                    "name": "b) Đã bị xử phạt vi phạm hành chính về hành vi này hoặc đã bị kết án về tội này, chưa được xóa án tích mà còn vi phạm;"
+                  },
+                  {
+                    "name": "c) Với số lượng từ 500 cây đến dưới 3.000 cây."
+                  }
+                ]
+              },
+              {
+                "name": "2. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 03 năm đến 07 năm:",
+                "children": [
+                  {
+                    "name": "a) Có tổ chức;"
+                  },
+                  {
+                    "name": "b) Với số lượng 3.000 cây trở lên;"
+                  },
+                  {
+                    "name": "c) Tái phạm nguy hiểm."
+                  }
+                ]
+              },
+              {
+                "name": "3. Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 50.000.000 đồng."
+              },
+              {
+                "name": "4. Người nào phạm tội thuộc khoản 1 Điều này, nhưng đã tự nguyện phá bỏ, giao nộp cho cơ quan chức năng có thẩm quyền trước khi thu hoạch, thì có thể được miễn trách nhiệm hình sự."
+              }
+            ]
+          },
+          {
+            "name": "Điều 248. Tội sản xuất trái phép chất ma túy",
+            "children": [
+              {
+                "name": "1. Người nào sản xuất trái phép chất ma túy dưới bất kỳ hình thức nào, thì bị phạt tù từ 03 năm đến 07 năm."
+              },
+              {
+                "name": "2. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 07 năm đến 15 năm:",
+                "children": [
+                  {
+                    "name": "a) Có tổ chức;"
+                  },
+                  {
+                    "name": "b) Phạm tội 02 lần trở lên;"
+                  },
+                  {
+                    "name": "c) Lợi dụng chức vụ, quyền hạn;"
+                  },
+                  {
+                    "name": "d) Lợi dụng danh nghĩa cơ quan, tổ chức;"
+                  },
+                  {
+                    "name": "đ) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 500 gam đến dưới 01 kilôgam;"
+                  },
+                  {
+                    "name": "e) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 05 gam đến dưới 30 gam;"
+                  },
+                  {
+                    "name": "g) Các chất ma túy khác ở thể rắn có khối lượng từ 20 gam đến dưới 100 gam;"
+                  },
+                  {
+                    "name": "h) Các chất ma túy khác ở thể lỏng có thể tích từ 100 mililít đến dưới 200 mililít;"
+                  },
+                  {
+                    "name": "i) Tái phạm nguy hiểm;"
+                  },
+                  {
+                    "name": "k) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm đ đến điểm h khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "3. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 15 năm đến 20 năm:",
+                "children": [
+                  {
+                    "name": "a) Có tính chất chuyên nghiệp;"
+                  },
+                  {
+                    "name": "b) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 kilôgam đến dưới 05 kilôgam;"
+                  },
+                  {
+                    "name": "c) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 30 gam đến dưới 100 gam;"
+                  },
+                  {
+                    "name": "d) Các chất ma túy khác ở thể rắn có khối lượng từ 100 gam đến dưới 300 gam;"
+                  },
+                  {
+                    "name": "đ) Các chất ma túy khác ở thể lỏng có thể tích từ 200 mililít đến dưới 750 mililít;"
+                  },
+                  {
+                    "name": "e) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm b đến điểm đ khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "4. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù 20 năm hoặc tù chung thân:",
+                "children": [
+                  {
+                    "name": "a) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 05 kilôgam đến dưới 30 kilôgam;"
+                  },
+                  {
+                    "name": "b) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 100 gam đến dưới 03 kilôgam;"
+                  },
+                  {
+                    "name": "c) Các chất ma túy khác ở thể rắn có khối lượng từ 300 gam đến dưới 09 kilôgam;"
+                  },
+                  {
+                    "name": "d) Các chất ma túy khác ở thể lỏng có thể tích từ 750 mililít đến dưới 22 lít;"
+                  },
+                  {
+                    "name": "đ) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm d khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "5. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù chung thân hoặc tử hình:",
+                "children": [
+                  {
+                    "name": "a) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng 30 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "b) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng 03 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "c) Các chất ma túy khác ở thể rắn có khối lượng 09 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "d) Các chất ma túy khác ở thể lỏng có thể tích 22 lít trở lên;"
+                  },
+                  {
+                    "name": "đ) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm d khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "6. Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 500.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản."
+              }
+            ]
+          },
+          {
+            "name": "Điều 249. Tội tàng trữ trái phép chất ma túy",
+            "children": [
+              {
+                "name": "1. Người nào tàng trữ trái phép chất ma túy mà không nhằm mục đích mua bán, vận chuyển, sản xuất trái phép chất ma túy thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 03 năm đến 05 năm:",
+                "children": [
+                  {
+                    "name": "a) Đã bị xử phạt vi phạm hành chính về hành vi quy định tại Điều này hoặc đã bị kết án về tội này hoặc một trong các tội quy định tại các điều 248, 250, 251, 252 và 256a của Bộ luật này, chưa được xóa án tích mà còn vi phạm;"
+                  },
+                  {
+                    "name": "b) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 gam đến dưới 500 gam;"
+                  },
+                  {
+                    "name": "c) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 0,1 gam đến dưới 05 gam;"
+                  },
+                  {
+                    "name": "d) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 01 kilôgam đến dưới 10 kilôgam;"
+                  },
+                  {
+                    "name": "đ) Quả thuốc phiện khô có khối lượng từ 05 kilôgam đến dưới 50 kilôgam;"
+                  },
+                  {
+                    "name": "e) Quả thuốc phiện tươi có khối lượng từ 01 kilôgam đến dưới 10 kilôgam;"
+                  },
+                  {
+                    "name": "g) Các chất ma túy khác ở thể rắn có khối lượng từ 01 gam đến dưới 20 gam;"
+                  },
+                  {
+                    "name": "h) Các chất ma túy khác ở thể lỏng có thể tích từ 10 mililít đến dưới 100 mililít;"
+                  },
+                  {
+                    "name": "i) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm b đến điểm h khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "2. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 05 năm đến 10 năm:",
+                "children": [
+                  {
+                    "name": "a) Có tổ chức;"
+                  },
+                  {
+                    "name": "b) Phạm tội 02 lần trở lên;"
+                  },
+                  {
+                    "name": "c) Lợi dụng chức vụ, quyền hạn;"
+                  },
+                  {
+                    "name": "d) Lợi dụng danh nghĩa cơ quan, tổ chức;"
+                  },
+                  {
+                    "name": "đ) Sử dụng người dưới 16 tuổi vào việc phạm tội;"
+                  },
+                  {
+                    "name": "e) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 500 gam đến dưới 01 kilôgam;"
+                  },
+                  {
+                    "name": "g) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 05 gam đến dưới 30 gam;"
+                  },
+                  {
+                    "name": "h) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 10 kilôgam đến dưới 25 kilôgam;"
+                  },
+                  {
+                    "name": "i) Quả thuốc phiện khô có khối lượng từ 50 kilôgam đến dưới 200 kilôgam;"
+                  },
+                  {
+                    "name": "k) Quả thuốc phiện tươi có khối lượng từ 10 kilôgam đến dưới 50 kilôgam;"
+                  },
+                  {
+                    "name": "l) Các chất ma túy khác ở thể rắn có khối lượng từ 20 gam đến dưới 100 gam;"
+                  },
+                  {
+                    "name": "m) Các chất ma túy khác ở thể lỏng có thể tích từ 100 mililít đến dưới 250 mililít;"
+                  },
+                  {
+                    "name": "n) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm e đến điểm m khoản này;"
+                  },
+                  {
+                    "name": "o) Tái phạm nguy hiểm."
+                  }
+                ]
+              },
+              {
+                "name": "3. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 10 năm đến 15 năm:",
+                "children": [
+                  {
+                    "name": "a) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 kilôgam đến dưới 05 kilôgam;"
+                  },
+                  {
+                    "name": "b) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 30 gam đến dưới 100 gam;"
+                  },
+                  {
+                    "name": "c) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 25 kilôgam đến dưới 75 kilôgam;"
+                  },
+                  {
+                    "name": "d) Quả thuốc phiện khô có khối lượng từ 200 kilôgam đến dưới 600 kilôgam;"
+                  },
+                  {
+                    "name": "đ) Quả thuốc phiện tươi có khối lượng từ 50 kilôgam đến dưới 150 kilôgam;"
+                  },
+                  {
+                    "name": "e) Các chất ma túy khác ở thể rắn có khối lượng từ 100 gam đến dưới 300 gam;"
+                  },
+                  {
+                    "name": "g) Các chất ma túy khác ở thể lỏng có thể tích từ 250 mililít đến dưới 750 mililít;"
+                  },
+                  {
+                    "name": "h) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "4. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 15 năm đến 20 năm hoặc tù chung thân:",
+                "children": [
+                  {
+                    "name": "a) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng 05 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "b) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng 100 gam trở lên;"
+                  },
+                  {
+                    "name": "c) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng 75 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "d) Quả thuốc phiện khô có khối lượng 600 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "đ) Quả thuốc phiện tươi có khối lượng 150 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "e) Các chất ma túy khác ở thể rắn có khối lượng 300 gam trở lên;"
+                  },
+                  {
+                    "name": "g) Các chất ma túy khác ở thể lỏng có thể tích 750 mililít trở lên;"
+                  },
+                  {
+                    "name": "h) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "5. Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 500.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản."
+              }
+            ]
+          },
+          {
+            "name": "Điều 250. Tội vận chuyển trái phép chất ma túy",
+            "children": [
+              {
+                "name": "1. Người nào vận chuyển trái phép chất ma túy mà không nhằm mục đích sản xuất, mua bán, tàng trữ trái phép chất ma túy thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 03 năm đến 07 năm:",
+                "children": [
+                  {
+                    "name": "a) Đã bị xử phạt vi phạm hành chính về hành vi quy định tại Điều này hoặc đã bị kết án về tội này hoặc một trong các tội quy định tại các điều 248, 249, 251, 252 và 256a của Bộ luật này, chưa được xóa án tích mà còn vi phạm;"
+                  },
+                  {
+                    "name": "b) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 gam đến dưới 500 gam;"
+                  },
+                  {
+                    "name": "c) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 0,1 gam đến dưới 05 gam;"
+                  },
+                  {
+                    "name": "d) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 01 kilôgam đến dưới 10 kilôgam;"
+                  },
+                  {
+                    "name": "đ) Quả thuốc phiện khô có khối lượng từ 05 kilôgam đến dưới 50 kilôgam;"
+                  },
+                  {
+                    "name": "e) Quả thuốc phiện tươi có khối lượng từ 01 kilôgam đến dưới 10 kilôgam;"
+                  },
+                  {
+                    "name": "g) Các chất ma túy khác ở thể rắn có khối lượng từ 01 gam đến dưới 20 gam;"
+                  },
+                  {
+                    "name": "h) Các chất ma túy khác ở thể lỏng có thể tích từ 10 mililít đến dưới 100 mililít;"
+                  },
+                  {
+                    "name": "i) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm b đến điểm h khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "2. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 07 năm đến 15 năm:",
+                "children": [
+                  {
+                    "name": "a) Có tổ chức;"
+                  },
+                  {
+                    "name": "b) Phạm tội 02 lần trở lên;"
+                  },
+                  {
+                    "name": "c) Lợi dụng chức vụ, quyền hạn;"
+                  },
+                  {
+                    "name": "d) Lợi dụng danh nghĩa cơ quan, tổ chức;"
+                  },
+                  {
+                    "name": "đ) Sử dụng người dưới 16 tuổi vào việc phạm tội;"
+                  },
+                  {
+                    "name": "e) Qua biên giới;"
+                  },
+                  {
+                    "name": "g) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 500 gam đến dưới 01 kilôgam;"
+                  },
+                  {
+                    "name": "h) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 05 gam đến dưới 30 gam;"
+                  },
+                  {
+                    "name": "i) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 10 kilôgam đến dưới 25 kilôgam;"
+                  },
+                  {
+                    "name": "k) Quả thuốc phiện khô có khối lượng từ 50 kilôgam đến dưới 200 kilôgam;"
+                  },
+                  {
+                    "name": "l) Quả thuốc phiện tươi có khối lượng từ 10 kilôgam đến dưới 50 kilôgam;"
+                  },
+                  {
+                    "name": "m) Các chất ma túy khác ở thể rắn có khối lượng từ 20 gam đến dưới 100 gam;"
+                  },
+                  {
+                    "name": "n) Các chất ma túy khác ở thể lỏng có thể tích từ 100 mililít đến dưới 250 mililít;"
+                  },
+                  {
+                    "name": "o) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm g đến điểm n khoản này;"
+                  },
+                  {
+                    "name": "p) Tái phạm nguy hiểm."
+                  }
+                ]
+              },
+              {
+                "name": "3. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 15 năm đến 20 năm:",
+                "children": [
+                  {
+                    "name": "a) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 kilôgam đến dưới 05 kilôgam;"
+                  },
+                  {
+                    "name": "b) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 30 gam đến dưới 100 gam;"
+                  },
+                  {
+                    "name": "c) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 25 kilôgam đến dưới 75 kilôgam;"
+                  },
+                  {
+                    "name": "d) Quả thuốc phiện khô có khối lượng từ 200 kilôgam đến dưới 600 kilôgam;"
+                  },
+                  {
+                    "name": "đ) Quả thuốc phiện tươi có khối lượng từ 50 kilôgam đến dưới 150 kilôgam;"
+                  },
+                  {
+                    "name": "e) Các chất ma túy khác ở thể rắn có khối lượng từ 100 gam đến dưới 300 gam;"
+                  },
+                  {
+                    "name": "g) Các chất ma túy khác ở thể lỏng có thể tích từ 250 mililít đến dưới 750 mililít;"
+                  },
+                  {
+                    "name": "h) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "4. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù 20 năm hoặc tù chung thân:",
+                "children": [
+                  {
+                    "name": "a) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng 05 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "b) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng 100 gam trở lên;"
+                  },
+                  {
+                    "name": "c) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng 75 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "d) Quả thuốc phiện khô có khối lượng 600 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "đ) Quả thuốc phiện tươi có khối lượng 150 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "e) Các chất ma túy khác ở thể rắn có khối lượng 300 gam trở lên;"
+                  },
+                  {
+                    "name": "g) Các chất ma túy khác ở thể lỏng có thể tích 750 mililít trở lên;"
+                  },
+                  {
+                    "name": "h) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "5. Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 500.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản."
+              }
+            ]
+          },
+          {
+            "name": "Điều 251. Tội mua bán trái phép chất ma túy",
+            "children": [
+              {
+                "name": "1. Người nào mua bán trái phép chất ma túy, thì bị phạt tù từ 03 năm đến 07 năm."
+              },
+              {
+                "name": "2. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 07 năm đến 15 năm:",
+                "children": [
+                  {
+                    "name": "a) Có tổ chức;"
+                  },
+                  {
+                    "name": "b) Phạm tội 02 lần trở lên;"
+                  },
+                  {
+                    "name": "c) Đối với 02 người trở lên;"
+                  },
+                  {
+                    "name": "d) Lợi dụng chức vụ, quyền hạn;"
+                  },
+                  {
+                    "name": "đ) Lợi dụng danh nghĩa cơ quan, tổ chức;"
+                  },
+                  {
+                    "name": "e) Sử dụng người dưới 16 tuổi vào việc phạm tội hoặc bán ma túy cho người dưới 16 tuổi;"
+                  },
+                  {
+                    "name": "g) Qua biên giới;"
+                  },
+                  {
+                    "name": "h) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 500 gam đến dưới 01 kilôgam;"
+                  },
+                  {
+                    "name": "i) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 05 gam đến dưới 30 gam;"
+                  },
+                  {
+                    "name": "k) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 10 kilôgam đến dưới 25 kilôgam;"
+                  },
+                  {
+                    "name": "l) Quả thuốc phiện khô có khối lượng từ 50 kilôgam đến dưới 200 kilôgam;"
+                  },
+                  {
+                    "name": "m) Quả thuốc phiện tươi có khối lượng từ 10 kilôgam đến dưới 50 kilôgam;"
+                  },
+                  {
+                    "name": "n) Các chất ma túy khác ở thể rắn có khối lượng từ 20 gam đến dưới 100 gam;"
+                  },
+                  {
+                    "name": "o) Các chất ma túy khác ở thể lỏng có thể tích từ 100 mililít đến dưới 250 mililít;"
+                  },
+                  {
+                    "name": "p) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm h đến điểm o khoản này;"
+                  },
+                  {
+                    "name": "q) Tái phạm nguy hiểm."
+                  }
+                ]
+              },
+              {
+                "name": "3. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 15 năm đến 20 năm:",
+                "children": [
+                  {
+                    "name": "a) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 kilôgam đến dưới 05 kilôgam;"
+                  },
+                  {
+                    "name": "b) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 30 gam đến dưới 100 gam;"
+                  },
+                  {
+                    "name": "c) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 25 kilôgam đến dưới 75 kilôgam;"
+                  },
+                  {
+                    "name": "d) Quả thuốc phiện khô có khối lượng từ 200 kilôgam đến dưới 600 kilôgam;"
+                  },
+                  {
+                    "name": "đ) Quả thuốc phiện tươi có khối lượng từ 50 kilôgam đến dưới 150 kilôgam;"
+                  },
+                  {
+                    "name": "e) Các chất ma túy khác ở thể rắn có khối lượng từ 100 gam đến dưới 300 gam;"
+                  },
+                  {
+                    "name": "g) Các chất ma túy khác ở thể lỏng có thể tích từ 250 mililít đến dưới 750 mililít;"
+                  },
+                  {
+                    "name": "h) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "4. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù 20 năm hoặc tù chung thân:",
+                "children": [
+                  {
+                    "name": "a) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 05 kilôgam đến dưới 30 kilôgam;"
+                  },
+                  {
+                    "name": "b) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 100 gam đến dưới 03 kilôgam;"
+                  },
+                  {
+                    "name": "c) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 75 kilôgam đến dưới 150 kilôgam;"
+                  },
+                  {
+                    "name": "d) Quả thuốc phiện khô có khối lượng từ 600 kilôgam đến dưới 1.200 kilôgam;"
+                  },
+                  {
+                    "name": "đ) Quả thuốc phiện tươi có khối lượng từ 150 kilôgam đến dưới 300 kilôgam;"
+                  },
+                  {
+                    "name": "e) Các chất ma túy khác ở thể rắn có khối lượng từ 300 gam đến dưới 09 kilôgam;"
+                  },
+                  {
+                    "name": "g) Các chất ma túy khác ở thể lỏng có thể tích từ 750 mililít đến dưới 22 lít;"
+                  },
+                  {
+                    "name": "h) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "5. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù chung thân hoặc tử hình:",
+                "children": [
+                  {
+                    "name": "a) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng 30 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "b) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng 03 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "c) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng 150 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "d) Quả thuốc phiện khô có khối lượng 1.200 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "đ) Quả thuốc phiện tươi có khối lượng 300 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "e) Các chất ma túy khác ở thể rắn có khối lượng 09 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "g) Các chất ma túy khác ở thể lỏng có thể tích 22 lít trở lên;"
+                  },
+                  {
+                    "name": "h) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "6. Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 500.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản."
+              }
+            ]
+          },
+          {
+            "name": "Điều 252. Tội chiếm đoạt chất ma túy",
+            "children": [
+              {
+                "name": "1. Người nào chiếm đoạt chất ma túy dưới bất kỳ hình thức nào thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 01 năm đến 05 năm:",
+                "children": [
+                  {
+                    "name": "a) Đã bị xử phạt vi phạm hành chính về hành vi quy định tại Điều này hoặc đã bị kết án về tội này hoặc một trong các tội quy định tại các điều 248, 249, 250, 251 và 256a của Bộ luật này, chưa được xóa án tích mà còn vi phạm;"
+                  },
+                  {
+                    "name": "b) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 gam đến dưới 500 gam;"
+                  },
+                  {
+                    "name": "c) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 0,1 gam đến dưới 05 gam;"
+                  },
+                  {
+                    "name": "d) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 01 kilôgam đến dưới 10 kilôgam;"
+                  },
+                  {
+                    "name": "đ) Quả thuốc phiện khô có khối lượng từ 05 kilôgam đến dưới 50 kilôgam;"
+                  },
+                  {
+                    "name": "e) Quả thuốc phiện tươi có khối lượng từ 01 kilôgam đến dưới 10 kilôgam;"
+                  },
+                  {
+                    "name": "g) Các chất ma túy khác ở thể rắn có khối lượng từ 01 gam đến dưới 20 gam;"
+                  },
+                  {
+                    "name": "h) Các chất ma túy khác ở thể lỏng có thể tích từ 10 mililít đến dưới 100 mililít;"
+                  },
+                  {
+                    "name": "i) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm b đến điểm h khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "2. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 05 năm đến 10 năm:",
+                "children": [
+                  {
+                    "name": "a) Có tổ chức;"
+                  },
+                  {
+                    "name": "b) Phạm tội 02 lần trở lên;"
+                  },
+                  {
+                    "name": "c) Lợi dụng chức vụ, quyền hạn;"
+                  },
+                  {
+                    "name": "d) Lợi dụng danh nghĩa cơ quan, tổ chức;"
+                  },
+                  {
+                    "name": "đ) Sử dụng người dưới 16 tuổi vào việc phạm tội;"
+                  },
+                  {
+                    "name": "e) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 500 gam đến dưới 01 kilôgam;"
+                  },
+                  {
+                    "name": "g) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 05 gam đến dưới 30 gam;"
+                  },
+                  {
+                    "name": "h) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 10 kilôgam đến dưới 25 kilôgam;"
+                  },
+                  {
+                    "name": "i) Quả thuốc phiện khô có khối lượng từ 50 kilôgam đến dưới 200 kilôgam;"
+                  },
+                  {
+                    "name": "k) Quả thuốc phiện tươi có khối lượng từ 10 kilôgam đến dưới 50 kilôgam;"
+                  },
+                  {
+                    "name": "l) Các chất ma túy khác ở thể rắn có khối lượng từ 20 gam đến dưới 100 gam;"
+                  },
+                  {
+                    "name": "m) Các chất ma túy khác ở thể lỏng có thể tích từ 100 mililít đến dưới 250 mililít;"
+                  },
+                  {
+                    "name": "n) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm e đến điểm m khoản này;"
+                  },
+                  {
+                    "name": "o) Tái phạm nguy hiểm."
+                  }
+                ]
+              },
+              {
+                "name": "3. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 10 năm đến 15 năm:",
+                "children": [
+                  {
+                    "name": "a) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng từ 01 kilôgam đến dưới 05 kilôgam;"
+                  },
+                  {
+                    "name": "b) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng từ 30 gam đến dưới 100 gam;"
+                  },
+                  {
+                    "name": "c) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng từ 25 kilôgam đến dưới 75 kilôgam;"
+                  },
+                  {
+                    "name": "d) Quả thuốc phiện khô có khối lượng từ 200 kilôgam đến dưới 600 kilôgam;"
+                  },
+                  {
+                    "name": "đ) Quả thuốc phiện tươi có khối lượng từ 50 kilôgam đến dưới 150 kilôgam;"
+                  },
+                  {
+                    "name": "e) Các chất ma túy khác ở thể rắn có khối lượng từ 100 gam đến dưới 300 gam;"
+                  },
+                  {
+                    "name": "g) Các chất ma túy khác ở thể lỏng có thể tích từ 250 mililít đến dưới 750 mililít;"
+                  },
+                  {
+                    "name": "h) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "4. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 15 năm đến 20 năm hoặc tù chung thân:",
+                "children": [
+                  {
+                    "name": "a) Nhựa thuốc phiện, nhựa cần sa hoặc cao côca có khối lượng 05 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "b) Heroine, Cocaine, Methamphetamine, Amphetamine, Ketamine, Fentanyl, MDMA hoặc XLR-11 có khối lượng 100 gam trở lên;"
+                  },
+                  {
+                    "name": "c) Lá cây côca; lá khát (lá cây Catha edulis); lá, rễ, thân, cành, hoa, quả của cây cần sa hoặc bộ phận của cây khác có chứa chất ma túy do Chính phủ quy định có khối lượng 75 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "d) Quả thuốc phiện khô có khối lượng 600 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "đ) Quả thuốc phiện tươi có khối lượng 150 kilôgam trở lên;"
+                  },
+                  {
+                    "name": "e) Các chất ma túy khác ở thể rắn có khối lượng 300 gam trở lên;"
+                  },
+                  {
+                    "name": "g) Các chất ma túy khác ở thể lỏng có thể tích 750 mililít trở lên;"
+                  },
+                  {
+                    "name": "h) Có 02 chất ma túy trở lên mà tổng khối lượng hoặc thể tích của các chất đó tương đương với khối lượng hoặc thể tích chất ma túy quy định tại một trong các điểm từ điểm a đến điểm g khoản này."
+                  }
+                ]
+              },
+              {
+                "name": "5. Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 500.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản."
+              }
+            ]
+          },
+          {
+            "name": "Điều 253. Tội tàng trữ, vận chuyển, mua bán hoặc chiếm đoạt tiền chất dùng vào việc sản xuất trái phép chất ma túy",
+            "children": [
+              {
+                "name": "1. Người nào tàng trữ, vận chuyển, mua bán hoặc chiếm đoạt tiền chất dùng vào việc sản xuất trái phép chất ma túy thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 01 năm đến 06 năm:",
+                "children": [
+                  {
+                    "name": "a) Đã bị xử phạt vi phạm hành chính về một trong các hành vi quy định tại Điều này hoặc đã bị kết án về tội này, chưa được xóa án tích mà còn vi phạm;"
+                  },
+                  {
+                    "name": "b) Tiền chất ở thể rắn có khối lượng từ 50 gam đến dưới 200 gam;"
+                  },
+                  {
+                    "name": "c) Tiền chất ở thể lỏng có thể tích từ 75 mililít đến dưới 300 mililít."
+                  }
+                ]
+              },
+              {
+                "name": "2. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 06 năm đến 13 năm:",
+                "children": [
+                  {
+                    "name": "a) Có tổ chức;"
+                  },
+                  {
+                    "name": "b) Phạm tội 02 lần trở lên;"
+                  },
+                  {
+                    "name": "c) Lợi dụng chức vụ, quyền hạn;"
+                  },
+                  {
+                    "name": "d) Lợi dụng danh nghĩa cơ quan, tổ chức;"
+                  },
+                  {
+                    "name": "đ) Tiền chất ở thể rắn có khối lượng từ 200 gam đến dưới 500 gam;"
+                  },
+                  {
+                    "name": "e) Tiền chất ở thể lỏng có thể tích từ 300 mililít đến dưới 750 mililít;"
+                  },
+                  {
+                    "name": "g) Sử dụng người dưới 16 tuổi vào việc phạm tội;"
+                  },
+                  {
+                    "name": "h) Vận chuyển, mua bán qua biên giới;"
+                  },
+                  {
+                    "name": "i) Tái phạm nguy hiểm."
+                  }
+                ]
+              },
+              {
+                "name": "3. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 13 năm đến 20 năm:",
+                "children": [
+                  {
+                    "name": "a) Tiền chất ở thể rắn có khối lượng từ 500 gam đến dưới 1.200 gam;"
+                  },
+                  {
+                    "name": "b) Tiền chất ở thể lỏng có thể tích từ 750 mililít đến dưới 1.800 mililít."
+                  }
+                ]
+              },
+              {
+                "name": "4. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù 20 năm hoặc tù chung thân:",
+                "children": [
+                  {
+                    "name": "a) Tiền chất ở thể rắn có khối lượng 1.200 gam trở lên;"
+                  },
+                  {
+                    "name": "b) Tiền chất ở thể lỏng có thể tích 1.800 mililít trở lên."
+                  }
+                ]
+              },
+              {
+                "name": "5. Trường hợp phạm tội có cả tiền chất ở thể rắn và tiền chất ở thể lỏng thì được quy đổi để làm căn cứ truy cứu trách nhiệm hình sự, với tỷ lệ 01 gam tiền chất ở thể rắn tương đương với 1,5 mililít tiền chất ở thể lỏng. Sau khi quy đổi, số lượng tiền chất thuộc khoản nào, thì người thực hiện hành vi phạm tội bị truy cứu trách nhiệm hình sự theo khoản đó."
+              },
+              {
+                "name": "6. Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 50.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản."
+              }
+            ]
+          },
+          {
+            "name": "Điều 254. Tội sản xuất, tàng trữ, vận chuyển hoặc mua bán phương tiện, dụng cụ dùng vào việc sản xuất hoặc sử dụng trái phép chất ma túy",
+            "children": [
+              {
+                "name": "1. Người nào sản xuất, tàng trữ, vận chuyển hoặc mua bán phương tiện, dụng cụ dùng vào việc sản xuất hoặc sử dụng trái phép chất ma túy thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 01 năm đến 05 năm:",
+                "children": [
+                  {
+                    "name": "a) Đã bị xử phạt vi phạm hành chính về một trong các hành vi này hoặc đã bị kết án về tội này, chưa được xóa án tích mà còn vi phạm;"
+                  },
+                  {
+                    "name": "b) Có số lượng từ 06 đơn vị đến 19 đơn vị dụng cụ, phương tiện cùng loại hoặc khác loại."
+                  }
+                ]
+              },
+              {
+                "name": "2. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 05 năm đến 10 năm:",
+                "children": [
+                  {
+                    "name": "a) Có tổ chức;"
+                  },
+                  {
+                    "name": "b) Phạm tội 02 lần trở lên;"
+                  },
+                  {
+                    "name": "c) Lợi dụng chức vụ, quyền hạn;"
+                  },
+                  {
+                    "name": "d) Lợi dụng danh nghĩa cơ quan, tổ chức;"
+                  },
+                  {
+                    "name": "đ) Có số lượng 20 đơn vị dụng cụ, phương tiện cùng loại hoặc khác loại trở lên;"
+                  },
+                  {
+                    "name": "e) Vận chuyển, mua bán qua biên giới;"
+                  },
+                  {
+                    "name": "g) Sử dụng người dưới 16 tuổi vào việc phạm tội;"
+                  },
+                  {
+                    "name": "h) Tái phạm nguy hiểm."
+                  }
+                ]
+              },
+              {
+                "name": "3. Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 500.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản."
+              }
+            ]
+          },
+          {
+            "name": "Điều 255. Tội tổ chức sử dụng trái phép chất ma túy",
+            "children": [
+              {
+                "name": "1. Người nào tổ chức sử dụng trái phép chất ma túy dưới bất kỳ hình thức nào, thì bị phạt tù từ 03 năm đến 07 năm."
+              },
+              {
+                "name": "2. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 07 năm đến 15 năm:",
+                "children": [
+                  {
+                    "name": "a) Phạm tội 02 lần trở lên;"
+                  },
+                  {
+                    "name": "b) Đối với 02 người trở lên;"
+                  },
+                  {
+                    "name": "c) Đối với người từ đủ 13 tuổi đến dưới 18 tuổi;"
+                  },
+                  {
+                    "name": "d) Đối với phụ nữ mà biết là có thai;"
+                  },
+                  {
+                    "name": "đ) Đối với người đang cai nghiện;"
+                  },
+                  {
+                    "name": "e) Gây tổn hại cho sức khỏe của người khác mà tỷ lệ tổn thương cơ thể từ 31% đến 60%;"
+                  },
+                  {
+                    "name": "g) Gây bệnh nguy hiểm cho người khác;"
+                  },
+                  {
+                    "name": "h) Tái phạm nguy hiểm."
+                  }
+                ]
+              },
+              {
+                "name": "3. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 15 năm đến 20 năm:",
+                "children": [
+                  {
+                    "name": "a) Gây tổn hại cho sức khỏe của người khác mà tỷ lệ tổn thương cơ thể từ 61% trở lên hoặc gây chết người;"
+                  },
+                  {
+                    "name": "b) Gây tổn hại cho sức khỏe của 02 người trở lên mà tỷ lệ tổn thương cơ thể của mỗi người từ 31% đến 60%;"
+                  },
+                  {
+                    "name": "c) Gây bệnh nguy hiểm cho 02 người trở lên;"
+                  },
+                  {
+                    "name": "d) Đối với người dưới 13 tuổi."
+                  }
+                ]
+              },
+              {
+                "name": "4. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù 20 năm hoặc tù chung thân:",
+                "children": [
+                  {
+                    "name": "a) Gây tổn hại cho sức khỏe của 02 người trở lên mà tỷ lệ tổn thương cơ thể của mỗi người 61% trở lên;"
+                  },
+                  {
+                    "name": "b) Làm chết 02 người trở lên."
+                  }
+                ]
+              },
+              {
+                "name": "5. Người phạm tội còn có thể bị phạt tiền từ 50.000.000 đồng đến 500.000.000 đồng, phạt quản chế, cấm cư trú từ 01 năm đến 05 năm hoặc tịch thu một phần hoặc toàn bộ tài sản."
+              }
+            ]
+          },
+          {
+            "name": "Điều 256. Tội chứa chấp việc sử dụng trái phép chất ma túy",
+            "children": [
+              {
+                "name": "1. Người nào cho thuê, cho mượn địa điểm hoặc có bất kỳ hành vi nào khác chứa chấp việc sử dụng trái phép chất ma túy, nếu không thuộc trường hợp quy định tại Điều 255 của Bộ luật này, thì bị phạt tù từ 02 năm đến 07 năm."
+              },
+              {
+                "name": "2. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 07 năm đến 15 năm:",
+                "children": [
+                  {
+                    "name": "a) Lợi dụng chức vụ, quyền hạn;"
+                  },
+                  {
+                    "name": "b) Phạm tội 02 lần trở lên;"
+                  },
+                  {
+                    "name": "c) Đối với người dưới 16 tuổi;"
+                  },
+                  {
+                    "name": "d) Đối với 02 người trở lên;"
+                  },
+                  {
+                    "name": "đ) Tái phạm nguy hiểm."
+                  }
+                ]
+              },
+              {
+                "name": "3. Người phạm tội còn có thể bị phạt tiền từ 50.000.000 đồng đến 200.000.000 đồng hoặc tịch thu một phần hoặc toàn bộ tài sản."
+              }
+            ]
+          },
+          {
+            "name": "Điều 256a. Tội sử dụng trái phép chất ma túy",
+            "children": [
+              {
+                "name": "1. Người nào sử dụng trái phép chất ma túy thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 02 năm đến 03 năm:",
+                "children": [
+                  {
+                    "name": "a) Đang trong thời hạn cai nghiện ma túy hoặc điều trị nghiện các chất ma túy bằng thuốc thay thế theo quy định của Luật Phòng, chống ma túy;"
+                  },
+                  {
+                    "name": "b) Đang trong thời hạn quản lý sau cai nghiện ma túy theo quy định của Luật Phòng, chống ma túy;"
+                  },
+                  {
+                    "name": "c) Đang trong thời hạn 02 năm kể từ ngày hết thời hạn quản lý sau cai nghiện ma túy và trong thời hạn quản lý người sử dụng trái phép chất ma túy theo quy định của Luật Phòng, chống ma túy;"
+                  },
+                  {
+                    "name": "d) Đang trong thời hạn 02 năm kể từ khi tự ý chấm dứt cai nghiện ma túy tự nguyện hoặc điều trị nghiện các chất ma túy bằng thuốc thay thế theo quy định của Luật Phòng, chống ma túy."
+                  }
+                ]
+              },
+              {
+                "name": "2. Tái phạm về tội này thì bị phạt tù từ 03 năm đến 05 năm."
+              }
+            ]
+          },
+          {
+            "name": "Điều 257. Tội cưỡng bức người khác sử dụng trái phép chất ma túy",
+            "children": [
+              {
+                "name": "1. Người nào dùng vũ lực, đe dọa dùng vũ lực hoặc dùng thủ đoạn khác uy hiếp tinh thần của người khác để buộc họ phải sử dụng trái phép chất ma túy trái với ý muốn của họ, thì bị phạt tù từ 02 năm đến 07 năm."
+              },
+              {
+                "name": "2. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 07 năm đến 15 năm:",
+                "children": [
+                  {
+                    "name": "a) Có tổ chức;"
+                  },
+                  {
+                    "name": "b) Phạm tội 02 lần trở lên;"
+                  },
+                  {
+                    "name": "c) Vì động cơ đê hèn hoặc vì tư lợi;"
+                  },
+                  {
+                    "name": "d) Đối với người từ đủ 13 tuổi đến dưới 18 tuổi;"
+                  },
+                  {
+                    "name": "đ) Đối với phụ nữ mà biết là có thai;"
+                  },
+                  {
+                    "name": "e) Đối với 02 người trở lên;"
+                  },
+                  {
+                    "name": "g) Đối với người đang cai nghiện;"
+                  },
+                  {
+                    "name": "h) Gây tổn hại cho sức khỏe của người khác mà tỷ lệ tổn thương cơ thể từ 31% đến 60%;"
+                  },
+                  {
+                    "name": "i) Gây bệnh nguy hiểm cho người khác;"
+                  },
+                  {
+                    "name": "k) Tái phạm nguy hiểm."
+                  }
+                ]
+              },
+              {
+                "name": "3. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 15 năm đến 20 năm:",
+                "children": [
+                  {
+                    "name": "a) Gây tổn hại cho sức khỏe của người khác mà tỷ lệ tổn thương cơ thể từ 61% trở lên hoặc gây chết người;"
+                  },
+                  {
+                    "name": "b) Gây bệnh nguy hiểm cho 02 người trở lên;"
+                  },
+                  {
+                    "name": "c) Đối với người dưới 13 tuổi."
+                  }
+                ]
+              },
+              {
+                "name": "4. Phạm tội trong trường hợp làm chết 02 người trở lên, thì bị phạt tù 20 năm hoặc tù chung thân."
+              },
+              {
+                "name": "5. Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 100.000.000 đồng."
+              }
+            ]
+          },
+          {
+            "name": "Điều 258. Tội lôi kéo người khác sử dụng trái phép chất ma túy",
+            "children": [
+              {
+                "name": "1. Người nào rủ rê, dụ dỗ, xúi giục hoặc bằng các thủ đoạn khác nhằm lôi kéo người khác sử dụng trái phép chất ma túy, thì bị phạt tù từ 01 năm đến 05 năm."
+              },
+              {
+                "name": "2. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 05 năm đến 10 năm:",
+                "children": [
+                  {
+                    "name": "a) Có tổ chức;"
+                  },
+                  {
+                    "name": "b) Phạm tội 02 lần trở lên;"
+                  },
+                  {
+                    "name": "c) Vì động cơ đê hèn hoặc vì tư lợi;"
+                  },
+                  {
+                    "name": "d) Đối với người từ đủ 13 tuổi đến dưới 18 tuổi;"
+                  },
+                  {
+                    "name": "đ) Đối với phụ nữ mà biết là có thai;"
+                  },
+                  {
+                    "name": "e) Đối với 02 người trở lên;"
+                  },
+                  {
+                    "name": "g) Đối với người đang cai nghiện;"
+                  },
+                  {
+                    "name": "h) Gây tổn hại cho sức khỏe của người khác mà tỷ lệ tổn thương cơ thể từ 31% đến 60%;"
+                  },
+                  {
+                    "name": "i) Gây bệnh nguy hiểm cho người khác;"
+                  },
+                  {
+                    "name": "k) Tái phạm nguy hiểm."
+                  }
+                ]
+              },
+              {
+                "name": "3. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 10 năm đến 15 năm:",
+                "children": [
+                  {
+                    "name": "a) Gây tổn hại cho sức khỏe của người khác mà tỷ lệ tổn thương cơ thể 61% trở lên hoặc gây chết người;"
+                  },
+                  {
+                    "name": "b) Gây bệnh nguy hiểm cho 02 người trở lên;"
+                  },
+                  {
+                    "name": "c) Đối với người dưới 13 tuổi."
+                  }
+                ]
+              },
+              {
+                "name": "4. Phạm tội trong trường hợp gây chết 02 người trở lên, thì bị phạt tù từ 15 năm đến 20 năm hoặc tù chung thân."
+              },
+              {
+                "name": "5. Người phạm tội còn có thể bị phạt tiền từ 5.000.000 đồng đến 100.000.000 đồng."
+              }
+            ]
+          },
+          {
+            "name": "Điều 259. Tội vi phạm quy định về quản lý chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần",
+            "children": [
+              {
+                "name": "1. Người nào có trách nhiệm trong quản lý chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần mà thực hiện một trong các hành vi sau đây, đã bị xử lý kỷ luật hoặc xử phạt vi phạm hành chính về một trong các hành vi quy định tại Điều này hoặc đã bị kết án về một trong các tội quy định tại Chương XX của Bộ luật này, chưa được xóa án tích mà còn vi phạm, thì bị phạt tiền từ 10.000.000 đồng đến 100.000.000 đồng hoặc phạt tù từ 01 năm đến 05 năm:",
+                "children": [
+                  {
+                    "name": "a) Vi phạm quy định về xuất khẩu, nhập khẩu, tạm nhập, tái xuất, quá cảnh chất ma túy, tiền chất, thuốc gây nghiện hoặc thuốc hướng thần;"
+                  },
+                  {
+                    "name": "b) Vi phạm quy định về nghiên cứu, giám định, sản xuất, bảo quản chất ma túy, tiền chất, thuốc gây nghiện hoặc thuốc hướng thần;"
+                  },
+                  {
+                    "name": "c) Vi phạm quy định về giao nhận, vận chuyển chất ma túy, tiền chất, thuốc gây nghiện hoặc thuốc hướng thần;"
+                  },
+                  {
+                    "name": "d) Vi phạm quy định về phân phối, mua bán, trao đổi chất ma túy, tiền chất, thuốc gây nghiện hoặc thuốc hướng thần;"
+                  },
+                  {
+                    "name": "đ) Vi phạm quy định về quản lý, kiểm soát, lưu giữ chất ma túy, tiền chất, thuốc gây nghiện hoặc thuốc hướng thần tại khu vực cửa khẩu, khu vực biên giới, trên biển;"
+                  },
+                  {
+                    "name": "e) Vi phạm quy định về cấp phát, cho phép sử dụng chất ma túy, thuốc gây nghiện hoặc thuốc hướng thần."
+                  }
+                ]
+              },
+              {
+                "name": "2. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 05 năm đến 10 năm:",
+                "children": [
+                  {
+                    "name": "a) Có tổ chức;"
+                  },
+                  {
+                    "name": "b) Phạm tội 02 lần trở lên;"
+                  },
+                  {
+                    "name": "c) Tái phạm nguy hiểm."
+                  }
+                ]
+              },
+              {
+                "name": "3. Người phạm tội còn có thể bị phạt tiền từ 10.000.000 đồng đến 50.000.000 đồng, cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định từ 01 năm đến 05 năm."
+              }
+            ]
+          }
         ]
       }
     ]
@@ -196,23 +1538,41 @@
           {
             "name": "- Theo quy định tại Điều 29 Luật Phòng, chống ma túy 2025, quy trình cai nghiện bao gồm 05 giai đoạn sau đây:",
             "children": [
-              { "name": "Giai đoạn 1: Tiếp nhận, phân loại." },
-              { "name": "Giai đoạn 2: Điều trị cắt cơn, giải độc, rối loạn tâm thần và các bệnh lý khác." },
-              { "name": "Giai đoạn 3: Giáo dục, tư vấn, phục hồi hành vi, nhân cách." },
-              { "name": "Giai đoạn 4: Lao động trị liệu, học nghề." },
-              { "name": "Giai đoạn 5: Chuẩn bị tái hòa nhập cộng đồng." }
+              {
+                "name": "Giai đoạn 1: Tiếp nhận, phân loại."
+              },
+              {
+                "name": "Giai đoạn 2: Điều trị cắt cơn, giải độc, rối loạn tâm thần và các bệnh lý khác."
+              },
+              {
+                "name": "Giai đoạn 3: Giáo dục, tư vấn, phục hồi hành vi, nhân cách."
+              },
+              {
+                "name": "Giai đoạn 4: Lao động trị liệu, học nghề."
+              },
+              {
+                "name": "Giai đoạn 5: Chuẩn bị tái hòa nhập cộng đồng."
+              }
             ]
           },
-          { "name": "Lưu ý: Luật Phòng, chống ma túy 2025 quy định thời hạn cai nghiện là 24 tháng đối với người cai nghiện lần đầu và 36 tháng đối với người tái nghiện từ lần thứ hai trở lên." },
+          {
+            "name": "Lưu ý: Luật Phòng, chống ma túy 2025 quy định thời hạn cai nghiện là 24 tháng đối với người cai nghiện lần đầu và 36 tháng đối với người tái nghiện từ lần thứ hai trở lên."
+          },
           {
             "name": "- Điều 43 Luật Phòng, chống ma túy 2025 quy định về biện pháp can thiệp giảm tác hại đối với người sử dụng trái phép chất ma túy và người nghiện ma túy như sau:",
             "children": [
-              { "name": "“1. Biện pháp can thiệp giảm tác hại đối với người sử dụng trái phép chất ma túy và người nghiện ma túy là biện pháp làm giảm tác hại liên quan đến hành vi sử dụng trái phép chất ma túy gây ra cho bản thân, gia đình và cộng đồng." },
+              {
+                "name": "“1. Biện pháp can thiệp giảm tác hại đối với người sử dụng trái phép chất ma túy và người nghiện ma túy là biện pháp làm giảm tác hại liên quan đến hành vi sử dụng trái phép chất ma túy gây ra cho bản thân, gia đình và cộng đồng."
+              },
               {
                 "name": "2. Biện pháp can thiệp giảm tác hại đối với người sử dụng trái phép chất ma túy và người nghiện ma túy bao gồm:",
                 "children": [
-                  { "name": "a) Điều trị nghiện bằng thuốc thay thế;" },
-                  { "name": "b) Các biện pháp khác theo quy định của Chính phủ.”" }
+                  {
+                    "name": "a) Điều trị nghiện bằng thuốc thay thế;"
+                  },
+                  {
+                    "name": "b) Các biện pháp khác theo quy định của Chính phủ.”"
+                  }
                 ]
               }
             ]
@@ -234,10 +1594,18 @@
           {
             "name": "Theo quy định tại Điều 6 Luật Phòng, chống ma túy 2025, trách nhiệm được xác lập như sau:",
             "children": [
-              { "name": "- Tuyên truyền, giáo dục thành viên gia đình về tác hại của ma túy và chấp hành pháp luật." },
-              { "name": "- Quản lý, ngăn chặn thành viên trong gia đình vi phạm pháp luật về phòng, chống ma túy." },
-              { "name": "- Cung cấp kịp thời thông tin về tội phạm và tệ nạn ma túy cho cơ quan Công an hoặc cơ quan có thẩm quyền." },
-              { "name": "- Hợp tác với cơ quan chức năng trong việc quản lý người sử dụng trái phép chất ma túy và hỗ trợ hoạt động cai nghiện, điều trị nghiện." }
+              {
+                "name": "- Tuyên truyền, giáo dục thành viên gia đình về tác hại của ma túy và chấp hành pháp luật."
+              },
+              {
+                "name": "- Quản lý, ngăn chặn thành viên trong gia đình vi phạm pháp luật về phòng, chống ma túy."
+              },
+              {
+                "name": "- Cung cấp kịp thời thông tin về tội phạm và tệ nạn ma túy cho cơ quan Công an hoặc cơ quan có thẩm quyền."
+              },
+              {
+                "name": "- Hợp tác với cơ quan chức năng trong việc quản lý người sử dụng trái phép chất ma túy và hỗ trợ hoạt động cai nghiện, điều trị nghiện."
+              }
             ]
           }
         ]
@@ -245,23 +1613,37 @@
       {
         "name": "5.2. Cơ quan nhà nước",
         "children": [
-          { "name": "- Tổ chức thực hiện chương trình giáo dục về phòng, chống ma túy; phổ biến, giáo dục pháp luật về phòng, chống ma túy cho học sinh, sinh viên, học viên; quản lý chặt chẽ, ngăn chặn học sinh, sinh viên, học viên vi phạm pháp luật về phòng, chống ma túy." },
-          { "name": "- Phối hợp với gia đình, cơ quan, tổ chức và chính quyền địa phương để quản lý, giáo dục học sinh, sinh viên, học viên về phòng, chống ma túy." },
-          { "name": "- Phối hợp với cơ quan, tổ chức, cá nhân có thẩm quyền tổ chức xét nghiệm chất ma túy trong cơ thể khi cần thiết để phát hiện học sinh, sinh viên, học viên sử dụng trái phép chất ma túy." }
+          {
+            "name": "- Tổ chức thực hiện chương trình giáo dục về phòng, chống ma túy; phổ biến, giáo dục pháp luật về phòng, chống ma túy cho học sinh, sinh viên, học viên; quản lý chặt chẽ, ngăn chặn học sinh, sinh viên, học viên vi phạm pháp luật về phòng, chống ma túy."
+          },
+          {
+            "name": "- Phối hợp với gia đình, cơ quan, tổ chức và chính quyền địa phương để quản lý, giáo dục học sinh, sinh viên, học viên về phòng, chống ma túy."
+          },
+          {
+            "name": "- Phối hợp với cơ quan, tổ chức, cá nhân có thẩm quyền tổ chức xét nghiệm chất ma túy trong cơ thể khi cần thiết để phát hiện học sinh, sinh viên, học viên sử dụng trái phép chất ma túy."
+          }
         ]
       },
       {
         "name": "5.3. Cơ quan báo chí, truyền thông",
         "children": [
-          { "name": "Cơ quan báo chí, truyền thông có trách nhiệm phối hợp với cơ quan, tổ chức có liên quan tuyên truyền chủ trương, chính sách, pháp luật về phòng, chống ma túy." }
+          {
+            "name": "Cơ quan báo chí, truyền thông có trách nhiệm phối hợp với cơ quan, tổ chức có liên quan tuyên truyền chủ trương, chính sách, pháp luật về phòng, chống ma túy."
+          }
         ]
       },
       {
         "name": "5.4. Mặt trận Tổ quốc Việt Nam, các tổ chức thành viên của Mặt trận và tổ chức khác",
         "children": [
-          { "name": "- Tổ chức và phối hợp với cơ quan có thẩm quyền tuyên truyền, phổ biến kiến thức, pháp luật về phòng, chống ma túy trong nhân dân; vận động nhân dân tham gia phòng, chống ma túy và thực hiện các phong trào phòng, chống ma túy." },
-          { "name": "- Phòng ngừa, ngăn chặn người của tổ chức mình và mọi công dân vi phạm pháp luật về phòng, chống ma túy." },
-          { "name": "- Phối hợp với chính quyền địa phương các cấp, cơ quan có thẩm quyền vận động người nghiện ma túy thực hiện biện pháp cai nghiện ma túy, điều trị nghiện bằng thuốc thay thế; quản lý người sử dụng trái phép chất ma túy; tham gia cảm hóa, giáo dục, dạy nghề, tìm việc làm và giúp đỡ người sau cai nghiện ma túy hòa nhập cộng đồng; phòng, chống tái nghiện ma túy." }
+          {
+            "name": "- Tổ chức và phối hợp với cơ quan có thẩm quyền tuyên truyền, phổ biến kiến thức, pháp luật về phòng, chống ma túy trong nhân dân; vận động nhân dân tham gia phòng, chống ma túy và thực hiện các phong trào phòng, chống ma túy."
+          },
+          {
+            "name": "- Phòng ngừa, ngăn chặn người của tổ chức mình và mọi công dân vi phạm pháp luật về phòng, chống ma túy."
+          },
+          {
+            "name": "- Phối hợp với chính quyền địa phương các cấp, cơ quan có thẩm quyền vận động người nghiện ma túy thực hiện biện pháp cai nghiện ma túy, điều trị nghiện bằng thuốc thay thế; quản lý người sử dụng trái phép chất ma túy; tham gia cảm hóa, giáo dục, dạy nghề, tìm việc làm và giúp đỡ người sau cai nghiện ma túy hòa nhập cộng đồng; phòng, chống tái nghiện ma túy."
+          }
         ]
       }
     ]

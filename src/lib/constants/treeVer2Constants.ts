@@ -16,9 +16,9 @@ export const treeBranches: TreeBranchConfig[] = [
     title: "Trách nhiệm trong việc phòng, chống ma túy",
     bgColorClass: "bg-transparent",
     textColorClass: "text-[#6A9B49]", 
-    top: "16%",
-    left: "36%", 
-    width: "35%", // Đã đổi sang %
+    top: "14%",
+    left: "21%", 
+    width: "33%", // Đã đổi sang %
     contentKey: "responsibility",
   },
   {
@@ -26,8 +26,8 @@ export const treeBranches: TreeBranchConfig[] = [
     title: "Phòng ngừa ma túy",
     bgColorClass: "bg-transparent",
     textColorClass: "text-[#D54D53]", 
-    top: "29%",
-    left: "80%",
+    top: "27%",
+    left: "65%",
     width: "30%", // Đã đổi sang %
     contentKey: "prevention",
   },
@@ -36,8 +36,8 @@ export const treeBranches: TreeBranchConfig[] = [
     title: "Cai nghiện ma túy và phục hồi nhân phẩm",
     bgColorClass: "bg-transparent",
     textColorClass: "text-[#B33FB6]", 
-    top: "34%",
-    left: "23%",
+    top: "32%",
+    left: "5%",
     width: "40%", // Đã đổi sang %
     contentKey: "rehabilitation",
   },
@@ -46,19 +46,19 @@ export const treeBranches: TreeBranchConfig[] = [
     title: "Đấu tranh chống hành vi vi phạm pháp luật về ma túy",
     bgColorClass: "bg-transparent",
     textColorClass: "text-[#DF7F25]", 
-    top: "52%",
-    left: "77%",
+    top: "49%",
+    left: "57%",
     width: "42%", // Đã đổi sang %
     contentKey: "enforcement",
   },
   {
     id: 5,
-    title: "Khung pháp lý về phòng, chống ma túy",
+    title: "KHUNG PHÁP LÝ VỀ PHÒNG, CHỐNG MA TÚY",
     bgColorClass: "bg-transparent",
-    textColorClass: "text-[#3B78C4]", 
-    top: "58%",
-    left: "22%",
-    width: "38%", // Đã đổi sang %
+    textColorClass: "text-[#EAC875]", 
+    top: "86%",
+    left: "30%",
+    width: "50%",
     contentKey: "legalFramework",
   },
 ];

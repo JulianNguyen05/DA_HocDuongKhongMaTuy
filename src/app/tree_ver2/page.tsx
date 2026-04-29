@@ -1,4 +1,4 @@
-import TreeInteractive from "./TreeInteractive";
+import TreeInteractive from "@/components/tree_ver2/TreeInteractive";
 
 export const dynamic = "force-dynamic";
 

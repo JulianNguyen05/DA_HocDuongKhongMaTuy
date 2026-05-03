@@ -3,10 +3,10 @@
     "name": "1. KHUNG PHÁP LÝ VỀ PHÒNG, CHỐNG MA TÚY",
     "children": [
       {
-        "name": "- Các văn bản luật",
+        "name": "Các văn bản luật",
         "children": [
           {
-            "name": "+ Bộ luật hình sự 2015",
+            "name": "Bộ luật Hình sự 2015",
             "children": [
               {
                 "name": "Chương XX của Bộ luật này gồm có 14 hành vi được quy định là tội phạm về ma túy."
@@ -20,7 +20,7 @@
             ]
           },
           {
-            "name": "+ Luật Xử lý vi phạm hành chính 2012",
+            "name": "Luật Xử lý vi phạm hành chính 2012",
             "children": [
               {
                 "name": "Luật này tạo cơ sở pháp lý cho việc xử lý các hành vi vi phạm pháp luật về ma túy nhưng chưa đến mức bị xem là tội phạm."
@@ -31,7 +31,7 @@
             ]
           },
           {
-            "name": "+ Luật Phòng, chống ma túy 2025",
+            "name": "Luật Phòng, chống ma túy 2025",
             "children": [
               {
                 "name": "Luật này quy định về phòng, chống ma túy; quản lý người sử dụng trái phép chất ma túy; cai nghiện ma túy; trách nhiệm của cá nhân, gia đình, cơ quan, tổ chức trong phòng, chống ma túy; quản lý nhà nước và hợp tác quốc tế về phòng, chống ma túy."
@@ -41,25 +41,25 @@
         ]
       },
       {
-        "name": "- Các văn bản dưới luật",
+        "name": "Các văn bản dưới luật",
         "children": [
           {
-            "name": "+ Pháp lệnh số 01/2022/UBTVQH15"
+            "name": "Pháp lệnh số 01/2022/UBTVQH15"
           },
           {
-            "name": "+ Nghị định 105/2021/NĐ-CP"
+            "name": "Nghị định 105/2021/NĐ-CP"
           },
           {
-            "name": "+ Nghị định 109/2021/NĐ-CP"
+            "name": "Nghị định 109/2021/NĐ-CP"
           },
           {
-            "name": "+ Nghị định 282/2025/NĐ-CP"
+            "name": "Nghị định 282/2025/NĐ-CP"
           },
           {
-            "name": "+ Nghị định 28/2026/NĐ-CP"
+            "name": "Nghị định 28/2026/NĐ-CP"
           },
           {
-            "name": "+ Thông tư liên tịch số 17/2007/TTLT-BCA-VKSNDTC-TANDTC-BTP"
+            "name": "Thông tư liên tịch số 17/2007/TTLT-BCA-VKSNDTC-TANDTC-BTP"
           }
         ]
       }
@@ -69,10 +69,10 @@
     "name": "2. Phòng ngừa",
     "children": [
       {
-        "name": "- Điều 24 Luật Phòng, chống ma túy 2025 quy định:",
+        "name": "Điều 24 Luật Phòng, chống ma túy 2025 quy định:",
         "children": [
           {
-            "name": "“ Quản lý người sử dụng trái phép chất ma túy là biện pháp phòng ngừa nhằm giúp người sử dụng trái phép chất ma túy không tiếp tục sử dụng trái phép chất ma túy, phòng ngừa người sử dụng trái phép chất ma túy thực hiện hành vi vi phạm pháp luật ”."
+            "name": "“Quản lý người sử dụng trái phép chất ma túy là biện pháp phòng ngừa nhằm giúp người sử dụng trái phép chất ma túy không tiếp tục sử dụng trái phép chất ma túy, phòng ngừa người sử dụng trái phép chất ma túy thực hiện hành vi vi phạm pháp luật ”."
           },
           {
             "name": "Quản lý người sử dụng trái phép chất ma túy không phải là biện pháp xử lý hành chính."
@@ -80,50 +80,50 @@
         ]
       },
       {
-        "name": "- Thời hạn quản lý người sử dụng trái phép chất ma túy: 01 năm kể từ ngày ra quyết định quản lý."
+        "name": "Thời hạn quản lý người sử dụng trái phép chất ma túy: 01 năm kể từ ngày ra quyết định quản lý."
       },
       {
-        "name": "- Ủy ban nhân dân cấp xã thực hiện quản lý, giáo dục người sử dụng trái phép chất ma túy tại địa phương."
+        "name": "Ủy ban nhân dân cấp xã thực hiện quản lý, giáo dục người sử dụng trái phép chất ma túy tại địa phương."
       },
       {
-        "name": "- Trưởng Công an cấp xã có trách nhiệm trực tiếp giúp Ủy ban nhân dân cấp xã thực hiện quản lý người sử dụng trái phép chất ma túy và có các nhiệm vụ, quyền hạn sau đây:",
+        "name": "Trưởng Công an cấp xã có trách nhiệm trực tiếp giúp Ủy ban nhân dân cấp xã thực hiện quản lý người sử dụng trái phép chất ma túy và có các nhiệm vụ, quyền hạn sau đây:",
         "children": [
           {
-            "name": "+ Ra quyết định và tổ chức quản lý người sử dụng trái phép chất ma túy trong thời hạn 24 giờ kể từ khi nhận được kết quả xét nghiệm dương tính với chất ma túy của người cư trú tại địa phương;"
+            "name": "Ra quyết định và tổ chức quản lý người sử dụng trái phép chất ma túy trong thời hạn 24 giờ kể từ khi nhận được kết quả xét nghiệm dương tính với chất ma túy của người cư trú tại địa phương;"
           },
           {
-            "name": "+ Quản lý cư trú; triệu tập; xét nghiệm chất ma túy trong cơ thể; phòng ngừa, ngăn chặn hành vi gây mất an ninh, trật tự của người sử dụng trái phép chất ma túy;"
+            "name": "Quản lý cư trú; triệu tập; xét nghiệm chất ma túy trong cơ thể; phòng ngừa, ngăn chặn hành vi gây mất an ninh, trật tự của người sử dụng trái phép chất ma túy;"
           },
           {
-            "name": "+ Phối hợp với các cơ quan, tổ chức, đoàn thể, cá nhân tư vấn, động viên, giáo dục, giúp đỡ người sử dụng trái phép chất ma túy để họ không tiếp tục sử dụng trái phép chất ma túy."
+            "name": "Phối hợp với các cơ quan, tổ chức, đoàn thể, cá nhân tư vấn, động viên, giáo dục, giúp đỡ người sử dụng trái phép chất ma túy để họ không tiếp tục sử dụng trái phép chất ma túy."
           }
         ]
       },
       {
-        "name": "- Trong thời hạn quản lý, Trưởng Công an cấp xã ra quyết định dừng quản lý người sử dụng trái phép chất ma túy trong các trường hợp sau đây:",
+        "name": "Trong thời hạn quản lý, Trưởng Công an cấp xã ra quyết định dừng quản lý người sử dụng trái phép chất ma túy trong các trường hợp sau đây:",
         "children": [
           {
-            "name": "+ Người sử dụng trái phép chất ma túy được xác định là người nghiện ma túy;"
+            "name": "Người sử dụng trái phép chất ma túy được xác định là người nghiện ma túy;"
           },
           {
-            "name": "+ Người sử dụng trái phép chất ma túy bị áp dụng biện pháp xử lý hành chính đưa vào cơ sở giáo dục bắt buộc, đưa vào trường giáo dưỡng; biện pháp xử lý chuyển hướng giáo dục tại trường giáo dưỡng;"
+            "name": "Người sử dụng trái phép chất ma túy bị áp dụng biện pháp xử lý hành chính đưa vào cơ sở giáo dục bắt buộc, đưa vào trường giáo dưỡng; biện pháp xử lý chuyển hướng giáo dục tại trường giáo dưỡng;"
           },
           {
-            "name": "+ Người sử dụng trái phép chất ma túy phải chấp hành án phạt tù;"
+            "name": "Người sử dụng trái phép chất ma túy phải chấp hành án phạt tù;"
           },
           {
-            "name": "+ Người sử dụng trái phép chất ma túy chết hoặc bị Tòa án tuyên bố mất tích;"
+            "name": "Người sử dụng trái phép chất ma túy chết hoặc bị Tòa án tuyên bố mất tích;"
           },
           {
-            "name": "+ Người sử dụng trái phép chất ma túy bị tạm giữ, tạm giam theo quy định của Bộ luật Tố tụng hình sự mà thời hạn tạm giữ, tạm giam dài hơn thời hạn quản lý người sử dụng trái phép chất ma túy còn lại."
+            "name": "Người sử dụng trái phép chất ma túy bị tạm giữ, tạm giam theo quy định của Bộ luật Tố tụng hình sự mà thời hạn tạm giữ, tạm giam dài hơn thời hạn quản lý người sử dụng trái phép chất ma túy còn lại."
           }
         ]
       },
       {
-        "name": "- Đối với người sử dụng trái phép chất ma túy không có nơi cư trú ổn định, sau khi xác định tình trạng nghiện kết luận người đó không nghiện ma túy thì Ủy ban nhân dân cấp xã, Trưởng Công an cấp xã nơi phát hiện người sử dụng trái phép chất ma túy quản lý người sử dụng trái phép chất ma túy và phối hợp với Ủy ban nhân dân cấp xã, Trưởng Công an cấp xã nơi người sử dụng trái phép chất ma túy đăng ký thường trú thực hiện việc quản lý phù hợp theo quy định tại các khoản 2, 3, 4 và 5 Điều 24 Luật Phòng, chống ma túy 2025."
+        "name": "Đối với người sử dụng trái phép chất ma túy không có nơi cư trú ổn định, sau khi xác định tình trạng nghiện kết luận người đó không nghiện ma túy thì Ủy ban nhân dân cấp xã, Trưởng Công an cấp xã nơi phát hiện người sử dụng trái phép chất ma túy quản lý người sử dụng trái phép chất ma túy và phối hợp với Ủy ban nhân dân cấp xã, Trưởng Công an cấp xã nơi người sử dụng trái phép chất ma túy đăng ký thường trú thực hiện việc quản lý phù hợp theo quy định tại các khoản 2, 3, 4 và 5 Điều 24 Luật Phòng, chống ma túy 2025."
       },
       {
-        "name": "- Quyết định quản lý người sử dụng trái phép chất ma túy được gửi ngay cho Ủy ban nhân dân cấp xã, Trưởng Công an cấp xã nơi người sử dụng trái phép chất ma túy đăng ký thường trú để phối hợp quản lý."
+        "name": "Quyết định quản lý người sử dụng trái phép chất ma túy được gửi ngay cho Ủy ban nhân dân cấp xã, Trưởng Công an cấp xã nơi người sử dụng trái phép chất ma túy đăng ký thường trú để phối hợp quản lý."
       }
     ]
   },

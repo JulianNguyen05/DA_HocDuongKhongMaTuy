@@ -1,6 +1,6 @@
 {
   "legalFramework": {
-    "name": "1. KHUNG PHÁP LÝ VỀ PHÒNG, CHỐNG MA TÚY",
+    "name": "KHUNG PHÁP LÝ VỀ PHÒNG, CHỐNG MA TÚY",
     "children": [
       {
         "name": "Các văn bản luật",
@@ -66,7 +66,7 @@
     ]
   },
   "prevention": {
-    "name": "2. Phòng ngừa",
+    "name": "Phòng ngừa",
     "children": [
       {
         "name": "Điều 24 Luật Phòng, chống ma túy 2025 quy định:",
@@ -128,10 +128,10 @@
     ]
   },
   "enforcement": {
-    "name": "3. Đấu tranh chống hành vi vi phạm pháp luật về ma túy",
+    "name": "Đấu tranh chống hành vi vi phạm pháp luật về ma túy",
     "children": [
       {
-        "name": "3.1. Các hành vi bị nghiêm cấm.",
+        "name": "Các hành vi bị nghiêm cấm.",
         "children": [
           {
             "name": "Điều 5 Luật Phòng, chống ma túy 2025 nghiêm cấm thực hiện 11 hành vi sau đây:",
@@ -174,7 +174,7 @@
         ]
       },
       {
-        "name": "3.2. Hành vi vi phạm hành chính về ma túy",
+        "name": "Hành vi vi phạm hành chính về ma túy",
         "children": [
           {
             "name": "Điều 30 Nghị định 282/2025/NĐ-CP quy định về xử phạt vi phạm hành chính về hành vi vi phạm các quy định về phòng, chống và kiểm soát ma túy, như sau:",
@@ -364,7 +364,7 @@
         ]
       },
       {
-        "name": "3.3. Hành vi là tội phạm về ma túy",
+        "name": "Hành vi là tội phạm về ma túy",
         "children": [
           {
             "name": "Điều 247. Tội trồng cây thuốc phiện, cây côca, cây cần sa hoặc các loại cây khác có chứa chất ma túy",
@@ -1530,10 +1530,10 @@
     ]
   },
   "rehabilitation": {
-    "name": "4. Cai nghiện ma túy và phục hồi nhân phẩm",
+    "name": "Cai nghiện ma túy và phục hồi nhân phẩm",
     "children": [
       {
-        "name": "4.1. Công tác cai nghiện ma túy",
+        "name": "Công tác cai nghiện ma túy",
         "children": [
           {
             "name": "Theo quy định tại Điều 29 Luật Phòng, chống ma túy 2025, quy trình cai nghiện bao gồm 05 giai đoạn sau đây:",
@@ -1580,16 +1580,16 @@
         ]
       },
       {
-        "name": "4.2. Phục hồi sau cai nghiện",
+        "name": "Phục hồi sau cai nghiện",
         "children": []
       }
     ]
   },
   "responsibility": {
-    "name": "5. Trách nhiệm trong việc phòng, chống ma túy",
+    "name": "Trách nhiệm trong việc phòng, chống ma túy",
     "children": [
       {
-        "name": "5.1. Cá nhân, gia đình và cộng đồng",
+        "name": "Cá nhân, gia đình và cộng đồng",
         "children": [
           {
             "name": "Theo quy định tại Điều 6 Luật Phòng, chống ma túy 2025, trách nhiệm được xác lập như sau:",
@@ -1611,7 +1611,7 @@
         ]
       },
       {
-        "name": "5.2. Cơ quan nhà nước",
+        "name": "Cơ quan nhà nước",
         "children": [
           {
             "name": "Tổ chức thực hiện chương trình giáo dục về phòng, chống ma túy; phổ biến, giáo dục pháp luật về phòng, chống ma túy cho học sinh, sinh viên, học viên; quản lý chặt chẽ, ngăn chặn học sinh, sinh viên, học viên vi phạm pháp luật về phòng, chống ma túy."
@@ -1625,7 +1625,7 @@
         ]
       },
       {
-        "name": "5.3. Cơ quan báo chí, truyền thông",
+        "name": "Cơ quan báo chí, truyền thông",
         "children": [
           {
             "name": "Cơ quan báo chí, truyền thông có trách nhiệm phối hợp với cơ quan, tổ chức có liên quan tuyên truyền chủ trương, chính sách, pháp luật về phòng, chống ma túy."
@@ -1633,7 +1633,7 @@
         ]
       },
       {
-        "name": "5.4. Mặt trận Tổ quốc Việt Nam, các tổ chức thành viên của Mặt trận và tổ chức khác",
+        "name": "Mặt trận Tổ quốc Việt Nam, các tổ chức thành viên của Mặt trận và tổ chức khác",
         "children": [
           {
             "name": "Tổ chức và phối hợp với cơ quan có thẩm quyền tuyên truyền, phổ biến kiến thức, pháp luật về phòng, chống ma túy trong nhân dân; vận động nhân dân tham gia phòng, chống ma túy và thực hiện các phong trào phòng, chống ma túy."

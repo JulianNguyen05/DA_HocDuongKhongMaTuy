@@ -271,16 +271,71 @@
                 "name": "8. Hình thức xử phạt bổ sung:",
                 "children": [
                   {
-                    "name": "a) Tịch thu tang vật, phương tiện vi phạm hành chính đối với hành vi vi phạm quy định tại điểm a khoản 1; các khoản 2 và 3; điểm a khoản 4; các điểm b, c, d, đ, e và g khoản 5; các điểm a và b khoản 6 Điều này;"
+                    "name": "a) Tịch thu tang vật, phương tiện vi phạm hành chính đối với hành vi:",
+                    "children": [
+                      {
+                        "name": "Sử dụng trái phép chất ma túy nhưng không bị truy cứu trách nhiệm hình sự."
+                      },
+                      {
+                        "name": "Tàng trữ, vận chuyển trái phép hoặc chiếm đoạt chất ma túy; chiếm đoạt tiền chất dùng vào việc sản xuất trái phép chất ma túy; sản xuất, tàng trữ, vận chuyển, mua bán phương tiện, dụng cụ dùng vào việc sản xuất hoặc sử dụng trái phép chất ma túy nhưng chưa đến mức truy cứu trách nhiệm hình sự."
+                      },
+                      {
+                        "name": "Trồng cây có chứa chất ma túy hoặc hướng dẫn trồng cây có chứa chất ma túy."
+                      },
+                      {
+                        "name": "Môi giới, giúp sức hoặc hành vi khác giúp người khác sử dụng trái phép chất ma túy."
+                      },
+                      {
+                        "name": "Vi phạm quy định về xuất khẩu, nhập khẩu, tạm nhập, tái xuất, quá cảnh chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về tạm xuất, tái nhập chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần; vi phạm quy định về xuất khẩu, nhập khẩu, tạm nhập, tái xuất, tạm xuất, tái nhập, quá cảnh thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất."
+                      },
+                      {
+                        "name": "Vi phạm quy định về nghiên cứu, giám định, sản xuất, bảo quản chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về nghiên cứu, giám định, sản xuất, bảo quản thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất."
+                      },
+                      {
+                        "name": "Vi phạm quy định về giao nhận, vận chuyển chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về giao nhận, vận chuyển thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất."
+                      },
+                      {
+                        "name": "Vi phạm quy định về phân phối, mua bán, trao đổi chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về phân phối, mua bán, trao đổi thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y有 chứa chất ma túy, tiền chất."
+                      },
+                      {
+                        "name": "Vi phạm quy định về quản lý, kiểm soát, lưu giữ chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần tại khu vực cửa khẩu, khu vực biên giới, trên biển nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về quản lý, kiểm soát, lưu giữ thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y有 chứa chất ma túy, tiền chất tại khu vực cửa khẩu, khu vực biên giới, trên biển."
+                      },
+                      {
+                        "name": "Vi phạm quy định về cấp phát, cho phép sử dụng chất ma túy, thuốc gây nghiện hoặc thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về cấp phát, cho phép sử dụng thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất."
+                      },
+                      {
+                        "name": "Nghiên cứu, giám định, kiểm nghiệm, kiểm định, sản xuất, tàng trữ, vận chuyển, bảo quản, tồn trữ, mua bán, phân phối, xử lý, trao đổi, xuất khẩu, nhập khẩu, tạm nhập, tái xuất, tạm xuất, tái nhập, quá cảnh trái phép tiền chất, thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất."
+                      },
+                      {
+                        "name": "Chiếm đoạt thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất."
+                      }
+                    ]
                   },
                   {
-                    "name": "b) Tước quyền sử dụng giấy phép, chứng chỉ hành nghề, Giấy chứng nhận đủ điều kiện về an ninh, trật tự từ 03 tháng đến 06 tháng đối với hành vi vi phạm quy định tại điểm h khoản 5 Điều này, trừ trường hợp có quy định pháp luật về việc thu hồi giấy phép, chứng chỉ hành nghề, Giấy chứng nhận đủ điều kiện về an ninh, trật tự;"
+                    "name": "b) Tước quyền sử dụng giấy phép, chứng chỉ hành nghề, Giấy chứng nhận đủ điều kiện về an ninh, trật tự từ 03 tháng đến 06 tháng đối với hành vi của người đứng đầu, người đại diện theo pháp luật, người được giao quản lý cơ sở kinh doanh, dịch vụ, người quản lý phương tiện giao thông hoặc cá nhân khác có trách nhiệm quản lý nhà hàng, cơ sở cho thuê lưu trú, câu lạc bộ, hoạt động kinh doanh karaoke, hoạt động kinh doanh vũ trường, kinh doanh trò chơi điện tử, các phương tiện giao thông nhưng thiếu trách nhiệm trong thực hiện quy định quản lý nhà nước đối với hoạt động kinh doanh để xảy ra hoạt động tàng trữ, mua bán, sử dụng trái phép chất ma túy trong khu vực, phương tiện do mình quản lý, trừ trường hợp có quy định pháp luật về việc thu hồi giấy phép, chứng chỉ hành nghề, Giấy chứng nhận đủ điều kiện về an ninh, trật tự."
                   },
                   {
-                    "name": "c) Đình chỉ hoạt động từ 03 tháng đến 06 tháng đối với hành vi vi phạm quy định tại điểm b khoản 5 Điều này;"
+                    "name": "c) Đình chỉ hoạt động từ 03 tháng đến 06 tháng đối với hành vi vi phạm quy định về xuất khẩu, nhập khẩu, tạm nhập, tái xuất, quá cảnh chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về tạm xuất, tái nhập chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần; vi phạm quy định về xuất khẩu, nhập khẩu, tạm nhập, tái xuất, tạm xuất, tái nhập, quá cảnh thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất."
                   },
                   {
-                    "name": "d) Căn cứ vào tính chất, mức độ, hậu quả vi phạm, đối tượng vi phạm và tình tiết giảm nhẹ, tình tiết tăng nặng để quyết định áp dụng hình thức xử phạt trục xuất đối với người nước ngoài thực hiện hành vi vi phạm hành chính quy định tại các khoản 6 và 7 Điều này."
+                    "name": "d) Căn cứ vào tính chất, mức độ, hậu quả vi phạm, đối tượng vi phạm và tình tiết giảm nhẹ, tình tiết tăng nặng để quyết định áp dụng hình thức xử phạt trục xuất đối với người nước ngoài thực hiện hành vi:",
+                    "children": [
+                      {
+                        "name": "Nghiên cứu, giám định, kiểm nghiệm, kiểm định, sản xuất, tàng trữ, vận chuyển, bảo quản, tồn trữ, mua bán, phân phối, xử lý, trao đổi, xuất khẩu, nhập khẩu, tạm nhập, tái xuất, tạm xuất, tái nhập, quá cảnh trái phép tiền chất, thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất."
+                      },
+                      {
+                        "name": "Chiếm đoạt thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất."
+                      },
+                      {
+                        "name": "Trả thù hoặc cản trở người thực thi nhiệm vụ phòng, chống ma túy, người tham gia phòng, chống ma túy."
+                      },
+                      {
+                        "name": "Hướng dẫn sản xuất, hướng dẫn sử dụng trái phép chất ma túy."
+                      },
+                      {
+                        "name": "Cung cấp địa điểm, phương tiện cho người khác tàng trữ trái phép chất ma túy."
+                      }
+                    ]
                   }
                 ]
               },

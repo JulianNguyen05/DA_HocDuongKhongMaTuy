@@ -11,14 +11,26 @@ export type MindmapNodeType = {
 export const MindmapNodeComponent = ({
   node,
   level = 0,
+  isExpanded,
+  onToggle,
 }: {
   node: MindmapNodeType;
   level?: number;
+  isExpanded?: boolean;
+  onToggle?: () => void;
 }) => {
-  const [isOpen, setIsOpen] = useState(level === 0);
+  // Trạng thái tự quản lý (dành cho node gốc - level 0 vì nó không có node cha điều khiển)
+  const [internalIsOpen, setInternalIsOpen] = useState(level === 0);
+  
+  // State quản lý xem node con nào đang được mở (chỉ lưu 1 index duy nhất)
+  const [openChildIndex, setOpenChildIndex] = useState<number | null>(null);
+
   const hasChildren = !!node.children && node.children.length > 0;
 
-  // Tinh chỉnh hiệu ứng xuất hiện: Thêm blur để có cảm giác điện ảnh
+  // Nếu component được cha truyền prop isExpanded xuống thì dùng nó, ngược lại dùng state nội bộ
+  const isOpen = isExpanded !== undefined ? isExpanded : internalIsOpen;
+
+  // Tinh chỉnh hiệu ứng xuất hiện
   const nodeVariants: Variants = {
     hidden: { opacity: 0, x: -15, filter: "blur(4px)" },
     visible: {
@@ -30,9 +42,21 @@ export const MindmapNodeComponent = ({
     exit: { opacity: 0, x: -10, filter: "blur(4px)", transition: { duration: 0.2 } }
   };
 
+  const handleToggle = () => {
+    if (!hasChildren) return;
+    
+    // Nếu có hàm onToggle từ cha truyền xuống thì gọi nó để cha xử lý
+    if (onToggle) {
+      onToggle();
+    } else {
+      // Nếu không (thường là node root level 0), tự toggle chính mình
+      setInternalIsOpen(!internalIsOpen);
+    }
+  };
+
   return (
     <motion.div
-      layout // Giúp thẻ tự động trượt mượt mà khi chiều cao bị thay đổi
+      layout
       initial="hidden"
       animate="visible"
       exit="exit"
@@ -48,7 +72,7 @@ export const MindmapNodeComponent = ({
 
       <div className="flex items-center py-2">
         <motion.div
-          layout // Khung chữ cũng trượt theo
+          layout
           whileHover={
             hasChildren
               ? { scale: 1.02, boxShadow: "0px 8px 16px rgba(99, 102, 241, 0.15)" }
@@ -61,7 +85,7 @@ export const MindmapNodeComponent = ({
             ${hasChildren ? "cursor-pointer hover:bg-indigo-50 border-transparent hover:border-indigo-200" : ""}
             max-w-[280px] md:max-w-[380px]
           `}
-          onClick={() => hasChildren && setIsOpen(!isOpen)}
+          onClick={handleToggle}
         >
           <span className="leading-snug">{node.name}</span>
 
@@ -102,13 +126,21 @@ export const MindmapNodeComponent = ({
             animate="visible"
             exit="exit"
             variants={{
-              visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } }, // Tăng tốc độ xuất hiện dây chuyền
+              visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
               exit: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
             }}
             className="flex flex-col relative border-l-[2px] border-blue-300 py-2 origin-top"
           >
             {node.children!.map((child, idx) => (
-              <MindmapNodeComponent key={idx} node={child} level={level + 1} />
+              <MindmapNodeComponent 
+                key={idx} 
+                node={child} 
+                level={level + 1} 
+                // Truyền trạng thái mở/đóng dựa trên việc index của child này có trùng với openChildIndex không
+                isExpanded={openChildIndex === idx}
+                // Khi child được click, cập nhật openChildIndex thành nó (nếu đang mở thì thành null để đóng)
+                onToggle={() => setOpenChildIndex(openChildIndex === idx ? null : idx)}
+              />
             ))}
           </motion.div>
         )}

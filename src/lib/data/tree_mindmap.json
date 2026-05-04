@@ -6,16 +6,10 @@
         "name": "Các văn bản luật",
         "children": [
           {
-            "name": "Bộ luật Hình sự 2015",
+            "name": "Luật Phòng, chống ma túy 2025",
             "children": [
               {
-                "name": "Chương XX của Bộ luật này gồm có 14 hành vi được quy định là tội phạm về ma túy."
-              },
-              {
-                "name": "Đây là nhóm tội phạm đặc biệt nguy hiểm, gây ảnh hưởng nghiêm trọng đến trật tự xã hội, sức khỏe cộng đồng và an ninh quốc gia."
-              },
-              {
-                "name": "Hình phạt nghiêm khắc nhất cho nhóm tội phạm này là tử hình."
+                "name": "Luật này quy định về phòng, chống ma túy; quản lý người sử dụng trái phép chất ma túy; cai nghiện ma túy; trách nhiệm của cá nhân, gia đình, cơ quan, tổ chức trong phòng, chống ma túy; quản lý nhà nước và hợp tác quốc tế về phòng, chống ma túy."
               }
             ]
           },
@@ -31,10 +25,16 @@
             ]
           },
           {
-            "name": "Luật Phòng, chống ma túy 2025",
+            "name": "Bộ luật Hình sự 2015",
             "children": [
               {
-                "name": "Luật này quy định về phòng, chống ma túy; quản lý người sử dụng trái phép chất ma túy; cai nghiện ma túy; trách nhiệm của cá nhân, gia đình, cơ quan, tổ chức trong phòng, chống ma túy; quản lý nhà nước và hợp tác quốc tế về phòng, chống ma túy."
+                "name": "Chương XX của Bộ luật này gồm có 14 hành vi được quy định là tội phạm về ma túy."
+              },
+              {
+                "name": "Đây là nhóm tội phạm đặc biệt nguy hiểm, gây ảnh hưởng nghiêm trọng đến trật tự xã hội, sức khỏe cộng đồng và an ninh quốc gia."
+              },
+              {
+                "name": "Hình phạt nghiêm khắc nhất cho nhóm tội phạm này là tử hình."
               }
             ]
           }

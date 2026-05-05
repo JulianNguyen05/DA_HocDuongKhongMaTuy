@@ -15,7 +15,7 @@ export default function Footer() {
         {/* Đã giảm mb-3 xuống mb-2 */}
         <div className="flex items-center gap-2 mb-2">
           <h3 className="text-xl md:text-2xl font-extrabold tracking-tight bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent drop-shadow-sm">
-            Học đường không ma túy
+            Trường học không ma túy
           </h3>
         </div>
 
@@ -23,7 +23,7 @@ export default function Footer() {
         {/* Đã giảm mb-6 xuống mb-4 */}
         <p className="text-sm leading-relaxed text-gray-400 mb-4 max-w-2xl">
           Nền tảng số hiện đại giúp trang bị kiến thức và bảo vệ thế hệ trẻ
-          trước cạm bẫy của ma túy. Kiến tạo một môi trường học đường an toàn và
+          trước cạm bẫy của ma túy. Kiến tạo một môi trường trường học an toàn và
           lành mạnh.
         </p>
 

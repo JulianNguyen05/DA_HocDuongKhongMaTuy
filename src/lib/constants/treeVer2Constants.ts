@@ -23,7 +23,7 @@ export const treeBranches: TreeBranchConfig[] = [
   },
   {
     id: 2,
-    title: "Phòng ngừa ma túy",
+    title: "Phòng ngừa ma túy và quản lý sau cai nghiện",
     bgColorClass: "bg-transparent",
     textColorClass: "text-[#D54D53]", 
     top: "27%",
@@ -33,7 +33,7 @@ export const treeBranches: TreeBranchConfig[] = [
   },
   {
     id: 3,
-    title: "Cai nghiện ma túy và phục hồi nhân phẩm",
+    title: "Cai nghiện ma túy và phục hồi sức khỏe, nhân cách",
     bgColorClass: "bg-transparent",
     textColorClass: "text-[#B33FB6]", 
     top: "32%",

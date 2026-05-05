@@ -69,7 +69,7 @@ export default function Navbar() {
               className="relative z-10 flex items-center gap-2 group ml-4 mr-4"
             >
               <span className="text-xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-green-800 to-green-600 bg-clip-text text-transparent drop-shadow-sm">
-                Học đường không ma túy
+                Trường học không ma túy
               </span>
             </Link>
           </div>

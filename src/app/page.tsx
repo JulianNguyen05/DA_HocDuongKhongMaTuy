@@ -11,8 +11,8 @@ export default function Home() {
         
         {/* THAY ĐỔI TRÊN ẢNH DESKTOP: Đổi object-cover thành object-contain */}
         <Image
-          src="/hero-bg3.jpeg"
-          alt="Học Đường Không Ma Túy (Desktop)"
+          src="/hero-bg5.png"
+          alt="Trường học Không Ma Túy (Desktop)"
           fill
           priority
           quality={100}
@@ -24,7 +24,7 @@ export default function Home() {
         {/* THAY ĐỔI TRÊN ẢNH MOBILE: Đổi object-cover thành object-contain */}
         <Image
           src="/hero-bg4.jpg"
-          alt="Học Đường Không Ma Túy (Mobile)"
+          alt="Trường học Không Ma Túy (Mobile)"
           fill
           priority
           quality={100}

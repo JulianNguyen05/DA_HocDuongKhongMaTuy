@@ -404,13 +404,13 @@
                 "name": "7. Các biện pháp khắc phục hậu quả:",
                 "children": [
                   {
-                    "name": "a) Buộc thông báo cho Ủy ban nhân dân cấp có thẩm quyền khi người cai nghiện ma túy tự ý chấm dứt hoặc hoàn thành việc sử dụng dịch vụ cai nghiện ma túy do thực hiện hành vi vi phạm quy định tại điểm d khoản 1 Điều này;"
+                    "name": "a) Buộc thông báo cho Ủy ban nhân dân cấp có thẩm quyền khi người cai nghiện ma túy tự ý chấm dứt hoặc hoàn thành việc sử dụng dịch vụ cai nghiện ma túy mà không thông báo cho Ủy ban nhân dân cấp có thẩm quyền."
                   },
                   {
-                    "name": "b) Buộc thông báo công khai, minh bạch về loại dịch vụ, quy trình thực hiện dịch vụ, giá dịch vụ cai nghiện ma túy do thực hiện hành vi vi phạm quy định tại điểm b khoản 1 Điều này;"
+                    "name": "b) Buộc thông báo công khai, minh bạch về loại dịch vụ, quy trình thực hiện dịch vụ, giá dịch vụ cai nghiện ma túy nếu thực hiện hành vi không thông báo công khai, minh bạch về loại dịch vụ, quy trình thực hiện dịch vụ, giá dịch vụ cai nghiện ma túy."
                   },
                   {
-                    "name": "c) Buộc ký hợp đồng dịch vụ cai nghiện ma túy do thực hiện hành vi vi phạm quy định tại điểm c khoản 1 Điều này”."
+                    "name": "c) Buộc ký hợp đồng dịch vụ cai nghiện ma túy nếu thực hiện hành vi không ký hợp đồng dịch vụ cai nghiện ma túy."
                   }
                 ]
               }
@@ -1585,7 +1585,7 @@
     ]
   },
   "rehabilitation": {
-    "name": "Cai nghiện ma túy và phục hồi nhân phẩm",
+    "name": "Phục hồi sức khỏe, hành vi, nhân cách",
     "children": [
       {
         "name": "Công tác cai nghiện ma túy",
@@ -1635,8 +1635,54 @@
         ]
       },
       {
-        "name": "Phục hồi sau cai nghiện",
-        "children": []
+        "name": "Phục hồi sức khỏe, hành vi, nhân cách",
+        "children": [
+          {
+            "name": "Điều trị cắt cơn, giải độc, điều trị rối loạn tâm thần, điều trị các bệnh lý khác",
+            "children": [
+              {
+                "name": "Khám, xây dựng bệnh án đối với người cai nghiện; chú ý các dấu hiệu rối loạn tâm thần, bệnh cơ hội."
+              },
+              {
+                "name": "Xác định loại ma túy, liều lượng ma túy người nghiện sử dụng để xây dựng phác đồ điều trị cắt cơn, giải độc theo hướng dẫn của Bộ Y tế."
+              },
+              {
+                "name": "Tư vấn tâm lý đối với người nghiện trước khi điều trị cắt cơn, giải độc."
+              },
+              {
+                "name": "Thực hiện phác đồ điều trị theo các quy định, hướng dẫn chuyên môn của Bộ Y tế. Kết hợp sử dụng thuốc với các biện pháp tâm lý và các biện pháp vật lý trị liệu phục hồi chức năng; kết hợp điều trị cắt cơn, giải độc với điều trị rối loạn tâm thần và các bệnh cơ hội khác."
+              }
+            ]
+          },
+          {
+            "name": "Giáo dục, tư vấn phục hồi hành vi, nhân cách",
+            "children": [
+              {
+                "name": "Tổ chức dạy văn hóa, học tập các chuyên đề: giáo dục công dân, sức khỏe và cộng đồng, pháp luật, đạo đức, truyền thống dân tộc và chuyên đề phù hợp khác với số lượng, trình độ học vấn người cai nghiện."
+              },
+              {
+                "name": "Tổ chức các hoạt động trị liệu tâm lý nhằm điều trị các rối loạn tâm thần, nâng cao kỹ năng sống, giá trị sống, tư duy tích cực, kỹ năng tự quản lý bản thân cho người cai nghiện."
+              },
+              {
+                "name": "Kết hợp việc học tập, trị liệu với việc tư vấn, khuyến khích người cai nghiện tham gia các hoạt động lao động sinh hoạt hàng ngày tại cơ sở để tạo ý thức, thói quen tốt trong sinh hoạt."
+              },
+              {
+                "name": "Tổ chức thực hiện các hoạt động văn hóa, thể thao, các chương trình sinh hoạt tập thể, trò chơi vận động cho người cai nghiện."
+              }
+            ]
+          },
+          {
+            "name": "Lao động trị liệu, học nghề",
+            "children": [
+              {
+                "name": "Tổ chức các hoạt động lao động trị liệu nhằm giúp người cai nghiện cải thiện về sức khỏe thể chất, tâm trí, tăng cường ý thức tổ chức, kỷ luật trong lao động, nâng cao tinh thần tự lập và giúp người cai nghiện nhận thức được giá trị của lao động."
+              },
+              {
+                "name": "Căn cứ vào số lượng, sức khỏe, độ tuổi, giới tính, trình độ, thời gian, nguyện vọng của người cai nghiện để tổ chức các hoạt động hướng nghiệp, dạy nghề phù hợp với điều kiện thực tế tại cơ sở theo Luật Giáo dục nghề nghiệp."
+              }
+            ]
+          }
+        ]
       }
     ]
   },

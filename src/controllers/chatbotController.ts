@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 export async function getChatbotResponse(query: string) {
   let answer = "";
   const defaultFooter =
-    "\n\n---\n*Nếu bạn muốn biết thêm chi tiết về câu hỏi vui lòng liên hệ qua số điện thoại 058. 528181 của Phòng Cảnh sát điều tra tội phạm về ma túy (PC17).*";
+    "\n\n---\n*Nếu bạn muốn biết thêm chi tiết về câu hỏi vui lòng liên hệ qua số điện thoại 025834401236 của Phòng cảnh sát điều tra tội phạm về ma túy công an tỉnh Khánh Hòa (PC04).*";
 
   try {
     // ==========================================

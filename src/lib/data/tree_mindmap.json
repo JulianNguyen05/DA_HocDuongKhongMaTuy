@@ -343,7 +343,30 @@
                 "name": "9. Biện pháp khắc phục hậu quả:",
                 "children": [
                   {
-                    "name": "Buộc nộp lại số lợi bất hợp pháp có được do thực hiện hành vi vi phạm quy định tại các điểm b và c khoản 2; điểm a khoản 4; các điểm b, c và đ khoản 5; điểm a khoản 6 Điều này”."
+                    "name": "Buộc nộp lại số lợi bất hợp pháp có được do thực hiện hành vi:",
+                    "children": [
+                      {
+                        "name": "Chiếm đoạt tiền chất dùng vào việc sản xuất trái phép chất ma túy nhưng chưa đến mức truy cứu trách nhiệm hình sự."
+                      },
+                      {
+                        "name": "Sản xuất, tàng trữ, vận chuyển, mua bán phương tiện, dụng cụ dùng vào việc sản xuất hoặc sử dụng trái phép chất ma túy nhưng chưa đến mức truy cứu trách nhiệm hình sự."
+                      },
+                      {
+                        "name": "Môi giới, giúp sức hoặc hành vi khác giúp người khác sử dụng trái phép chất ma túy."
+                      },
+                      {
+                        "name": "Vi phạm quy định về xuất khẩu, nhập khẩu, tạm nhập, tái xuất, quá cảnh chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về tạm xuất, tái nhập chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần; vi phạm quy định về xuất khẩu, nhập khẩu, tạm nhập, tái xuất, tạm xuất, tái nhập, quá cảnh thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất."
+                      },
+                      {
+                        "name": "Vi phạm quy định về nghiên cứu, giám định, sản xuất, bảo quản chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về nghiên cứu, giám định, sản xuất, bảo quản thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất."
+                      },
+                      {
+                        "name": "Vi phạm quy định về phân phối, mua bán, trao đổi chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần nhưng chưa đến mức truy cứu trách nhiệm hình sự; vi phạm quy định về phân phối, mua bán, trao đổi thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất."
+                      },
+                      {
+                        "name": "Nghiên cứu, giám định, kiểm nghiệm, kiểm định, sản xuất, tàng trữ, vận chuyển, bảo quản, tồn trữ, mua bán, phân phối, xử lý, trao đổi, xuất khẩu, nhập khẩu, tạm nhập, tái xuất, tạm xuất, tái nhập, quá cảnh trái phép tiền chất, thuốc gây nghiện, thuốc hướng thần, thuốc tiền chất, nguyên liệu làm thuốc là dược chất gây nghiện, dược chất hướng thần, tiền chất dùng làm thuốc, thuốc thú y có chứa chất ma túy, tiền chất."
+                      }
+                    ]
                   }
                 ]
               }
